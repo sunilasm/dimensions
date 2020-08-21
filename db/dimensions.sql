@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 19, 2020 at 10:16 PM
+-- Generation Time: Aug 21, 2020 at 12:11 PM
 -- Server version: 5.7.29-0ubuntu0.16.04.1
 -- PHP Version: 7.1.33-8+ubuntu16.04.1+deb.sury.org+2
 
@@ -73,6 +73,7 @@ CREATE TABLE `acc_coa` (
 --
 
 INSERT INTO `acc_coa` (`HeadCode`, `HeadName`, `PHeadName`, `HeadLevel`, `IsActive`, `IsTransaction`, `IsGL`, `HeadType`, `IsBudget`, `IsDepreciation`, `DepreciationRate`, `CreateBy`, `CreateDate`, `UpdateBy`, `UpdateDate`) VALUES
+('502020100001', '3-Demo-Doctor', 'Employee Payable', 4, 1, 1, 0, 'L', 0, 0, '0.00', '2', '2020-08-20 10:27:35', '', '0000-00-00 00:00:00'),
 ('4021403', 'AC', 'Repair and Maintenance', 3, 1, 1, 0, 'E', 0, 0, '0.00', 'admin', '2015-10-15 19:33:55', '', '2020-02-02 00:00:00'),
 ('50202', 'Account Payable', 'Current Liabilities', 2, 1, 0, 1, 'L', 0, 0, '0.00', 'admin', '2015-10-15 19:50:43', '', '2020-02-02 00:00:00'),
 ('10203', 'Account Receivable', 'Current Asset', 2, 1, 0, 0, 'A', 0, 0, '0.00', '', '2020-02-02 00:00:00', 'admin', '2013-09-18 15:29:35'),
@@ -375,6 +376,13 @@ CREATE TABLE `appointment` (
   `create_date` date DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `appointment`
+--
+
+INSERT INTO `appointment` (`id`, `appointment_id`, `patient_id`, `department_id`, `doctor_id`, `schedule_id`, `serial_no`, `date`, `problem`, `created_by`, `create_date`, `status`) VALUES
+(1, 'AZUD5AIU', 'PM7XV0A6', 31, 3, 1, 1, '2020-08-21', 'demo', 3, '2020-08-20', 1);
 
 -- --------------------------------------------------------
 
@@ -1770,6 +1778,13 @@ CREATE TABLE `message` (
   `receiver_status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0=unseen, 1=seen, 2=delete'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `message`
+--
+
+INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `subject`, `message`, `datetime`, `sender_status`, `receiver_status`) VALUES
+(1, 3, 2, 'demo', '<p>demo</p>', '2020-08-20 11:05:05', 1, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -1864,7 +1879,8 @@ CREATE TABLE `patient` (
 
 INSERT INTO `patient` (`id`, `patient_id`, `firstname`, `lastname`, `email`, `password`, `phone`, `mobile`, `address`, `sex`, `blood_group`, `date_of_birth`, `affliate`, `picture`, `created_by`, `create_date`, `status`, `user_role`) VALUES
 (1, 'P6953OWI', 'asdas', 'asd', 'admin@demo.com', 'e10adc3949ba59abbe56e057f20f883e', '0987', '09876543', 'sdfsd dsdf', 'Male', 'A+', '2019-02-08', NULL, '', 1, '2020-05-23', 1, ''),
-(2, 'PELWQ10G', 'Jerin', 'khan', 'jerin@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-06-15', 1, '');
+(2, 'PELWQ10G', 'Jerin', 'khan', 'jerin@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-06-15', 1, ''),
+(3, 'PM7XV0A6', 'Demo', 'Patient', 'demopatient@yopmail.com', 'e10adc3949ba59abbe56e057f20f883e', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-08-20', 1, '');
 
 -- --------------------------------------------------------
 
@@ -2096,126 +2112,126 @@ INSERT INTO `role_permission` (`id`, `fk_module_id`, `role_id`, `create`, `read`
 (1169, 72, 4, 0, 0, 0, 0),
 (1170, 73, 4, 0, 0, 0, 0),
 (1171, 74, 4, 0, 0, 0, 0),
-(1652, 127, 2, 0, 1, 0, 0),
-(1653, 128, 2, 0, 1, 0, 0),
-(1654, 129, 2, 0, 0, 0, 0),
-(1655, 130, 2, 0, 0, 0, 0),
-(1656, 3, 2, 0, 0, 0, 0),
-(1657, 4, 2, 0, 0, 0, 0),
-(1658, 121, 2, 0, 1, 0, 0),
-(1659, 122, 2, 0, 1, 0, 0),
-(1660, 6, 2, 0, 0, 0, 0),
-(1661, 7, 2, 0, 1, 0, 0),
-(1662, 8, 2, 1, 1, 1, 1),
-(1663, 9, 2, 0, 1, 0, 0),
-(1664, 10, 2, 1, 1, 1, 1),
-(1665, 11, 2, 1, 1, 1, 1),
-(1666, 12, 2, 1, 1, 1, 1),
-(1667, 13, 2, 0, 1, 0, 0),
-(1668, 126, 2, 1, 1, 1, 1),
-(1669, 14, 2, 1, 1, 0, 0),
-(1670, 15, 2, 0, 1, 0, 0),
-(1671, 16, 2, 0, 0, 0, 0),
-(1672, 17, 2, 0, 0, 0, 0),
-(1673, 18, 2, 0, 0, 0, 0),
-(1674, 19, 2, 0, 0, 0, 0),
-(1675, 96, 2, 0, 1, 1, 0),
-(1676, 97, 2, 0, 1, 1, 1),
-(1677, 20, 2, 1, 1, 1, 1),
-(1678, 21, 2, 1, 1, 1, 0),
-(1679, 22, 2, 0, 1, 0, 0),
-(1680, 95, 2, 1, 1, 1, 1),
-(1681, 23, 2, 0, 0, 0, 0),
-(1682, 24, 2, 0, 0, 0, 0),
-(1683, 25, 2, 0, 0, 0, 0),
-(1684, 26, 2, 0, 0, 0, 0),
-(1685, 27, 2, 0, 0, 0, 0),
-(1686, 28, 2, 0, 0, 0, 0),
-(1687, 29, 2, 0, 0, 0, 0),
-(1688, 30, 2, 0, 0, 0, 0),
-(1689, 31, 2, 0, 0, 0, 0),
-(1690, 123, 2, 0, 0, 0, 0),
-(1691, 124, 2, 0, 0, 0, 0),
-(1692, 125, 2, 0, 0, 0, 0),
-(1693, 32, 2, 0, 0, 0, 0),
-(1694, 33, 2, 0, 1, 0, 0),
-(1695, 34, 2, 0, 0, 0, 0),
-(1696, 35, 2, 0, 1, 0, 0),
-(1697, 36, 2, 0, 0, 0, 0),
-(1698, 37, 2, 0, 0, 0, 0),
-(1699, 38, 2, 0, 0, 0, 0),
-(1700, 39, 2, 0, 0, 0, 0),
-(1701, 40, 2, 0, 0, 0, 0),
-(1702, 41, 2, 0, 1, 0, 0),
-(1703, 42, 2, 0, 0, 0, 0),
-(1704, 43, 2, 0, 0, 0, 0),
-(1705, 44, 2, 0, 0, 0, 0),
-(1706, 45, 2, 0, 0, 0, 0),
-(1707, 46, 2, 0, 0, 0, 0),
-(1708, 47, 2, 0, 1, 0, 0),
-(1709, 54, 2, 0, 0, 0, 0),
-(1710, 55, 2, 0, 0, 0, 0),
-(1711, 56, 2, 0, 0, 0, 0),
-(1712, 57, 2, 0, 0, 0, 0),
-(1713, 58, 2, 0, 0, 0, 0),
-(1714, 59, 2, 0, 0, 0, 0),
-(1715, 60, 2, 0, 1, 0, 0),
-(1716, 61, 2, 0, 0, 0, 0),
-(1717, 62, 2, 0, 0, 0, 0),
-(1718, 63, 2, 0, 0, 0, 0),
-(1719, 64, 2, 0, 1, 0, 0),
-(1720, 65, 2, 0, 0, 0, 0),
-(1721, 66, 2, 0, 1, 0, 0),
-(1722, 67, 2, 1, 1, 0, 0),
-(1723, 68, 2, 0, 1, 0, 0),
-(1724, 69, 2, 1, 1, 0, 0),
-(1725, 70, 2, 0, 0, 0, 0),
-(1726, 75, 2, 0, 0, 0, 0),
-(1727, 76, 2, 0, 0, 0, 0),
-(1728, 77, 2, 0, 0, 0, 0),
-(1729, 98, 2, 0, 0, 0, 0),
-(1730, 103, 2, 1, 1, 1, 0),
-(1731, 104, 2, 1, 1, 1, 0),
-(1732, 78, 2, 0, 0, 0, 0),
-(1733, 79, 2, 0, 0, 0, 0),
-(1734, 80, 2, 0, 0, 0, 0),
-(1735, 81, 2, 1, 1, 0, 0),
-(1736, 82, 2, 0, 0, 0, 0),
-(1737, 83, 2, 0, 0, 0, 0),
-(1738, 84, 2, 0, 0, 0, 0),
-(1739, 85, 2, 1, 1, 1, 0),
-(1740, 86, 2, 1, 1, 1, 1),
-(1741, 87, 2, 1, 0, 0, 0),
-(1742, 88, 2, 0, 0, 0, 0),
-(1743, 89, 2, 0, 0, 0, 0),
-(1744, 90, 2, 0, 0, 0, 0),
-(1745, 91, 2, 0, 0, 0, 0),
-(1746, 92, 2, 0, 0, 0, 0),
-(1747, 93, 2, 0, 0, 0, 0),
-(1748, 94, 2, 0, 0, 0, 0),
-(1749, 111, 2, 0, 0, 0, 0),
-(1750, 112, 2, 0, 0, 0, 0),
-(1751, 113, 2, 0, 0, 0, 0),
-(1752, 114, 2, 0, 0, 0, 0),
-(1753, 115, 2, 0, 0, 0, 0),
-(1754, 116, 2, 0, 0, 0, 0),
-(1755, 117, 2, 0, 0, 0, 0),
-(1756, 118, 2, 0, 0, 0, 0),
-(1757, 119, 2, 0, 0, 0, 0),
-(1758, 120, 2, 0, 0, 0, 0),
-(1759, 99, 2, 0, 0, 0, 0),
-(1760, 101, 2, 0, 0, 0, 0),
-(1761, 102, 2, 0, 0, 0, 0),
-(1762, 105, 2, 1, 1, 1, 1),
-(1763, 106, 2, 1, 1, 1, 0),
-(1764, 107, 2, 1, 1, 1, 1),
-(1765, 108, 2, 0, 1, 0, 0),
-(1766, 109, 2, 0, 1, 0, 0),
-(1767, 110, 2, 0, 1, 0, 0),
-(1768, 71, 2, 0, 0, 0, 0),
-(1769, 72, 2, 0, 1, 0, 0),
-(1770, 73, 2, 0, 0, 0, 0),
-(1771, 74, 2, 0, 1, 0, 0);
+(1772, 127, 2, 0, 1, 0, 0),
+(1773, 128, 2, 0, 1, 0, 0),
+(1774, 129, 2, 0, 0, 0, 0),
+(1775, 130, 2, 0, 0, 0, 0),
+(1776, 3, 2, 0, 0, 0, 0),
+(1777, 4, 2, 0, 0, 0, 0),
+(1778, 121, 2, 0, 1, 0, 0),
+(1779, 122, 2, 0, 1, 0, 0),
+(1780, 6, 2, 0, 0, 0, 0),
+(1781, 7, 2, 0, 1, 0, 0),
+(1782, 8, 2, 1, 1, 1, 1),
+(1783, 9, 2, 0, 1, 0, 0),
+(1784, 10, 2, 1, 1, 1, 1),
+(1785, 11, 2, 1, 1, 1, 1),
+(1786, 12, 2, 1, 1, 1, 1),
+(1787, 13, 2, 0, 1, 0, 0),
+(1788, 126, 2, 1, 1, 1, 1),
+(1789, 14, 2, 1, 1, 0, 0),
+(1790, 15, 2, 0, 1, 0, 0),
+(1791, 16, 2, 0, 0, 0, 0),
+(1792, 17, 2, 0, 0, 0, 0),
+(1793, 18, 2, 0, 0, 0, 0),
+(1794, 19, 2, 0, 0, 0, 0),
+(1795, 96, 2, 0, 1, 1, 0),
+(1796, 97, 2, 0, 1, 1, 1),
+(1797, 20, 2, 1, 1, 1, 1),
+(1798, 21, 2, 1, 1, 1, 0),
+(1799, 22, 2, 0, 1, 0, 0),
+(1800, 95, 2, 1, 1, 1, 1),
+(1801, 23, 2, 0, 0, 0, 0),
+(1802, 24, 2, 0, 0, 0, 0),
+(1803, 25, 2, 0, 0, 0, 0),
+(1804, 26, 2, 0, 0, 0, 0),
+(1805, 27, 2, 0, 0, 0, 0),
+(1806, 28, 2, 0, 0, 0, 0),
+(1807, 29, 2, 0, 0, 0, 0),
+(1808, 30, 2, 0, 0, 0, 0),
+(1809, 31, 2, 0, 0, 0, 0),
+(1810, 123, 2, 0, 0, 0, 0),
+(1811, 124, 2, 0, 0, 0, 0),
+(1812, 125, 2, 0, 0, 0, 0),
+(1813, 32, 2, 0, 0, 0, 0),
+(1814, 33, 2, 0, 1, 0, 0),
+(1815, 34, 2, 0, 0, 0, 0),
+(1816, 35, 2, 0, 1, 0, 0),
+(1817, 36, 2, 0, 0, 0, 0),
+(1818, 37, 2, 0, 0, 0, 0),
+(1819, 38, 2, 0, 0, 0, 0),
+(1820, 39, 2, 0, 0, 0, 0),
+(1821, 40, 2, 0, 0, 0, 0),
+(1822, 41, 2, 0, 1, 0, 0),
+(1823, 42, 2, 0, 0, 0, 0),
+(1824, 43, 2, 0, 0, 0, 0),
+(1825, 44, 2, 0, 0, 0, 0),
+(1826, 45, 2, 0, 0, 0, 0),
+(1827, 46, 2, 0, 0, 0, 0),
+(1828, 47, 2, 0, 1, 0, 0),
+(1829, 54, 2, 0, 0, 0, 0),
+(1830, 55, 2, 0, 0, 0, 0),
+(1831, 56, 2, 0, 0, 0, 0),
+(1832, 57, 2, 0, 0, 0, 0),
+(1833, 58, 2, 0, 0, 0, 0),
+(1834, 59, 2, 0, 0, 0, 0),
+(1835, 60, 2, 0, 1, 0, 0),
+(1836, 61, 2, 0, 0, 0, 0),
+(1837, 62, 2, 0, 0, 0, 0),
+(1838, 63, 2, 0, 0, 0, 0),
+(1839, 64, 2, 0, 1, 0, 0),
+(1840, 65, 2, 0, 0, 0, 0),
+(1841, 66, 2, 0, 1, 0, 0),
+(1842, 67, 2, 1, 1, 0, 0),
+(1843, 68, 2, 0, 1, 0, 0),
+(1844, 69, 2, 1, 1, 0, 0),
+(1845, 70, 2, 0, 0, 0, 0),
+(1846, 75, 2, 0, 0, 0, 0),
+(1847, 76, 2, 0, 0, 0, 0),
+(1848, 77, 2, 0, 0, 0, 0),
+(1849, 98, 2, 0, 0, 0, 0),
+(1850, 103, 2, 1, 1, 1, 0),
+(1851, 104, 2, 1, 1, 1, 0),
+(1852, 78, 2, 0, 0, 0, 0),
+(1853, 79, 2, 0, 0, 0, 0),
+(1854, 80, 2, 0, 0, 0, 0),
+(1855, 81, 2, 1, 1, 0, 0),
+(1856, 82, 2, 0, 0, 0, 0),
+(1857, 83, 2, 0, 0, 0, 0),
+(1858, 84, 2, 0, 0, 0, 0),
+(1859, 85, 2, 1, 1, 1, 0),
+(1860, 86, 2, 1, 1, 1, 1),
+(1861, 87, 2, 1, 0, 0, 0),
+(1862, 88, 2, 0, 0, 0, 0),
+(1863, 89, 2, 0, 0, 0, 0),
+(1864, 90, 2, 0, 0, 0, 0),
+(1865, 91, 2, 0, 0, 0, 0),
+(1866, 92, 2, 0, 0, 0, 0),
+(1867, 93, 2, 0, 0, 0, 0),
+(1868, 94, 2, 0, 0, 0, 0),
+(1869, 111, 2, 0, 0, 0, 0),
+(1870, 112, 2, 0, 0, 0, 0),
+(1871, 113, 2, 0, 0, 0, 0),
+(1872, 114, 2, 0, 0, 0, 0),
+(1873, 115, 2, 0, 0, 0, 0),
+(1874, 116, 2, 0, 0, 0, 0),
+(1875, 117, 2, 0, 0, 0, 0),
+(1876, 118, 2, 0, 0, 0, 0),
+(1877, 119, 2, 0, 0, 0, 0),
+(1878, 120, 2, 0, 0, 0, 0),
+(1879, 99, 2, 0, 0, 0, 0),
+(1880, 101, 2, 0, 0, 0, 0),
+(1881, 102, 2, 0, 0, 0, 0),
+(1882, 105, 2, 1, 1, 1, 1),
+(1883, 106, 2, 1, 1, 1, 0),
+(1884, 107, 2, 1, 1, 1, 1),
+(1885, 108, 2, 0, 1, 0, 0),
+(1886, 109, 2, 0, 1, 0, 0),
+(1887, 110, 2, 0, 1, 0, 0),
+(1888, 71, 2, 0, 0, 0, 0),
+(1889, 72, 2, 0, 1, 0, 0),
+(1890, 73, 2, 0, 0, 0, 0),
+(1891, 74, 2, 0, 1, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -2234,6 +2250,13 @@ CREATE TABLE `schedule` (
   `serial_visibility_type` tinyint(4) DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `schedule`
+--
+
+INSERT INTO `schedule` (`schedule_id`, `slot_id`, `doctor_id`, `start_time`, `end_time`, `available_days`, `per_patient_time`, `serial_visibility_type`, `status`) VALUES
+(1, 1, 3, '08:00:00', '11:00:00', 'Friday', '01:00:00', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -2282,7 +2305,8 @@ CREATE TABLE `sec_userrole` (
 
 INSERT INTO `sec_userrole` (`id`, `user_id`, `roleid`, `createby`, `createdate`) VALUES
 (1, '1', 1, '1', '2019-09-29 00:00:00'),
-(2, '2', 2, '1', '2020-06-11 06:23:24');
+(2, '2', 2, '1', '2020-06-11 06:23:24'),
+(3, '3', 2, '2', '2020-08-20 11:00:03');
 
 -- --------------------------------------------------------
 
@@ -2610,7 +2634,8 @@ CREATE TABLE `time_slot` (
 
 INSERT INTO `time_slot` (`id`, `slot_name`, `slot`, `status`) VALUES
 (1, 'Morning', '08:00 - 12:00', 1),
-(2, 'Evening', '12:00 - 15:00', 1);
+(2, 'Evening', '12:00 - 15:00', 1),
+(3, 'evening', '04:00-06:00', 1);
 
 -- --------------------------------------------------------
 
@@ -2647,7 +2672,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `firstname`, `lastname`, `email`, `password`, `user_role`, `department_id`, `picture`, `date_of_birth`, `sex`, `blood_group`, `vacation`, `facebook`, `twitter`, `youtube`, `dribbble`, `behance`, `created_by`, `create_date`, `update_date`, `status`) VALUES
-(1, 'Sunil', 'Nalawade', 'sunilnalawade15@gmail.com', '5db9112b4c06465c1cb1e8d70045a366', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1);
+(2, 'Sunil', 'Nalawade', 'sunilnalawade15@gmail.com', '21232f297a57a5a743894a0e4a801fc3', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
+(3, 'Demo', 'Doctor', 'demodoctor@yopmail.coom', 'e10adc3949ba59abbe56e057f20f883e', 2, 31, '', '2020-08-20', 'Male', 'A+', NULL, NULL, NULL, NULL, NULL, NULL, 2, '2020-08-20', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -2671,6 +2697,13 @@ CREATE TABLE `user_lang` (
   `degree` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `user_lang`
+--
+
+INSERT INTO `user_lang` (`id`, `user_id`, `firstname`, `lastname`, `language`, `designation`, `address`, `phone`, `mobile`, `career_title`, `short_biography`, `specialist`, `degree`) VALUES
+(1, 3, 'Demo', 'Doctor', 'english', 'Sr. MO', 'Demo Address', '', '1234567890', 'SR. MO', '', '', '');
+
 -- --------------------------------------------------------
 
 --
@@ -2684,6 +2717,13 @@ CREATE TABLE `user_language` (
   `type` varchar(10) CHARACTER SET utf8 NOT NULL,
   `rating` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user_language`
+--
+
+INSERT INTO `user_language` (`id`, `user_id`, `name`, `type`, `rating`) VALUES
+(1, 3, 'English', 'Fluent', 8);
 
 -- --------------------------------------------------------
 
@@ -2705,7 +2745,10 @@ CREATE TABLE `user_log` (
 --
 
 INSERT INTO `user_log` (`id`, `user_id`, `in_time`, `out_time`, `date`, `status`) VALUES
-(1, 1, '06:54:43', '06:55:24', '2020-06-15', 0);
+(1, 1, '06:54:43', '06:55:24', '2020-06-15', 0),
+(2, 2, '09:49:44', '15:30:48', '2020-08-20', 1),
+(3, 3, '10:56:08', '11:03:40', '2020-08-20', 1),
+(4, 2, '11:49:47', '11:50:07', '2020-08-21', 1);
 
 -- --------------------------------------------------------
 
@@ -3840,7 +3883,7 @@ ALTER TABLE `acn_account_transaction`
 -- AUTO_INCREMENT for table `appointment`
 --
 ALTER TABLE `appointment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `bill`
@@ -4026,7 +4069,7 @@ ALTER TABLE `medication`
 -- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `module`
@@ -4044,7 +4087,7 @@ ALTER TABLE `notice`
 -- AUTO_INCREMENT for table `patient`
 --
 ALTER TABLE `patient`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `pa_visit`
@@ -4074,13 +4117,13 @@ ALTER TABLE `pr_prescription`
 -- AUTO_INCREMENT for table `role_permission`
 --
 ALTER TABLE `role_permission`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1772;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1892;
 
 --
 -- AUTO_INCREMENT for table `schedule`
 --
 ALTER TABLE `schedule`
-  MODIFY `schedule_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `schedule_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `sec_role`
@@ -4092,7 +4135,7 @@ ALTER TABLE `sec_role`
 -- AUTO_INCREMENT for table `sec_userrole`
 --
 ALTER TABLE `sec_userrole`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `setting`
@@ -4152,31 +4195,31 @@ ALTER TABLE `sub_module`
 -- AUTO_INCREMENT for table `time_slot`
 --
 ALTER TABLE `time_slot`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `user_lang`
 --
 ALTER TABLE `user_lang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `user_language`
 --
 ALTER TABLE `user_language`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `user_log`
 --
 ALTER TABLE `user_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `ws_about`
