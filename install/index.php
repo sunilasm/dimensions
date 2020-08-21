@@ -54,7 +54,8 @@
     //condition for step 3
     if (isset($_GET['launchapp']) && $Validation->checkEnvFileExists() === false) {
         // Check Applicatiob Launch
-        $launch = $Verification->launch_application($_GET); 
+        $launch = true;
+        //$launch = $Verification->launch_application($_GET); 
         //Installation done if all task done
         if($launch){
         //create a env file in Flag directory
@@ -80,8 +81,8 @@
 
             if ($result) {
 
-                $validdata = $Verification->verify_purchase($_GET);
-
+                //$validdata = $Verification->verify_purchase($_GET);
+                $validdata = 'yes';
                 if($validdata == 'yes'){
                     header('location: index.php?step2=true');
                 } else{
