@@ -109,6 +109,7 @@ class Permission_assign extends CI_Controller {
         $data['title'] = display('permission');
         $data['role'] = $this->permisson_model->rolelist();
         $data['module_all_list'] = $this->permisson_model->module_all_list();
+        //echo "<pre>".print_r($data,true); exit;
         $data['content'] = $this->load->view('permission/permission_form',$data,true);
         $this->load->view('layout/main_wrapper',$data);
     }

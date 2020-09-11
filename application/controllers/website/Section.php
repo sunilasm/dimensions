@@ -57,6 +57,7 @@ class Section extends CI_Controller {
 			'portfolio'  => display('portfolio'), 
 			'team' 		 => display('our_team'), 
 			'service' 	 => display('service'),  
+			'packages' 	 => display('packages'),  
 		); 
 		#-------------------------------#		
 		
