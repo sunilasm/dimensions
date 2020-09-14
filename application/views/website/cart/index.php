@@ -1,4 +1,4 @@
-<div class="page-header">
+<!-- <div class="page-header">
     <div class="page-header-carousel owl-carousel owl-theme">
         <?php if(!empty($banner)){ ?>
             <?php foreach($banner as $value): ?>
@@ -45,7 +45,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 <!-- /.Page header -->
 <div class="package-list pb-70">
     <div class="container">

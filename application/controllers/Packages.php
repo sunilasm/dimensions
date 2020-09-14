@@ -13,8 +13,8 @@ class Packages extends CI_Controller {
 			//'setting_model'
 		));
 		
-		if ($this->session->userdata('isLogIn') == false) 
-		redirect('login'); 
+		// if ($this->session->userdata('isLogIn') == false) 
+		// redirect('login');
 
 	}
 	public function index(){
