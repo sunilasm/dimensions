@@ -14,10 +14,12 @@ class Packages extends CI_Controller {
 		));
 		
 		// if ($this->session->userdata('isLogIn') == false) 
-		// redirect('login');
+		// redirect('login'); 
 
 	}
 	public function index(){
+		if ($this->session->userdata('isLogIn') == false) 
+		// redirect('login'); 
 		$data['module'] = display("packages");
 		$data['title'] = display('packages_list');
 		#-------------------------------#
@@ -32,6 +34,8 @@ class Packages extends CI_Controller {
 	}
 
 	public function create(){
+		if ($this->session->userdata('isLogIn') == false) 
+		redirect('login'); 
 		$data['module'] = display("packages");
 		$data['title'] = display('packages_list');
 		#-------------------------------#
@@ -97,6 +101,8 @@ class Packages extends CI_Controller {
 		} 
 	}
 	public function edit($id = null){
+		if ($this->session->userdata('isLogIn') == false) 
+		redirect('login'); 
 		$data['module'] = display("packages");
 		$data['title'] = display('packages');
 		#-------------------------------#
@@ -107,6 +113,8 @@ class Packages extends CI_Controller {
 
 	public function delete($id = null) 
 	{
+		if ($this->session->userdata('isLogIn') == false) 
+		redirect('login'); 
 		if ($this->package_model->delete($id)) 
 		{
 			#set success message

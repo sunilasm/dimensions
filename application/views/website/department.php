@@ -18,7 +18,7 @@
                             <?php 
                             if(!empty($setting->phone)){
                                 $phone = explode(",",$setting->phone);
-                                echo $phone[1];
+                                echo isset($phone[1]) ? $phone[1] : '1234567890';
                              }
                             ?>
                         </div>

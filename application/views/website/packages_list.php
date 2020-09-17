@@ -18,7 +18,7 @@
                             <?php 
                             if(!empty($setting->phone)){
                                 $phone = explode(",",$setting->phone);
-                                echo $phone[1];
+                                echo isset($phone[1]) ? $phone[1] : '1234567890';;
                              }
                             ?>
                         </div>
@@ -67,7 +67,7 @@
                 <span class="dr-name">Special Price : <?= $package->package_special_price;?></span>
                 <span class="dr-name">Package Slots : <?= $package->package_slots;?></span>
                 <div class="loader"></div>
-                <?php echo form_open_multipart('cart/process/index','class="form-inner"') ?> 
+                <?php echo form_open_multipart('packages/list','class="form-inner"') ?> 
                     <?php echo form_hidden('package_id',$package->package_id) ?>
                     <button type="submit" class="btn btn-block btn-primary">Buy Now</button>
                 <?php echo form_close() ?>

@@ -206,7 +206,7 @@ class Permission
 		$permission = $this->ci->session->userdata('permission');
 		$isAdmin    = $this->ci->session->userdata('isAdmin');
 		$isLogIn    = $this->ci->session->userdata('isLogIn');
-
+		//echo "<pre>".print_r($permission,true); exit;
 		if ($isLogIn && $isAdmin) {
 			//action of administrator
 			return true;

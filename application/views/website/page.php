@@ -79,7 +79,7 @@
                     <h4 class="contactCard-title"><?= display('call_us')?></h4>
                     <div class="contactCard-icon"><i class="ti-mobile"></i>
                         <?php
-                           echo $phone[1];
+                           echo isset($phone[1]) ? $phone[1] : '1234567890';;
                         ?>
                     </div>
                     <a href="<?= base_url('contact')?>" class="link-underlined"><?= display('all_addresses_and_support_hotlines')?></a>

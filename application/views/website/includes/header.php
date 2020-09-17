@@ -69,7 +69,7 @@ $settings = $this->db->select("language")->get('setting')->row();
                         <div class="media helpInfo">
                             <div class="icon"><i class="icon-mobile"></i></div>
                             <div class="media-body"> 
-                                <h6 class="mb-0"><?= $phone[1];?></h6>
+                                <h6 class="mb-0"><?= isset($phone[1]) ? $phone[1] : '1234567890';;?></h6>
                                 <p class="subText"><?= display('contact_us_for_help')?></p>
                             </div>
                         </div>

@@ -23,6 +23,7 @@ class Process extends CI_Controller {
 			'website/home_model',
 			'setting_model',
 			'website/menu_model',
+			'package_model',
 		));
 		$config = array();
 		$config["base_url"] = base_url() . "cart/process";
@@ -58,23 +59,34 @@ class Process extends CI_Controller {
 		// redirect if website status is disabled
 		if ($data['setting']->status == 0) 
 		redirect(base_url('login'));
+		$package_id = 0;
 		$data['basics'] = $this->home_model->basic_setting();  
 		$data['section'] = $this->home_model->section('cart');
 		//echo "<pre>".print_r($data, true); exit;
 		// get banner slider
 		$data['banner'] = $this->db->select("image")->from('ws_banner')->where('status', 1)->limit(3)->order_by('id', 'DESC')->get()->result();
 		$data['languageList'] = $this->home_model->languageList(); 
+		if(empty($this->session->userdata('cart')))
+		{
+			$cart = array('');
+			$this->session->set_userdata('cart', $cart);
+		}
+		$package_id = $this->input->post('package_id',true);
 
-		$data['package'] = (object)$postData = [
-			'package_id' 	 => $this->input->post('package_id',true),
-		];
-		echo "<pre>".print_r($data['package'],true); exit;
-		$data['packages'] = $this->package_model->read();
+		if($package_id)
+		{
+			$data['packages'] = $this->package_model->read_by_id();
+		}
+		// $data['package'] = (object)$postData = [
+		// 	'package_id' 	 => $this->input->post('package_id',true),
+		// ];
+		echo "<pre>".print_r($data['packages'],true); exit;
+		//echo "<pre>".print_r($this->session->userdata('cart'),true); exit;
 		//$data['about'] = $this->about_model->read();
 		//$data['deptsFooter'] = $this->department_model->read_footer();
 		$data['parent_menu'] = $this->menu_model->get_parent_menu();
 		$data['packages'] = $this->package_model->read($config["per_page"], $page);
-		$data["links"] = $this->pagination->create_links();
+		//$data["links"] = $this->pagination->create_links();
 		$data['content'] = $this->load->view('website/cart/index',$data,true);
 		$this->load->view('website/index', $data);
 	}

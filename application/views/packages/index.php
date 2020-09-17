@@ -13,7 +13,7 @@
             <?php } ?>
 
             <?php
-            if($this->permission->method('packages','read')->access()  || $this->permission->method('packages','update')->access() || $this->permission->method('packages','delete')->access()){
+            if($this->permission->method('package_list','read')->access()  || $this->permission->method('package_list','update')->access() || $this->permission->method('package_list','delete')->access()){
             ?>
             <div class="panel-body">
                 <!-- Nav tabs --> 
@@ -73,14 +73,14 @@
                                                      ?>
                                                     <td class="center">
                                                     <?php
-                                                     if($this->permission->method('packages','update')->access()){
+                                                     if($this->permission->method('package_list','update')->access()){
                                                      ?>
                                                         <!-- <a href="<?php echo base_url("packages/add_lang/$package->package_id") ?>" class="btn btn-xs  btn-primary"><i class="fa fa-plus"></i></a>  -->
                                                         <a href="<?php echo base_url("packages/edit/$package->package_id") ?>" class="btn btn-xs  btn-success"><i class="fa fa-edit"></i></a> 
                                                     <?php } ?>
 
                                                      <?php
-                                                     if($this->permission->method('packages','delete')->access()){
+                                                     if($this->permission->method('package_list','delete')->access()){
                                                      ?>
                                                         <a href="<?php echo base_url("packages/delete/$package->package_id") ?>" onclick="return confirm('<?php echo display("are_you_sure") ?>')" class="btn btn-xs  btn-danger"><i class="fa fa-trash"></i></a> 
                                                      <?php } ?>
