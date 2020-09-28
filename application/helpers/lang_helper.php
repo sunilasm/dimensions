@@ -82,6 +82,39 @@ if (!function_exists('display')) {
  
 }
 
+if (!function_exists('print_value')) {
+    function print_value($input_array = [], $varibale = '', $blank_response = FALSE)
+    {
+        $response = ($blank_response) ? '' : '-';
+        $input_array = (object)($input_array);
+        if(isset($input_array->$varibale))
+        {
+            $input = isset($input_array->$varibale) ? $input_array->$varibale : $input_array[$varibale];
+            if($input != "")
+            {
+                $response = $input;
+            }
+        }
+        return $response;
+    }
+}
+if (!function_exists('print_date')) {
+    function print_date($input_array = [], $varibale = '', $blank_response = FALSE)
+    {
+        $response = ($blank_response) ? '' : '-';
+        $input_array = (object)($input_array);
+        if(isset($input_array->$varibale))
+        {
+            $input = isset($input_array->$varibale) ? $input_array->$varibale : $input_array[$varibale];
+            if($input != "" && $input !='0000-00-00')
+            {
+                $response = date("jS F Y", strtotime($input));
+            }
+        }
+        return $response;
+    }
+}
+
 
 // $autoload['helper'] =  array('language_helper');
 

@@ -23,8 +23,23 @@
       <div class="mb-3">
         <div class="pt-4 wish-list">
 
-          <h5 class="mb-4">Cart (<span>1</span> items)</h5>
+          <h5 class="mb-4">Cart (<span><?php echo isset($cart['items']) ? count($cart['items']): 0; ?></span> items)</h5>
+          <?php if ($this->session->flashdata('success')) { ?>
 
+          <div class="alert alert-success">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+              <strong><?php echo $this->session->flashdata('success'); ?></strong>
+          </div>
+          <?php } ?>
+          <?php if ($this->session->flashdata('error')) { ?>
+
+          <div class="alert alert-danger">
+              <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+              <strong><?php echo $this->session->flashdata('error'); ?></strong>
+          </div>
+
+          <?php } ?>
+          <?php if(isset($cart['items']) && sizeof($cart['items'])) : ?>
           <div class="row mb-4">
             <div class="col-md-5 col-lg-3 col-xl-3">
               <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
@@ -43,25 +58,25 @@
               <div>
                 <div class="d-flex justify-content-between">
                   <div>
-                    <h5>Package Name</h5>
-                    <p class="mb-3 text-muted text-uppercase small">Package Code</p>
+                    <h5><?php echo isset($cart['items']->package_title) ? $cart['items']->package_title : ''; ?></h5>
+                    <p class="mb-3 text-muted text-uppercase small"><?php echo isset($cart['items']->package_code) ? $cart['items']->package_code : ''; ?></p>
                     <!-- <p class="mb-2 text-muted text-uppercase small">Slots: blue</p> -->
-                    <p class="mb-3 text-muted text-uppercase small">Slots: 5</p>
+                    <p class="mb-3 text-muted text-uppercase small">Slots: <?php echo isset($cart['items']->package_slots) ? $cart['items']->package_slots : ''; ?></p>
                   </div>
                 </div>
                 <div class="d-flex justify-content-between align-items-center">
                   <div>
-                    <a href="#!" type="button" class="card-link-secondary small text-uppercase mr-3"><i
-                        class="fas fa-trash-alt mr-1"></i> Remove item </a>
-                    
+                    <a href="<?php echo base_url('cart/process/unsetcart/'); ?>" type="button" class="card-link-secondary small text-uppercase mr-3">
+                      <i class="fas fa-trash-alt mr-1"></i> Remove item 
+                    </a>
                   </div>
-                  <p class="mb-0"><span><strong id="summary">INR 17.99</strong></span></p class="mb-0">
+                  <p class="mb-0"><span><strong id="summary">INR <?php echo isset($cart['items']->package_special_price) ? $cart['items']->package_special_price : ''; ?></strong></span></p class="mb-0">
                 </div>
               </div>
             </div>
           </div>
           <hr class="mb-4">
-          
+          <?php endif; ?>
           <!-- <p class="text-primary mb-0"><i class="fas fa-info-circle mr-1"></i> Do not delay the purchase, adding
             items to your cart does not mean booking them.</p> -->
 
@@ -108,12 +123,17 @@
           <ul class="list-group list-group-flush">
             <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
               Sub Total
-              <span>INR 25.98</span>
+              <span>INR <?php echo isset($cart['total']['subtotal']) ? $cart['total']['subtotal'] : 0; ?></span>
             </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center px-0">
-              GST
-              <span>INR 5.00</span>
-            </li>
+            <?php if(isset($cart['total']['other'])) : ?>
+            <?php foreach($cart['total']['other'] as $item) : ?>
+              <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                <?php echo $item['title']; ?>
+                <span>INR <?php echo $item['value']; ?></span>
+              </li>
+            <?php endforeach;?>
+            <?php endif; ?>
+            
             <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
               <div>
                 <strong>Total</strong>
@@ -121,11 +141,11 @@
                   <p class="mb-0">(including charges)</p>
                 </strong>
               </div>
-              <span><strong>INR 53.98</strong></span>
+              <span><strong>INR <?php echo isset($cart['total']['total']) ? $cart['total']['total'] : 0; ?></strong></span>
             </li>
           </ul>
 
-          <button type="button" class="btn btn-primary btn-block">Checkout</button>
+          <a href="<?php echo base_url('cart/process/checkout/'); ?>" type="button" class="btn btn-primary btn-block">Checkout</a>
 
         </div>
       </div>

@@ -34,7 +34,7 @@ public function index(){
     $data['user'] = (object)$postData = [
         'email'     => $this->input->post('email',true),
         'password'  => md5($this->input->post('password',true)),
-    ]; 
+    ];
         #-------------------------------#
      if ($this->form_validation->run() === true) {
             //check user data
@@ -43,7 +43,7 @@ public function index(){
             if(!empty($check_user)){
                 if($check_user[0]->user_role == 1){
                   $checkPermission = $this->dashboard_model->userPermissionadmin($check_user[0]->user_id);
-                }
+                } 
                 else{
                   $checkPermission = $this->dashboard_model->userPermission($check_user[0]->user_id);
                 }
@@ -125,8 +125,23 @@ public function index(){
 
     public function patient_login(){
 
-        if($this->session->userdata('isLogIn_patient')) 
-            $this->redirectTo($this->session->userdata('user_role'));
+        $cart_redirect = false;
+        $cart_redirect = ($this->input->get('cart') == true) ? true : false;
+        //echo var_dump($cart_redirect); exit;
+
+        if($this->session->userdata('isLogIn_patient'))
+        {
+            if($cart_redirect)
+            {
+                redirect('cart/process/checkout/');
+            }
+            else
+            {
+                $this->redirectTo($this->session->userdata('user_role'));
+            }
+            
+        }
+            
 
         $this->form_validation->set_rules('email', display('email'),'required|max_length[50]|valid_email');
         $this->form_validation->set_rules('password', display('password'),'required|max_length[32]|md5');
@@ -139,7 +154,7 @@ public function index(){
         $data['footer_text'] = (!empty($setting->footer_text)?$setting->footer_text:null); 
 
         $user_role = $this->input->post('user_role',true);
-
+        
         $data['user'] = (object)$postData = [
             'email'     => $this->input->post('email',true),
             'password'  => md5($this->input->post('password',true)),
@@ -166,7 +181,8 @@ public function index(){
                     'delete' => $value->delete
                 );
             }
-            if($check_user){
+            if($check_user)
+            {
                 // codeigniter session stored data          
                 $session_data=$this->session->set_userdata([
                     'isLogIn_patient'     => true,
@@ -197,7 +213,15 @@ public function index(){
                     $this->input->set_cookie($cookie);
                 }
 
-                $this->redirectTo($user_role);
+                if($cart_redirect)
+                {
+                    redirect('cart/process/checkout/');
+                }
+                else
+                {
+                    $this->redirectTo($user_role);
+                }
+                
             }
             else {
                  #set exception message

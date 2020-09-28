@@ -3,34 +3,37 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /*
  |----Packages for BackEnd-------|
 */
-class Packages extends CI_Controller {
+class Orders extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
 		
 		$this->load->model(array(
+			'order_model',
 			'package_model',
-			//'setting_model'
+			'appointment_model',
+			'department_model'
 		));
 		
-		// if ($this->session->userdata('isLogIn') == false) 
-		// redirect('login');
+		if ($this->session->userdata('isLogIn') == false) 
+		redirect('login');
 
 	}
-	public function index(){
+    public function index()
+    {
 		if ($this->session->userdata('isLogIn') == false) 
-		// redirect('login'); 
-		$data['module'] = display("packages");
-		$data['title'] = display('packages_list');
+        redirect('login');
+         
+		$data['module'] = display("package_order");
+		$data['title'] = display('packages_order_list');
 		#-------------------------------#
-		$data['packages'] = $this->package_model->read();
-		//$data['lang_pack'] = $this->package_model->read_lang_department();
-		$data['content'] = $this->load->view('packages/index',$data,true);
+		$data['orders'] = $this->order_model->read();
+		$data['content'] = $this->load->view('packages/orders/index',$data,true);
 		$this->load->view('layout/main_wrapper',$data);
 		//echo "<pre>".print_r($data, true); exit;
 		//$this->load->view('layout/main_wrapper',$data);
 		//echo "<pre>".print_r($this->session->userdata(), true); exit;
-        	//echo "test"; exit;
+        //echo "test"; exit;
 	}
 
 	public function create(){
@@ -106,8 +109,31 @@ class Packages extends CI_Controller {
 		$data['module'] = display("packages");
 		$data['title'] = display('packages');
 		#-------------------------------#
-		$data['package'] = $this->package_model->read_by_id($id);
+		$data['package'] = $this->package_model->read_by_id($data['order']->package_id);
 		$data['content'] = $this->load->view('packages/package_form',$data,true);
+		$this->load->view('layout/main_wrapper',$data);
+	}
+	public function view($id = null){
+		if ($this->session->userdata('isLogIn') == false) 
+		redirect('login'); 
+		$data['module'] = display("package_order");
+		$data['title'] = display('package_order');
+		#-------------------------------#
+		
+		$data['order'] = $this->order_model->read_by_id($id);
+		$package['package'] = array();
+		if(count($data['order']))
+		{
+			$data['package'] = $this->package_model->read_by_id($data['order']->package_id);
+			$data['appointments_booked'] = $this->order_model->booked_slots_count_by_order($data['order']->order_id);
+			$data['appointments_available'] = (int) $data['order']->package_slots - (int) ($data['appointments_booked']);
+			$data['appointments'] = $this->order_model->read_slots_by_order($data['order']->order_id);
+			$data['department_list'] = $this->department_model->department_list(); 
+		}
+		//echo "<pre>".print_r($data, true); exit;
+		echo "<pre>".print_r($this->session->userdata(), true); exit;
+		$data['content'] = $this->load->view('packages/orders/view',$data,true);
+	
 		$this->load->view('layout/main_wrapper',$data);
 	}
 
@@ -115,7 +141,8 @@ class Packages extends CI_Controller {
 	{
 		if ($this->session->userdata('isLogIn') == false) 
 		redirect('login'); 
-		if ($this->package_model->delete($id)) 
+
+		if ($this->order_model->delete($id)) 
 		{
 			#set success message
 			$this->session->set_flashdata('message', display('delete_successfully'));
@@ -123,7 +150,7 @@ class Packages extends CI_Controller {
 			#set exception message
 			$this->session->set_flashdata('exception', display('please_try_again'));
 		}
-		redirect('packages');
+		redirect('orders');
 	}
 
 	public function list()
