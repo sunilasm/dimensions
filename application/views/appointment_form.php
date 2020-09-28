@@ -342,9 +342,10 @@ $(document).ready(function() {
 
     //doctor_id
     $("#doctor_id").change(function(){
+       
         var doctor_id = $('#doctor_id'); 
         var output = $('#available_days'); 
-
+       
         $.ajax({
             url  : '<?= base_url('appointment/schedule_day_by_doctor/') ?>',
             type : 'post',
