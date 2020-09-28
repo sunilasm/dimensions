@@ -81,6 +81,20 @@
                             </div>
 
                             <div class="form-group row">
+                                <label for="schedule_type" class="col-xs-3 col-form-label"><?php echo display('schedule_type') ?></label>
+                                <div class="col-xs-9"> 
+                                    <?php 
+                                        $scheduleTypes = [
+                                            '1' => display('offline'),
+                                            '2' => display('online'),
+                                        ];
+                                        echo form_dropdown('schedule_type',$scheduleTypes,$schedule->schedule_type,'class="form-control" id="schedule_type"'); 
+                                    ?>
+
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
                                 <label for="serial_visibility_type" class="col-xs-3 col-form-label"><?php echo display('serial_visibility_type') ?></label>
                                 <div class="col-xs-9"> 
                                     <?php 

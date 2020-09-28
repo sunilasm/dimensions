@@ -437,11 +437,13 @@ class Appointment extends CI_Controller {
     public function schedule_day_by_doctor()
     {
         $doctor_id = $this->input->post('doctor_id');
+        $appointment_type = '1';       
 
         if (!empty($doctor_id)) {
             $query = $this->db->select('available_days,start_time,end_time')
                 ->from('schedule')
                 ->where('doctor_id',$doctor_id) 
+                ->where('schedule_type',$appointment_type)
                 ->where('status',1)
                 ->order_by('available_days','desc')
                 ->get();
@@ -460,7 +462,6 @@ class Appointment extends CI_Controller {
         } else { 
             $data['status']  = null;
         }
-
         echo json_encode($data);
     }
 
