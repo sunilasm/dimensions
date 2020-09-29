@@ -15,6 +15,10 @@ class Order_model extends CI_Model {
 	{	 
 		return $this->db->insert($this->table,$data);
 	}
+	public function create_appointment($data = [])
+	{	 
+		return $this->db->insert('package_orders_appointments',$data);
+	}
 
 	public function read()
 	{
@@ -22,6 +26,17 @@ class Order_model extends CI_Model {
 			->from($this->table)
 			->join("patient", 'patient.id=package_orders.patient_id', 'left')
 			->join("package", 'package.package_id=package_orders.package_id', 'left')
+			->order_by('order_id','desc')
+			->get()
+			->result();
+	} 
+	public function read_by_patient($user_id = null)
+	{
+		return $this->db->select($this->table.".*, patient.id as patient_id,patient.patient_id as patient_code, patient.firstname, patient.lastname, patient.email, patient.mobile, package.package_title, package.package_code, package.package_price as regular_price, package.package_special_price, package.package_slots") 
+			->from($this->table)
+			->join("patient", 'patient.id=package_orders.patient_id', 'left')
+			->join("package", 'package.package_id=package_orders.package_id', 'left')
+			->where($this->table.'.patient_id',$user_id)
 			->order_by('order_id','desc')
 			->get()
 			->result();
@@ -42,13 +57,15 @@ class Order_model extends CI_Model {
 	}
 	public function booked_slots_count_by_order($order_id = null, $status = 'Active')
 	{
-		return $this->db->select("package_orders_appointments.*")
+		$result = $this->db->select("package_orders_appointments.*")
 			->from('package_orders_appointments')
 			->where('package_orders_appointments.package_order_id',$order_id)
 			->where('package_orders_appointments.package_appoinment_status', $status)
 			//->order_by('package_orders_appointments.id','desc')
 			->get()
 			->num_rows();
+			//echo $this->db->last_query(); exit;
+		return $result;
 	}
 	public function read_slots_by_order($order_id = null)
 	{

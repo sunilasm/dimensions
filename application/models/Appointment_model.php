@@ -12,7 +12,9 @@ class Appointment_model extends CI_Model {
 
 	public function create($data = [])
 	{	 
-		return $this->db->insert($this->table,$data);
+		$this->db->insert($this->table,$data);
+		$insert_id = $this->db->insert_id();
+		return $insert_id;
 	}
  
 	public function read()

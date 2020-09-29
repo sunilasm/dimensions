@@ -5,27 +5,14 @@
  
             <div class="panel-heading no-print">
                 <div class="btn-group"> 
-                    <?php
-                    if($this->permission->method('package_order_list','read')->access() || $this->permission->method('package_order_list','update')->access() || $this->permission->method('package_order_list','delete')->access()){
-                    ?>
-                    <a class="btn btn-primary" href="<?php echo base_url("orders") ?>"> <i class="fa fa-list"></i>  <?php echo display('package_order') ?> </a>  
-                    <?php } ?>
+                    <a class="btn btn-primary" href="<?php echo base_url("dashboard_patient/packages/orders/index") ?>"> <i class="fa fa-list"></i>  <?php echo display('package_order') ?> </a>  
 
-                    <?php
-                    if($this->permission->method('package_order_list','read')->access()){
-                    ?>
                     <button type="button" onclick="printContent('PrintMe')" class="btn btn-danger" ><i class="fa fa-print"></i></button> 
-                    <?php } ?>
                     
                 </div>
             </div> 
 
-
-
-
-             <?php
-             if($this->permission->method('package_order_list','read')->access()){
-             ?>     
+                 
             <div class="panel-body"> 
                 <!-- Nav tabs --> 
                 <ul class="col-xs-12 nav nav-tabs" role="tablist">
@@ -138,11 +125,7 @@
                                             <th><?php echo display('appointment_date') ?></th>
                                             <th><?php echo display('status') ?></th>
 
-                                            <?php
-                                            if($this->permission->method('appointment_list','read')->access() || $this->permission->method('appointment_list','delete')->access()){
-                                            ?>
                                             <th><?php echo display('action') ?></th>
-                                            <?php } ?>
 
                                         </tr>
                                     </thead>
@@ -160,32 +143,10 @@
                                                     <!-- <td><?php echo $appointment->problem; ?></td> -->
                                                     <td><?php echo $appointment->date; ?></td>
                                                     <td><?php echo (($appointment->status==1)?"Active":"Inactive"); ?></td>
-
-                                                <?php
-                                                    if($this->permission->method('appointment_list','read')->access() || $this->permission->method('appointment_list','delete')->access()){
-                                                ?>
                                                     <td class="center">
-                                                        <?php
-                                                        if($this->permission->method('appointment_list','read')->access()){
-                                                        ?>
-                                                        <a href="<?php echo base_url("appointment/view/$appointment->appointment_id") ?>" class="btn btn-xs btn-success" target="_blank"><i class="fa fa-eye"></i></a> 
-                                                        <?php } ?>
-                                                        <!-- <?php
-                                                        if($this->permission->method('appointment_list','update')->access()){
-                                                        ?>
-                                                        <a class="ui positive button edit_appoinment" id="<?php echo $appointment->appointment_id; ?>"><i class="fa fa-eye"></i></a> 
-                                                        
-                                                        <?php } ?> -->
-                            
-                                                        <!-- <?php
-                                                        if($this->permission->method('appointment_list','delete')->access()){
-                                                        ?>
-                                                        <a href="<?php echo base_url("appointment/delete/$appointment->appointment_id") ?>" onclick="return confirm('<?php echo display('are_you_sure') ?>')" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a> 
-                                                        <?php } ?> -->
-
-                                                    
+                                                    <a href="<?php echo base_url("dashboard_patient/appointment/appointment/view/$appointment->appointment_id") ?>" class="btn btn-xs btn-success" target="_blank"><i class="fa fa-eye"></i></a>
                                                     </td>
-                                                <?php } ?>
+                                              
 
                                                 </tr>
                                                 <?php $sl++; ?>
@@ -205,25 +166,6 @@
                 </div>
             </div>
 
-        <?php 
-        }
-         else{
-         ?>
-            <div class="col-sm-12">
-               <div class="panel panel-bd lobidrag">
-                <div class="panel-heading">
-                  <div class="panel-title">
-                    <h4><?php echo display('you_do_not_have_permission_to_access_please_contact_with_administrator');?>.</h4>
-                   </div>
-                   </div>
-                 </div>
-                </div>
-         <?php
-         }
-         ?>
-
-
-
         </div>
     </div>
   
@@ -239,7 +181,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <?php echo form_open('orders/appointment','class="form-inner"') ?> 
+      <?php echo form_open('dashboard_patient/appointment/appointment/create_appointment','class="form-inner"') ?> 
       <div class="modal-body">
             <div class="form-group row">
                 <input type="hidden" name="patient_id" id="patient_id" value="<?php echo print_value($order, 'patient_code', true);?>"/>
@@ -369,7 +311,7 @@
             var available_day = $('#available_day');
 
             $.ajax({
-                url  : '<?= base_url('appointment/doctor_by_department/') ?>',
+                url  : '<?= base_url('dashboard_patient/appointment/appointment/doctor_by_department/') ?>',
                 type : 'post',
                 dataType : 'JSON',
                 data : {
@@ -404,13 +346,13 @@
             var output = $('#available_days'); 
 
             $.ajax({
-                url  : '<?= base_url('appointment/schedule_day_by_doctor/') ?>',
+                url  : '<?= base_url('dashboard_patient/appointment/appointment/schedule_day_by_doctor/') ?>',
                 type : 'post',
                 dataType : 'JSON',
                 data : {
                     '<?= $this->security->get_csrf_token_name(); ?>' : '<?= $this->security->get_csrf_hash(); ?>',
                     doctor_id : $(this).val(),
-                    slot_type : "<?php echo isset($slot_type) ? $slot_type: 1 ; ?>"
+                    slot_type : "<?php echo isset($slot_type) ? $slot_type: 2 ; ?>"
                 },
                 success : function(data) 
                 {
@@ -438,7 +380,7 @@
             var patient_id  = $("#patient_id"); 
     
             $.ajax({
-                url  : '<?= base_url('appointment/serial_by_date/') ?>',
+                url  : '<?= base_url('dashboard_patient/appointment/appointment/serial_by_date/') ?>',
                 type : 'post',
                 dataType : 'JSON',
                 data : {

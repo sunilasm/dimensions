@@ -157,7 +157,7 @@ $settings = $this->db->select("site_align")
                             </ul>
                         </li>
                         <?php
-    if($this->permission->module('add_package')->access() || $this->permission->module('package_list')->access() ){
+    //if($this->permission->module('package_order_list')->access() ){
     ?>
     <li class="treeview <?php echo (($this->uri->segment(1) == "packages") || ($this->uri->segment(1) == "packages") ? "active" : null) ?>">
         <a href="#">
@@ -168,27 +168,15 @@ $settings = $this->db->select("site_align")
         </a>
         <ul class="treeview-menu">
 
-             <?php
-            if($this->permission->method('add_package','create')->access()){
-            ?>
-            <li class="<?php echo (($this->uri->segment(1) == "packages")? "active" : null) ?>"><a href="<?php echo base_url("packages/") ?>"><?php echo display('packages') ?></a></li>
-            <?php } ?>
-
             <?php
-            if($this->permission->method('add_package','create')->access()){
+            //if($this->permission->method('package_order_list','read')->access()){
             ?>
-            <li class="<?php echo (($this->uri->segment(1) == "packages" && $this->uri->segment(2) == "create")? "active" : null) ?>"><a href="<?php echo base_url("packages/create") ?>"><?php echo display('add_package') ?></a></li>
-            <?php } ?>
-
-            <?php
-            if($this->permission->method('package_order_list','read')->access()){
-            ?>
-            <li class="<?php echo (($this->uri->segment(1) == "orders" && $this->uri->segment(2) == "index")? "active" : null) ?>"><a href="<?php echo base_url("orders/index") ?>"><?php echo display('packages_order_list') ?></a></li>
-            <?php } ?>
+            <li class="<?php echo (($this->uri->segment(1) == "orders" && $this->uri->segment(2) == "index")? "active" : null) ?>"><a href="<?php echo base_url("dashboard_patient/packages/orders/index") ?>"><?php echo display('packages_order_list') ?></a></li>
+            <?php //} ?>
 
         </ul>
     </li>
-     <?php } ?>
+     <?php //} ?>
 
 
                     </ul>

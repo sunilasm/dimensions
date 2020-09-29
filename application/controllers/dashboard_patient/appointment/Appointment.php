@@ -9,7 +9,9 @@ class Appointment extends CI_Controller {
 
         $this->load->model(array(
             'dashboard_patient/appointment/appointment_model',
-            'dashboard_patient/appointment/department_model'
+            'dashboard_patient/appointment/department_model',
+            'dashboard_patient/appointment/department_model',
+            'order_model'
         ));
  
         if ($this->session->userdata('isLogIn_patient') == false) 
@@ -21,6 +23,7 @@ class Appointment extends CI_Controller {
         $data['title'] = display('appointment');
         /* ------------------------------- */
         $data['appointments'] = $this->appointment_model->read();
+        //echo "<pre>".print_r($this->session->userdata(), true); exit;
         $data['content'] = $this->load->view('dashboard_patient/appointment/appointment',$data,true);
         $this->load->view('dashboard_patient/main_wrapper',$data);
     } 
@@ -28,6 +31,7 @@ class Appointment extends CI_Controller {
     public function create(){
         $data['module'] = display("dashboard_patient");
         $data['title'] = display('add_appointment');
+        //echo "<pre>".print_r($data, true); exit();
         /* ------------------------------- */
         $this->form_validation->set_rules('patient_id', display('patient_id'),'required|max_length[50]');
         $this->form_validation->set_rules('department_id', display('department_name'),'required|max_length[50]');
@@ -50,10 +54,20 @@ class Appointment extends CI_Controller {
             'create_date'    => date('Y-m-d'),
             'status'         => $this->input->post('status',true)
         ]; 
+        //echo "<pre>".print_r($data['appointment'], true); exit;
+        $data['order_appointment'] = (object)$order_appointment = [
+            'package_order_id'          => $this->input->post('order_id',true), 
+            'package_appointment_id'    => '', 
+            'package_appoinment_status' => 'Active',
+            'created_by'      		    => $this->session->userdata('user_id'),
+			'updated_by'      		    => $this->session->userdata('user_id'),
+			'created_date'      		=> date('Y-m-d h:i:s'),
+			'updated_date'      		=> date('Y-m-d h:i:s'),
+        ];
         /* ------------------------------- */
         //check patient id
         $check_patient_id = json_decode($this->check_patient(true));
-
+        
         //check appointment exists
         $check_appointment_exists = $this->check_appointment_exists(
             $this->input->post('patient_id',true), 
@@ -68,16 +82,25 @@ class Appointment extends CI_Controller {
         if ($this->form_validation->run() === true && $check_patient_id->status === true && $check_appointment_exists === true) {
 
             /*if empty $id then insert data*/
-            if ($this->appointment_model->create($postData)) {
-                /*set success message*/
+            $id = $this->appointment_model->create($postData);
+            if($id) {
                 $this->session->set_flashdata('message',display('save_successfully'));
+                /*set success message*/
+                if(isset($order_appointment['order_id']) && $order_appointment['order_id'])
+                {
+                    $order_appointment['package_appointment_id'] = $id;
+                    $this->order_model->create_appointment($order_appointment);
+                    redirect('orders/view/'.$order_appointment['order_id']);
+                }
+                
             } else {
                 /*set exception message*/
                 $this->session->set_flashdata('exception',display('please_try_again'));
             }
-            redirect('dashboard_patient/appointment/appointment/view/'.$postData['appointment_id']);
+            //redirect('dashboard_patient/appointment/appointment/view/'.$postData['appointment_id']);
 
         } else {
+            $data['slot_type'] = 1;
             $data['department_list'] = $this->department_model->department_list(); 
             $data['content'] = $this->load->view('dashboard_patient/appointment/appointment_form',$data,true);
             $this->load->view('dashboard_patient/main_wrapper',$data);
@@ -196,11 +219,13 @@ class Appointment extends CI_Controller {
     public function schedule_day_by_doctor()
     {
         $doctor_id = $this->input->post('doctor_id');
+        $slot_type = $this->input->post('slot_type');
 
         if (!empty($doctor_id)) {
             $query = $this->db->select('available_days,start_time,end_time')
                 ->from('schedule')
                 ->where('doctor_id',$doctor_id) 
+                ->where('schedule_type',$slot_type) 
                 ->where('status',1)
                 ->order_by('available_days','desc')
                 ->get();
@@ -336,6 +361,87 @@ class Appointment extends CI_Controller {
             return false; 
         }
     }
+    public function create_appointment(){
+        $data['module'] = display("dashboard_patient");
+        $data['title'] = display('add_appointment');
+        
+        /* ------------------------------- */
+        $this->form_validation->set_rules('patient_id', display('patient_id'),'required|max_length[50]');
+        $this->form_validation->set_rules('department_id', display('department_name'),'required|max_length[50]');
+        $this->form_validation->set_rules('doctor_id', display('doctor_name') ,'required|max_length[50]');
+        $this->form_validation->set_rules('schedule_id', display('appointment_date') ,'required|max_length[10]'); 
+        $this->form_validation->set_rules('serial_no', display('serial_no') ,'required|max_length[10]');
+        $this->form_validation->set_rules('problem', display('problem'),'max_length[255]');
+        $this->form_validation->set_rules('status',display('status'),'required');
+        /* ------------------------------- */
+        $data['appointment'] = (object)$postData = [
+                'appointment_id' => 'A'.$this->randStrGen(2, 7),
+                'patient_id'     => $this->input->post('patient_id',true), 
+                'department_id'  => $this->input->post('department_id',true), 
+                'doctor_id'      => $this->input->post('doctor_id',true), 
+                'schedule_id'    => $this->input->post('schedule_id',true), 
+                'serial_no'      => $this->input->post('serial_no',true), 
+                'problem'        => $this->input->post('problem',true), 
+                'date'           => date('Y-m-d',strtotime($this->input->post('date',true))),
+                'created_by'     => $this->session->userdata('user_id'), 
+                'create_date'    => date('Y-m-d'),
+                'status'         => $this->input->post('status',true)
+        ]; 
+        
+        $data['order_appointment'] = (object)$order_appointment = [
+                'package_order_id'          => $this->input->post('order_id',true), 
+                'package_appointment_id'    => '', 
+                'package_appoinment_status' => 'Active',
+                'created_by'      		    => $this->session->userdata('user_id'),
+                'updated_by'      		    => $this->session->userdata('user_id'),
+                'created_date'      		=> date('Y-m-d h:i:s'),
+                'updated_date'      		=> date('Y-m-d h:i:s'),
+        ];
+                
+        /* ------------------------------- */
+        //check patient id
+        $check_patient_id = json_decode($this->check_patient(true));
+        //echo "<pre>".print_r($data , true); exit;
+        //check appointment exists
+        $check_appointment_exists = true;
+        $check_appointment_exists = $this->check_appointment_exists(
+                $this->input->post('patient_id',true), 
+                $this->input->post('doctor_id',true), 
+                $this->input->post('schedule_id',true), 
+                date('Y-m-d',strtotime($this->input->post('date',true)))
+        );
+                
+        if ($check_appointment_exists === false) {
+                $this->session->set_flashdata('exception',display('you_are_already_registered')); 
+        } 
+        /* ------------------------------- */
+        if ($this->form_validation->run() === true && $check_patient_id->status === true && $check_appointment_exists === true) {
+                
+            /*if empty $id then insert data*/
+            $id = $this->appointment_model->create($postData);
+                        
+            if($id) {
+                    $this->session->set_flashdata('message',display('save_successfully'));
+                    /*set success message*/
+                    
+                    if(isset($order_appointment['package_order_id']) && $order_appointment['package_order_id'])
+                    {
+                            $order_appointment['package_appointment_id'] = $id;
+                            //echo "<pre>".print_r($order_appointment , true); exit;
+                            $this->order_model->create_appointment($order_appointment);
+                            
+                    }
+                    
+            } else {
+                    /*set exception message*/
+                    $this->session->set_flashdata('exception',display('please_try_again'));
+            }
+            redirect('/dashboard_patient/packages/orders/view/'.$order_appointment['package_order_id']);
+                //redirect('dashboard_patient/appointment/appointment/view/'.$postData['appointment_id']);
+
+        } 
+        redirect('/dashboard_patient/packages/orders/view/'.$order_appointment['package_order_id']);
+    }	
 
 
     public function check_appointment_exists(

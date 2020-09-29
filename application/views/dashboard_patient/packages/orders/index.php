@@ -12,9 +12,7 @@
             </div>
             <?php } ?> -->
 
-            <?php
-            if($this->permission->method('package_order_list','read')->access()  || $this->permission->method('package_order_list','update')->access() || $this->permission->method('package_order_list','delete')->access()){
-            ?>
+            
             <div class="panel-body">
                 <!-- Nav tabs --> 
                 <ul class="col-xs-12 nav nav-tabs" role="tablist">
@@ -40,11 +38,7 @@
                                             <th><?php echo display('package_price') ?></th>
                                             <th><?php echo display('order_total') ?></th>
                                             <th><?php echo display('order_date') ?></th>
-                                            <?php
-                                            if($this->permission->method('package_orders','update')->access() || $this->permission->method('package_order','delete')->access()){
-                                            ?>
                                             <th><?php echo display('action') ?></th>
-                                            <?php } ?>
 
                                         </tr>
                                     </thead>
@@ -62,27 +56,10 @@
                                                     <td><?php echo $package->created_date; ?></td>
                                                     
                                                     <!-- <td><?php echo $package->package_sort_order; ?></td> -->
-                                                     
-                                                    <?php
-                                                     if($this->permission->method('package_order_list','update')->access() || $this->permission->method('packages','delete')->access()){
-                                                     ?>
                                                     <td class="center">
-                                                    <?php
-                                                     if($this->permission->method('package_order_list','read')->access()){
-                                                     ?>
-                                                        <a href="<?php echo base_url("orders/view/$package->order_id") ?>" class="btn btn-xs  btn-success"><i class="fa fa-eye"></i></a> 
-                                                    <?php } ?>
-
-                                                     <?php
-                                                     if($this->permission->method('package_order_list','delete')->access()){
-                                                     ?>
-                                                        <a href="<?php echo base_url("orders/delete/$package->order_id") ?>" onclick="return confirm('<?php echo display("are_you_sure") ?>')" class="btn btn-xs  btn-danger"><i class="fa fa-trash"></i></a> 
-                                                     <?php } ?>
-
+                                                        <a href="<?php echo base_url("dashboard_patient/packages/orders/view/$package->order_id") ?>" class="btn btn-xs  btn-success"><i class="fa fa-eye"></i></a> 
                                                     </td>
-                                                    <?php } ?>
-
-                                                </tr>
+                                                 </tr>
                                                 <?php $sl++; ?>
                                             <?php } ?> 
                                         <?php } ?> 
@@ -95,24 +72,7 @@
                 </div>  
 
             </div>
-            <?php 
-            }
-            else{
-            ?>
-            <div class="row">
-             <div class="col-sm-12">
-                <div class="panel panel-bd lobidrag">
-                    <div class="panel-heading">
-                        <div class="panel-title">
-                           <h4><?php echo display('you_do_not_have_permission_to_access_please_contact_with_administrator');?>.</h4>
-                        </div>
-                    </div>
-                </div>
-             </div>
-            </div>
-            <?php
-            }
-             ?>
+            
 
         </div>
     </div>

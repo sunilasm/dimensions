@@ -164,7 +164,7 @@ public function index(){
                 //check user data 
                 //$check_user = $this->dashboard_model->check_user($postData); 
              if ($user_role == 10) {
-                    $check_user = $this->dashboard_model->check_patient($postData); 
+                    $check_user = $this->dashboard_model->check_patient($postData);     
              }
              else {
                 $this->session->set_flashdata('exception',display('incorrect_email_password'));

@@ -352,7 +352,8 @@ $(document).ready(function() {
             dataType : 'JSON',
             data : {
                 '<?= $this->security->get_csrf_token_name(); ?>' : '<?= $this->security->get_csrf_hash(); ?>',
-                doctor_id : $(this).val()
+                doctor_id : $(this).val(),
+                slot_type : "<?php echo isset($slot_type) ? $slot_type: 1 ; ?>"
             },
             success : function(data) 
             {
