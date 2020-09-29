@@ -43,7 +43,7 @@
                                             <th><?php echo display('package_status') ?></th>
                                             <!-- <th><?php echo display('package_sort_order') ?></th> -->
                                             <?php
-                                            if($this->permission->method('packages','update')->access() || $this->permission->method('packages','delete')->access()){
+                                            if($this->permission->method('package_list','update')->access() || $this->permission->method('package_list','delete')->access()){
                                             ?>
                                             <th><?php echo display('action') ?></th>
                                             <?php } ?>
@@ -66,7 +66,7 @@
                                                     <!-- <td><?php echo $package->package_sort_order; ?></td> -->
                                                      
                                                     <?php
-                                                     if($this->permission->method('packages','update')->access() || $this->permission->method('packages','delete')->access()){
+                                                     if($this->permission->method('package_list','update')->access() || $this->permission->method('package_list','delete')->access()){
                                                      ?>
                                                     <td class="center">
                                                     <?php

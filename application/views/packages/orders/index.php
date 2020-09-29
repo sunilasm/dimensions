@@ -41,7 +41,7 @@
                                             <th><?php echo display('order_total') ?></th>
                                             <th><?php echo display('order_date') ?></th>
                                             <?php
-                                            if($this->permission->method('package_orders','update')->access() || $this->permission->method('package_order','delete')->access()){
+                                            if($this->permission->method('package_order_list','update')->access() || $this->permission->method('package_order_list','delete')->access()){
                                             ?>
                                             <th><?php echo display('action') ?></th>
                                             <?php } ?>
