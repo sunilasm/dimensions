@@ -20,7 +20,7 @@ class Services extends CI_Controller {
 		$config = array();
         $config["base_url"] = base_url() . "services/index";
         $config["total_rows"] = $this->service_model->record_count();
-        $config["per_page"] = 3;
+        $config["per_page"] = 4;
         $config["uri_segment"] = 3;
 
         //css styling

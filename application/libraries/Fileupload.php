@@ -33,7 +33,8 @@ class Fileupload
             $ci->load->library('upload', $config);
 
             if (!$ci->upload->do_upload($field_name)) {
-                return false;
+                //$error = array('error' => $ci->upload->display_errors());
+                return $error;
             } else {
                 $file = $ci->upload->data();
                 return $file_path.$file['file_name'];

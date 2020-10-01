@@ -1,4 +1,4 @@
-<div class="doctor-list">
+<div class="doctor-list" styel="margin-bottom:10px;">
     <div class="main">
         <div class="container">
             <div class="row">
@@ -29,7 +29,7 @@
                  }
                 ?>
             </section>
-            <div class="text-center mt-5">
+            <div class="text-center mt-5 mb-5">
                 <a href="<?= base_url('doctors')?>" class="btn btn-primary"><?= display('view_our_team_of_surgeons')?></a>
             </div>
         </div>

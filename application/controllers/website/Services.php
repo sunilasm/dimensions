@@ -32,7 +32,7 @@ class Services extends CI_Controller {
 		$data['title'] = display('add_service');
 		#-------------------------------#  
 		$this->form_validation->set_rules('language', display('language') , 'required'); 
-		$this->form_validation->set_rules('name', display('name') , 'required|max_length[20]'); 
+		$this->form_validation->set_rules('name', display('name') , 'required|max_length[50]'); 
 		$this->form_validation->set_rules('title', display('title') ,'required|max_length[100]');			
 		$this->form_validation->set_rules('description',display('description'),'required'); 
 		$this->form_validation->set_rules('position', display('position'),'numeric|max_length[2]'); 
@@ -42,7 +42,7 @@ class Services extends CI_Controller {
 			'assets_web/img/service/',
 			'icon_image'
 		);
-		
+		//echo "<pre>".print_r($icon_image,true); exit;
 		//if icon_image is not uploaded
 		if ($icon_image === false) {
 			$this->session->set_flashdata('exception', display('invalid_icon_image'));

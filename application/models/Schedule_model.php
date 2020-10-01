@@ -42,7 +42,7 @@ class Schedule_model extends CI_Model {
 			->from($this->table)
 			->join('time_slot','time_slot.id = schedule.slot_id','left')
 			->where('doctor_id',$user_id)
-			->group_by('time_slot.slot')
+			//->group_by('time_slot.slot')
 			->order_by('time_slot.slot', 'asc')
 			->get()
 			->result();

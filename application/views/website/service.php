@@ -53,7 +53,8 @@
                     <?php foreach ($services as $service) { ?>
                       <div class="article d-flex">
                         <article>
-                            <a href="#" class="article_image">
+                            <a href="#" class="article_image" style="display: block;
+    overflow: hidden;">
                                 <img src="<?= (!empty($service->icon_image)?base_url($service->icon_image):base_url('assets_web/img/placeholder/services.png'))?>" alt="">
                             </a>
                             <div class="article__content">
