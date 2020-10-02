@@ -162,6 +162,12 @@ $settings = $this->db->select("site_align")
             <li class="<?php echo (($this->uri->segment(1) == "orders" && $this->uri->segment(2) == "index")? "active" : null) ?>"><a href="<?php echo base_url("orders/index") ?>"><?php echo display('packages_order_list') ?></a></li>
             <?php } ?>
 
+            <?php
+            if($this->permission->method('packages','read')->access()){
+            ?>
+            <li class="<?php echo (($this->uri->segment(1) == "packages" && $this->uri->segment(2) == "renewals")? "active" : null) ?>"><a href="<?php echo base_url("packages/renewals") ?>"><?php echo display('renewals') ?></a></li>
+            <?php } ?>
+
         </ul>
     </li>
      <?php } ?>
@@ -724,7 +730,7 @@ $settings = $this->db->select("site_align")
     if($this->permission->module('add_employee')->access() || $this->permission->module('accountant_list')->access() || $this->permission->module('laboratorist_list')->access() || $this->permission->module('nurse_list')->access() || $this->permission->module('pharmacist_list')->access() || $this->permission->module('receptionist_list')->access() || $this->permission->module('representative_list')->access() || $this->permission->module('case_manager_list')->access()){
     ?>
 
-    <li class="treeview  <?php echo (($this->uri->segment(1) == "human_resources") ? "active" : null) ?>">
+    <li class="treeview  <?php echo (($this->uri->segment(1) == "leaves") ? "active" : null) ?>">
         <a href="#">
             <i class="fa fa-users"></i> <span><?php echo display('human_resources') ?></span>
             <span class="pull-right-container">
@@ -749,6 +755,39 @@ $settings = $this->db->select("site_align")
     </li> 
     <?php } ?>
 
+    <?php
+    if($this->permission->module('leaves')->access() || $this->permission->module('leaves')->access() ){
+    ?>
+    <li class="treeview <?php echo (($this->uri->segment(1) == "leaves") || ($this->uri->segment(1) == "leaves") ? "active" : null) ?>">
+        <a href="#">
+            <i class="fa fa-sitemap"></i> <span><?php echo display('leaves') ?></span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+            </span>
+        </a>
+        <ul class="treeview-menu">
+
+             <?php
+            if($this->permission->method('leaves','create')->access()){
+            ?>
+            <li class="<?php echo (($this->uri->segment(1) == "leaves")? "active" : null) ?>"><a href="<?php echo base_url("leaves/") ?>"><?php echo display('leaves') ?></a></li>
+            <?php } ?>
+
+            <?php
+            if($this->permission->method('leaves','create')->access()){
+            ?>
+            <li class="<?php echo (($this->uri->segment(1) == "leaves" && $this->uri->segment(2) == "create")? "active" : null) ?>"><a href="<?php echo base_url("leaves/create") ?>"><?php echo display('add_leave') ?></a></li>
+            <?php } ?>
+
+            <?php
+            if($this->permission->method('leaves','create')->access()){
+            ?>
+            <li class="<?php echo (($this->uri->segment(1) == "leaves" && $this->uri->segment(2) == "managers")? "active" : null) ?>"><a href="<?php echo base_url("leaves/managers") ?>"><?php echo display('managers') ?></a></li>
+            <?php } ?>
+
+        </ul>
+    </li>
+     <?php } ?>
 
     <?php
     if($this->permission->module('add_room')->access() || $this->permission->module('room_list')->access() || $this->permission->module('add_bed')->access() || $this->permission->module('bed_list')->access() || $this->permission->module('bed_assign')->access() || $this->permission->module('bed_assign_list')->access() || $this->permission->module('report')->access()){
