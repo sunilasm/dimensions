@@ -18,7 +18,7 @@
                             <?php 
                             if(!empty($setting->phone)){
                                 $phone = explode(",",$setting->phone);
-                                echo isset($phone[1]) ? $phone[1] : '1234567890';
+                                echo isset($phone[1]) ? $phone[1] : '9880146677';
                              }
                             ?>
                         </div>
@@ -47,7 +47,7 @@
     </div>
 </div>
 <!-- /.Page header -->
-<header class="headerContent">
+<!-- <header class="headerContent">
     <div class="container">
         <div class="row">
             <?php 
@@ -72,9 +72,9 @@
            <?php } } ?>
         </div>
     </div>
-</header>
+</header> -->
 <!-- /.Header -->
-<div class="department-list">
+<div class="department-list mt-5">
     <div class="container">
         <div class="row">
             <?php 

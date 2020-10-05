@@ -44,7 +44,7 @@ $settings = $this->db->select("site_align")
                     </div>
                 </div>
                 <div class="">
-                <br><br>
+                
                     <!-- alert message -->
                     <?php if ($this->session->flashdata('message') != null) {  ?>
                     <div class="alert alert-info alert-dismissable">

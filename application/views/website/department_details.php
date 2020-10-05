@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <header class="contentHeader">
-                        <h2><?= $details->name .' '. display('department');?></h2>
+                        <h2><?= $details->name;?></h2>
                     </header>
                 </div>
             </div>

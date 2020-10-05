@@ -16,10 +16,11 @@ public function __construct(){
         )); 
 } 
 public function index(){
-        // redirect to dashboard home page
+    //echo $this->session->userdata('isLogIn'); exit;
+    // redirect to dashboard home page
     if($this->session->userdata('isLogIn')) 
-    $this->redirectTo($this->session->userdata('user_role'));
-
+        $this->redirectTo($this->session->userdata('user_role'));
+    
     $this->form_validation->set_rules('email', display('email'),'required|max_length[50]|valid_email');
     $this->form_validation->set_rules('password', display('password'),'required|max_length[32]|md5');
     $this->form_validation->set_rules('user_role',display('user_type'),'required');

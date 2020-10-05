@@ -8,7 +8,7 @@
         <!-- /Service Section -->
     </div>
     <!-- about -->
-    <?php @$this->load->view('website/includes/about');?>
+    <!-- <?php @$this->load->view('website/includes/about');?> -->
     <!-- /.about us -->
 
     <?php @$this->load->view('website/includes/department');?>
@@ -26,5 +26,5 @@
     <?php @$this->load->view('website/includes/doctor');?>
     <!-- /.doctor list -->
     
-    <?php @$this->load->view('website/includes/news');?>
+    <?php //@$this->load->view('website/includes/news');?>
     <!-- /.blog -->

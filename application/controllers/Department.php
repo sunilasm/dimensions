@@ -127,6 +127,17 @@ class Department extends CI_Controller {
 		}
 		redirect('department');
 	}
+	public function delete_lang($dprt_id = null) 
+	{
+		if ($this->department_model->delete_lang($dprt_id)) {
+			#set success message
+			$this->session->set_flashdata('message', display('delete_successfully'));
+		} else {
+			#set exception message
+			$this->session->set_flashdata('exception', display('please_try_again'));
+		}
+		redirect('department');
+	}
 
 	public function create_language($department_id = null){
 		$data['module'] = display("departments");

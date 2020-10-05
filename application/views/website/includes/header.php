@@ -45,8 +45,8 @@ $settings = $this->db->select("language")->get('setting')->row();
             <div class="row align-items-center">
                 <div class="col-md-4 col-lg-3 col-xl-4">
                     <div class="d-flex align-items-center logo-wrap">
-                        <div class="main-logo">
-                            <a href="<?= base_url()?>" class="headerLogo"><img src="<?= (!empty($basics->logo)?base_url($basics->logo):base_url('assets_web/img/placeholder/logo.png'))?>" alt=""></a>
+                        <div class="main-logo" style="width:100%;">
+                            <a href="<?= base_url()?>" class="headerLogo" style="width:100%;"><img src="<?= (empty($basics->logo)?base_url($basics->logo):base_url('assets_web/images/icons/DCCD_Logo_Final.png'))?>" alt="" style="width:100%;"></a>
                         </div>
                         <div class="order-md-first sidebar-toggle-btn">
                             <button type="button" id="sidebarCollapse" class="btn">
@@ -62,17 +62,19 @@ $settings = $this->db->select("language")->get('setting')->row();
                             <div class="media-body">
                                 <h6 class="mb-0 helpInfo-title"><?= (!empty($setting->open_day)?$setting->open_day:null)?></h6>
                                 <?php if(!empty($setting->closed_day)): ?>
-                                   <p class="subText"><?= $setting->closed_day;?> - <span style="text-transform: uppercase;"><?= display('closed')?></span></p>
+                                   <!-- <p class="subText"><?= $setting->closed_day;?> - <span style="text-transform: uppercase;">
+                                   <?= display('closed')?></span>
+                                   </p> -->
                                 <?php endif ?>
                             </div>
                         </div>
-                        <div class="media helpInfo">
+                        <!-- <div class="media helpInfo">
                             <div class="icon"><i class="icon-mobile"></i></div>
                             <div class="media-body"> 
                                 <h6 class="mb-0"><?= isset($phone[1]) ? $phone[1] : '1234567890';;?></h6>
                                 <p class="subText"><?= display('contact_us_for_help')?></p>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="media helpInfo">
                             <div class="icon"><i class="icon-map-pin "></i></div>
                             <div class="media-body">
