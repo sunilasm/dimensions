@@ -24,7 +24,7 @@ class Doctor_model extends CI_Model {
 			->from("user")
 			->join('department','department.dprt_id = user.department_id','left')
 			->where('user.user_role',2)
-			->order_by('user.user_id','desc')
+			->order_by('user.user_id','asc')
 			->get()
 			->result();
 	} 

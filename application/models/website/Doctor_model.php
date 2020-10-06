@@ -24,6 +24,7 @@ class Doctor_model extends CI_Model {
 			->group_end()
 			->where('user.status',1)
 			->where('lang.language',(!empty($this->language)?$this->language:$this->defualt))
+			->order_by('user.user_id','asc')
 			->limit(3)
 			->get()
 			->result();
@@ -39,7 +40,7 @@ class Doctor_model extends CI_Model {
 			->where('user.user_role',2)
 			->where('user.status',1)
 			->limit($limit, $start)
-			->order_by('user.user_id','desc')
+			->order_by('user.user_id','asc')
 			->get()
 			->result();
 	} 

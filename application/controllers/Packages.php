@@ -19,7 +19,7 @@ class Packages extends CI_Controller {
 	}
 	public function index(){
 		if ($this->session->userdata('isLogIn') == false) 
-		// redirect('login'); 
+		redirect('login'); 
 		$data['module'] = display("packages");
 		$data['title'] = display('packages_list');
 		#-------------------------------#
@@ -181,5 +181,18 @@ class Packages extends CI_Controller {
 		$data["links"] = $this->pagination->create_links();
 		$data['content'] = $this->load->view('website/packages_list',$data,true);
 		$this->load->view('website/plain_index', $data);
+	}
+
+	public function renewals(){
+		if ($this->session->userdata('isLogIn') == false) 
+		redirect('login'); 
+		$data['module'] = display("packages");
+		$data['title'] = display('renewals');
+		#-------------------------------#
+		//$data['packages'] = $this->package_model->read();
+		//$data['lang_pack'] = $this->package_model->read_lang_department();
+		$data['content'] = $this->load->view('packages/renewals',$data,true);
+		$this->load->view('layout/main_wrapper',$data);
+		//echo "<pre>".print_r($data, true); exit;
 	}
 }

@@ -1,10 +1,10 @@
-<div class="department">
+<div class="department m-5" style="">
     <div class="container">
         <div class="row">
             <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2 col-xl-6 offset-xl-3">
                 <div class="section-title">
                     <h2><?= (!empty($section['department']['title'])?$section['department']['title']:null)?></h2>
-                    <p><?= (!empty($section['department']['description'])?$section['department']['description']:null)?></p>
+                    <!-- <p><?= (!empty($section['department']['description'])?$section['department']['description']:null)?></p> -->
                 </div>
             </div>
         </div>

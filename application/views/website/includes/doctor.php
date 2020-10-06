@@ -5,7 +5,7 @@
                 <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2 col-xl-6 offset-xl-3">
                     <div class="section-title">
                         <h2><?= (!empty($section['doctor']['title'])?$section['doctor']['title']:null)?></h2>
-                        <p><?= (!empty($section['doctor']['description'])?$section['doctor']['description']:null)?></p>
+                        <!-- <p><?= (!empty($section['doctor']['description'])?$section['doctor']['description']:null)?></p> -->
                     </div>
                 </div>
             </div>

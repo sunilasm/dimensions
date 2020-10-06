@@ -1947,6 +1947,7 @@ h2.semibold span {
 }
 .appointment-text .contact-service {
     background-color: #fff;
+    display: block;
     /* border: 1px solid #ececec; */
     /*box-shadow: 0 5px 30px 0 rgba(0,0,0,.05);*/
 }
