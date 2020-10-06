@@ -26,13 +26,13 @@ $settings = $this->db->select("language")->get('setting')->row();
                 </div>
                 <div class="social">
                     <ul>
-                        <li> <?php echo form_dropdown('userLang',$languageList, (!empty($this->input->cookie('Lng', true))?$this->input->cookie('Lng', true):$settings->language),'id="userLang"') ?></li>
+                        <!-- <li> <?php echo form_dropdown('userLang',$languageList, (!empty($this->input->cookie('Lng', true))?$this->input->cookie('Lng', true):$settings->language),'id="userLang"') ?></li> -->
                         <li><a href="<?= (!empty($basics->facebook)?$basics->facebook:base_url())?>"><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a href="<?= (!empty($basics->twitter)?$basics->twitter:base_url())?>"><i class="fab fa-twitter"></i></a></li>
-                        <li><a href="<?= (!empty($basics->instagram)?$basics->instagram:base_url())?>"><i class="fab fa-instagram"></i></a></li>
+                        <!-- <li><a href="<?= (!empty($basics->twitter)?$basics->twitter:base_url())?>"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="<?= (!empty($basics->instagram)?$basics->instagram:base_url())?>"><i class="fab fa-instagram"></i></a></li> -->
                         <!--<li><a href="#"><i class="fab fa-vimeo-v"></i></a></li>-->
-                        <li><a href="<?= (!empty($basics->dribbble)?$basics->dribbble:base_url())?>"><i class="fab fa-dribbble"></i></a></li>
-                        <li><a href="<?= (!empty($basics->skype)?$basics->skype:base_url())?>"><i class="fab fa-skype"></i></a></li>
+                        <!-- <li><a href="<?= (!empty($basics->dribbble)?$basics->dribbble:base_url())?>"><i class="fab fa-dribbble"></i></a></li>
+                        <li><a href="<?= (!empty($basics->skype)?$basics->skype:base_url())?>"><i class="fab fa-skype"></i></a></li> -->
                     </ul>
                 </div>
                 <!-- /.Header Social Icon -->
@@ -80,10 +80,10 @@ $settings = $this->db->select("language")->get('setting')->row();
                             <div class="media-body">
                                 <h6 class="mb-0">
                                     <?php 
-                                      echo substr($setting->address, 0, 15);
+                                      echo substr($setting->address, 0, 39);
                                     ?>
                                 </h6>
-                                <p class="subText"><?php echo substr($setting->address, 15, 80);?></p>
+                                <p class="subText"><?php echo substr($setting->address, 39, 80);?></p>
                             </div>
                         </div>
                     </div>
