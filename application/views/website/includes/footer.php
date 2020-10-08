@@ -17,7 +17,7 @@
             </div>
             <div class="col-md-9">
                 <div class="row">
-                    <div class="col-md-3">
+                    <!-- <div class="col-md-3">
                         <div class="col-block">
                             <h3 class="footer-title"><?= display('departments')?></h3>
                             <ul class="footer-link list-unstyled">
@@ -28,7 +28,7 @@
                                 <?php }?>
                             </ul>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="col-md-4">
                         <div class="col-block">
                             <h3 class="footer-title"><?= display('quick_links')?></h3>
@@ -43,7 +43,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-md-8">
                         <h3 class="footer-title"><?= display('contact_details')?></h3>
                          <?php 
                            $phone = explode(",",$setting->phone);
