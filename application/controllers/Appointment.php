@@ -18,7 +18,7 @@ class Appointment extends CI_Controller {
    
     public function index(){ 
         $data['module'] = display("appointment");
-        $data['title'] = display('appointment');
+        $data['title'] = display('appointment'); 
         /* ------------------------------- */
         $role = $this->session->userdata('user_role');
         if($role==1){
@@ -26,6 +26,7 @@ class Appointment extends CI_Controller {
         }else{
             $data['appointments'] = $this->appointment_model->read();
         }
+        //echo "<pre>".print_r($data,true)."</pre>"; exit;
         $data['content'] = $this->load->view('appointment',$data,true);
         $this->load->view('layout/main_wrapper',$data);
     } 

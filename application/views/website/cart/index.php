@@ -39,7 +39,7 @@
           </div>
 
           <?php } ?>
-          <?php if(isset($cart['items']) && sizeof($cart['items'])) : ?>
+          <?php if(isset($cart['items']) && count($cart['items'])) : ?>
           <div class="row mb-4">
             <div class="col-md-5 col-lg-3 col-xl-3">
               <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">

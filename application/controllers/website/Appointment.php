@@ -467,6 +467,36 @@ class Appointment extends CI_Controller {
     }
  
 
+    public function sub_department()
+    {
+        $main_department_id = $this->input->post('main_department_id');
+
+        if (!empty($main_department_id)) {
+            $query = $this->db->select('dprt_id,name')
+                ->from('department')
+                ->where('main_id',$main_department_id)
+                // ->where('user_role',2)
+                ->where('status',1)
+                ->get();
+
+            $option = "<option value=\"\">".display('select_option')."</option>"; 
+            if ($query->num_rows() > 0) {
+                foreach ($query->result() as $department) {
+                    $option .= "<option value=\"$department->dprt_id\">$department->name</option>";
+                } 
+                $data['message'] = $option;
+                $data['status'] = true;
+            } else {
+                $data['message'] = display('no_servicess_available');
+                $data['status'] = false;
+            }
+        } else {
+            $data['message'] = display('invalid_main_department');
+            $data['status'] = null;
+        }
+
+        echo json_encode($data);
+    }
     public function doctor_by_department()
     {
         $department_id = $this->input->post('department_id');
@@ -502,12 +532,14 @@ class Appointment extends CI_Controller {
     public function schedule_day_by_doctor()
     {
         $doctor_id = $this->input->post('doctor_id');
+        $schedule_type = $this->input->post('schedule_type');
 
         if (!empty($doctor_id)) {
             $query = $this->db->select('available_days,start_time,end_time')
                 ->from('schedule')
                 ->where('doctor_id',$doctor_id) 
                 ->where('status',1)
+                ->where('schedule_type',$schedule_type)
                 ->order_by('available_days','desc')
                 ->get();
 

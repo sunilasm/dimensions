@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 01, 2020 at 08:55 AM
+-- Generation Time: Oct 08, 2020 at 04:20 PM
 -- Server version: 5.7.31-0ubuntu0.16.04.1
 -- PHP Version: 7.1.33-17+ubuntu16.04.1+deb.sury.org+1
 
@@ -398,7 +398,9 @@ INSERT INTO `appointment` (`id`, `appointment_id`, `patient_id`, `department_id`
 (27, 'A3GUGYWN', 'PELWQ10H', 18, 3, 1, 1, '2020-10-02', '', 3, '2020-09-29', 1),
 (28, 'AVHJ0OYV', 'PELWQ10H', 18, 3, 1, 1, '2020-10-09', '', 5, '2020-09-29', 1),
 (29, 'AEZGQ9MC', 'PELWQ10H', 18, 3, 8, 1, '2020-09-30', 'online', 3, '2020-09-29', 1),
-(30, 'ARE3Z6BP', 'P6LFZXUZ', 18, 3, 6, 1, '2020-09-01', 'offline', 0, '2020-09-29', 1);
+(30, 'ARE3Z6BP', 'P6LFZXUZ', 18, 3, 6, 1, '2020-09-01', 'offline', 0, '2020-09-29', 1),
+(31, 'AGOKDA0H', 'PY4FETFA', 18, 3, 8, 1, '2020-10-14', 'speech', 0, '2020-10-08', 1),
+(32, 'AZJC7DB8', 'PY4FETFA', 18, 3, 1, 1, '2020-10-16', 'test', 0, '2020-10-08', 1);
 
 -- --------------------------------------------------------
 
@@ -651,8 +653,14 @@ CREATE TABLE `department` (
 --
 
 INSERT INTO `department` (`dprt_id`, `main_id`, `name`, `flaticon`, `description`, `image`, `status`) VALUES
-(16, 2, 'Kothanur Branch', 'surgery', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ipsum magna, gravida nec erat ac, malesuada pharetra felis. Phasellus eu dolor orci. Duis et dictum sem, sit amet sagittis dolor. Curabitur scelerisque, nunc eget viverra malesuada, nunc ligula tincidunt nisi, eget elementum urna magna at dui. Praesent eu tincidunt arcu. Ut imperdiet a ligula nec dapibus. Aliquam erat volutpat. Donec auctor elementum accumsan. Vestibulum velit augue, feugiat ac nisl in, pharetra accumsan ligula. Proin nunc mauris, ultrices quis tristique vitae, ornare quis nunc. Aenean ut tincidunt lorem. Maecenas consectetur faucibus velit, nec tincidunt nulla fermentum sed.\r\n\r\n', 'assets_web/img/department/ed2e1213941b5b7deb15a3b824866338.png', 1),
-(18, 2, 'Head Branch', 'drug', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ipsum magna, gravida nec erat ac, malesuada pharetra felis. Phasellus eu dolor orci. Duis et dictum sem, sit amet sagittis dolor. Curabitur scelerisque, nunc eget viverra malesuada, nunc ligula tincidunt nisi, eget elementum urna magna at dui. Praesent eu tincidunt arcu. Ut imperdiet a ligula nec dapibus. Aliquam erat volutpat. Donec auctor elementum accumsan. Vestibulum velit augue, feugiat ac nisl in, pharetra accumsan ligula. Proin nunc mauris, ultrices quis tristique vitae, ornare quis nunc. Aenean ut tincidunt lorem. Maecenas consectetur faucibus velit, nec tincidunt nulla fermentum sed.\r\n\r\n', 'assets_web/img/department/2771a0c94b94d4cc3b052d30d02b826d.png', 1);
+(16, 2, 'Occupational Therapy', 'vitamins', 'Occupational Therapy facilitates people with a physical, sensory, or cognitive disability, be as independent as possible in all areas of their lives. OT can help children with various developmental delays improve their cognitive, physical, sensory, and motor skills.\r\n\r\nOur Occupational Therapist can help children improve \r\n\r\nBody Awareness and proprioceptive sense\r\n\r\nMovement coordination between the two sides of the body\r\n\r\nMotor control and organization, planning and coordination\r\n\r\nGross motor coordination and strengthening skills\r\n\r\nFine motor including handwriting, cutting and colouring\r\n\r\nSelf regulation and activities of daily living', 'assets_web/img/department/40c2613eacfe22e58d61e8f611a1a794.jpeg', 1),
+(18, 2, 'Speech Language Therapy', 'vitamins', 'Oral Sensory issues related to speech and feeding skills, improving receptive and expressive communication, speech clarity and the use socially acceptable ways to communicate (Pragmatics) are a few areas that will be targeted in our speech therapy sessions.\r\n\r\nOur Speech-Language Pathologist can help children\r\n\r\nImprove oral motor skills\r\n\r\nImprove speech clarity\r\n\r\nImprove feeding skills\r\n\r\nImprove comprehension of spoken words\r\n\r\nIncrease mean length of utterances (length of sentences)\r\n\r\nReduce/ eliminate echolalia by replacing meaningless utterances with meaningful words\r\n\r\nUse grammatically appropriate sentences \r\n\r\nProgress in social use of language (Pragmatics)', 'assets_web/img/department/492e8b388705e91f65a7f62e7de1e87c.jpeg', 1),
+(19, 2, 'Handwriting Program', 'vitamins', 'We conduct regular handwriting programs for Speech Therapists, School Teachers, Occupational Therapists, and Parents who can help and aid the children with learning to teach handwriting\r\n\r\nOur Handwriting Specialist can help children\r\n\r\nImprove body awareness and posture for writing\r\n\r\nImprove pencil grip\r\n\r\nWrite upper case, lower case, and numbers with proper spacing and size\r\n\r\nBe able to copy words and sentences from the board\r\n\r\nImprove speed of writing', 'assets_web/img/department/36d51d9d519ba9f6d4ad1ec0a20c1d68.jpg', 1),
+(20, 2, 'Social Skills Training', 'vitamins', 'A persistent problem of children with autistic spectrum disorders is inappropriate social behavior. Often inappropriate behaviors are preceded by inability to communicate ones needs.\r\n\r\nOur Speech Language Pathologist can help children\r\n\r\nApproach others in socially acceptable ways\r\n\r\nAsk for permission rather than acting impulsively\r\n\r\nFacilitate children to make and keep friends\r\n\r\nShare toys/materials\r\n\r\nListen to instructions given to a  group\r\n\r\nAttend to task at hand\r\n\r\nFollow directions in a small group setting\r\n\r\nSeek attention appropriately and more', 'assets_web/img/department/3d085263b48e42ce1f8f46b10482ee24.jpg', 1),
+(21, 3, 'Occupational Therapy', 'vitamins', 'Occupational Therapy facilitates people with a physical, sensory, or cognitive disability, be as independent as possible in all areas of their lives. OT can help children with various developmental delays improve their cognitive, physical, sensory, and motor skills.\r\n\r\nOur Occupational Therapist can help children improve \r\n\r\nBody Awareness and proprioceptive sense\r\n\r\nMovement coordination between the two sides of the body\r\n\r\nMotor control and organization, planning and coordination\r\n\r\nGross motor coordination and strengthening skills\r\n\r\nFine motor including handwriting, cutting and colouring\r\n\r\nSelf regulation and activities of daily living', 'assets_web/img/department/40c2613eacfe22e58d61e8f611a1a794.jpeg', 1),
+(22, 3, 'Speech Language Therapy', 'vitamins', 'Oral Sensory issues related to speech and feeding skills, improving receptive and expressive communication, speech clarity and the use socially acceptable ways to communicate (Pragmatics) are a few areas that will be targeted in our speech therapy sessions.\r\n\r\nOur Speech-Language Pathologist can help children\r\n\r\nImprove oral motor skills\r\n\r\nImprove speech clarity\r\n\r\nImprove feeding skills\r\n\r\nImprove comprehension of spoken words\r\n\r\nIncrease mean length of utterances (length of sentences)\r\n\r\nReduce/ eliminate echolalia by replacing meaningless utterances with meaningful words\r\n\r\nUse grammatically appropriate sentences \r\n\r\nProgress in social use of language (Pragmatics)', 'assets_web/img/department/492e8b388705e91f65a7f62e7de1e87c.jpeg', 1),
+(23, 3, 'Handwriting Program', 'vitamins', 'We conduct regular handwriting programs for Speech Therapists, School Teachers, Occupational Therapists, and Parents who can help and aid the children with learning to teach handwriting\r\n\r\nOur Handwriting Specialist can help children\r\n\r\nImprove body awareness and posture for writing\r\n\r\nImprove pencil grip\r\n\r\nWrite upper case, lower case, and numbers with proper spacing and size\r\n\r\nBe able to copy words and sentences from the board\r\n\r\nImprove speed of writing', 'assets_web/img/department/36d51d9d519ba9f6d4ad1ec0a20c1d68.jpg', 1),
+(24, 3, 'Social Skills Training', 'vitamins', 'A persistent problem of children with autistic spectrum disorders is inappropriate social behavior. Often inappropriate behaviors are preceded by inability to communicate ones needs.\r\n\r\nOur Speech Language Pathologist can help children\r\n\r\nApproach others in socially acceptable ways\r\n\r\nAsk for permission rather than acting impulsively\r\n\r\nFacilitate children to make and keep friends\r\n\r\nShare toys/materials\r\n\r\nListen to instructions given to a  group\r\n\r\nAttend to task at hand\r\n\r\nFollow directions in a small group setting\r\n\r\nSeek attention appropriately and more', 'assets_web/img/department/3d085263b48e42ce1f8f46b10482ee24.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -674,11 +682,13 @@ CREATE TABLE `department_lang` (
 --
 
 INSERT INTO `department_lang` (`id`, `department_id`, `language`, `name`, `description`, `status`) VALUES
-(33, 18, 'bangla', 'ফার্মেসী', 'এটি একটি ঔষধের দোকান, আপনি এখানে সব ধরনের ওষুধ কিনতে পারেন। কিছু বিদেশী ঔষধ এখানেও পাওয়া যায়। দ্রুত সেবা. শুধুমাত্র নগদ. কর্মীরা তাই ভাল।', 1),
-(34, 18, 'english', 'Head Branch', '1336, 2nd Cross, Nanjappa Layout, Babusapalya, Banswadi Extn, Bangalore 560043', 1),
-(35, 18, 'french', 'Les pharmacies', 'Pharmacie hospitalière 2 Un domaine spécialisé de la pharmacie Hoch forme une partie intégrante des soins de santé dispensés aux patients dans un établissement de santé.', 1),
-(36, 18, 'arabic', 'الصيدليات', 'صيدلية المستشفيات 2 حقل متخصص من الصيدلة أشكال Hoch غير متكاملة جزء من الرعاية الصحية للمرضى في المرفق الصحي.', 1),
-(41, 16, 'english', 'Kothanur Branch', 'Saikrupa, No 31/255, Sangam Enclave, K Narayanapura, Kothanur, Bangalore 560077', 1);
+(34, 18, 'english', 'Speech Language Therapy', 'Oral Sensory issues related to speech and feeding skills, improving receptive and expressive communication, speech clarity and the use socially acceptable ways to communicate (Pragmatics) are a few areas that will be targeted in our speech therapy se', 1),
+(41, 16, 'english', 'Occupational Therapy', 'Occupational Therapy facilitates people with a physical, sensory, or cognitive disability, be as independent as possible in all areas of their lives. OT can help children with various developmental delays improve their cognitive, physical, sensory, a', 1),
+(42, 19, 'english', 'Handwriting Program', 'We conduct regular handwriting programs for Speech Therapists, School Teachers, Occupational Therapists, and Parents who can help and aid the children with learning to teach handwriting\r\n\r\nOur Handwriting Specialist can help children\r\n\r\nImprove body ', 1),
+(43, 20, 'english', 'Social Skills Training', 'A persistent problem of children with autistic spectrum disorders is inappropriate social behavior. Often inappropriate behaviors are preceded by inability to communicate ones needs.\r\n\r\nOur Speech Language Pathologist can help children\r\n\r\nApproach ot', 1),
+(44, 21, 'english', 'Occupational Therapy', 'Occupational Therapy facilitates people with a physical, sensory, or cognitive disability, be as independent as possible in all areas of their lives. OT can help children with various developmental delays improve their cognitive, physical, sensory, a', 1),
+(45, 22, 'english', 'Speech Language Therapy', 'Oral Sensory issues related to speech and feeding skills, improving receptive and expressive communication, speech clarity and the use socially acceptable ways to communicate (Pragmatics) are a few areas that will be targeted in our speech therapy se', 1),
+(46, 23, 'english', 'Handwriting Program', 'We conduct regular handwriting programs for Speech Therapists, School Teachers, Occupational Therapists, and Parents who can help and aid the children with learning to teach handwriting\r\n\r\nOur Handwriting Specialist can help children\r\n\r\nImprove body ', 1);
 
 -- --------------------------------------------------------
 
@@ -901,19 +911,19 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (9, 'logout', 'Log Out', 'الخروج', 'প্রস্থান', NULL),
 (10, 'please_try_again', 'Please Try Again', 'حاول مرة اخرى', 'অনুগ্রহপূর্বক আবার চেষ্টা করুন', NULL),
 (11, 'admin', 'Admin', 'مشرف', 'অ্যাডমিন', 'admin'),
-(12, 'doctor', 'Doctor', 'طبيب', 'ডাক্তার', NULL),
+(12, 'doctor', 'Pathologist', 'طبيب', 'ডাক্তার', NULL),
 (13, 'representative', 'Representative', 'وكيل', 'প্রতিনিধি', NULL),
 (14, 'dashboard', 'Dashboard', 'لوحة القيادة', 'ড্যাশবোর্ড', NULL),
-(15, 'department', 'Department', ' قسم، أقسام', 'বিভাগ', NULL),
-(16, 'add_department', 'Add Department', 'أضف إلى القسم', 'বিভাগ যোগ করুন', 'Ajouter un département'),
-(17, 'department_list', 'Department List', 'قائمة القسم', 'বিভাগ তালিকা', NULL),
-(18, 'add_doctor', 'Add Doctor', 'اضافة طبيب', 'ডাক্তার যোগ করুন', 'Ajouter un docteur'),
-(19, 'doctor_list', 'Doctor List', 'قائمة الطبيب', 'ডাক্তার তালিকা', NULL),
+(15, 'department', 'Branch', ' قسم، أقسام', 'বিভাগ', NULL),
+(16, 'add_department', 'Add Service', 'أضف إلى القسم', 'বিভাগ যোগ করুন', 'Ajouter un département'),
+(17, 'department_list', 'Service List', 'قائمة القسم', 'বিভাগ তালিকা', NULL),
+(18, 'add_doctor', 'Add Pathologist', 'اضافة طبيب', 'ডাক্তার যোগ করুন', 'Ajouter un docteur'),
+(19, 'doctor_list', 'Pathologist List', 'قائمة الطبيب', 'ডাক্তার তালিকা', NULL),
 (20, 'add_representative', 'Add Representative', 'إضافة ممثل', 'প্রতিনিধি যোগ করুন', 'Ajouter un représentant'),
 (21, 'representative_list', 'Representative List', 'قائمة تمثيلية', 'প্রতিনিধি তালিকা', NULL),
-(22, 'patient', 'Patient', 'صبور', 'রোগী', NULL),
-(23, 'add_patient', 'Add Patient', 'يضيف المريض', 'রোগী যোগ করুন', 'Ajouter un patient'),
-(24, 'patient_list', 'Patient List', 'قائمة المريض', 'রোগীর তালিকা', NULL),
+(22, 'patient', 'Customer', 'صبور', 'রোগী', NULL),
+(23, 'add_patient', 'Add Customer', 'يضيف المريض', 'রোগী যোগ করুন', 'Ajouter un patient'),
+(24, 'patient_list', 'Customer List', 'قائمة المريض', 'রোগীর তালিকা', NULL),
 (25, 'schedule', 'Schedule', 'جدول', 'সময়সূচী ', NULL),
 (26, 'add_schedule', 'Add Schedule', 'إضافة جدول', 'সময়সূচী যোগ করুন', 'ajouter un horaire'),
 (27, 'schedule_list', 'Schedule List', 'قائمة الجدول الزمني', 'সময়সূচীর তালিকা', NULL),
@@ -924,8 +934,8 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (32, 'language_setting', 'Language Setting', 'إعدادات اللغة', 'ভাষা সেটিং', NULL),
 (33, 'appointment_report', 'Appointment Report', 'تقرير موعد', 'অ্যাপয়েন্টমেন্ট রিপোর্ট', 'rapport de rendez-vous'),
 (34, 'assign_by_all', 'Assign by All', 'تعيين من قبل الجميع', 'সবার দ্বারা  বরাদ্দ', 'assigner par tous'),
-(35, 'assign_by_doctor', 'Assign by Doctor', 'تعيين من قبل الطبيب', 'ডাক্তার দ্বারা বরাদ্দ', 'assigner par le docteur'),
-(36, 'assign_to_doctor', 'Assign to Doctor', 'تخصيص للطبيب', 'ডাক্তারকে  বরাদ্দ করা', ''),
+(35, 'assign_by_doctor', 'Assign by Pathologist', 'تعيين من قبل الطبيب', 'ডাক্তার দ্বারা বরাদ্দ', 'assigner par le docteur'),
+(36, 'assign_to_doctor', 'Assign to Pathologist', 'تخصيص للطبيب', 'ডাক্তারকে  বরাদ্দ করা', ''),
 (37, 'assign_by_representative', 'Assign by Representative', 'يعين من قبل ممثل', 'প্রতিনিধি দ্বারা বরাদ্দ', 'assigner par représentant'),
 (38, 'report', 'Report', 'أبلغ عن', 'প্রতিবেদন', NULL),
 (39, 'assign_by_me', 'Assign by Me', 'يعينني', 'আমার দ্বারা বরাদ্দ', 'assigner par moi'),
@@ -938,7 +948,7 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (46, 'latest_enquiry', 'Latest Enquiry', 'آخر استفسار', 'সর্বশেষ তদন্ত', NULL),
 (47, 'total_progress', 'Total Progress', 'التقدم الكلي', 'মোট অগ্রগতি', NULL),
 (48, 'last_year_status', 'Showing status from the last year', 'حالة العام الماضي', 'গত বছরের অবস্থা', NULL),
-(49, 'department_name', 'Department Name', 'اسم القسم', 'বিভাগের নাম', NULL),
+(49, 'department_name', 'Service Name', 'اسم القسم', 'বিভাগের নাম', NULL),
 (50, 'description', 'Description', 'وصف', 'বিবরণ', NULL),
 (51, 'status', 'Status', 'الحالة', 'অবস্থা', NULL),
 (52, 'active', 'Active', 'نشيط', 'সক্রিয়', 'Actif'),
@@ -951,7 +961,7 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (59, 'delete', 'Delete', 'حذف', 'মুছে ফেলা', NULL),
 (60, 'save_successfully', 'Save Successfully!', 'حفظ بنجاح', 'সফলভাবে সংরক্ষণ হয়েছে ', NULL),
 (61, 'update_successfully', 'Update Successfully!', 'التحديث بنجاح', 'সফলভাবে আপডেট হয়েছে ', NULL),
-(62, 'department_edit', 'Department Edit', 'تحرير القسم', 'বিভাগ সম্পাদনা', NULL),
+(62, 'department_edit', 'Service Edit', 'تحرير القسم', 'বিভাগ সম্পাদনা', NULL),
 (63, 'delete_successfully', 'Delete successfully!', 'حذف بنجاح', 'সফলভাবে মুছে ফেলা হয়েছে', NULL),
 (64, 'are_you_sure', 'Are You Sure ? ', 'هل أنت واثق؟', 'তুমি কি নিশ্চিত?', 'êtes-vous sûr?'),
 (65, 'first_name', 'First Name', 'الاسم الاول', 'নামের প্রথম অংশ', NULL),
@@ -963,9 +973,9 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (71, 'date_of_birth', 'Date of Birth', 'تاريخ الولادة', 'জন্ম তারিখ', NULL),
 (72, 'address', 'Address', 'عنوان', 'ঠিকানা', 'Adresse'),
 (73, 'invalid_picture', 'Invalid Picture', 'الصورة غير صالحة', 'অবৈধ ছবি', NULL),
-(74, 'doctor_profile', 'Doctor Profile', 'الملف الشخصي الطبيب', 'ডাক্তার প্রোফাইল', NULL),
+(74, 'doctor_profile', 'Pathologist Profile', 'الملف الشخصي الطبيب', 'ডাক্তার প্রোফাইল', NULL),
 (75, 'edit_profile', 'Edit Profile', 'تعديل الملف الشخصي', 'জীবন বৃত্তান্ত সম্পাদনা', NULL),
-(76, 'edit_doctor', 'Edit Doctor', 'تحرير الطبيب', 'ডাক্তার সম্পাদনা করুন', NULL),
+(76, 'edit_doctor', 'Edit Pathologist', 'تحرير الطبيب', 'ডাক্তার সম্পাদনা করুন', NULL),
 (77, 'designation', 'Designation', 'تعيين', 'উপাধি', NULL),
 (78, 'short_biography', 'Short Biography', 'سيرة ذاتية قصيرة', 'সংক্ষিপ্ত জীবনী', NULL),
 (79, 'picture', 'Picture', 'صورة', 'ছবি', NULL),
@@ -975,22 +985,22 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (83, 'education_degree', 'Education/Degree', 'درجة التعليم', 'শীক্ষাগত ডিগ্রি', NULL),
 (84, 'create_date', 'Create Date', 'تاريخ الإنشاء', 'তারিখ তৈরি করুন', NULL),
 (85, 'view', 'View', 'رأي', 'দেখা', NULL),
-(86, 'doctor_information', 'Doctor Information', 'معلومات الطبيب', 'ডাক্তার তথ্য', NULL),
+(86, 'doctor_information', 'Pathologist Information', 'معلومات الطبيب', 'ডাক্তার তথ্য', NULL),
 (87, 'update_date', 'Update Date', 'تاريخ التحديث', 'আপডেট তারিখ', NULL),
 (88, 'print', 'Print', 'طباعة', 'ছাপা', NULL),
 (89, 'representative_edit', 'Representative Edit', 'تحرير ممثل', 'প্রতিনিধি সম্পাদনা', NULL),
-(90, 'patient_information', 'Patient Information', 'معلومات المريض', 'রোগীর তথ্য', NULL),
+(90, 'patient_information', 'Customer Information', 'معلومات المريض', 'রোগীর তথ্য', NULL),
 (91, 'other', 'Other', 'آخر', 'অন্যান্য', NULL),
 (92, 'patient_id', 'Customer ID', 'رقم المريض', 'রোগী আইডি', NULL),
 (93, 'age', 'Age', 'عمر', 'বয়স', 'âge'),
-(94, 'patient_edit', 'Patient Edit', 'تعديل المريض', 'রোগী সম্পাদনা', NULL),
+(94, 'patient_edit', 'Customer Edit', 'تعديل المريض', 'রোগী সম্পাদনা', NULL),
 (95, 'id_no', 'ID No.', 'رقم بطاقة الهوية', 'আইডি নাম্বার', NULL),
 (96, 'select_option', 'Select Option', 'حدد الخيار', 'বিকল্প নির্বাচন', NULL),
 (97, 'doctor_name', 'Pathologist Name', 'اسم الطبيب', 'ডাক্তার নাম', NULL),
 (98, 'day', 'Day', 'يوم', 'দিন', NULL),
 (99, 'start_time', 'Start Time', 'وقت البدء', 'সময় শুরু', NULL),
 (100, 'end_time', 'End Time', 'وقت النهاية', 'শেষ সময়', NULL),
-(101, 'per_patient_time', 'Per Patient Time', 'لكل مريض', 'প্রতি রোগীর সময়', NULL),
+(101, 'per_patient_time', 'Per Customer Time', 'لكل مريض', 'প্রতি রোগীর সময়', NULL),
 (102, 'serial_visibility_type', 'Serial Visibility', 'نوع الرؤية التسلسلية', 'সিরিয়াল দৃশ্যমানতা টাইপ', NULL),
 (103, 'sequential', 'Sequential', 'تسلسلي', 'ক্রমানুসারে', NULL),
 (104, 'timestamp', 'Timestamp', 'الطابع الزمني', 'টাইমস্ট্যাম্প', NULL),
@@ -1001,9 +1011,9 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (109, 'problem', 'Problem', 'مشكلة', 'সমস্যা', NULL),
 (110, 'appointment_date', 'Appointment Date', 'موعد الموعد', 'সাক্ষাৎকারের তারিখ', 'date de rendez-vous'),
 (111, 'you_are_already_registered', 'You are already registered!', 'انت مسجل مسبقا', 'আপনি ইতোমধ্যে নিবন্ধিত', NULL),
-(112, 'invalid_patient_id', 'Invalid patient ID', 'معرف المريض غير صالح', 'অবৈধ রোগী আইডি', NULL),
+(112, 'invalid_patient_id', 'Invalid customer ID', 'معرف المريض غير صالح', 'অবৈধ রোগী আইডি', NULL),
 (113, 'invalid_input', 'Invalid Input', 'مدخل غير صالح', 'ভুল ইনপুট', NULL),
-(114, 'no_doctor_available', 'No Doctor Available', 'لا يوجد طبيب متاح', 'কোন ডাক্তার পাওয়া যায় না', NULL),
+(114, 'no_doctor_available', 'No Pathologist Available', 'لا يوجد طبيب متاح', 'কোন ডাক্তার পাওয়া যায় না', NULL),
 (115, 'invalid_department', 'Invalid Department!', 'قسم غير صالح', 'অবৈধ বিভাগ', NULL),
 (116, 'no_schedule_available', 'No Schedule Available', 'لا يوجد جدول متاح', 'কোন সময়সূচী পাওয়া যায় নাই ', NULL),
 (117, 'please_fillup_all_required_fields', 'Please fillup all required filelds', 'رجاءا، إملأ جميع الحقول المطلوبة', 'সব প্রয়োজনীয় ফিল্ডগুলি পূরণ করুন', NULL),
@@ -1027,9 +1037,9 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (135, 'footer_text', 'Footer Text', 'نص التذييل', 'ফুটার টেক্সট ', NULL),
 (136, 'language', 'Language', 'لغة', 'ভাষা', NULL),
 (137, 'appointment_assign_by_all', 'Appointment Assign by All', 'تعيين موعد من قبل الجميع', 'অ্যাপয়েন্টমেন্ট সকলের দ্বারা বরাদ্দ', 'rendez-vous assigner par tous'),
-(138, 'appointment_assign_by_doctor', 'Appointment Assign by Doctor', 'تعيين موعد من قبل الطبيب', 'অ্যাপয়েন্টমেন্ট ডাক্তার দ্বারা বরাদ্দ', 'rendez-vous assigner par le docteur'),
+(138, 'appointment_assign_by_doctor', 'Appointment Assign by Pathologist', 'تعيين موعد من قبل الطبيب', 'অ্যাপয়েন্টমেন্ট ডাক্তার দ্বারা বরাদ্দ', 'rendez-vous assigner par le docteur'),
 (139, 'appointment_assign_by_representative', 'Appointment Assign by Representative', 'تعيين موعد من قبل ممثل', 'অ্যাপয়েন্টমেন্ট প্রতিনিধি দ্বারা বরাদ্দ', 'rendez-vous assigner par le représentant'),
-(140, 'appointment_assign_to_all_doctor', 'Appointment Assign to All Doctor', 'تعيين موعد لجميع الأطباء', 'ডাক্তারদের সকল বরাদ্দ অ্যাপয়েন্টমেন্ট  ', 'rendez-vous assigner à tout le docteur'),
+(140, 'appointment_assign_to_all_doctor', 'Appointment Assign to All Pathologist', 'تعيين موعد لجميع الأطباء', 'ডাক্তারদের সকল বরাদ্দ অ্যাপয়েন্টমেন্ট  ', 'rendez-vous assigner à tout le docteur'),
 (141, 'appointment_assign_to_me', 'Appointment Assign to Me', 'تعيين موعد لي', 'আমার বরাদ্দ অ্যাপয়েন্টমেন্ট ', 'rendez-vous me assigner'),
 (142, 'appointment_assign_by_me', 'Appointment Assign by Me', 'تعيين موعد من قبلي', 'অ্যাপয়েন্টমেন্ট আমার দ্বারা বরাদ্দ', 'rendez-vous assigner par moi'),
 (143, 'type', 'Type', 'نوع', 'টাইপ', NULL),
@@ -1043,8 +1053,8 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (151, 'new_enquiry', 'New Enquiry', 'تحقيق جديد', 'নতুন তদন্ত', NULL),
 (152, 'information', 'Information', 'معلومات', 'তথ্য', NULL),
 (153, 'home', 'Home', 'الصفحة الرئيسية', 'হোম', NULL),
-(154, 'select_department', 'Select Department', 'اختر القسم', 'বিভাগ নির্বাচন করুন', NULL),
-(155, 'select_doctor', 'Select Doctor', 'اختر الطبيب', 'ডাক্তার নির্বাচন করুন', NULL),
+(154, 'select_department', 'Select Service', 'اختر القسم', 'বিভাগ নির্বাচন করুন', NULL),
+(155, 'select_doctor', 'Select Pathologist', 'اختر الطبيب', 'ডাক্তার নির্বাচন করুন', NULL),
 (156, 'select_representative', 'Select Representative', 'اختر ممثل', 'প্রতিনিধি নির্বাচন করুন', NULL),
 (157, 'post_id', 'Post ID', 'بعد معرف', 'পোস্ট আইডি', NULL),
 (158, 'thank_you_for_your_comment', 'Thank you for your comment!', 'شكرا لك على تعليقك', 'আপনার মন্তব্যের জন্য ধন্যবাদ', NULL),
@@ -1106,7 +1116,7 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (214, 'contact', 'Contact', 'اتصل', 'যোগাযোগ', NULL),
 (215, 'optional', 'Optional', 'اختياري', 'ঐচ্ছিক', NULL),
 (216, 'customer_comments', 'Customer Comments', 'تعليقات العملاء', 'গ্রাহক মন্তব্য', NULL),
-(217, 'need_a_doctor_for_checkup', 'Need a Doctor for Check-up?', 'بحاجة الى طبيب للفحص', 'চেকআপ জন্য একটি ডাক্তার প্রয়োজন', NULL),
+(217, 'need_a_doctor_for_checkup', 'Need a Pathologist for Check-up?', 'بحاجة الى طبيب للفحص', 'চেকআপ জন্য একটি ডাক্তার প্রয়োজন', NULL),
 (218, 'just_make_an_appointment_and_you_are_done', 'JUST MAKE AN APPOINTMENT & YOU\'RE DONE ! ', 'مجرد تحديد موعد وانتهيت', 'শুধু একটি অ্যাপয়েন্টমেন্ট করুন এবং আপনার সম্পন্ন হবে ', NULL),
 (219, 'get_an_appointment', 'Get an appointment', 'الحصول على موعد', 'একটি অ্যাপয়েন্টমেন্ট পেতে', NULL),
 (220, 'latest_news', 'Latest News', 'أحدث الأخبار', 'সর্বশেষ সংবাদ', NULL),
@@ -1143,7 +1153,7 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (251, 'invoice_edit', 'Invoice Edit', 'تحرير الفاتورة', 'চালান সম্পাদনা', NULL),
 (252, 'update', 'Update', 'تحديث', 'হালনাগাদ', NULL),
 (253, 'all', 'All', 'الكل', 'সব', 'toutes'),
-(254, 'patient_wise', 'Patient Wise', 'مريض حكيم', 'রোগী অনুযায়ী', NULL),
+(254, 'patient_wise', 'Customer Wise', 'مريض حكيم', 'রোগী অনুযায়ী', NULL),
 (255, 'account_wise', 'Account Wise', 'حساب حكيم', 'অ্যাকাউন্ট অনুযায়ী', 'Âge du compte'),
 (256, 'debit_report', 'Debit Report', 'تقرير الخصم', 'ডেবিট রিপোর্ট', NULL),
 (257, 'credit_report', 'Credit Report', 'تقرير الائتمان', 'ক্রেডিট রিপোর্ট', NULL),
@@ -1233,15 +1243,15 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (341, 'upload_successfully', 'Upload Successfully!', 'تحميل بنجاح', 'সফলভাবে আপলোড করা হয়েছে', NULL),
 (342, 'app_setting', 'App Setting', 'إعداد التطبيق', 'অ্যাপ্লিকেশন সেটিং', 'réglage de l\'application'),
 (343, 'case_manager', 'Case Manager', 'مدير الحالة', 'মামলা ব্যাবস্থাপক', ''),
-(344, 'patient_status', 'Patient Status', 'حالة المريض', 'রোগীর অবস্থা', NULL),
-(345, 'patient_status_edit', 'Edit Patient Status', 'تعديل حالة المريض', 'রোগীর অবস্থা সম্পাদনা', NULL),
-(346, 'add_patient_status', 'Add Patient Status', 'إضافة حالة المريض', 'রোগীর অবস্থা যোগ করুন', 'Ajouter le statut du patient'),
+(344, 'patient_status', 'Customer Status', 'حالة المريض', 'রোগীর অবস্থা', NULL),
+(345, 'patient_status_edit', 'Edit Customer Status', 'تعديل حالة المريض', 'রোগীর অবস্থা সম্পাদনা', NULL),
+(346, 'add_patient_status', 'Add Customer Status', 'إضافة حالة المريض', 'রোগীর অবস্থা যোগ করুন', 'Ajouter le statut du patient'),
 (347, 'add_new_status', 'Add New Status', 'إضافة حالة جديدة', 'খবরের  অবস্থা যোগ করুন', 'Ajouter un nouveau statut'),
 (348, 'case_manager_list', 'Case Manager List', 'قائمة مدير الحالة', 'কেস ম্যানেজার তালিকা', ''),
 (349, 'hospital_address', 'Hospital Address', 'عنوان المستشفى', 'হাসপাতাল ঠিকানা', NULL),
-(350, 'ref_doctor_name', 'Ref. Doctor Name', 'اسم الطبيب المرجعي', 'রেফারেন্স ডাক্তারের নাম', NULL),
+(350, 'ref_doctor_name', 'Ref. Pathologist Name', 'اسم الطبيب المرجعي', 'রেফারেন্স ডাক্তারের নাম', NULL),
 (351, 'hospital_name', 'Hospital Name', 'اسم المستشفى', 'হাসপাতালের  নাম', NULL),
-(352, 'patient_name', 'Patient  Name', 'اسم المريض', 'রোগীর নাম', NULL),
+(352, 'patient_name', 'Customer  Name', 'اسم المريض', 'রোগীর নাম', NULL),
 (353, 'document_list', 'Document List', 'قائمة المستندات', 'নথি তালিকা', NULL),
 (354, 'add_document', 'Add Document', 'إضافة وثيقة', 'নথি যোগ করুন', 'Ajouter un document'),
 (355, 'upload_by', 'Update by', 'تحميل بواسطة', 'হালনাগাদ', NULL),
@@ -1252,8 +1262,8 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (360, 'add_insurance', 'Add Insurance', 'إضافة التأمين', 'বীমা যোগ করুন', 'Ajouter une assurance'),
 (361, 'insurance_list', 'Insurance List', 'قائمة التأمين', 'বীমা তালিকা', NULL),
 (362, 'insurance_name', 'Insurance Name', 'اسم التأمين', 'বীমা নাম', NULL),
-(366, 'add_patient_case_study', 'Add Patient Case Study', 'إضافة دراسة حالة المريض', 'রোগীর ক্ষেত্রে অধ্যয়ন যোগ করুন', 'Ajouter une étude de cas à un patient'),
-(367, 'patient_case_study_list', 'Patient Case Study List', 'قائمة دراسة حالة المريض', 'রোগীর ক্ষেত্রে অধ্যয়ন তালিকা', NULL),
+(366, 'add_patient_case_study', 'Add Customer Case Study', 'إضافة دراسة حالة المريض', 'রোগীর ক্ষেত্রে অধ্যয়ন যোগ করুন', 'Ajouter une étude de cas à un patient'),
+(367, 'patient_case_study_list', 'Customer Case Study List', 'قائمة دراسة حالة المريض', 'রোগীর ক্ষেত্রে অধ্যয়ন তালিকা', NULL),
 (368, 'food_allergies', 'Food Allergies', 'حساسية الطعام', 'খাবারে এ্যালার্জী', NULL),
 (369, 'tendency_bleed', 'Tendency Bleed', 'نزف الميل', 'প্রবণতা রক্তপাত', NULL),
 (370, 'heart_disease', 'Heart Disease', 'مرض القلب', 'হৃদরোগ', NULL),
@@ -1278,7 +1288,7 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (391, 'new', 'New', 'الجديد', 'নতুন', NULL),
 (392, 'case_study', 'Case Study', 'دراسة الحالة', 'কেস স্টাডি', NULL),
 (393, 'chief_complain', 'Chief Complain', 'الشكوى الرئيسية', 'প্রধান অভিযোগ', NULL),
-(394, 'patient_notes', 'Patient Notes', 'ملاحظات المريض', 'রোগীর নোট', NULL),
+(394, 'patient_notes', 'Customer Notes', 'ملاحظات المريض', 'রোগীর নোট', NULL),
 (395, 'visiting_fees', 'Visiting Fees', 'رسوم الزيارة', 'ভিসিটিং ফি', 'frais de visite'),
 (396, 'diagnosis', 'Diagnosis', 'التشخيص', 'রোগ নির্ণয়', NULL),
 (397, 'prescription_id', 'Prescription ID', 'معرف وصفة طبية', 'প্রেসক্রিপশন আইডি', NULL),
@@ -1325,7 +1335,7 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (439, 'limit_approval', 'Limit Approval', 'موافقة الحد', 'অনুমোদন সীমিত', NULL),
 (440, 'insurance_limit_approval', 'Insurance Limit Approval', 'موافقة حد التأمين', 'বীমা সীমা অনুমোদন', NULL),
 (441, 'billing', 'Billing', 'الفواتير', 'বিলিং', ''),
-(442, 'add_admission', 'Add Patient Admission', 'اضف القبول', 'ভর্তি যোগ করুন', 'Ajouter des admissions'),
+(442, 'add_admission', 'Add Customer Admission', 'اضف القبول', 'ভর্তি যোগ করুন', 'Ajouter des admissions'),
 (443, 'add_service', 'Add Service', 'أضف الخدمة', 'সেবা যোগ করুন', 'ajouter un service'),
 (444, 'service_list', 'Service List', 'قائمة الخدمات', 'সেবা তালিকা', NULL),
 (445, 'service_name', 'Service Name', 'اسم الخدمة', 'সেবার নাম', NULL),
@@ -1340,7 +1350,7 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (454, 'guardian_relation', 'Guardian Relation', 'علاقة الولي', 'অভিভাবক সম্পর্ক', NULL),
 (455, 'guardian_contact', 'Guardian Contact', 'الاتصال الوصي', 'অভিভাবক যোগাযোগ', NULL),
 (456, 'guardian_address', 'Guardian Address', 'عنوان الوصي', 'অভিভাবক ঠিকানা', NULL),
-(457, 'admission_list', 'Patient Admission List', 'قائمة القبول', 'ভর্তি তালিকা', 'list'),
+(457, 'admission_list', 'Customer Admission List', 'قائمة القبول', 'ভর্তি তালিকা', 'list'),
 (458, 'admission_id', 'Admission ID', 'معرف القبول', 'ভর্তি আইডি', 'identifiant d\'admission'),
 (459, 'edit_admission', 'Edit Admission', 'تحرير القبول', 'ভর্তি সম্পাদনা করুন', NULL),
 (460, 'add_advance', 'Add Advance Payment', 'إضافة مسبقا', 'আগাম যোগ করুন', 'Ajouter une avance'),
@@ -1396,10 +1406,10 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (514, 'available', 'Available ', 'متاح', 'সহজলভ্য', ''),
 (515, 'sex', 'Sex', 'جنس', 'লিঙ্গ', NULL),
 (516, 'medications_and_visits', 'Medications and Visits', 'الأدوية والزيارات', 'ঔষধ এবং ভিজিট', NULL),
-(517, 'add_medication', 'Add Patient Medication', 'إضافة الدواء', 'ঔষধ যোগ করুন', 'Ajouter un médicament'),
-(518, 'medication_list', 'Patient Medication List', 'قائمة الأدوية', 'ঔষধ তালিকা', NULL),
-(519, 'add_visit', 'Add Patient Visit', 'أضف زيارة', 'পরিদর্শন যোগ করুন', 'ajouter visite'),
-(520, 'visit_list', 'Patient Visit List', 'قائمة الزيارة', 'ভিসিট তালিকা', NULL),
+(517, 'add_medication', 'Add Customer Medication', 'إضافة الدواء', 'ঔষধ যোগ করুন', 'Ajouter un médicament'),
+(518, 'medication_list', 'Customer Medication List', 'قائمة الأدوية', 'ঔষধ তালিকা', NULL),
+(519, 'add_visit', 'Add Customer Visit', 'أضف زيارة', 'পরিদর্শন যোগ করুন', 'ajouter visite'),
+(520, 'visit_list', 'Customer Visit List', 'قائمة الزيارة', 'ভিসিট তালিকা', NULL),
 (521, 'dosage', 'Dosage', 'جرعة', 'ডোজ', NULL),
 (522, 'per_day_intake', 'Per Day Intake', 'في اليوم الواحد', 'প্রতি দিন ভোজন', NULL),
 (523, 'full_stomach', 'Full Stomach', 'معدة ممتلئة', 'ভরা পেটে', NULL),
@@ -1408,7 +1418,7 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (526, 'to_date', 'To Date', 'حتى الآن', 'তারিখ ', NULL),
 (527, 'prescribe_by', 'Prescribe By', 'يصف', 'প্রেসক্রিব ', NULL),
 (528, 'intake_time', 'Intake Time', 'وقت الاستلام', 'ভোজনের সময়', NULL),
-(529, 'medication_edit', 'Patient Medication Edit', 'تحرير الدواء', 'ঔষধ সম্পাদনা', NULL),
+(529, 'medication_edit', 'Customer Medication Edit', 'تحرير الدواء', 'ঔষধ সম্পাদনা', NULL),
 (530, 'visit_date', 'Visit Date', 'تاريخ الزيارة', 'ভিসিট তারিখ', NULL),
 (531, 'visit_time', 'Visit Time', 'وقت الزيارة', 'ভিসিট টাইম ', NULL),
 (532, 'finding', 'Finding', 'العثور على', 'খোঁজা ', NULL),
@@ -1451,8 +1461,8 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (571, 'slot_list', 'Slot List', 'قائمة الفتحة', 'স্লট তালিকা', NULL),
 (572, 'slot_edit', 'Slot Edit', 'تحرير فتحة', 'স্লট সম্পাদনা', NULL),
 (573, 'add_main_department', 'Add Main Department', 'إضافة القسم الرئيسي', 'প্রধান বিভাগ যোগ করুন', 'Ajouter une section de menu'),
-(574, 'main_department_list', 'Main Department List', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL),
-(575, 'main_department', 'Main Department', 'القسم الرئيسي', 'প্রধান বিভাগ', NULL),
+(574, 'main_department_list', 'Main Branch List', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL),
+(575, 'main_department', 'Main Branches', 'القسم الرئيسي', 'প্রধান বিভাগ', NULL),
 (576, 'about_us', 'About Us', 'معلومات عنا', 'আমাদের সম্পর্কে', 'À propos de nous'),
 (577, 'doctors', 'Therapist\'s', 'الأطباء', 'ডাক্তার', NULL),
 (578, 'nurses', 'Nurse\'s', 'الممرضات', 'নার্স', NULL),
@@ -1483,7 +1493,7 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (609, 'our_team', 'Our Team', 'فريقنا', 'আমাদের টিম', NULL),
 (610, 'what_client_say', 'What Client Say', 'ما يقوله العميل', 'ক্লায়েন্ট কি বলে?', NULL),
 (611, 'contact_us', 'Contact Us', 'اتصل بنا', 'আমাদের সাথে যোগাযোগ করুন', NULL),
-(612, 'departments', 'Departments', 'الإدارات', 'বিভাগ', NULL),
+(612, 'departments', 'Branches', 'الإدارات', 'বিভাগ', NULL),
 (613, 'quick_links', 'Quick Links', 'روابط سريعة', 'দ্রুত লিঙ্ক', NULL),
 (614, 'contact_details', 'Contact Details', 'بيانات المتصل', 'যোগাযোগের ঠিকানা', NULL),
 (615, 'get_directions', 'Get Directions', 'احصل على الاتجاهات', 'দিকনির্দেশ পেতে', NULL),
@@ -1546,7 +1556,7 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (671, 'free_bed_list', 'Free bed list', 'قائمة سرير مجاني', 'মুক্ত বিছানা তালিকা', 'Liste de lit gratuit'),
 (672, 'discharged', 'Discharged', 'تفريغها', 'কর্মচ্যুত', 'déchargée'),
 (673, 'welcome_back', 'Welcome back!', '!مرحبا بعودتك', 'ফিরে আসার জন্য স্বাগতম!', 'Nous saluons le retour!'),
-(674, 'today_patient_list', 'Today patient list', 'اليوم قائمة المرضى', 'আজ রোগীর তালিকা', 'Liste de patients aujourd\'hui'),
+(674, 'today_patient_list', 'Today Customer list', 'اليوم قائمة المرضى', 'আজ রোগীর তালিকা', 'Liste de patients aujourd\'hui'),
 (675, 'chart_of_account', 'Chart Of Account', NULL, NULL, NULL),
 (676, 'debit_voucher', 'Debit Voucher', NULL, NULL, NULL),
 (677, 'credit_voucher', 'Credit Voucher', NULL, NULL, NULL),
@@ -1615,7 +1625,7 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (740, 'admission', 'Admission', NULL, NULL, NULL),
 (741, 'yes', 'Yes', NULL, NULL, NULL),
 (742, 'no', 'No', NULL, NULL, NULL),
-(743, 'patient_visit', 'Patient Visit', NULL, NULL, NULL),
+(743, 'patient_visit', 'Customer Visit', NULL, NULL, NULL),
 (744, 'complete_bill_list', 'Complete Bill List', NULL, NULL, NULL),
 (745, 'trial_balance_with_opening', 'Trail Balance With Opening', NULL, NULL, NULL),
 (746, 'as_on', 'As On', NULL, NULL, NULL),
@@ -1632,7 +1642,7 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (757, 'import_csv_data', 'Import CSV Data', NULL, NULL, NULL),
 (758, 'sample_csv', 'Sample CSV', NULL, NULL, NULL),
 (759, 'edit_prescription', 'Edit Prescription', NULL, NULL, NULL),
-(760, 'add_new_patient', 'Add New Patient', NULL, NULL, NULL),
+(760, 'add_new_patient', 'Add New Customer', NULL, NULL, NULL),
 (761, 'create_setting', 'Create Setting', NULL, NULL, NULL),
 (762, 'common_setting', 'Common Settings', NULL, NULL, NULL),
 (763, 'auto_update', 'Auto Update', NULL, NULL, NULL),
@@ -1656,7 +1666,7 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (781, 'packages_list', 'Package List', 'البريد الإلكتروني', 'ই-মেইল', NULL),
 (782, 'checkout', 'Checkout', 'البريد الإلكتروني', 'ই-মেইল', NULL),
 (783, 'thank_you', 'Thank You!', 'البريد الإلكتروني', 'ই-মেইল', NULL),
-(784, 'order_placed', 'You have successfully purchased package. Please visit the patient dashboard to select the appointment.', 'البريد الإلكتروني', 'ই-মেইল', NULL),
+(784, 'order_placed', 'You have successfully purchased package. Please visit the customer dashboard to select the appointment.', 'البريد الإلكتروني', 'ই-মেইল', NULL),
 (785, 'package_order', 'Package Orders', 'الإدارات', 'বিভাগ', NULL),
 (786, 'packages_order_list', 'Orders', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL),
 (787, 'add_package_order', 'Create Order', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL),
@@ -1666,11 +1676,26 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (791, 'order_id', 'Order Id', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL),
 (792, 'discount_price', 'Discount (INR)', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL),
 (793, 'other_charges', 'Other Charges (INR)', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL),
-(794, 'patient_code', 'Patient Code', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL),
+(794, 'patient_code', 'Customer Code', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL),
 (795, 'package_id', 'Package ID', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL),
 (796, 'offline', 'Offline', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL),
 (797, 'online', 'Online', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL),
-(798, 'schedule_type', 'Schedule Type', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL);
+(798, 'schedule_type', 'Schedule Type', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL),
+(799, 'leaves', 'Leaves', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL),
+(800, 'add_leave', 'Apply Leave', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL),
+(801, 'leave_list', 'List of Leaves', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL),
+(802, 'managers', 'Leave Managers', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL),
+(803, 'renewals', 'Package renewals', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL),
+(804, 'renewals_status', 'Package renewals status', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL),
+(805, 'renewals_date', 'Package renewals date', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL),
+(806, 'renewals_flag', 'Renewals email', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL),
+(807, 'branch_name', 'Branch Name', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL),
+(808, 'select_main_department', 'Select Branch', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL),
+(809, 'no_department_available', 'Department not available', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL),
+(810, 'invalid_main_department', 'Invalid Main Department', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL),
+(811, 'appointment_type', 'Appointment Type', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL),
+(812, 'payment_type', 'Payment Type', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL),
+(813, 'no_servicess_available', 'no servicess available', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL);
 
 -- --------------------------------------------------------
 
@@ -1712,7 +1737,8 @@ CREATE TABLE `main_department` (
 --
 
 INSERT INTO `main_department` (`id`, `name`, `description`, `status`) VALUES
-(2, 'Clinical Departments', 'testing', 1);
+(2, 'Main Branch', '1336, 2nd Cross, Nanjappa Layout, Babusapalya, Banswadi Extn, Bangalore 560043', 1),
+(3, 'Kothanur Branch', 'Saikrupa, No 31/255, Sangam Enclave, K Narayanapura, Kothanur, Bangalore 560077', 1);
 
 -- --------------------------------------------------------
 
@@ -1734,22 +1760,8 @@ CREATE TABLE `main_department_lang` (
 --
 
 INSERT INTO `main_department_lang` (`id`, `main_id`, `language`, `name`, `description`, `status`) VALUES
-(1, 4, 'bangla', 'ঔষধ', 'ঔষধ', 1),
-(2, 4, 'arabic', 'دواء', 'دواء', 1),
-(3, 4, 'french', 'Médicament', 'Médicament', 1),
-(4, 4, 'english', 'Medicine', 'Medicine', 1),
-(5, 3, 'english', 'Surgery', 'Surgery', 1),
-(6, 3, 'bangla', 'সার্জারি', 'সার্জারি', 1),
-(7, 3, 'french', 'chirurgie', 'chirurgie', 1),
-(8, 3, 'arabic', 'العملية الجراحية', 'العملية الجراحية', 1),
-(9, 2, 'english', 'Clinical Departments', 'Clinical Departments', 1),
-(10, 2, 'arabic', 'الأقسام السريرية', 'الأقسام السريرية', 1),
-(11, 2, 'bangla', 'ক্লিনিকাল বিভাগ', 'ক্লিনিকাল বিভাগ', 1),
-(12, 2, 'french', 'Départements Cliniques', 'Départements Cliniques', 1),
-(13, 1, 'english', 'Science Departments', 'Science Departments', 1),
-(14, 1, 'french', 'Départements scientifiques', 'Départements scientifiques', 1),
-(15, 1, 'arabic', 'أقسام العلوم', 'أقسام العلوم', 1),
-(16, 1, 'bangla', 'বিজ্ঞান বিভাগ', 'বিজ্ঞান বিভাগ', 1);
+(9, 2, 'english', 'Main Branch', '1336, 2nd Cross, Nanjappa Layout, Babusapalya, Banswadi Extn, Bangalore 560043', 1),
+(17, 3, 'english', 'Kothanur Branch', 'Saikrupa, No 31/255, Sangam Enclave, K Narayanapura, Kothanur, Bangalore 560077', 1);
 
 -- --------------------------------------------------------
 
@@ -1907,6 +1919,7 @@ CREATE TABLE `package_orders` (
   `discount_price` float NOT NULL,
   `other` float NOT NULL,
   `total_price` float NOT NULL,
+  `order_status` enum('Ordered','Cancelled','Closed') NOT NULL DEFAULT 'Ordered',
   `created_by` int(11) NOT NULL,
   `updated_by` int(11) NOT NULL,
   `created_date` datetime NOT NULL,
@@ -1917,12 +1930,12 @@ CREATE TABLE `package_orders` (
 -- Dumping data for table `package_orders`
 --
 
-INSERT INTO `package_orders` (`order_id`, `patient_id`, `package_id`, `quantity`, `package_price`, `package_slots`, `discount_price`, `other`, `total_price`, `created_by`, `updated_by`, `created_date`, `updated_date`) VALUES
-(1, 3, 4, 1, 54.5, 5, 0, 5, 59.5, 3, 3, '2020-09-26 09:08:43', '2020-09-26 09:08:43'),
-(2, 3, 5, 1, 85.6, 12, 0, 5, 90.6, 3, 3, '2020-09-26 09:10:09', '2020-09-26 09:10:09'),
-(3, 3, 6, 1, 145.3, 20, 0, 5, 150.3, 3, 3, '2020-09-26 09:10:55', '2020-09-26 09:10:55'),
-(5, 3, 5, 1, 85.6, 12, 0, 5, 90.6, 3, 3, '2020-09-29 08:52:23', '2020-09-29 08:52:23'),
-(6, 3, 5, 1, 85.6, 12, 0, 5, 90.6, 3, 3, '2020-09-29 10:14:16', '2020-09-29 10:14:16');
+INSERT INTO `package_orders` (`order_id`, `patient_id`, `package_id`, `quantity`, `package_price`, `package_slots`, `discount_price`, `other`, `total_price`, `order_status`, `created_by`, `updated_by`, `created_date`, `updated_date`) VALUES
+(1, 3, 4, 1, 54.5, 5, 0, 5, 59.5, 'Closed', 3, 3, '2020-09-26 09:08:43', '2020-09-26 09:08:43'),
+(2, 3, 5, 1, 85.6, 12, 0, 5, 90.6, 'Ordered', 3, 3, '2020-09-26 09:10:09', '2020-09-26 09:10:09'),
+(3, 3, 6, 1, 145.3, 20, 0, 5, 150.3, 'Ordered', 3, 3, '2020-09-26 09:10:55', '2020-09-26 09:10:55'),
+(5, 3, 5, 1, 85.6, 12, 0, 5, 90.6, 'Ordered', 3, 3, '2020-09-29 08:52:23', '2020-09-29 08:52:23'),
+(6, 3, 5, 1, 85.6, 12, 0, 5, 90.6, 'Ordered', 3, 3, '2020-09-29 10:14:16', '2020-09-29 10:14:16');
 
 -- --------------------------------------------------------
 
@@ -1968,6 +1981,31 @@ CREATE TABLE `package_prices` (
   `created_date` datetime NOT NULL,
   `updated_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `package_renewals`
+--
+
+CREATE TABLE `package_renewals` (
+  `package_renewal_id` int(11) NOT NULL,
+  `package_order_id` int(11) NOT NULL,
+  `package_renewal_order_id` int(11) NOT NULL,
+  `renewal_status` enum('Pending','Processed') NOT NULL DEFAULT 'Pending',
+  `renewal_email_flag` enum('Sent','Pending') NOT NULL DEFAULT 'Pending',
+  `created_by` int(11) NOT NULL,
+  `updated_by` int(11) NOT NULL,
+  `created_date` date NOT NULL,
+  `updated_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='package renewals data';
+
+--
+-- Dumping data for table `package_renewals`
+--
+
+INSERT INTO `package_renewals` (`package_renewal_id`, `package_order_id`, `package_renewal_order_id`, `renewal_status`, `renewal_email_flag`, `created_by`, `updated_by`, `created_date`, `updated_date`) VALUES
+(1, 1, 0, 'Pending', 'Pending', 2, 2, '2020-10-07', '2020-10-07 10:19:04');
 
 -- --------------------------------------------------------
 
@@ -2021,7 +2059,15 @@ INSERT INTO `patient` (`id`, `patient_id`, `firstname`, `lastname`, `email`, `pa
 (1, 'P6953OWI', 'asdas', 'asd', 'admin@demo.com', 'e10adc3949ba59abbe56e057f20f883e', '0987', '09876543', 'sdfsd dsdf', 'Male', 'A+', '2019-02-08', NULL, '', 1, '2020-05-23', 1, ''),
 (2, 'PELWQ10G', 'Jerin', 'khan', 'jerin@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-06-15', 1, ''),
 (3, 'PELWQ10H', 'Demo', 'Patient', 'demopatient@yopmail.com', '827ccb0eea8a706c4c34a16891f84e7b', '', '1234567889', 'asda', 'Male', '', '2020-09-24', NULL, '', 2, '2020-08-20', 1, ''),
-(4, 'P6LFZXUZ', 'Test', 'Appointment', 'test@yopmail.com', '827ccb0eea8a706c4c34a16891f84e7b', NULL, '1234567890', NULL, NULL, NULL, NULL, NULL, NULL, 0, '2020-09-29', 1, '');
+(4, 'P6LFZXUZ', 'Test', 'Appointment', 'test@yopmail.com', '827ccb0eea8a706c4c34a16891f84e7b', NULL, '1234567890', NULL, NULL, NULL, NULL, NULL, NULL, 0, '2020-09-29', 1, ''),
+(5, 'P1T5J4O7', 'jhvjasd', 'kjbasd', 'kjbasdasd@yopmail.com', 'e10adc3949ba59abbe56e057f20f883e', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-10-08', 1, ''),
+(6, 'PG0BRJ96', 'asdasd', 'asdasd', 'jhvjasd@gmail.om', 'e807f1fcf82d132f9bb018ca6738a19f', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-10-08', 1, ''),
+(7, 'PKZZBHWS', 'adasda', 'asdasda', 'rootasdasd@jhasd.com', 'e10adc3949ba59abbe56e057f20f883e', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-10-08', 1, ''),
+(8, 'P4PPJYBM', 'asdasd', 'asdasd', 'asdadsa@gmail.vom', 'e10adc3949ba59abbe56e057f20f883e', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-10-08', 1, ''),
+(9, 'PTWWYFI4', 'kjvasda', 'kjbasda', 'kjbsjkafa@kjasd.com', 'e10adc3949ba59abbe56e057f20f883e', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-10-08', 1, ''),
+(10, 'PQ8XZZ67', 'dfsdfdsfdsd', 'dgdfgdg', 'dfgdfgdfgdroot@gklnasd.com', '827ccb0eea8a706c4c34a16891f84e7b', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-10-08', 1, ''),
+(11, 'PDO6DWYM', 'sdfsdf', 'sdfsdfsd', 'rootsdfsdfs@gasdnas.com', 'e10adc3949ba59abbe56e057f20f883e', '1234567890', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-10-08', 1, ''),
+(12, 'PY4FETFA', 'adadasdasdad', 'asdasdsad', 'asdasdasdasdasda@jbkjasda.com', 'e10adc3949ba59abbe56e057f20f883e', NULL, '1234567890', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-10-08', 1, '');
 
 -- --------------------------------------------------------
 
@@ -2497,130 +2543,6 @@ INSERT INTO `role_permission` (`id`, `fk_module_id`, `role_id`, `create`, `read`
 (3109, 74, 2, 0, 0, 0, 0),
 (3110, 131, 2, 0, 0, 0, 0),
 (3111, 132, 2, 0, 0, 0, 0),
-(3358, 127, 11, 1, 1, 1, 0),
-(3359, 128, 11, 1, 1, 1, 0),
-(3360, 129, 11, 0, 0, 0, 0),
-(3361, 130, 11, 0, 0, 0, 0),
-(3362, 3, 11, 1, 1, 1, 1),
-(3363, 4, 11, 1, 1, 1, 1),
-(3364, 121, 11, 0, 0, 0, 0),
-(3365, 122, 11, 0, 0, 0, 0),
-(3366, 6, 11, 1, 1, 1, 1),
-(3367, 7, 11, 1, 1, 1, 1),
-(3368, 8, 11, 1, 1, 1, 1),
-(3369, 9, 11, 1, 1, 1, 1),
-(3370, 10, 11, 0, 0, 0, 0),
-(3371, 11, 11, 0, 0, 0, 0),
-(3372, 12, 11, 1, 1, 1, 1),
-(3373, 13, 11, 1, 1, 1, 1),
-(3374, 126, 11, 1, 1, 1, 1),
-(3375, 14, 11, 1, 1, 1, 1),
-(3376, 15, 11, 1, 1, 1, 1),
-(3377, 16, 11, 0, 0, 0, 0),
-(3378, 17, 11, 0, 0, 0, 0),
-(3379, 18, 11, 0, 0, 0, 0),
-(3380, 19, 11, 0, 0, 0, 0),
-(3381, 96, 11, 0, 0, 0, 0),
-(3382, 97, 11, 0, 0, 0, 0),
-(3383, 20, 11, 0, 0, 0, 0),
-(3384, 21, 11, 0, 0, 0, 0),
-(3385, 22, 11, 0, 0, 0, 0),
-(3386, 95, 11, 0, 0, 0, 0),
-(3387, 23, 11, 0, 0, 0, 0),
-(3388, 24, 11, 0, 0, 0, 0),
-(3389, 25, 11, 0, 0, 0, 0),
-(3390, 26, 11, 0, 0, 0, 0),
-(3391, 27, 11, 0, 0, 0, 0),
-(3392, 28, 11, 0, 0, 0, 0),
-(3393, 29, 11, 0, 0, 0, 0),
-(3394, 30, 11, 0, 0, 0, 0),
-(3395, 31, 11, 0, 0, 0, 0),
-(3396, 123, 11, 0, 0, 0, 0),
-(3397, 124, 11, 0, 0, 0, 0),
-(3398, 125, 11, 0, 0, 0, 0),
-(3399, 32, 11, 0, 0, 0, 0),
-(3400, 33, 11, 0, 0, 0, 0),
-(3401, 34, 11, 0, 0, 0, 0),
-(3402, 35, 11, 0, 0, 0, 0),
-(3403, 36, 11, 0, 0, 0, 0),
-(3404, 37, 11, 0, 0, 0, 0),
-(3405, 38, 11, 0, 0, 0, 0),
-(3406, 39, 11, 0, 0, 0, 0),
-(3407, 40, 11, 0, 0, 0, 0),
-(3408, 41, 11, 0, 0, 0, 0),
-(3409, 42, 11, 0, 0, 0, 0),
-(3410, 43, 11, 0, 0, 0, 0),
-(3411, 44, 11, 0, 0, 0, 0),
-(3412, 45, 11, 0, 0, 0, 0),
-(3413, 46, 11, 1, 1, 1, 1),
-(3414, 47, 11, 1, 1, 1, 1),
-(3415, 54, 11, 0, 0, 0, 0),
-(3416, 55, 11, 0, 0, 0, 0),
-(3417, 56, 11, 0, 0, 0, 0),
-(3418, 57, 11, 0, 0, 0, 0),
-(3419, 58, 11, 0, 0, 0, 0),
-(3420, 59, 11, 0, 0, 0, 0),
-(3421, 60, 11, 0, 0, 0, 0),
-(3422, 61, 11, 0, 0, 0, 0),
-(3423, 62, 11, 0, 0, 0, 0),
-(3424, 63, 11, 0, 0, 0, 0),
-(3425, 64, 11, 0, 0, 0, 0),
-(3426, 65, 11, 0, 0, 0, 0),
-(3427, 66, 11, 0, 0, 0, 0),
-(3428, 67, 11, 0, 0, 0, 0),
-(3429, 68, 11, 0, 0, 0, 0),
-(3430, 69, 11, 0, 0, 0, 0),
-(3431, 70, 11, 0, 0, 0, 0),
-(3432, 75, 11, 1, 1, 1, 1),
-(3433, 76, 11, 0, 0, 0, 0),
-(3434, 77, 11, 0, 0, 0, 0),
-(3435, 98, 11, 0, 0, 0, 0),
-(3436, 103, 11, 0, 1, 1, 0),
-(3437, 104, 11, 0, 1, 1, 0),
-(3438, 78, 11, 0, 0, 0, 0),
-(3439, 79, 11, 0, 0, 0, 0),
-(3440, 80, 11, 0, 0, 0, 0),
-(3441, 81, 11, 0, 0, 0, 0),
-(3442, 82, 11, 0, 0, 0, 0),
-(3443, 83, 11, 0, 0, 0, 0),
-(3444, 84, 11, 0, 0, 0, 0),
-(3445, 85, 11, 0, 0, 0, 0),
-(3446, 86, 11, 0, 0, 0, 0),
-(3447, 87, 11, 0, 0, 0, 0),
-(3448, 88, 11, 0, 0, 0, 0),
-(3449, 89, 11, 0, 0, 0, 0),
-(3450, 90, 11, 0, 0, 0, 0),
-(3451, 91, 11, 0, 0, 0, 0),
-(3452, 92, 11, 0, 0, 0, 0),
-(3453, 93, 11, 0, 0, 0, 0),
-(3454, 94, 11, 0, 0, 0, 0),
-(3455, 111, 11, 0, 0, 0, 0),
-(3456, 112, 11, 0, 0, 0, 0),
-(3457, 113, 11, 0, 0, 0, 0),
-(3458, 114, 11, 0, 0, 0, 0),
-(3459, 115, 11, 0, 0, 0, 0),
-(3460, 116, 11, 0, 0, 0, 0),
-(3461, 117, 11, 0, 0, 0, 0),
-(3462, 118, 11, 0, 0, 0, 0),
-(3463, 119, 11, 0, 0, 0, 0),
-(3464, 120, 11, 0, 0, 0, 0),
-(3465, 99, 11, 0, 0, 0, 0),
-(3466, 101, 11, 0, 0, 0, 0),
-(3467, 102, 11, 0, 0, 0, 0),
-(3468, 105, 11, 0, 0, 0, 0),
-(3469, 106, 11, 0, 0, 0, 0),
-(3470, 107, 11, 0, 0, 0, 0),
-(3471, 108, 11, 0, 0, 0, 0),
-(3472, 109, 11, 0, 0, 0, 0),
-(3473, 110, 11, 0, 0, 0, 0),
-(3474, 71, 11, 0, 0, 0, 0),
-(3475, 72, 11, 0, 0, 0, 0),
-(3476, 73, 11, 0, 0, 0, 0),
-(3477, 74, 11, 0, 0, 0, 0),
-(3478, 131, 11, 1, 1, 1, 1),
-(3479, 132, 11, 1, 1, 1, 1),
-(3480, 133, 11, 1, 1, 1, 1),
-(3481, 134, 11, 1, 1, 1, 0),
 (3482, 133, 10, 1, 1, 1, 1),
 (3483, 127, 1, 0, 0, 0, 0),
 (3484, 128, 1, 0, 0, 0, 0),
@@ -2746,7 +2668,134 @@ INSERT INTO `role_permission` (`id`, `fk_module_id`, `role_id`, `create`, `read`
 (3604, 132, 1, 1, 1, 1, 1),
 (3605, 133, 1, 1, 1, 1, 1),
 (3606, 134, 1, 1, 1, 1, 1),
-(3607, 139, 1, 1, 1, 1, 1);
+(3607, 139, 1, 1, 1, 1, 1),
+(3608, 127, 11, 1, 1, 1, 0),
+(3609, 128, 11, 1, 1, 1, 0),
+(3610, 129, 11, 0, 0, 0, 0),
+(3611, 130, 11, 0, 0, 0, 0),
+(3612, 3, 11, 1, 1, 1, 1),
+(3613, 4, 11, 1, 1, 1, 1),
+(3614, 121, 11, 0, 0, 0, 0),
+(3615, 122, 11, 0, 0, 0, 0),
+(3616, 6, 11, 1, 1, 1, 1),
+(3617, 7, 11, 1, 1, 1, 1),
+(3618, 8, 11, 1, 1, 1, 1),
+(3619, 9, 11, 1, 1, 1, 1),
+(3620, 10, 11, 0, 0, 0, 0),
+(3621, 11, 11, 0, 0, 0, 0),
+(3622, 12, 11, 1, 1, 1, 1),
+(3623, 13, 11, 1, 1, 1, 1),
+(3624, 126, 11, 1, 1, 1, 1),
+(3625, 14, 11, 1, 1, 1, 1),
+(3626, 15, 11, 1, 1, 1, 1),
+(3627, 16, 11, 0, 0, 0, 0),
+(3628, 17, 11, 0, 0, 0, 0),
+(3629, 18, 11, 0, 0, 0, 0),
+(3630, 19, 11, 0, 0, 0, 0),
+(3631, 96, 11, 0, 0, 0, 0),
+(3632, 97, 11, 0, 0, 0, 0),
+(3633, 20, 11, 0, 0, 0, 0),
+(3634, 21, 11, 0, 0, 0, 0),
+(3635, 22, 11, 0, 0, 0, 0),
+(3636, 95, 11, 0, 0, 0, 0),
+(3637, 23, 11, 0, 0, 0, 0),
+(3638, 24, 11, 0, 0, 0, 0),
+(3639, 25, 11, 0, 0, 0, 0),
+(3640, 26, 11, 0, 0, 0, 0),
+(3641, 27, 11, 0, 0, 0, 0),
+(3642, 28, 11, 0, 0, 0, 0),
+(3643, 29, 11, 0, 0, 0, 0),
+(3644, 30, 11, 0, 0, 0, 0),
+(3645, 31, 11, 0, 0, 0, 0),
+(3646, 123, 11, 0, 0, 0, 0),
+(3647, 124, 11, 0, 0, 0, 0),
+(3648, 125, 11, 0, 0, 0, 0),
+(3649, 32, 11, 0, 0, 0, 0),
+(3650, 33, 11, 0, 0, 0, 0),
+(3651, 34, 11, 0, 0, 0, 0),
+(3652, 35, 11, 0, 0, 0, 0),
+(3653, 36, 11, 0, 0, 0, 0),
+(3654, 37, 11, 0, 0, 0, 0),
+(3655, 38, 11, 0, 0, 0, 0),
+(3656, 39, 11, 0, 0, 0, 0),
+(3657, 40, 11, 0, 0, 0, 0),
+(3658, 41, 11, 0, 0, 0, 0),
+(3659, 42, 11, 0, 0, 0, 0),
+(3660, 43, 11, 0, 0, 0, 0),
+(3661, 44, 11, 0, 0, 0, 0),
+(3662, 45, 11, 0, 0, 0, 0),
+(3663, 46, 11, 1, 1, 1, 1),
+(3664, 47, 11, 1, 1, 1, 1),
+(3665, 54, 11, 0, 0, 0, 0),
+(3666, 55, 11, 0, 0, 0, 0),
+(3667, 56, 11, 0, 0, 0, 0),
+(3668, 57, 11, 0, 0, 0, 0),
+(3669, 58, 11, 0, 0, 0, 0),
+(3670, 59, 11, 0, 0, 0, 0),
+(3671, 60, 11, 0, 0, 0, 0),
+(3672, 61, 11, 0, 0, 0, 0),
+(3673, 62, 11, 0, 0, 0, 0),
+(3674, 63, 11, 0, 0, 0, 0),
+(3675, 64, 11, 0, 0, 0, 0),
+(3676, 65, 11, 0, 0, 0, 0),
+(3677, 66, 11, 0, 0, 0, 0),
+(3678, 67, 11, 0, 0, 0, 0),
+(3679, 68, 11, 0, 0, 0, 0),
+(3680, 69, 11, 0, 0, 0, 0),
+(3681, 70, 11, 0, 0, 0, 0),
+(3682, 75, 11, 1, 1, 1, 1),
+(3683, 76, 11, 0, 0, 0, 0),
+(3684, 77, 11, 0, 0, 0, 0),
+(3685, 98, 11, 0, 0, 0, 0),
+(3686, 103, 11, 0, 1, 1, 0),
+(3687, 104, 11, 0, 1, 1, 0),
+(3688, 78, 11, 0, 0, 0, 0),
+(3689, 79, 11, 0, 0, 0, 0),
+(3690, 80, 11, 0, 0, 0, 0),
+(3691, 81, 11, 0, 0, 0, 0),
+(3692, 82, 11, 0, 0, 0, 0),
+(3693, 83, 11, 0, 0, 0, 0),
+(3694, 84, 11, 0, 0, 0, 0),
+(3695, 85, 11, 0, 0, 0, 0),
+(3696, 86, 11, 0, 0, 0, 0),
+(3697, 87, 11, 0, 0, 0, 0),
+(3698, 88, 11, 0, 0, 0, 0),
+(3699, 89, 11, 0, 0, 0, 0),
+(3700, 90, 11, 0, 0, 0, 0),
+(3701, 91, 11, 0, 0, 0, 0),
+(3702, 92, 11, 0, 0, 0, 0),
+(3703, 93, 11, 0, 0, 0, 0),
+(3704, 94, 11, 0, 0, 0, 0),
+(3705, 111, 11, 0, 0, 0, 0),
+(3706, 112, 11, 0, 0, 0, 0),
+(3707, 113, 11, 0, 0, 0, 0),
+(3708, 114, 11, 0, 0, 0, 0),
+(3709, 115, 11, 0, 0, 0, 0),
+(3710, 116, 11, 0, 0, 0, 0),
+(3711, 117, 11, 0, 0, 0, 0),
+(3712, 118, 11, 0, 0, 0, 0),
+(3713, 119, 11, 0, 0, 0, 0),
+(3714, 120, 11, 0, 0, 0, 0),
+(3715, 99, 11, 0, 0, 0, 0),
+(3716, 101, 11, 0, 0, 0, 0),
+(3717, 102, 11, 0, 0, 0, 0),
+(3718, 105, 11, 0, 0, 0, 0),
+(3719, 106, 11, 0, 0, 0, 0),
+(3720, 107, 11, 0, 0, 0, 0),
+(3721, 108, 11, 0, 0, 0, 0),
+(3722, 109, 11, 0, 0, 0, 0),
+(3723, 110, 11, 0, 0, 0, 0),
+(3724, 71, 11, 0, 0, 0, 0),
+(3725, 72, 11, 0, 0, 0, 0),
+(3726, 73, 11, 0, 0, 0, 0),
+(3727, 74, 11, 0, 0, 0, 0),
+(3728, 131, 11, 1, 1, 1, 1),
+(3729, 132, 11, 1, 1, 1, 1),
+(3730, 133, 11, 1, 1, 1, 1),
+(3731, 134, 11, 1, 1, 1, 0),
+(3732, 140, 11, 1, 1, 1, 1),
+(3733, 139, 11, 1, 1, 1, 1),
+(3734, 141, 11, 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -2774,14 +2823,14 @@ CREATE TABLE `schedule` (
 INSERT INTO `schedule` (`schedule_id`, `slot_id`, `doctor_id`, `start_time`, `end_time`, `available_days`, `per_patient_time`, `schedule_type`, `serial_visibility_type`, `status`) VALUES
 (1, 1, 3, '08:00:00', '11:00:00', 'Friday', '01:00:00', 1, 1, 1),
 (2, 1, 3, '08:00:00', '10:00:00', 'Monday', '02:00:00', 1, 1, 1),
-(3, 2, 3, '10:00:00', '12:00:00', 'Monday', '02:00:00', 2, 1, 1),
-(4, 1, 4, '08:00:00', '08:00:00', 'Monday', '02:00:00', 2, 1, 1),
+(4, 1, 4, '08:00:00', '10:00:00', 'Monday', '02:00:00', 2, 1, 1),
 (5, 4, 4, '10:00:00', '12:00:00', 'Monday', '02:00:00', 2, 1, 1),
 (6, 1, 3, '08:00:00', '10:00:00', 'Tuesday', '02:00:00', 2, 1, 1),
 (7, 3, 3, '04:00:00', '06:00:00', 'Tuesday', '02:00:00', 1, 1, 1),
 (8, 5, 3, '02:00:00', '04:00:00', 'Wednesday', '02:00:00', 2, 1, 1),
 (9, 1, 6, '08:00:00', '10:00:00', 'Monday', '02:00:00', 1, 1, 1),
-(10, 4, 6, '10:00:00', '12:00:00', 'Monday', '02:00:00', 2, 1, 1);
+(10, 4, 6, '10:00:00', '12:00:00', 'Monday', '02:00:00', 2, 1, 1),
+(11, 1, 7, '08:00:00', '10:00:00', 'Monday', '00:00:02', 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -2869,7 +2918,7 @@ CREATE TABLE `setting` (
 --
 
 INSERT INTO `setting` (`setting_id`, `title`, `description`, `email`, `phone`, `logo`, `favicon`, `language`, `site_align`, `footer_text`, `time_zone`) VALUES
-(2, 'Dimensions Therapy', '1336, 2nd Cross, Nanjappa Layout, Babusapalya, Banswadi Extn, Bangalore 560043', 'info@dimensionstherapy.org', '9880146677', 'assets/images/apps/0a427b33bf7347480f1ffabbe8826386.png', 'assets/images/icons/6a735b1e711e6bd8cd016d6845cad6c8.png', 'english', 'LTR', '2020©Copyright', 'Asia/Kolkata');
+(2, 'Dimensions Therapy', '1336, 2nd Cross, Nanjappa Layout, Babusapalya, Banswadi Extn, Bangalore 560043', 'info@dimensionstherapy.org', '9880146677', 'assets/images/apps/0a427b33bf7347480f1ffabbe8826386.png', 'assets/images/icons/78fa13b84ddf75d1d3c2d8175561224e.jpeg', 'english', 'LTR', '2020©Copyright', 'Asia/Kolkata');
 
 -- --------------------------------------------------------
 
@@ -3180,7 +3229,9 @@ INSERT INTO `sub_module` (`id`, `mid`, `name`, `description`, `image`, `director
 (132, 27, 'Package List', 'package List', 'application/modules/store/assets/images/thumbnail.jpg', 'package_list', 1),
 (133, 27, 'Order List', 'Package Order List', 'application/modules/store/assets/images/thumbnail.jpg', 'package_order_list', 1),
 (134, 27, 'Package Order Add', 'Package Order Add', 'application/modules/store/assets/images/thumbnail.jpg', 'package_order_add', 1),
-(139, 28, 'Manage Leaves', 'Manage Leaves', '', 'leaves', 1);
+(139, 28, 'Manage Leaves', 'Manage Leaves', '', 'leaves', 1),
+(140, 27, 'Package Renewals', 'Package Renewals', 'application/modules/store/assets/images/thumbnail.jpg', 'package_renewals', 1),
+(141, 28, 'Leave Managers', 'Leave Managers', '', 'leave_managers', 1);
 
 -- --------------------------------------------------------
 
@@ -3245,9 +3296,9 @@ INSERT INTO `user` (`user_id`, `firstname`, `lastname`, `email`, `password`, `us
 (3, 'Chitra', 'Thadathil', 'ChitraThadathil@yopmail.coom', 'b3666d14ca079417ba6c2a99f079b2ac', 2, 18, 'assets/images/doctor/1404a5d127eb3ef3a008e5500bf52b0e.jpg', '1970-01-01', 'Female', NULL, '', '', '', '', '', '', 3, '2020-09-17', NULL, 1),
 (4, 'Shyama', 'K. M', 'Shyamakm@yopmail.com', 'b3666d14ca079417ba6c2a99f079b2ac', 2, 16, 'assets/images/doctor/4ab7c8309e8d124ed87b7dc9bf13d493.jpg', '2020-09-17', 'Female', 'A+', NULL, NULL, NULL, NULL, NULL, NULL, 2, '2020-09-17', NULL, 1),
 (5, 'Nazeer', 'Shaik', 'nazeer@yopmail.com', 'd3c7bcf4f2343a1bf8de53c3f235cf14', 11, NULL, 'assets/images/human_resources/f9ccbeda1c7cc2e69e24e4a373e86fbb.png', NULL, 'Male', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, '2020-09-17', NULL, 1),
-(6, 'Ligin', 'John', 'liginjohn@yopmail.com', 'd41d8cd98f00b204e9800998ecf8427e', 2, 18, 'assets/images/doctor/fa2f8fbfe6a18efe3b376f6f2ab2d724.png', '2020-09-30', 'Male', 'B+', NULL, NULL, NULL, NULL, NULL, NULL, 2, '2020-09-30', NULL, 1),
-(7, 'Emily', 'Lalan', 'emily@yopmail.com', 'd41d8cd98f00b204e9800998ecf8427e', 2, 18, 'assets/images/human_resources/b93eac4237f4aad9e14c5ebf2b936cec.jpg', '2020-09-30', 'Male', '', NULL, NULL, NULL, NULL, NULL, NULL, 2, '2020-09-30', NULL, 1),
-(8, 'Lavanya', 'Kiruthika', 'lavanya@yopmail.com', 'd41d8cd98f00b204e9800998ecf8427e', 2, 18, 'assets/images/human_resources/abf1fa742bbc76890150da1bd42cb7ec.jpg', '2020-09-30', 'Male', '', NULL, NULL, NULL, NULL, NULL, NULL, 2, '2020-09-30', NULL, 1),
+(6, 'Ligin', 'John', 'liginjohn@yopmail.com', 'd41d8cd98f00b204e9800998ecf8427e', 2, 19, 'assets/images/doctor/fa2f8fbfe6a18efe3b376f6f2ab2d724.png', '1989-10-11', 'Female', 'B+', NULL, NULL, NULL, NULL, NULL, NULL, 2, '2020-10-08', NULL, 1),
+(7, 'Emily', 'Lalan', 'emily@yopmail.com', 'd41d8cd98f00b204e9800998ecf8427e', 2, 22, 'assets/images/human_resources/b93eac4237f4aad9e14c5ebf2b936cec.jpg', '2020-09-30', 'Male', '', NULL, NULL, NULL, NULL, NULL, NULL, 2, '2020-10-08', NULL, 1),
+(8, 'Lavanya', 'Kiruthika', 'lavanya@yopmail.com', 'd41d8cd98f00b204e9800998ecf8427e', 2, 22, 'assets/images/human_resources/abf1fa742bbc76890150da1bd42cb7ec.jpg', '2020-09-30', 'Male', '', NULL, NULL, NULL, NULL, NULL, NULL, 2, '2020-10-08', NULL, 1),
 (9, 'Saletha', 'Monica', 'saleth@yopmail.com', 'd41d8cd98f00b204e9800998ecf8427e', 2, 16, 'assets/images/human_resources/94436c0cadf45174586eb00473559d5c.jpg', '2020-09-30', 'Male', '', NULL, NULL, NULL, NULL, NULL, NULL, 2, '2020-09-30', NULL, 1),
 (10, 'Monisha', 'Cruse', 'monisha@yopmailc.om', 'd41d8cd98f00b204e9800998ecf8427e', 2, 16, 'assets/images/human_resources/f1edcbb99da588326ea6a3ac5088587a.jpg', '2020-09-30', 'Male', '', NULL, NULL, NULL, NULL, NULL, NULL, 2, '2020-09-30', NULL, 1),
 (11, 'Bhanu', 'Priya', 'bhanu@yopmail.com', 'b3666d14ca079417ba6c2a99f079b2ac', 7, NULL, 'assets/images/human_resources/676cd7b5d98aff930c6b9c669ccd5651.jpg', NULL, 'Female', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, '2020-09-30', NULL, 1),
@@ -3360,7 +3411,13 @@ INSERT INTO `user_log` (`id`, `user_id`, `in_time`, `out_time`, `date`, `status`
 (22, 2, '07:19:13', '00:00:00', '2020-09-29', 1),
 (23, 3, '09:01:37', '10:09:20', '2020-09-29', 0),
 (24, 5, '09:18:25', '11:36:09', '2020-09-29', 0),
-(25, 2, '15:19:52', '00:00:00', '2020-09-30', 1);
+(25, 2, '15:19:52', '00:00:00', '2020-09-30', 1),
+(26, 2, '09:28:53', '00:00:00', '2020-10-01', 1),
+(27, 2, '08:21:49', '00:00:00', '2020-10-02', 1),
+(28, 2, '11:05:51', '00:00:00', '2020-10-05', 1),
+(29, 2, '12:42:59', '00:00:00', '2020-10-06', 1),
+(30, 2, '09:27:29', '00:00:00', '2020-10-07', 1),
+(31, 2, '09:32:10', '00:00:00', '2020-10-08', 1);
 
 -- --------------------------------------------------------
 
@@ -3411,7 +3468,7 @@ CREATE TABLE `ws_appoint_instruction` (
 --
 
 INSERT INTO `ws_appoint_instruction` (`id`, `language`, `title`, `short_instruction`, `instruction`, `note`, `status`) VALUES
-(1, 'english', 'Book with your doctor', 'Some up and coming trends are healthcare consolidation for independent healthcare centers that see a cut in unforeseen payouts.', 'Praesent pellentesque nunc vel velit varius feugiat.\r\nSuspendisse vel ex vitae velit dignissim faucibus.\r\nInteger congue erat vel bibendum volutpat.\r\nNunc nec quam dapibus, placerat est in, tincidunt nibh.\r\nSed facilisis velit sit amet purus mattis, id rutrum leo scelerisque.\r\ntesting......', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.', 1),
+(1, 'english', 'Book with your pathologist', 'Some up and coming trends are healthcare consolidation for independent healthcare centers that see a cut in unforeseen payouts.', 'Praesent pellentesque nunc vel velit varius feugiat.\r\nSuspendisse vel ex vitae velit dignissim faucibus.\r\nInteger congue erat vel bibendum volutpat.\r\nNunc nec quam dapibus, placerat est in, tincidunt nibh.\r\nSed facilisis velit sit amet purus mattis, id rutrum leo scelerisque.\r\ntesting......', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.', 1),
 (2, 'arabic', 'احجز مع طبيبك', 'بعض الاتجاهات القادمة والقادمة هي تعزيز الرعاية الصحية لمراكز الرعاية الصحية المستقلة التي ترى خفضا في المدفوعات غير المتوقعة.', 'وأفضل أنواع المستشفيات المعروفة هو المستشفى العام \r\n، الذي يوجد به عادة قسم للطوارئ لمعالجة المشاكل \r\nالصحية العاجلة التي تتراوح بين\r\n ضحايا الحريق والحوادث إلى نوبة قلبية.', 'إنها حقيقة راسخة أن القارئ سوف يصرفه محتوى مقروء للصفحة عندما ينظر إلى تخطيطه.', 1),
 (3, 'bangla', 'আপনার ডাক্তারকে  বুক করুন', 'কিছু আপ এবং আসন্ন প্রবণতা স্বাধীন স্বাস্থ্যসেবা কেন্দ্রগুলির জন্য স্বাস্থ্যসেবা একীকরণ যা অপ্রত্যাশিত অর্থ প্রদানের মধ্যে একটি কাট দেখতে পায়।', 'একটি হাসপাতাল একটি স্বাস্থ্য সেবা প্রতিষ্ঠান যা বিশেষ চিকিৎসা ও নার্সিং কর্মীদের এবং চিকিৎসা সরঞ্জামগুলির সাথে রোগীর চিকিৎসা প্রদান করে। \r\nহাসপাতালের সবচেয়ে সুপরিচিত প্রকার হল সাধারণ হাসপাতাল,\r\n যা সাধারণত আগুন এবং দুর্ঘটনার শিকার হওয়া হৃদরোগে ক্ষতিকারক স্বাস্থ্য \r\nসমস্যাগুলির মোকাবিলা করার জন্য একটি জরুরি বিভাগ রয়েছে।', 'এটি একটি দীর্ঘ প্রতিষ্ঠিত সত্য যা একটি পাঠক তার লেআউটটি দেখতে যখন পৃষ্ঠাটির পাঠযোগ্য সামগ্রী দ্বারা বিভ্রান্ত হবে।', 1);
 
@@ -3468,7 +3525,7 @@ CREATE TABLE `ws_basic` (
 --
 
 INSERT INTO `ws_basic` (`id`, `logo`, `favicon`, `email`, `AppStoreUrl`, `twitter_api`, `google_map`, `google_map_api`, `facebook`, `twitter`, `vimeo`, `instagram`, `dribbble`, `skype`, `google_plus`, `direction`, `latitude`, `longitude`, `map_active`, `status`) VALUES
-(1, 'assets_web/images/icons/dc08c03bd84445787458c9b5cd8e932b.png', 'assets_web/images/icons/cea89bb004a4ceb09ff61af3e6ac8d54.png', 'info@dimensionstherapy.org', 'https://play.google.com/store/apps/details?id=com.bdtask.bdtaskhms', '<a class=\"twitter-timeline\" data-lang=\"en\" data-dnt=\"true\" data-link-color=\"#207FDD\" href=\"https://twitter.com/taylorswift13\">Tweets by taylorswift13</a> <script async src=\"//platform.twitter.com/widgets.js\" charset=\"utf-8\"></script>', '<div class=\"mapouter\"><div class=\"gmap_canvas\"><iframe width=\"100%\" height=\"500\" id=\"gmap_canvas\" src=\"https://maps.google.com/maps?q=House%2025%2C%20mannan%20plaza%2C%20khilkhet%2C%20dhaka%2C%20bangladesh&t=&z=13&ie=UTF8&iwloc=&output=embed\" frameborder=\"0\" scrolling=\"no\" marginheight=\"0\" marginwidth=\"0\"></iframe>Werbung: <a href=\"https://www.jetzt-drucken-lassen.de\">jetzt-drucken-lassen.de</a></div><style>.mapouter{position:relative;text-align:right;height:500px;width:100%;}.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:100%;}</style></div>', 'AIzaSyBDHeh9zEbXo-YCWJcicXH2VRwVwAf_tq0', 'http://facebook.com/', 'http://', 'http://', 'http://', 'http://', 'http://', 'http://', 'https://www.google.com/maps/dir//Dimensions+Centre+for+Child+Development+-+Kalyanagar,+1336,+2nd+Cross+Rd,+P&T+Layout,+Babusapalya,+Nanjappa+Garden,+Horamavu,+Bengaluru,+Karnataka+560043/@13.0242324,77.6473472,17z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3bae1728d5d', 13.02258968, 77.65566254, 0, 1);
+(1, 'assets_web/images/icons/dc08c03bd84445787458c9b5cd8e932b.png', 'assets_web/images/icons/cea89bb004a4ceb09ff61af3e6ac8d54.png', 'info@dimensionstherapy.org', 'https://play.google.com/store/apps/details?id=com.bdtask.bdtaskhms', '<a class=\"twitter-timeline\" data-lang=\"en\" data-dnt=\"true\" data-link-color=\"#207FDD\" href=\"https://twitter.com/taylorswift13\">Tweets by taylorswift13</a> <script async src=\"//platform.twitter.com/widgets.js\" charset=\"utf-8\"></script>', '<div class=\"mapouter\"><div class=\"gmap_canvas\"><iframe width=\"100%\" height=\"500\" id=\"gmap_canvas\" src=\"https://maps.google.com/maps?q=House%2025%2C%20mannan%20plaza%2C%20khilkhet%2C%20dhaka%2C%20bangladesh&t=&z=13&ie=UTF8&iwloc=&output=embed\" frameborder=\"0\" scrolling=\"no\" marginheight=\"0\" marginwidth=\"0\"></iframe>Werbung: <a href=\"https://www.jetzt-drucken-lassen.de\">jetzt-drucken-lassen.de</a></div><style>.mapouter{position:relative;text-align:right;height:500px;width:100%;}.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:100%;}</style></div>', 'AIzaSyBDHeh9zEbXo-YCWJcicXH2VRwVwAf_tq0', 'https://www.facebook.com/dimensionsbangalore/', 'http://', 'http://', 'http://', 'http://', 'http://', 'http://', 'https://www.google.com/maps/dir//Dimensions+Centre+for+Child+Development+-+Kalyanagar,+1336,+2nd+Cross+Rd,+P&T+Layout,+Babusapalya,+Nanjappa+Garden,+Horamavu,+Bengaluru,+Karnataka+560043/@13.0242324,77.6473472,17z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3bae1728d5d', 13.02258968, 77.65566254, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -3492,17 +3549,17 @@ CREATE TABLE `ws_menu` (
 INSERT INTO `ws_menu` (`id`, `name`, `parent_id`, `position`, `fixed`, `status`) VALUES
 (1, 'Home', 0, 1, 1, 1),
 (2, 'Service', 0, 2, 1, 1),
-(3, 'About', 0, 3, 1, 1),
-(4, 'Staff', 0, 4, 1, 1),
-(5, 'Branches', 0, 5, 1, 1),
-(6, 'Contact', 0, 6, 1, 1),
+(3, 'About', 0, 4, 1, 1),
+(4, 'Staff', 0, 5, 1, 1),
+(5, 'Branches', 0, 6, 1, 1),
+(6, 'Contact', 0, 7, 1, 1),
 (7, 'Help', 2, 3, 0, 0),
 (8, 'Condition & Policy', 2, 2, 0, 1),
-(9, 'Patient Login', 0, 7, 1, 1),
+(9, 'Customer Login', 0, 8, 1, 1),
 (12, 'Support', 14, 1, 0, 1),
 (13, 'Patient Role', 2, 1, 0, 1),
-(14, 'Others', 0, 7, 0, 1),
-(16, 'Packages', 14, 2, 0, 1),
+(14, 'Others', 0, 9, 0, 1),
+(16, 'Packages', 0, 3, 0, 1),
 (18, 'Mission', 14, 3, 0, 1);
 
 -- --------------------------------------------------------
@@ -3555,7 +3612,7 @@ INSERT INTO `ws_menu_lang` (`id`, `menu_id`, `title`, `language`) VALUES
 (30, 8, 'Condition et politique', 'french'),
 (31, 8, 'الشرط والسياسة', 'arabic'),
 (32, 8, 'শর্ত ও নীতি', 'bangla'),
-(33, 9, 'Patient Login', 'english'),
+(33, 9, 'Customer Login', 'english'),
 (34, 9, 'ইউজার লগইন', 'bangla'),
 (35, 9, 'تسجيل دخول المريض', 'arabic'),
 (36, 9, 'Connexion du patient', 'french'),
@@ -3708,11 +3765,11 @@ CREATE TABLE `ws_section` (
 INSERT INTO `ws_section` (`id`, `name`, `title`, `description`, `featured_image`) VALUES
 (1, 'about', 'About Us', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.', ''),
 (2, 'contact', 'Contact Us', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.', ''),
-(3, 'department', 'Branch List', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.', ''),
+(3, 'department', 'Branch List', '', ''),
 (4, 'doctor', 'Doctor List', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.', ''),
 (5, 'timetable', 'Doctors Timetable', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley', ''),
 (6, 'news', 'Latest News', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.', ''),
-(7, 'benefits', 'Our Benefits', 'Qualified Staff of therapist\r\nSave Your Money and Time with us\r\n24x7 Emergency service\r\nFeel Like you are at Home Services\r\nFeel Like you are at Home Services', ''),
+(7, 'benefits', 'Our Benefits', 'Qualified Staff of therapist\r\nSave Your Money and Time with us\r\nFeel Like you are at Home Services\r\n', ''),
 (8, 'service', 'Our Services', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, ', ''),
 (9, 'team', 'Meet our (awesome) team', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.', ''),
 (10, 'portfolio', 'Jobs & Education', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.', NULL),
@@ -3743,7 +3800,7 @@ INSERT INTO `ws_section_lang` (`id`, `language`, `section_id`, `title`, `descrip
 (2, 'bangla', 1, 'আমাদের সম্পর্কে', 'এটি একটি দীর্ঘ প্রতিষ্ঠিত সত্য যা একটি পাঠক তার লেআউটটি দেখতে যখন পৃষ্ঠাটির পাঠযোগ্য সামগ্রী দ্বারা বিভ্রান্ত হবে।'),
 (3, 'arabic', 1, 'معلومات عنا', 'إنها حقيقة راسخة أن القارئ سوف يصرفه محتوى مقروء للصفحة عندما ينظر إلى تخطيطه.'),
 (4, 'french', 1, 'À propos de nous', 'C\'est un fait établi depuis longtemps qu\'un lecteur sera distrait par le contenu lisible d\'une page lorsqu\'il examinera sa mise en page.'),
-(5, 'english', 7, 'Our Benefits', 'Qualified Staff of Therapist\r\nSave Your Money and Time with us\r\n24x7 Emergency service\r\nFeel Like you are at Home Services\r\n'),
+(5, 'english', 7, 'Our Benefits', 'Qualified Staff of Therapist\r\nSave Your Money and Time with us\r\nFeel Like you are at Home Services\r\n'),
 (6, 'bangla', 7, 'আমাদের উপকারিতা', 'ডাক্তারের যোগ্য স্টাফ\r\nআমাদের সাথে আপনার টাকা এবং সময় সংরক্ষণ করুন\r\n24x7 জরুরী সেবা\r\nমনে হচ্ছে আপনি হোম সার্ভিসেসে আছেন\r\nমনে হচ্ছে আপনি হোম সার্ভিসেসে আছেন'),
 (7, 'arabic', 7, 'فوائدنا', 'طاقم مؤهل من الأطباء\r\nحفظ أموالك والوقت معنا\r\nخدمة الطوارئ على مدار الساعة\r\nأشعر وكأنك في الخدمات المنزلية\r\nأشعر وكأنك في الخدمات المنزلية'),
 (8, 'french', 7, 'Nos avantages', 'Personnel qualifié de médecins\r\nÉconomisez votre argent et votre temps avec nous\r\nService d\'urgence 24x7\r\nSentez-vous comme chez vous\r\nSentez-vous comme chez vous'),
@@ -3832,7 +3889,7 @@ CREATE TABLE `ws_setting` (
   `fax` varchar(25) NOT NULL,
   `address` varchar(255) DEFAULT NULL,
   `closed_day` varchar(30) NOT NULL,
-  `open_day` varchar(30) NOT NULL,
+  `open_day` varchar(60) NOT NULL,
   `copyright_text` varchar(255) DEFAULT NULL,
   `working_hour` text NOT NULL,
   `isQRCode` tinyint(1) NOT NULL COMMENT '1=active and 0=inactive',
@@ -3844,7 +3901,7 @@ CREATE TABLE `ws_setting` (
 --
 
 INSERT INTO `ws_setting` (`id`, `language`, `title`, `description`, `meta_tag`, `meta_keyword`, `phone`, `text`, `fax`, `address`, `closed_day`, `open_day`, `copyright_text`, `working_hour`, `isQRCode`, `status`) VALUES
-(1, 'english', 'DCCD', 'Evidence-based scientific method in treating children with communication needs.', 'Evidence based scientific method in treating children with communication needs.', '  Hospital, Appointment, System, \r\nHospital Appointment,Demo, Appointment', '(+91) 9880146677', '(+91) 9880146677', ' (123) 456-7890', 'DIMENSIONS CENTRE FOR CHILD DEVELOPMENT 2nd Cross, Nanjappa Garden, Babusapalya, Bangalore - 560043', 'Saturday and Sunday ', 'MON - FRI: 08:00AM - 20:00PM', '<p>Copyright &copy; 2020- DCCD&nbsp;.&nbsp;All rights reserved.</p>', '<table class=\"table\">\r\n                        <tbody>\r\n                            <tr>\r\n                                <td>Monday-Wednesday</td>\r\n                                <td class=\"text-right\">08.00-18.00</td>\r\n                            </tr>\r\n                            <tr>\r\n                                <td>Thursday -Friday</td>\r\n                                <td class=\"text-right\">08.00-18.00</td>\r\n                            </tr>\r\n                            <tr>\r\n                                <td>Saturday</td>\r\n                                <td class=\"text-right\">08.00-18.00</td>\r\n                            </tr>\r\n                            <tr>\r\n                                <td>Sunday</td>\r\n                                <td class=\"text-right\">Closed</td>\r\n                            </tr>\r\n                        </tbody>\r\n                    </table>', 1, 1),
+(1, 'english', 'DCCD', 'Evidence-based scientific method in treating children with communication needs.', 'Evidence based scientific method in treating children with communication needs.', '         Hospital, Appointment, System, \r\nHospital Appointment,Demo, Appointment', '(+91) 9880146677', '(+91) 9880146677', '(+91) 9880146677', 'DIMENSIONS CENTRE FOR CHILD DEVELOPMENT 2nd Cross, Nanjappa Garden, Babusapalya, Bangalore - 560043', 'Sunday ', 'Mon - Fri: 09:00AM - 08:00PM, Sat: 09:00AM - 01:30PM', '<p>Copyright &copy; 2020- DCCD&nbsp;.&nbsp;All rights reserved.</p>', '<table class=\"table\">\r\n                        <tbody>\r\n                            <tr>\r\n                                <td>Monday-Friday</td>\r\n                                <td class=\"text-right\">09:00AM-08:00PM</td>\r\n                            </tr>\r\n                            <tr>\r\n                                <td>Saturday</td>\r\n                                <td class=\"text-right\">09.00AM-01.30PM</td>\r\n                            </tr>\r\n                            <tr>\r\n                                <td>Sunday</td>\r\n                                <td class=\"text-right\">Closed</td>\r\n                            </tr>\r\n                        </tbody>\r\n                    </table>', 1, 1),
 (2, 'bangla', 'বিডি টাস্ক হাসপাতাল লি :', '', '', '      ', '৫৭৪৫৭৪৫৭, ৫৬৭৫৬৭৫৬,  ৫৭৬৬৭৫৬৫', '৫৭৬৬৭৫৬৫', '৫৬৭৫৬৭৫৬', 'Uttara, Dhaka-1230', '', '', '<p>কপিরাইট &copy; ২০১৬ - <a href=\"http://www.bdtask.com\" target=\"_blank\">বিডিস্ক</a>। সর্বস্বত্ব সংরক্ষিত.</p>', '<table class=\"table\">\r\n                        <tbody>\r\n                            <tr>\r\n                                <td>সোমবার - বুধবার</td>\r\n                                <td class=\"text-right\">০৮.০০-১৮.০০</td>\r\n                            </tr>\r\n                            <tr>\r\n                                <td>বৃহস্পতিবার - শুক্রবার</td>\r\n                                <td class=\"text-right\">০৮.০০-১৮.০০</td>\r\n                            </tr>\r\n                            <tr>\r\n                                <td>শনিবার</td>\r\n                                <td class=\"text-right\">০৮.০০-১৮.০০</td>\r\n                            </tr>\r\n                            <tr>\r\n                                <td>রবিবার</td>\r\n                                <td class=\"text-right\">বন্ধ</td>\r\n                            </tr>\r\n                        </tbody>\r\n                    </table>', 1, 1),
 (3, 'arabic', 'مستشفى Bdtask المحدودة', 'xc', 'vx', '  xcz', '(012)-345-6788, (022)-143-545-45, (011)-122-244-45', '(123) 456-7890', '(123) 456-7890', '123 / A، Street، State-12345، Demo', '', '', '<p>Copyright &copy; 2016-&nbsp;<a title=\"BDtask\" href=\"http://www.bdtask.com\" target=\"_blank\">BDtask</a>&nbsp;.&nbsp;All rights reserved.</p>', '<table class=\"table\">\r\n                        <tbody>\r\n                            <tr>\r\n                                <td>Monday-Wednesday</td>\r\n                                <td class=\"text-right\">08.00-18.00</td>\r\n                            </tr>\r\n                            <tr>\r\n                                <td>Thursday -Friday</td>\r\n                                <td class=\"text-right\">08.00-18.00</td>\r\n                            </tr>\r\n                            <tr>\r\n                                <td>Saturday</td>\r\n                                <td class=\"text-right\">08.00-18.00</td>\r\n                            </tr>\r\n                            <tr>\r\n                                <td>Sunday</td>\r\n                                <td class=\"text-right\">Closed</td>\r\n                            </tr>\r\n                        </tbody>\r\n                    </table>', 1, 1),
 (4, 'french', 'Bdtask Hospital Limited', 'b', 'bvc', '   vbc', '(012)-345-6788, (022)-143-545-45, (011)-122-244-45', '(123) 456-7890', '(123) 456-7890', 'vxcv', '', '', '<p>Copyright &copy; 2016-&nbsp;<a title=\"BDtask\" href=\"http://www.bdtask.com\" target=\"_blank\">BDtask</a>&nbsp;.&nbsp;All rights reserved.</p>', '<table class=\"table\">\r\n                        <tbody>\r\n                            <tr>\r\n                                <td>Monday-Wednesday</td>\r\n                                <td class=\"text-right\">08.00-18.00</td>\r\n                            </tr>\r\n                            <tr>\r\n                                <td>Thursday -Friday</td>\r\n                                <td class=\"text-right\">08.00-18.00</td>\r\n                            </tr>\r\n                            <tr>\r\n                                <td>Saturday</td>\r\n                                <td class=\"text-right\">08.00-18.00</td>\r\n                            </tr>\r\n                            <tr>\r\n                                <td>Sunday</td>\r\n                                <td class=\"text-right\">Closed</td>\r\n                            </tr>\r\n                        </tbody>\r\n                    </table>', 1, 1);
@@ -3925,7 +3982,7 @@ CREATE TABLE `ws_testimonial` (
 --
 
 INSERT INTO `ws_testimonial` (`id`, `author_name`, `url`, `image`, `status`) VALUES
-(1, 'Ms. Chitra Thadathil', 'https://www.dimensionstherapy.org/about', 'assets_web/img/testimonial/19c710f60c6ed2d7ed84b00d22b4c7af.jpg', 1),
+(1, 'Ms. Chitra Thadathil', 'http://localhost/dimensions/about', 'assets_web/img/testimonial/19c710f60c6ed2d7ed84b00d22b4c7af.jpg', 1),
 (2, 'Ashraf Rahman', 'www.bdtask.com', '', 0);
 
 -- --------------------------------------------------------
@@ -4242,6 +4299,12 @@ ALTER TABLE `package_prices`
   ADD KEY `package_prices_fk1` (`status`);
 
 --
+-- Indexes for table `package_renewals`
+--
+ALTER TABLE `package_renewals`
+  ADD PRIMARY KEY (`package_renewal_id`);
+
+--
 -- Indexes for table `package_slots`
 --
 ALTER TABLE `package_slots`
@@ -4553,7 +4616,7 @@ ALTER TABLE `acn_account_transaction`
 -- AUTO_INCREMENT for table `appointment`
 --
 ALTER TABLE `appointment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `bill`
@@ -4637,13 +4700,13 @@ ALTER TABLE `custom_sms_info`
 -- AUTO_INCREMENT for table `department`
 --
 ALTER TABLE `department`
-  MODIFY `dprt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `dprt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `department_lang`
 --
 ALTER TABLE `department_lang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `document`
@@ -4709,7 +4772,7 @@ ALTER TABLE `inc_limit_approval`
 -- AUTO_INCREMENT for table `language`
 --
 ALTER TABLE `language`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=799;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=814;
 
 --
 -- AUTO_INCREMENT for table `mail_setting`
@@ -4721,13 +4784,13 @@ ALTER TABLE `mail_setting`
 -- AUTO_INCREMENT for table `main_department`
 --
 ALTER TABLE `main_department`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `main_department_lang`
 --
 ALTER TABLE `main_department_lang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `medication`
@@ -4778,6 +4841,12 @@ ALTER TABLE `package_prices`
   MODIFY `package_price_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `package_renewals`
+--
+ALTER TABLE `package_renewals`
+  MODIFY `package_renewal_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `package_slots`
 --
 ALTER TABLE `package_slots`
@@ -4787,7 +4856,7 @@ ALTER TABLE `package_slots`
 -- AUTO_INCREMENT for table `patient`
 --
 ALTER TABLE `patient`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `pa_visit`
@@ -4817,13 +4886,13 @@ ALTER TABLE `pr_prescription`
 -- AUTO_INCREMENT for table `role_permission`
 --
 ALTER TABLE `role_permission`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3608;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3735;
 
 --
 -- AUTO_INCREMENT for table `schedule`
 --
 ALTER TABLE `schedule`
-  MODIFY `schedule_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `schedule_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `sec_role`
@@ -4895,7 +4964,7 @@ ALTER TABLE `status`
 -- AUTO_INCREMENT for table `sub_module`
 --
 ALTER TABLE `sub_module`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=140;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=142;
 
 --
 -- AUTO_INCREMENT for table `time_slot`
@@ -4925,7 +4994,7 @@ ALTER TABLE `user_language`
 -- AUTO_INCREMENT for table `user_log`
 --
 ALTER TABLE `user_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `ws_about`

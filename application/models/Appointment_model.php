@@ -23,11 +23,15 @@ class Appointment_model extends CI_Model {
 				appointment.*, 
 				user.firstname, 
 				user.lastname,  
-				department.name
+				department.name,
+				schedule.schedule_type,
+				schedule.start_time,
+				schedule.end_time
 			")
 			->from($this->table)
 			->join('user','user.user_id = appointment.doctor_id')
 			->join('department','department.dprt_id = appointment.department_id')
+			->join('schedule','schedule.schedule_id = appointment.schedule_id')
 			->where('user.user_id', $this->session->userdata('user_id'))
 			->where('appointment.status', 1)
 			->order_by('appointment.id','desc')
@@ -42,11 +46,15 @@ class Appointment_model extends CI_Model {
 				appointment.*, 
 				user.firstname, 
 				user.lastname,  
-				department.name
+				department.name,
+				schedule.schedule_type,
+				schedule.start_time,
+				schedule.end_time
 			")
 			->from($this->table)
 			->join('user','user.user_id = appointment.doctor_id')
 			->join('department','department.dprt_id = appointment.department_id')
+			->join('schedule','schedule.schedule_id = appointment.schedule_id')
 			->where('appointment.status', 1)
 			->order_by('appointment.id','desc')
 			->get()

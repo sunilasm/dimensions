@@ -15,7 +15,8 @@ class Home extends CI_Controller {
             'website/partner_model',
             'website/doctor_model',
             'website/news_model',
-            'website/menu_model'
+            'website/menu_model',
+            'main_department_model'
         ));  
     }  
   
@@ -48,16 +49,20 @@ class Home extends CI_Controller {
        $data['about'] = $this->about_model->read();
        $data['sliders'] = $this->home_model->get_sliders();
        $data['departments'] = $this->department_model->read();
+       $data['main_departments'] = $this->main_department_model->read();
        $data['deptsFooter'] = $this->department_model->read_footer();
-       $data['sliderDepart'] = $this->department_model->read_home_slider();
-       $data['department_list'] = $this->department_model->department_list();
+       $data['sliderDepart'] = $this->main_department_model->read();
+    //    $data['department_list'] = $this->department_model->department_list();
+       $data['main_department_list'] = $this->main_department_model->main_department_list();
+       $data['appointment_type'] = $this->main_department_model->appointment_type();
+       $data['payment_type_list'] = $this->main_department_model->payment_type_list();
        $data['testimonial'] = $this->testimonial_model->read_active();
        $data['instruction'] = $this->appointment_instruction_model->read_active_instuction();
        $data['partners'] = $this->partner_model->read_active();
        $data['doctors'] = $this->doctor_model->read_home();  
        $data['latest_news'] = $this->news_model->read_news();
        #-----------------------------------#
-    //echo "<pre>".print_r($data,true); exit;
+        //echo "<pre>".print_r($data,true); exit;
        $data['content'] = $this->load->view('website/includes/home',$data,true);
        $this->load->view('website/index', $data);
     }

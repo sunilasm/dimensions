@@ -522,6 +522,7 @@ public function index(){
             'firstname'    => $this->input->post('firstname',true),
             'lastname'     => $this->input->post('lastname',true),
             'email'        => $this->input->post('email',true),
+            'mobile'       => $this->input->post('phone',true),
             'password'     => md5($this->input->post('password',true)),
             'create_date'  => date('Y-m-d'),
             'status'       => 1,

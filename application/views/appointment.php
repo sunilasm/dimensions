@@ -23,8 +23,9 @@
                             <th><?php echo display('patient_id') ?></th>
                             <th><?php echo display('department') ?></th>
                             <th><?php echo display('doctor_name') ?></th>
-                            <th><?php echo display('serial_no') ?></th>
-                            <th><?php echo display('problem') ?></th>
+                            <th><?php echo display('start_time').' - '.display('end_time') ?></th>
+                            <th><?php echo display('schedule_type') ?></th>
+                            <!-- <th><?php echo display('problem') ?></th> -->
                             <th><?php echo display('appointment_date') ?></th>
                             <th><?php echo display('status') ?></th>
 
@@ -46,8 +47,9 @@
                                     <td><?php echo $appointment->patient_id; ?></td>
                                     <td><?php echo $appointment->name; ?></td>
                                     <td><?php echo $appointment->firstname.' '.$appointment->lastname; ?></td>
-                                    <td><?php echo $appointment->serial_no; ?></td>
-                                    <td><?php echo $appointment->problem; ?></td>
+                                    <td><?php echo $appointment->start_time.' - '.$appointment->end_time; ?></td>
+                                    <td><?php echo ($appointment->schedule_type == 1) ? 'Inperson' : 'Online'; ?></td>
+                                    <!-- <td><?php echo $appointment->problem; ?></td> -->
                                     <td><?php echo $appointment->date; ?></td>
                                     <td><?php echo (($appointment->status==1)?"Active":"Inactive"); ?></td>
 

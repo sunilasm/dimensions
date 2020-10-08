@@ -25,7 +25,10 @@
         <?php echo validation_errors(); ?>
     </div>
     <?php } ?> 
-
+    <div class="bottom-text">
+        <a href="<?= base_url('home')?>"><?= display('home')?></a><br>
+        <!-- <?= display('remind')?> <a href="<?php echo base_url('forgot_password');?>"><?= display('password')?></a> -->
+    </div>
     <div class="register-form">
         <?php echo form_open('patient_login','id="loginForm" novalidate'); ?>
 
@@ -41,9 +44,9 @@
                 <input type="checkbox" name="chkuserpss" class="custom-control-input" id="customCheck1">
                 <label class="custom-control-label" for="customCheck1"><?= display('remember_me_next_time')?> </label>
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
                  <?php echo form_dropdown('userLang',$languageList, $this->input->cookie('Lng', true),'class="form-control basic-single" id="userLang"') ?> 
-            </div>
+            </div> -->
 
             <button type="submit" class="btn btn-primary btn-block"><?= display('sign_in')?></button>
         </form>

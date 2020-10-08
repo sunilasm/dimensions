@@ -3,34 +3,34 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /*
  |----Packages for BackEnd-------|
 */
-class Packages extends CI_Controller {
+class Renewals extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
 		
 		$this->load->model(array(
-			'package_model',
+			'renewals_model',
 			//'setting_model'
 		));
 		
-		// if ($this->session->userdata('isLogIn') == false) 
-		// redirect('login');
+		if ($this->session->userdata('isLogIn') == false) 
+		redirect('login');
 
 	}
 	public function index(){
-		if ($this->session->userdata('isLogIn') == false) 
-		redirect('login'); 
 		$data['module'] = display("packages");
-		$data['title'] = display('packages_list');
+		$data['title'] = display('renewals');
 		#-------------------------------#
-		$data['packages'] = $this->package_model->read();
+		$this->load->model(array(
+			'renewals_model',
+			//'setting_model'
+		));
+		$data['renewals'] = $this->renewals_model->read();
 		//$data['lang_pack'] = $this->package_model->read_lang_department();
-		$data['content'] = $this->load->view('packages/index',$data,true);
-		$this->load->view('layout/main_wrapper',$data);
 		//echo "<pre>".print_r($data, true); exit;
-		//$this->load->view('layout/main_wrapper',$data);
-		//echo "<pre>".print_r($this->session->userdata(), true); exit;
-        	//echo "test"; exit;
+		$data['content'] = $this->load->view('packages/renewals',$data,true);
+		$this->load->view('layout/main_wrapper',$data);
+		
 	}
 
 	public function create(){
@@ -115,7 +115,7 @@ class Packages extends CI_Controller {
 	{
 		if ($this->session->userdata('isLogIn') == false) 
 		redirect('login'); 
-		if ($this->package_model->delete($id)) 
+		if ($this->renewals_model->delete($id)) 
 		{
 			#set success message
 			$this->session->set_flashdata('message', display('delete_successfully'));

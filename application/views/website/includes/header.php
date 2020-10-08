@@ -62,9 +62,9 @@ $settings = $this->db->select("language")->get('setting')->row();
                             <div class="media-body">
                                 <h6 class="mb-0 helpInfo-title"><?= (!empty($setting->open_day)?$setting->open_day:null)?></h6>
                                 <?php if(!empty($setting->closed_day)): ?>
-                                   <!-- <p class="subText"><?= $setting->closed_day;?> - <span style="text-transform: uppercase;">
+                                   <p class="subText"><?= $setting->closed_day;?> - <span style="text-transform: uppercase;">
                                    <?= display('closed')?></span>
-                                   </p> -->
+                                   </p>
                                 <?php endif ?>
                             </div>
                         </div>
@@ -75,7 +75,7 @@ $settings = $this->db->select("language")->get('setting')->row();
                                 <p class="subText"><?= display('contact_us_for_help')?></p>
                             </div>
                         </div> -->
-                        <div class="media helpInfo">
+                        <!-- <div class="media helpInfo">
                             <div class="icon"><i class="icon-map-pin "></i></div>
                             <div class="media-body">
                                 <h6 class="mb-0">
@@ -84,6 +84,17 @@ $settings = $this->db->select("language")->get('setting')->row();
                                     ?>
                                 </h6>
                                 <p class="subText"><?php echo substr($setting->address, 39, 80);?></p>
+                            </div>
+                        </div> -->
+                        <div class="media helpInfo">
+                            <div class="icon"><i class="icon-map-pin "></i></div>
+                            <div class="media-body">
+                                <h6 class="mb-0">
+                                    <?php 
+                                      echo "We are available online.";
+                                    ?>
+                                </h6>
+                                <!-- <p class="subText"><?php echo substr($setting->address, 39, 80);?></p> -->
                             </div>
                         </div>
                     </div>

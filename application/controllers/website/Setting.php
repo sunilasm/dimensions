@@ -39,8 +39,8 @@ class Setting extends CI_Controller {
 		$this->form_validation->set_rules('meta_keyword', display('meta_keyword'),'max_length[255]');
 		$this->form_validation->set_rules('phone', display('phone'),'required');
 		$this->form_validation->set_rules('address', display('address'),'required|max_length[255]'); 
-		$this->form_validation->set_rules('closed_day', display('closed_day'),'required|max_length[25]'); 
-		$this->form_validation->set_rules('open_day', display('open_day'),'required|max_length[30]'); 
+		$this->form_validation->set_rules('closed_day', display('closed_day'),'required|max_length[45]'); 
+		$this->form_validation->set_rules('open_day', display('open_day'),'required|max_length[55]'); 
 		$this->form_validation->set_rules('copyright_text', display('copyright_text'),'max_length[255]');  
 		#-------------------------------#
 		$data['setting'] = (object)$postData = [

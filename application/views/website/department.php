@@ -47,7 +47,7 @@
     </div>
 </div>
 <!-- /.Page header -->
-<!-- <header class="headerContent">
+<header class="headerContent">
     <div class="container">
         <div class="row">
             <?php 
@@ -63,7 +63,8 @@
                                 foreach ($departments as $department) {
                                     if($mainDepart->mid==$department->main_id){
                             ?>
-                               <li><a href="<?= base_url('departments/details/'.$department->dprt_id.'/'.url_title($department->name))?>"><?= $department->name;?></a></li>
+                               <li><a href="javascript:void(0)"><?= $department->name;?></a></li>
+                               <!-- <li><a href="<?= base_url('departments/details/'.$department->dprt_id.'/'.url_title($department->name))?>"><?= $department->name;?></a></li> -->
                             <?php } } } ?>
     
                         </ul>
@@ -72,9 +73,9 @@
            <?php } } ?>
         </div>
     </div>
-</header> -->
+</header>
 <!-- /.Header -->
-<div class="department-list mt-5">
+<!-- <div class="department-list mt-5">
     <div class="container">
         <div class="row">
             <?php 
@@ -106,5 +107,5 @@
              <?php } } ?>
         </div>
     </div>
-</div>
+</div> -->
 <!-- /.department list -->

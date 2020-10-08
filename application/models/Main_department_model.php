@@ -25,7 +25,7 @@ class Main_department_model extends CI_Model {
 	{
 		return $this->db->select("*") 
 			->from($this->table)
-			->order_by('id','desc')
+			->order_by('id','asc')
 			->get()
 			->result();
 	} 
@@ -46,7 +46,7 @@ class Main_department_model extends CI_Model {
 			->from('main_department_lang as mdlang')
 			->join($this->table, 'main_department.id=mdlang.main_id', 'left')
 			->where('mdlang.language', (!empty($this->language)?$this->language:$this->defualt))
-			->order_by('mdlang.name','asc')
+			->order_by('mdlang.name','desc')
 			->get()
 			->result();
 	}
@@ -113,7 +113,7 @@ class Main_department_model extends CI_Model {
 			->get()
 			->result();
 
-		$list[''] = display('select_department');
+		$list[''] = display('select_main_department');
 		if (!empty($result)) {
 			foreach ($result as $value) {
 				$list[$value->id] = $value->name; 
@@ -122,6 +122,18 @@ class Main_department_model extends CI_Model {
 		} else {
 			return false;
 		}
+	}
+	public function appointment_type()
+	{
+		$list['1'] = 'Inperson';
+		$list['2'] = 'Online';
+		return $list;
+	}
+	public function payment_type_list()
+	{
+		$list['1'] = 'Cash';
+		$list['2'] = 'Online';
+		return $list;
 	}
 	
  }

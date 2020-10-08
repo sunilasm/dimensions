@@ -10,12 +10,13 @@
         </div>
         <div class="row">
             <?php 
-            if(!empty($departments)){
-                foreach ($departments as $department) {
+            if(!empty($main_departments)){
+                foreach ($main_departments as $department) {
             ?>
                 <div class="col-6 col-md-4 col-lg-2">
                     <div class="box-widget">
-                        <a href="<?= base_url('departments/details/'.$department->dprt_id.'/'.url_title($department->name))?>">
+                        <!-- <a href="<?= base_url('departments/details/'.$department->dprt_id.'/'.url_title($department->name))?>"> -->
+                        <a href="">
                             <div class="box-icon">
                                 <i class="flaticon-<?= (!empty($department->flaticon)?$department->flaticon:'heart');?>"></i>
                             </div>

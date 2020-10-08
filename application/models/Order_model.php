@@ -55,6 +55,20 @@ class Order_model extends CI_Model {
 		//echo $this->db->last_query(); exit;
 		return $result;
 	}
+	public function read_by_status($status = 'Ordered')
+	{
+		$result = array();
+		$result =  $this->db->select($this->table.".*, patient.id as patient_id,patient.patient_id as patient_code, patient.firstname, patient.lastname, patient.email, patient.mobile, package.package_title, package.package_code, package.package_price as regular_price, package.package_special_price, package.package_slots") 
+		->from($this->table)
+		->join("package", 'package.package_id=package_orders.package_id', 'left')
+		->join("patient", 'patient.id=package_orders.patient_id', 'left')
+		->where($this->table.'.order_status',$status)
+		->get()
+		->result();
+		//->row();
+		//echo $this->db->last_query(); exit;
+		return $result;
+	}
 	public function booked_slots_count_by_order($order_id = null, $status = 'Active')
 	{
 		$result = $this->db->select("package_orders_appointments.*")

@@ -102,7 +102,7 @@
                     </div>
                     
                     <div class="tab-content" id="nav-tabContent">
-                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                        <!-- <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                             <h2 class="semibold"><span><?= display('1')?></span><?= display('provide_your_primary_information_about_the_following_details')?></h2> 
                            <?= form_open_multipart('website/appointment/new_patient','id="appointmentForm"') ?> 
                             <div class="form-row">
@@ -171,6 +171,41 @@
                             </div>
                             <button type="submit" class="btn btn-block btn-primary"><?= display('book_appointment')?></button>
                            <?= form_close() ?>
+                        </div> -->
+                        <div class="tab-pane fade show active register-form" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                            <h2 class="semibold"><span><?= display('1')?></span><?= display('provide_your_primary_information_about_the_following_details')?></h2> 
+                           <!-- <?= form_open_multipart('','id="appointmentForm"') ?>  -->
+                           <div class="msg"></div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label><?= display('first_name')?>*</label>
+                                    <input type="text" class="form-control" name="firstname" id="firstname" placeholder="<?= display('first_name')?>" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label><?= display('last_name')?>*</label>
+                                    <input type="text" class="form-control" name="lastname" id="lastname" placeholder="<?= display('last_name')?>" required>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label><?= display('email')?>*</label>
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="<?= display('email')?>" required>
+                                    <label><?= display('please_provide_a_valid_email')?></label>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label><?= display('phone')?></label>
+                                    <input type="text" class="form-control" name="mobile" id="phone1" placeholder="<?= display('phone')?>" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label><?= display('password')?>*</label>
+                                    <input type="password" class="form-control" name="password" id="password" placeholder="<?= display('password')?>" required>
+                                </div>
+                            </div>
+                            <button type="submit" id="submit" class="btn btn-block btn-primary"><?= display('sign_up')?></button>
+                           <!-- <?= form_close() ?> -->
                         </div>
                         
                         <!-- for old patient -->
@@ -199,9 +234,18 @@
                             </div>
 
                             <div class="form-group">
+                                <label> <?= display('branch_name')?> *</label>
+                                 <?php echo form_dropdown('id',$main_department_list,$appointment->id,'class="form-control basic-single" id="id"') ?>
+                                <span class="main_department_error"></span>
+                            </div>
+                            <div class="form-group">
                                 <label> <?= display('department_name')?> *</label>
                                  <?php echo form_dropdown('department_id',$department_list,$appointment->department_id,'class="form-control basic-single" id="department_id"') ?>
                                 <span class="doctor_error"></span>
+                            </div>
+                            <div class="form-group">
+                                <label> <?= display('appointment_type')?> *</label>
+                                 <?php echo form_dropdown('schedule_type',$appointment_type,$appointment->appointment_type_id,'class="form-control basic-single" id="appointment_type_id"') ?>
                             </div>
                             <div class="form-group">
                                 <label> <?= display('doctor_name')?>*</label>
@@ -229,6 +273,11 @@
                             <div class="form-group">
                                 <label><?= display('problem')?></label>
                                 <textarea class="form-control" name="problem" id="problem2" rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label> <?= display('payment_type')?> *</label>
+                                 <?php echo form_dropdown('payment_type_id',$payment_type_list,$appointment->payment_type_id,'class="form-control basic-single" id="payment_type_id"') ?>
+                                <span class="doctor_error"></span>
                             </div>
                             <button type="submit" class="btn btn-block btn-primary"><?= display('book_appointment')?></button>
                             <?= form_close() ?>
@@ -274,6 +323,40 @@ $(document).ready(function() {
         });
     });
  
+    //main_department_id
+    $("#id").change(function(){
+        var output = $('.doctor_error'); 
+        var department_list = $('#department_id');
+        //var available_day = $('#available_day');
+
+        $.ajax({
+            url  : '<?= base_url('website/appointment/sub_department/') ?>',
+            type : 'post',
+            dataType : 'JSON',
+            data : {
+                '<?= $this->security->get_csrf_token_name(); ?>' : '<?= $this->security->get_csrf_hash(); ?>',
+                main_department_id : $(this).val()
+            },
+            success : function(data) 
+            {
+                if (data.status == true) {
+                    department_list.html(data.message);
+                    // available_day.html(data.available_days);
+                    output.html('');
+                } else if (data.status == false) {
+                    department_list.html('');
+                    output.html(data.message).addClass('text-danger').removeClass('text-success');
+                } else {
+                    department_list.html('');
+                    output.html(data.message).addClass('text-danger').removeClass('text-success');
+                }
+            }, 
+            error : function()
+            {
+                alert('failed');
+            }
+        });
+    }); 
     //department_id
     $("#department_id").change(function(){
         var output = $('.doctor_error'); 
@@ -314,6 +397,8 @@ $(document).ready(function() {
     $("#doctor_id").change(function(){
         var doctor_id = $('#doctor_id'); 
         var output = $('#available_days'); 
+        var schedule_type = $('#appointment_type_id').val();
+        console.log(schedule_type);
 
         $.ajax({
             url  : '<?= base_url('website/appointment/schedule_day_by_doctor/') ?>',
@@ -321,7 +406,8 @@ $(document).ready(function() {
             dataType : 'JSON',
             data : {
                 '<?= $this->security->get_csrf_token_name(); ?>' : '<?= $this->security->get_csrf_hash(); ?>',
-                doctor_id : $(this).val()
+                doctor_id : $(this).val(),
+                schedule_type : schedule_type
             },
             success : function(data) 
             {
@@ -386,14 +472,14 @@ $(document).ready(function() {
         var output = $('.doctorError'); 
         var doctor_list = $('#doctorId');
         var available_day = $('#availableDay');
-
+        
         $.ajax({
             url  : '<?= base_url('website/appointment/doctor_by_department/') ?>',
             type : 'post',
             dataType : 'JSON',
             data : {
                 '<?= $this->security->get_csrf_token_name(); ?>' : '<?= $this->security->get_csrf_hash(); ?>',
-                department_id : $(this).val()
+                department_id : $(this).val(),
             },
             success : function(data) 
             {
@@ -420,14 +506,15 @@ $(document).ready(function() {
     $("#doctorId").change(function(){
         var doctor_id = $('#doctorId'); 
         var output = $('#availableDays'); 
-
+        
         $.ajax({
             url  : '<?= base_url('website/appointment/schedule_day_by_doctor/') ?>',
             type : 'post',
             dataType : 'JSON',
             data : {
                 '<?= $this->security->get_csrf_token_name(); ?>' : '<?= $this->security->get_csrf_hash(); ?>',
-                doctor_id : $(this).val()
+                doctor_id : $(this).val(),
+                
             },
             success : function(data) 
             {
@@ -540,3 +627,57 @@ function patientInfo(id){
      $(".patient").val(id);
 }
 </script>
+<script type="text/javascript">
+            $(document).ready(function() {
+
+                var source = $('#submit');
+                var target = $('.msg');
+                source.on('click', function() {
+                    var firstname    = $('#firstname').val();
+                    var lastname     = $('#lastname').val();
+                    var email        = $('#email').val();
+                    var password     = $('#password').val();
+                    var phone        = $('#phone1').val();
+                    
+                    $.ajax({
+                        url      : '<?= base_url('dashboard/save_registration') ?>',
+                        type     : 'post',
+                        dataType : 'json',
+                        data     : {
+                            '<?= $this->security->get_csrf_token_name(); ?>' : '<?= $this->security->get_csrf_hash(); ?>',
+                            firstname, 
+                            lastname,
+                            email,
+                            password,
+                            phone
+                        },
+                        success : function(data) { 
+                            if (data.message) {
+                                target.removeClass('alert alert-danger');
+                                target.addClass('alert alert-info');
+                                target.html(data.message);
+                            } else {
+                                target.removeClass('alert alert-info');
+                                target.addClass('alert alert-danger');
+                                target.html(data.exception);
+                            } 
+
+                            setTimeout(function(){ 
+                                if(data.message){
+                                    window.location="<?= base_url('patient_login')?>";
+                                }else{
+                                    history.go(0);
+                                }
+                                
+                            }, 1500);
+
+                        },
+                        error   : function(exc){
+                            alert('failed');
+                        }
+                    });
+             
+
+                }); 
+            });
+        </script>
