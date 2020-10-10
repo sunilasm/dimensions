@@ -26,6 +26,7 @@ class Department extends CI_Controller {
 		#-------------------------------#
 		$data['departments'] = $this->department_model->read();
 		$data['departLang'] = $this->department_model->read_language();
+		//echo "<pre>".print_r($data,true); exit;
 		$data['content'] = $this->load->view('department/department',$data,true);
 		$this->load->view('layout/main_wrapper',$data);
 	} 

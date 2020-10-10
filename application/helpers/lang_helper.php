@@ -114,6 +114,23 @@ if (!function_exists('print_date')) {
         return $response;
     }
 }
+if (!function_exists('print_schedule_type')) {
+    function print_schedule_type($value = '', $blank_response = FALSE)
+    {
+        $response = ($blank_response) ? '' : '-';
+        
+        switch($value)
+        {
+            case '1':
+                $response = 'Inperson';
+                break;
+            case '2':
+                $response = 'Online';
+                break;
+        }
+        return $response;
+    }
+}
 
 
 // $autoload['helper'] =  array('language_helper');

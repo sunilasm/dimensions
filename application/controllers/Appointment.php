@@ -9,7 +9,7 @@ class Appointment extends CI_Controller {
 
         $this->load->model(array(
             'appointment_model',
-            'department_model', 'patient_model'
+            'department_model', 'patient_model', 'main_department_model'
         ));
         
         if ($this->session->userdata('isLogIn') == false) 
@@ -181,21 +181,25 @@ class Appointment extends CI_Controller {
             redirect('appointment/view/'.$postData['appointment_id']);
 
         } else {
-            $data['department_list'] = $this->department_model->department_list(); 
+            //$data['department_list'] = $this->department_model->department_list();
+            $data['appointment_type'] = $this->main_department_model->appointment_type();
+            $data['payment_type_list'] = $this->main_department_model->payment_type_list();
+            $data['main_department_list'] = $this->main_department_model->main_department_list();
             $data['content'] = $this->load->view('appointment_form',$data,true);
             $this->load->view('layout/main_wrapper',$data);
         } 
     }
  
 
-      public function view($appointment_id = null){  
-        $data['module'] = display("appointment");
-        $data['title'] = display('appointment');
-        /* ------------------------------- */
-        $data['appointment'] = $this->appointment_model->read_by_id($appointment_id);
-        $data['content'] = $this->load->view('appointment_view',$data,true);
-        $this->load->view('layout/main_wrapper',$data);
-      } 
+    public function view($appointment_id = null){  
+    $data['module'] = display("appointment");
+    $data['title'] = display('appointment');
+    /* ------------------------------- */
+    $data['appointment'] = $this->appointment_model->read_by_id($appointment_id);
+    //echo "<pre>".print_r($data,true)."</pre>"; exit;
+    $data['content'] = $this->load->view('appointment_view',$data,true);
+    $this->load->view('layout/main_wrapper',$data);
+    } 
 
  
 

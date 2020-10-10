@@ -16,8 +16,9 @@ class Department_model extends CI_Model {
  
 	public function read()
 	{
-		return $this->db->select("*") 
+		return $this->db->select($this->table.".*, main_department.name as branch_name") 
 			->from($this->table)
+			->join('main_department', 'department.main_id=main_department.id', 'left')
 			->order_by('dprt_id','desc')
 			->get()
 			->result();

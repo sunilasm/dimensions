@@ -20,9 +20,10 @@ class Doctor_model extends CI_Model {
  
 	public function read()
 	{
-		return $this->db->select("user.*,department.name")
+		return $this->db->select("user.*,department.name,main_department.name as branch_name")
 			->from("user")
 			->join('department','department.dprt_id = user.department_id','left')
+			->join('main_department', 'department.main_id=main_department.id', 'left')
 			->where('user.user_role',2)
 			->order_by('user.user_id','asc')
 			->get()

@@ -12,7 +12,8 @@ class Orders extends CI_Controller {
 			'order_model',
 			'package_model',
 			'appointment_model',
-			'department_model'
+			'department_model',
+			'main_department_model'
 		));
 		
 		if ($this->session->userdata('isLogIn') == false) 
@@ -133,6 +134,9 @@ class Orders extends CI_Controller {
 		}
 		//echo "<pre>".print_r($data, true); exit;
 		//echo "<pre>".print_r($this->session->userdata(), true); exit;
+		$data['appointment_type'] = $this->main_department_model->appointment_type();
+		//$data['payment_type_list'] = $this->main_department_model->payment_type_list();
+		$data['main_department_list'] = $this->main_department_model->main_department_list();
 		$data['content'] = $this->load->view('packages/orders/view',$data,true);
 	
 		$this->load->view('layout/main_wrapper',$data);

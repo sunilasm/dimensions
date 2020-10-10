@@ -58,6 +58,7 @@
                                             <th><?php echo display('first_name') ?></th>
                                             <th><?php echo display('last_name') ?></th>
                                             <th><?php echo display('department') ?></th>
+                                            <th><?php echo display('main_department') ?></th>
                                             <th><?php echo display('email') ?></th> 
                                             <th><?php echo display('sex') ?></th>   
                                             <th><?php echo display('blood_group') ?></th> 
@@ -82,6 +83,7 @@
                                             <td><?php echo $doctor->firstname; ?></td>
                                             <td><?php echo $doctor->lastname; ?></td>
                                             <td><?php echo $doctor->name; ?></td>
+                                            <td><?php echo $doctor->branch_name; ?></td>
                                             <td><?php echo $doctor->email; ?></td>
                                             <td><?php echo $doctor->sex; ?></td>
                                             <td><?php echo $doctor->blood_group; ?></td>

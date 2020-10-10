@@ -24,9 +24,9 @@
                         <div class="testimonial2-author-name">
                            <?= $testimonial[0]->author_name;?>
                         </div>
-                        <div class="testimonial2-author-link">
+                        <!-- <div class="testimonial2-author-link">
                             <a href="<?= $testimonial[0]->url;?>"><?= $testimonial[0]->url;?></a>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

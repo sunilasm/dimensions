@@ -233,52 +233,7 @@
                                <div id="valid_patient"></div>
                             </div>
 
-                            <div class="form-group">
-                                <label> <?= display('branch_name')?> *</label>
-                                 <?php echo form_dropdown('id',$main_department_list,$appointment->id,'class="form-control basic-single" id="id"') ?>
-                                <span class="main_department_error"></span>
-                            </div>
-                            <div class="form-group">
-                                <label> <?= display('department_name')?> *</label>
-                                 <?php echo form_dropdown('department_id',$department_list,$appointment->department_id,'class="form-control basic-single" id="department_id"') ?>
-                                <span class="doctor_error"></span>
-                            </div>
-                            <div class="form-group">
-                                <label> <?= display('appointment_type')?> *</label>
-                                 <?php echo form_dropdown('schedule_type',$appointment_type,$appointment->appointment_type_id,'class="form-control basic-single" id="appointment_type_id"') ?>
-                            </div>
-                            <div class="form-group">
-                                <label> <?= display('doctor_name')?>*</label>
-                                <?php echo form_dropdown('doctor_id','','','class="form-control basic-single" id="doctor_id"') ?>
-                                     <p class="help-block" id="available_days"></p>
-                            </div>
-                            <div class="form-group">
-                                <label><?= display('appointment_date')?> *</label>
-                                <input type="text" class="form-control datepicker" name="date" id="date" placeholder="<?= display('appointment_date')?>" autocomplete="off">
-                            </div>
-
-                             <div class="form-group">
-                                <label><?php echo display('serial_no') ?> <i class="text-danger">*</i></label>
-                                <div id="serial_preview">
-                                    <div class="btn btn-success disabled btn-sm"> 01</div>
-                                    <div class="btn btn-success disabled btn-sm"> 02</div>
-                                    <div class="btn btn-success disabled btn-sm"> 03</div>...
-                                    <div class="slbtn btn btn-success disabled btn-sm"> N</div>
-
-                                </div>
-                                <input type="hidden" name="schedule_id" id="schedule_id"/>
-                                <input type="hidden" name="serial_no" id="serial_no"/>
-                            </div>
-
-                            <div class="form-group">
-                                <label><?= display('problem')?></label>
-                                <textarea class="form-control" name="problem" id="problem2" rows="3"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label> <?= display('payment_type')?> *</label>
-                                 <?php echo form_dropdown('payment_type_id',$payment_type_list,$appointment->payment_type_id,'class="form-control basic-single" id="payment_type_id"') ?>
-                                <span class="doctor_error"></span>
-                            </div>
+                            <?php @$this->load->view('appointment/form');?>
                             <button type="submit" class="btn btn-block btn-primary"><?= display('book_appointment')?></button>
                             <?= form_close() ?>
                         </div>
@@ -323,148 +278,7 @@ $(document).ready(function() {
         });
     });
  
-    //main_department_id
-    $("#id").change(function(){
-        var output = $('.doctor_error'); 
-        var department_list = $('#department_id');
-        //var available_day = $('#available_day');
-
-        $.ajax({
-            url  : '<?= base_url('website/appointment/sub_department/') ?>',
-            type : 'post',
-            dataType : 'JSON',
-            data : {
-                '<?= $this->security->get_csrf_token_name(); ?>' : '<?= $this->security->get_csrf_hash(); ?>',
-                main_department_id : $(this).val()
-            },
-            success : function(data) 
-            {
-                if (data.status == true) {
-                    department_list.html(data.message);
-                    // available_day.html(data.available_days);
-                    output.html('');
-                } else if (data.status == false) {
-                    department_list.html('');
-                    output.html(data.message).addClass('text-danger').removeClass('text-success');
-                } else {
-                    department_list.html('');
-                    output.html(data.message).addClass('text-danger').removeClass('text-success');
-                }
-            }, 
-            error : function()
-            {
-                alert('failed');
-            }
-        });
-    }); 
-    //department_id
-    $("#department_id").change(function(){
-        var output = $('.doctor_error'); 
-        var doctor_list = $('#doctor_id');
-        var available_day = $('#available_day');
-
-        $.ajax({
-            url  : '<?= base_url('website/appointment/doctor_by_department/') ?>',
-            type : 'post',
-            dataType : 'JSON',
-            data : {
-                '<?= $this->security->get_csrf_token_name(); ?>' : '<?= $this->security->get_csrf_hash(); ?>',
-                department_id : $(this).val()
-            },
-            success : function(data) 
-            {
-                if (data.status == true) {
-                    doctor_list.html(data.message);
-                    available_day.html(data.available_days);
-                    output.html('');
-                } else if (data.status == false) {
-                    doctor_list.html('');
-                    output.html(data.message).addClass('text-danger').removeClass('text-success');
-                } else {
-                    doctor_list.html('');
-                    output.html(data.message).addClass('text-danger').removeClass('text-success');
-                }
-            }, 
-            error : function()
-            {
-                alert('failed');
-            }
-        });
-    }); 
-
-
-    //doctor_id
-    $("#doctor_id").change(function(){
-        var doctor_id = $('#doctor_id'); 
-        var output = $('#available_days'); 
-        var schedule_type = $('#appointment_type_id').val();
-        console.log(schedule_type);
-
-        $.ajax({
-            url  : '<?= base_url('website/appointment/schedule_day_by_doctor/') ?>',
-            type : 'post',
-            dataType : 'JSON',
-            data : {
-                '<?= $this->security->get_csrf_token_name(); ?>' : '<?= $this->security->get_csrf_hash(); ?>',
-                doctor_id : $(this).val(),
-                schedule_type : schedule_type
-            },
-            success : function(data) 
-            {
-                if (data.status == true) {
-                    output.html(data.message).addClass('text-success').removeClass('text-danger');
-                } else if (data.status == false) {
-                    output.html(data.message).addClass('text-danger').removeClass('text-success');
-                } else {
-                    output.html(data.message).addClass('text-danger').removeClass('text-success');
-                }
-            }, 
-            error : function()
-            {
-                alert('failed');
-            }
-        });
-    });
-
-    //date
-    $("#date").change(function(){
-        var date        = $('#date'); 
-        var serial_preview   = $('#serial_preview'); 
-        var doctor_id   = $('#doctor_id'); 
-        var schedule_id = $("#schedule_id"); 
-        var patient_id  = $("#patient_id"); 
- 
-        $.ajax({
-            url  : '<?= base_url('website/appointment/serial_by_date/') ?>',
-            type : 'post',
-            dataType : 'JSON',
-            data : {
-                '<?= $this->security->get_csrf_token_name(); ?>' : '<?= $this->security->get_csrf_hash(); ?>',
-                doctor_id  : doctor_id.val(),
-                patient_id : patient_id.val(), 
-                date : $(this).val()
-            },
-            success : function(data) 
-            { 
-                if (data.status == true) {
-                    //set schedule id
-                    schedule_id.val(data.schedule_id); 
-                    serial_preview.html(data.message);
-                } else if (data.status == false) {
-                    schedule_id.val('');
-                    serial_preview.html(data.message).addClass('text-danger').removeClass('text-success');
-                } else {
-                    schedule_id.val('');
-                    serial_preview.html(data.message).addClass('text-danger').removeClass('text-success');
-                }
-            }, 
-            error : function()
-            {
-                alert('failed');
-            }
-        });
-    });
-
+    
 
     //======for new patient appointment======//
     //department_id
@@ -627,57 +441,58 @@ function patientInfo(id){
      $(".patient").val(id);
 }
 </script>
+<?php @$this->load->view('appointment/scripts');?>
 <script type="text/javascript">
-            $(document).ready(function() {
+    $(document).ready(function() {
 
-                var source = $('#submit');
-                var target = $('.msg');
-                source.on('click', function() {
-                    var firstname    = $('#firstname').val();
-                    var lastname     = $('#lastname').val();
-                    var email        = $('#email').val();
-                    var password     = $('#password').val();
-                    var phone        = $('#phone1').val();
-                    
-                    $.ajax({
-                        url      : '<?= base_url('dashboard/save_registration') ?>',
-                        type     : 'post',
-                        dataType : 'json',
-                        data     : {
-                            '<?= $this->security->get_csrf_token_name(); ?>' : '<?= $this->security->get_csrf_hash(); ?>',
-                            firstname, 
-                            lastname,
-                            email,
-                            password,
-                            phone
-                        },
-                        success : function(data) { 
-                            if (data.message) {
-                                target.removeClass('alert alert-danger');
-                                target.addClass('alert alert-info');
-                                target.html(data.message);
-                            } else {
-                                target.removeClass('alert alert-info');
-                                target.addClass('alert alert-danger');
-                                target.html(data.exception);
-                            } 
+        var source = $('#submit');
+        var target = $('.msg');
+        source.on('click', function() {
+            var firstname    = $('#firstname').val();
+            var lastname     = $('#lastname').val();
+            var email        = $('#email').val();
+            var password     = $('#password').val();
+            var phone        = $('#phone1').val();
+            
+            $.ajax({
+                url      : '<?= base_url('dashboard/save_registration') ?>',
+                type     : 'post',
+                dataType : 'json',
+                data     : {
+                    '<?= $this->security->get_csrf_token_name(); ?>' : '<?= $this->security->get_csrf_hash(); ?>',
+                    firstname, 
+                    lastname,
+                    email,
+                    password,
+                    phone
+                },
+                success : function(data) { 
+                    if (data.message) {
+                        target.removeClass('alert alert-danger');
+                        target.addClass('alert alert-info');
+                        target.html(data.message);
+                    } else {
+                        target.removeClass('alert alert-info');
+                        target.addClass('alert alert-danger');
+                        target.html(data.exception);
+                    } 
 
-                            setTimeout(function(){ 
-                                if(data.message){
-                                    window.location="<?= base_url('patient_login')?>";
-                                }else{
-                                    history.go(0);
-                                }
-                                
-                            }, 1500);
-
-                        },
-                        error   : function(exc){
-                            alert('failed');
+                    setTimeout(function(){ 
+                        if(data.message){
+                            window.location="<?= base_url('patient_login')?>";
+                        }else{
+                            history.go(0);
                         }
-                    });
-             
+                        
+                    }, 1500);
 
-                }); 
+                },
+                error   : function(exc){
+                    alert('failed');
+                }
             });
-        </script>
+        
+
+        }); 
+    });
+</script>

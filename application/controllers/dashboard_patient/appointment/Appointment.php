@@ -11,7 +11,8 @@ class Appointment extends CI_Controller {
             'dashboard_patient/appointment/appointment_model',
             'dashboard_patient/appointment/department_model',
             'dashboard_patient/appointment/department_model',
-            'order_model'
+            'order_model',
+            'main_department_model'
         ));
  
         if ($this->session->userdata('isLogIn_patient') == false) 
@@ -97,11 +98,15 @@ class Appointment extends CI_Controller {
                 /*set exception message*/
                 $this->session->set_flashdata('exception',display('please_try_again'));
             }
-            //redirect('dashboard_patient/appointment/appointment/view/'.$postData['appointment_id']);
+            redirect('dashboard_patient/appointment/appointment/view/'.$postData['appointment_id']);
 
-        } else {
+        } 
+        else 
+        {
             $data['slot_type'] = 1;
-            $data['department_list'] = $this->department_model->department_list(); 
+            $data['appointment_type'] = $this->main_department_model->appointment_type();
+            $data['payment_type_list'] = $this->main_department_model->payment_type_list();
+            $data['main_department_list'] = $this->main_department_model->main_department_list(); 
             $data['content'] = $this->load->view('dashboard_patient/appointment/appointment_form',$data,true);
             $this->load->view('dashboard_patient/main_wrapper',$data);
         } 

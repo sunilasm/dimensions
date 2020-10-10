@@ -38,6 +38,7 @@
                                         <tr>
                                             <th><?php echo display('serial') ?></th>
                                             <th><?php echo display('department_name') ?></th>
+                                            <th><?php echo display('branch_name') ?></th>
                                             <th><?php echo display('description') ?></th>
                                             <th><?php echo display('status') ?></th>
                                             <?php
@@ -55,6 +56,7 @@
                                                 <tr class="<?php echo ($sl & 1)?"odd gradeX":"even gradeC" ?>">
                                                     <td><?php echo $sl; ?></td>
                                                     <td><?php echo $department->name; ?></td>
+                                                    <td><?php echo $department->branch_name; ?></td>
                                                     <td><?php echo character_limiter($department->description, 60); ?></td>
                                                     <td><?php echo (($department->status==1)?display('active'):display('inactive')); ?></td>
 
