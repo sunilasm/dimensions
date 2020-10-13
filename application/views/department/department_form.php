@@ -92,8 +92,18 @@
                                     <input type="hidden" name="old_image" value="<?= $department->image ?>">
                                 </div>
                             </div>
-
-
+                            <div class="form-group row">
+                                <label for="price" class="col-xs-3 col-form-label"><?php echo display('department_price') ?> <i class="text-danger">*</i></label>
+                                <div class="col-xs-9">
+                                    <input name="price"  type="text" class="form-control" id="price" placeholder="<?php echo display('department_price') ?>" value="<?php echo $department->price ?>">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="price_code" class="col-xs-3 col-form-label"><?php echo display('department_price_code') ?></label>
+                                <div class="col-xs-9">
+                                    <textarea name="price_code" class="form-control"  placeholder="<?php echo display('department_price_code') ?>" rows="7"><?php echo $department->price_code ?></textarea>
+                                </div>
+                            </div>
                             <!--Radio-->
                             <div class="form-group row">
                                 <label class="col-sm-3"><?php echo display('status') ?></label>
@@ -114,7 +124,7 @@
                                     </div>
                                 </div>
                             </div>
-
+                            
                         <?php echo form_close() ?>
 
                     </div>

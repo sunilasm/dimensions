@@ -59,7 +59,9 @@ class Department extends CI_Controller {
 			'flaticon' 		  => $this->input->post('flaticon',false),
 			'description' => $this->input->post('description',true),
 			'image' => (!empty($image)?$image:$this->input->post('old_image')),
-			'status'      => $this->input->post('status',true)
+			'status'      => $this->input->post('status',true),
+			'price'      => $this->input->post('price',true),
+			'price_code'      => $this->input->post('price_code')
 		]; 
 		#-------------------------------#
 		if ($this->form_validation->run() === true) {

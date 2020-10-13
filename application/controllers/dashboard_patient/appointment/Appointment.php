@@ -81,7 +81,22 @@ class Appointment extends CI_Controller {
         } 
         /* ------------------------------- */
         if ($this->form_validation->run() === true && $check_patient_id->status === true && $check_appointment_exists === true) {
-
+            if($this->input->post('payment_type_id',true) == 'Online')
+            {
+                $appointment = array();
+                $appointment['postData'] = $postData;
+                $appointment['formData'] = $this->input->post();
+                $appointment['appointment_id'] = $postData['appointment_id'];
+                $appointment['appointment_source'] = 'patient';
+                $this->session->set_userdata('appointment', $appointment);
+                $pauyment_url ="https://razorpay.com/payment-button/".trim($appointment['formData']['price_code'])."/view/?utm_source=payment_button&utm_medium=button&utm_campaign=payment_button";
+                redirect($pauyment_url); exit;
+                //echo "<pre>".print_r($this->session->userdata('appointment'),true)."</pre>"; //exit;
+            }
+            else
+            {
+                $postData['payment_mode'] = 'Cash';
+            }
             /*if empty $id then insert data*/
             $id = $this->appointment_model->create($postData);
             if($id) {

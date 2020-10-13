@@ -26,7 +26,7 @@ class Appointment_model extends CI_Model {
 				department.name,
 				schedule.schedule_type,
 				schedule.start_time,
-				schedule.end_time
+				schedule.end_time 
 			")
 			->from($this->table)
 			->join('user','user.user_id = appointment.doctor_id')

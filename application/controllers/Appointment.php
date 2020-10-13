@@ -72,7 +72,24 @@ class Appointment extends CI_Controller {
         } 
         /* ------------------------------- */
         if ($this->form_validation->run() === true && $check_patient_id->status === true && $check_appointment_exists === true) {
- 
+            
+            if($this->input->post('payment_type_id',true) == 'Online')
+            {
+                $appointment = array();
+                $appointment['postData'] = $postData;
+                $appointment['formData'] = $this->input->post();
+                $appointment['appointment_id'] = $postData['appointment_id'];
+                $appointment['appointment_source'] = 'backend';
+                $this->session->set_userdata('appointment', $appointment);
+                $pauyment_url ="https://razorpay.com/payment-button/".trim($appointment['formData']['price_code'])."/view/?utm_source=payment_button&utm_medium=button&utm_campaign=payment_button";
+                redirect($pauyment_url); exit;
+                //echo "<pre>".print_r($this->session->userdata('appointment'),true)."</pre>"; //exit;
+            }
+            else
+            {
+                $postData['payment_mode'] = 'Cash';
+            }
+
             /*if empty $id then insert data*/
             if ($this->appointment_model->create($postData)) {
 
@@ -192,13 +209,13 @@ class Appointment extends CI_Controller {
  
 
     public function view($appointment_id = null){  
-    $data['module'] = display("appointment");
-    $data['title'] = display('appointment');
-    /* ------------------------------- */
-    $data['appointment'] = $this->appointment_model->read_by_id($appointment_id);
-    //echo "<pre>".print_r($data,true)."</pre>"; exit;
-    $data['content'] = $this->load->view('appointment_view',$data,true);
-    $this->load->view('layout/main_wrapper',$data);
+        $data['module'] = display("appointment");
+        $data['title'] = display('appointment');
+        /* ------------------------------- */
+        $data['appointment'] = $this->appointment_model->read_by_id($appointment_id);
+        //echo "<pre>".print_r($data,true)."</pre>"; exit;
+        $data['content'] = $this->load->view('appointment_view',$data,true);
+        $this->load->view('layout/main_wrapper',$data);
     } 
 
  

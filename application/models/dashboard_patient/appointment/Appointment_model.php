@@ -48,9 +48,11 @@ class Appointment_model extends CI_Model {
 				user.picture,  
 				usrLn.degree,  
 				department.name as department,
+				main_department.name as branch_name,
 				schedule.available_days,
 				schedule.start_time,
 				schedule.end_time,
+				schedule.schedule_type,
 				patient.firstname AS pfirstname,
 				patient.lastname AS plastname,
 				patient.date_of_birth,
@@ -62,6 +64,7 @@ class Appointment_model extends CI_Model {
 			->join('user','user.user_id = appointment.doctor_id','left')
 			->join('user_lang usrLn','usrLn.user_id = appointment.doctor_id','left')
 			->join('department','department.dprt_id = appointment.department_id','left')
+			->join('main_department', 'department.main_id=main_department.id', 'left')
 			->join('patient','patient.patient_id = appointment.patient_id')
 			->join('schedule','schedule.schedule_id = appointment.schedule_id','left')
 			->where('usrLn.language', (!empty($this->language)?$this->language:$this->defualt))

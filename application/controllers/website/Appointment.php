@@ -60,13 +60,30 @@ class Appointment extends CI_Controller {
             redirect($_SERVER['HTTP_REFERER']);
         }
         /* ------------------------------- */
-        if ($this->form_validation->run() === true && $check_patient_id->status === true && $check_appointment_exists === true) {
-
+        if ($this->form_validation->run() === true && $check_patient_id->status === true && $check_appointment_exists === true) 
+        {
+            if($this->input->post('payment_type_id',true) == 'Online')
+            {
+                $appointment = array();
+                $appointment['postData'] = $postData;
+                $appointment['formData'] = $this->input->post();
+                $appointment['appointment_id'] = $postData['appointment_id'];
+                $appointment['appointment_source'] = 'website';
+                $this->session->set_userdata('appointment', $appointment);
+                $pauyment_url ="https://razorpay.com/payment-button/".trim($appointment['formData']['price_code'])."/view/?utm_source=payment_button&utm_medium=button&utm_campaign=payment_button";
+                redirect($pauyment_url); exit;
+                //echo "<pre>".print_r($this->session->userdata('appointment'),true)."</pre>"; //exit;
+            }
+            else
+            {
+                $postData['payment_mode'] = 'Cash';
+            }
             /*if empty $id then insert data*/
-            if ($this->appointment_model->create($postData)) {
+            if ($this->appointment_model->create($postData)) 
+            {
 
                 #-------------------------------------------------------#
-            #-------------------------SMS SEND -----------------------------#
+                #-------------------------SMS SEND -----------------------------#
                 #-------------------------------------------------------#
                 # SMS Setting
                 $setting = $this->db->select('appointment')
@@ -392,8 +409,9 @@ class Appointment extends CI_Controller {
         $data['parent_menu'] = $this->menu_model->get_parent_menu();
         $data['deptsFooter'] = $this->department_model->read_footer();
         $data['appointment'] = $this->appointment_model->read_by_id($appointment_id);
+        //echo "<pre>".print_r($data, true); exit;
         if(empty($data['appointment'])) show_404();
-        $data['setting'] = $this->home_model->setting();
+        $data['setting'] = $this->home_model->setting(); 
         #-------------------------------#   
 
         $data['content'] = $this->load->view('website/appointment_wrapper',$data, true);
@@ -502,12 +520,25 @@ class Appointment extends CI_Controller {
         $department_id = $this->input->post('department_id');
 
         if (!empty($department_id)) {
+            $query_department = $this->db->select('dprt_id,name,price,price_code')
+            ->from('department')
+            ->where('dprt_id',$department_id)
+            ->where('status',1)
+            ->get();
+            $data['price'] = '0';
+            $data['price_code'] = '';
+            if ($query_department->num_rows() > 0) {
+                foreach ($query_department->result() as $doctor) {
+                    $data['price'] = $doctor->price;
+                    $data['price_code'] = $doctor->price_code;
+                }
+            }
             $query = $this->db->select('user_id,firstname,lastname')
                 ->from('user')
                 ->where('department_id',$department_id)
                 ->where('user_role',2)
                 ->where('status',1)
-                ->get();
+                ->get(); 
 
             $option = "<option value=\"\">".display('select_option')."</option>"; 
             if ($query->num_rows() > 0) {
@@ -533,7 +564,8 @@ class Appointment extends CI_Controller {
     {
         $doctor_id = $this->input->post('doctor_id');
         $schedule_type = $this->input->post('schedule_type');
-
+        //$data['schedule_type'] = $schedule_type;
+        //echo json_encode($data); exit;
         if (!empty($doctor_id)) {
             $query = $this->db->select('available_days,start_time,end_time')
                 ->from('schedule')

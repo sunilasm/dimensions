@@ -40,6 +40,7 @@
                                             <th><?php echo display('department_name') ?></th>
                                             <th><?php echo display('branch_name') ?></th>
                                             <th><?php echo display('description') ?></th>
+                                            <th><?php echo display('department_price') ?></th>
                                             <th><?php echo display('status') ?></th>
                                             <?php
                                             if($this->permission->method('department_list','update')->access() || $this->permission->method('department_list','delete')->access()){
@@ -58,6 +59,7 @@
                                                     <td><?php echo $department->name; ?></td>
                                                     <td><?php echo $department->branch_name; ?></td>
                                                     <td><?php echo character_limiter($department->description, 60); ?></td>
+                                                    <td><?php echo $department->price; ?></td>
                                                     <td><?php echo (($department->status==1)?display('active'):display('inactive')); ?></td>
 
                                                      

@@ -55,8 +55,10 @@
                             <div class="col-sm-6 col-md-7">
                                 <dl class="dl-horizontal">
                                     <dt><?php echo display('doctor') ?></dt> <dd><?php echo "$appointment->firstname $appointment->lastname"?></dd>
+                                    <dt><?php echo display('branch_name') ?></dt> <dd><?php echo $appointment->branch_name ?></dd>
                                     <dt><?php echo display('department') ?></dt> <dd><?php echo $appointment->department ?></dd>
                                     <dt><?php echo display('available_days') ?></dt> <dd><?php echo $appointment->available_days ?></dd>
+                                    <dt><?php echo display('schedule_type') ?></dt> <dd><?php echo print_schedule_type($appointment->schedule_type); ?></dd>
                                     <dt><?php echo display('schedule_time') ?></dt> <dd><?php echo "$appointment->start_time - $appointment->end_time" ?></dd>
                                 </dl>
                             </div>

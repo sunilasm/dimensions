@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 08, 2020 at 04:20 PM
+-- Generation Time: Oct 13, 2020 at 11:13 AM
 -- Server version: 5.7.31-0ubuntu0.16.04.1
 -- PHP Version: 7.1.33-17+ubuntu16.04.1+deb.sury.org+1
 
@@ -384,6 +384,7 @@ CREATE TABLE `appointment` (
   `serial_no` int(11) DEFAULT NULL,
   `date` date DEFAULT NULL,
   `problem` varchar(255) DEFAULT NULL,
+  `payment_mode` enum('Cash','Online') NOT NULL DEFAULT 'Cash',
   `created_by` int(11) NOT NULL,
   `create_date` date DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1'
@@ -393,14 +394,19 @@ CREATE TABLE `appointment` (
 -- Dumping data for table `appointment`
 --
 
-INSERT INTO `appointment` (`id`, `appointment_id`, `patient_id`, `department_id`, `doctor_id`, `schedule_id`, `serial_no`, `date`, `problem`, `created_by`, `create_date`, `status`) VALUES
-(26, 'A90MD3OR', 'PELWQ10H', 18, 3, 6, 1, '2020-09-29', '', 2, '2020-09-29', 1),
-(27, 'A3GUGYWN', 'PELWQ10H', 18, 3, 1, 1, '2020-10-02', '', 3, '2020-09-29', 1),
-(28, 'AVHJ0OYV', 'PELWQ10H', 18, 3, 1, 1, '2020-10-09', '', 5, '2020-09-29', 1),
-(29, 'AEZGQ9MC', 'PELWQ10H', 18, 3, 8, 1, '2020-09-30', 'online', 3, '2020-09-29', 1),
-(30, 'ARE3Z6BP', 'P6LFZXUZ', 18, 3, 6, 1, '2020-09-01', 'offline', 0, '2020-09-29', 1),
-(31, 'AGOKDA0H', 'PY4FETFA', 18, 3, 8, 1, '2020-10-14', 'speech', 0, '2020-10-08', 1),
-(32, 'AZJC7DB8', 'PY4FETFA', 18, 3, 1, 1, '2020-10-16', 'test', 0, '2020-10-08', 1);
+INSERT INTO `appointment` (`id`, `appointment_id`, `patient_id`, `department_id`, `doctor_id`, `schedule_id`, `serial_no`, `date`, `problem`, `payment_mode`, `created_by`, `create_date`, `status`) VALUES
+(40, 'A5M6W7FR', 'PY4FETFA', 18, 3, 1, 1, '2020-10-30', 'test', 'Cash', 0, '2020-10-12', 1),
+(41, 'AYUC6RJ2', 'PY4FETFA', 18, 3, 2, 1, '2020-10-26', 'test test', 'Cash', 0, '2020-10-13', 1),
+(42, 'AJFWLLSF', 'PY4FETFA', 18, 3, 6, 1, '2020-10-13', 'test mode', 'Online', 0, '2020-10-13', 1),
+(43, 'AGTG10QW', 'PELWQ10H', 18, 3, 1, 1, '2020-10-16', 'test', 'Cash', 3, '2020-10-13', 1),
+(44, 'A33OONY0', 'PELWQ10H', 18, 3, 2, 1, '2020-10-19', 'test', 'Online', 3, '2020-10-13', 1),
+(45, 'AXP8EYVD', 'PY4FETFA', 18, 3, 6, 1, '2020-10-20', 'test', 'Cash', 2, '2020-10-13', 1),
+(46, 'AVILHOWI', 'PY4FETFA', 18, 3, 1, 1, '2020-10-23', 'test', 'Online', 2, '2020-10-13', 1),
+(47, 'ATRS7M1K', 'PELWQ10H', 18, 3, 1, 2, '2020-10-30', 'tes', 'Online', 3, '2020-10-13', 1),
+(48, 'AODL1SCW', 'PELWQ10H', 18, 3, 1, 2, '2020-10-23', 'test', 'Cash', 2, '2020-10-13', 1),
+(49, 'AJNPKWDT', 'PELWQ10H', 18, 3, 6, 1, '2020-10-27', 'test', 'Cash', 3, '2020-10-13', 1),
+(50, 'AHZWFSCI', 'PELWQ10H', 18, 3, 8, 1, '2020-10-14', 'test', 'Cash', 3, '2020-10-13', 1),
+(51, 'A0YDHOIT', 'PY4FETFA', 18, 3, 2, 1, '2020-11-02', 'test', 'Online', 0, '2020-10-13', 1);
 
 -- --------------------------------------------------------
 
@@ -424,6 +430,13 @@ CREATE TABLE `bill` (
   `date` datetime DEFAULT NULL,
   `status` tinyint(1) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `bill`
+--
+
+INSERT INTO `bill` (`id`, `bill_id`, `bill_type`, `bill_date`, `admission_id`, `discount`, `tax`, `total`, `payment_method`, `card_cheque_no`, `receipt_no`, `note`, `date`, `status`) VALUES
+(1, 'BLF9NHKUR', 'ipd', '2020-10-10', 'UBWG8XDW', 50, 0, 350, 'Cash', '', 'RE123456', '', '2020-10-10 10:38:16', 1);
 
 -- --------------------------------------------------------
 
@@ -451,6 +464,13 @@ CREATE TABLE `bill_admission` (
   `assign_by` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `bill_admission`
+--
+
+INSERT INTO `bill_admission` (`id`, `admission_id`, `patient_id`, `doctor_id`, `package_id`, `admission_date`, `discharge_date`, `insurance_id`, `policy_no`, `agent_name`, `guardian_name`, `guardian_relation`, `guardian_contact`, `guardian_address`, `status`, `isComplete`, `assign_by`) VALUES
+(1, 'UBWG8XDW', 'PY4FETFA', 3, 1, '2020-10-10', '0000-00-00', 0, '', 'Test', 'Guardian test', 'Guardian test', '1234567890', 'Guardian Address', 1, 0, 2);
+
 -- --------------------------------------------------------
 
 --
@@ -467,6 +487,13 @@ CREATE TABLE `bill_advanced` (
   `receipt_no` varchar(100) DEFAULT NULL,
   `date` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `bill_advanced`
+--
+
+INSERT INTO `bill_advanced` (`id`, `admission_id`, `patient_id`, `amount`, `payment_method`, `cash_card_or_cheque`, `receipt_no`, `date`) VALUES
+(1, 'UBWG8XDW', 'PY4FETFA', 200, 'Cash', 'Cash', 'RE12345', '2020-10-10 10:35:41');
 
 -- --------------------------------------------------------
 
@@ -485,6 +512,13 @@ CREATE TABLE `bill_details` (
   `date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `bill_details`
+--
+
+INSERT INTO `bill_details` (`id`, `bill_id`, `admission_id`, `package_id`, `service_id`, `quantity`, `amount`, `date`) VALUES
+(1, 'BLF9NHKUR', 'UBWG8XDW', 1, 1, 1, 300, '2020-10-10');
+
 -- --------------------------------------------------------
 
 --
@@ -499,6 +533,13 @@ CREATE TABLE `bill_package` (
   `discount` float DEFAULT '0',
   `status` tinyint(1) DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `bill_package`
+--
+
+INSERT INTO `bill_package` (`id`, `name`, `description`, `services`, `discount`, `status`) VALUES
+(1, 'Sliver', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has su', '[{\"id\":\"1\",\"name\":\"Speech Language Therapy\",\"quantity\":\"1\",\"amount\":\"300\"}]', 50, 1);
 
 -- --------------------------------------------------------
 
@@ -515,6 +556,13 @@ CREATE TABLE `bill_service` (
   `status` tinyint(1) DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `bill_service`
+--
+
+INSERT INTO `bill_service` (`id`, `name`, `description`, `quantity`, `amount`, `status`) VALUES
+(1, 'Speech Language Therapy', 'Oral Sensory issues related to speech and feeding skills, improving receptive and expressive communication, speech clarity and the use socially acceptable ways to communicate (Pragmatics).', 1, 300, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -528,6 +576,13 @@ CREATE TABLE `bm_bed` (
   `bed_number` varchar(20) NOT NULL,
   `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `bm_bed`
+--
+
+INSERT INTO `bm_bed` (`id`, `room_id`, `description`, `bed_number`, `status`) VALUES
+(1, 1, 'Bed number 1', '1', 1);
 
 -- --------------------------------------------------------
 
@@ -548,6 +603,13 @@ CREATE TABLE `bm_bed_assign` (
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `update_by` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `bm_bed_assign`
+--
+
+INSERT INTO `bm_bed_assign` (`id`, `serial`, `patient_id`, `room_id`, `bed_id`, `description`, `assign_date`, `discharge_date`, `assign_by`, `status`, `update_by`) VALUES
+(1, 'H8JHNA', 'PY4FETFA', 1, 1, '', '2020-10-10', '0000-00-00', 2, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -584,6 +646,13 @@ CREATE TABLE `bm_room` (
   `charge` float NOT NULL,
   `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `bm_room`
+--
+
+INSERT INTO `bm_room` (`id`, `room_name`, `description`, `limit`, `charge`, `status`) VALUES
+(1, 'Room No 1', 'Room No 1', 1, 300, 1);
 
 -- --------------------------------------------------------
 
@@ -645,22 +714,24 @@ CREATE TABLE `department` (
   `flaticon` varchar(30) NOT NULL,
   `description` text,
   `image` varchar(200) NOT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT '1'
+  `status` tinyint(1) NOT NULL DEFAULT '1',
+  `price` float NOT NULL,
+  `price_code` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `department`
 --
 
-INSERT INTO `department` (`dprt_id`, `main_id`, `name`, `flaticon`, `description`, `image`, `status`) VALUES
-(16, 2, 'Occupational Therapy', 'vitamins', 'Occupational Therapy facilitates people with a physical, sensory, or cognitive disability, be as independent as possible in all areas of their lives. OT can help children with various developmental delays improve their cognitive, physical, sensory, and motor skills.\r\n\r\nOur Occupational Therapist can help children improve \r\n\r\nBody Awareness and proprioceptive sense\r\n\r\nMovement coordination between the two sides of the body\r\n\r\nMotor control and organization, planning and coordination\r\n\r\nGross motor coordination and strengthening skills\r\n\r\nFine motor including handwriting, cutting and colouring\r\n\r\nSelf regulation and activities of daily living', 'assets_web/img/department/40c2613eacfe22e58d61e8f611a1a794.jpeg', 1),
-(18, 2, 'Speech Language Therapy', 'vitamins', 'Oral Sensory issues related to speech and feeding skills, improving receptive and expressive communication, speech clarity and the use socially acceptable ways to communicate (Pragmatics) are a few areas that will be targeted in our speech therapy sessions.\r\n\r\nOur Speech-Language Pathologist can help children\r\n\r\nImprove oral motor skills\r\n\r\nImprove speech clarity\r\n\r\nImprove feeding skills\r\n\r\nImprove comprehension of spoken words\r\n\r\nIncrease mean length of utterances (length of sentences)\r\n\r\nReduce/ eliminate echolalia by replacing meaningless utterances with meaningful words\r\n\r\nUse grammatically appropriate sentences \r\n\r\nProgress in social use of language (Pragmatics)', 'assets_web/img/department/492e8b388705e91f65a7f62e7de1e87c.jpeg', 1),
-(19, 2, 'Handwriting Program', 'vitamins', 'We conduct regular handwriting programs for Speech Therapists, School Teachers, Occupational Therapists, and Parents who can help and aid the children with learning to teach handwriting\r\n\r\nOur Handwriting Specialist can help children\r\n\r\nImprove body awareness and posture for writing\r\n\r\nImprove pencil grip\r\n\r\nWrite upper case, lower case, and numbers with proper spacing and size\r\n\r\nBe able to copy words and sentences from the board\r\n\r\nImprove speed of writing', 'assets_web/img/department/36d51d9d519ba9f6d4ad1ec0a20c1d68.jpg', 1),
-(20, 2, 'Social Skills Training', 'vitamins', 'A persistent problem of children with autistic spectrum disorders is inappropriate social behavior. Often inappropriate behaviors are preceded by inability to communicate ones needs.\r\n\r\nOur Speech Language Pathologist can help children\r\n\r\nApproach others in socially acceptable ways\r\n\r\nAsk for permission rather than acting impulsively\r\n\r\nFacilitate children to make and keep friends\r\n\r\nShare toys/materials\r\n\r\nListen to instructions given to a  group\r\n\r\nAttend to task at hand\r\n\r\nFollow directions in a small group setting\r\n\r\nSeek attention appropriately and more', 'assets_web/img/department/3d085263b48e42ce1f8f46b10482ee24.jpg', 1),
-(21, 3, 'Occupational Therapy', 'vitamins', 'Occupational Therapy facilitates people with a physical, sensory, or cognitive disability, be as independent as possible in all areas of their lives. OT can help children with various developmental delays improve their cognitive, physical, sensory, and motor skills.\r\n\r\nOur Occupational Therapist can help children improve \r\n\r\nBody Awareness and proprioceptive sense\r\n\r\nMovement coordination between the two sides of the body\r\n\r\nMotor control and organization, planning and coordination\r\n\r\nGross motor coordination and strengthening skills\r\n\r\nFine motor including handwriting, cutting and colouring\r\n\r\nSelf regulation and activities of daily living', 'assets_web/img/department/40c2613eacfe22e58d61e8f611a1a794.jpeg', 1),
-(22, 3, 'Speech Language Therapy', 'vitamins', 'Oral Sensory issues related to speech and feeding skills, improving receptive and expressive communication, speech clarity and the use socially acceptable ways to communicate (Pragmatics) are a few areas that will be targeted in our speech therapy sessions.\r\n\r\nOur Speech-Language Pathologist can help children\r\n\r\nImprove oral motor skills\r\n\r\nImprove speech clarity\r\n\r\nImprove feeding skills\r\n\r\nImprove comprehension of spoken words\r\n\r\nIncrease mean length of utterances (length of sentences)\r\n\r\nReduce/ eliminate echolalia by replacing meaningless utterances with meaningful words\r\n\r\nUse grammatically appropriate sentences \r\n\r\nProgress in social use of language (Pragmatics)', 'assets_web/img/department/492e8b388705e91f65a7f62e7de1e87c.jpeg', 1),
-(23, 3, 'Handwriting Program', 'vitamins', 'We conduct regular handwriting programs for Speech Therapists, School Teachers, Occupational Therapists, and Parents who can help and aid the children with learning to teach handwriting\r\n\r\nOur Handwriting Specialist can help children\r\n\r\nImprove body awareness and posture for writing\r\n\r\nImprove pencil grip\r\n\r\nWrite upper case, lower case, and numbers with proper spacing and size\r\n\r\nBe able to copy words and sentences from the board\r\n\r\nImprove speed of writing', 'assets_web/img/department/36d51d9d519ba9f6d4ad1ec0a20c1d68.jpg', 1),
-(24, 3, 'Social Skills Training', 'vitamins', 'A persistent problem of children with autistic spectrum disorders is inappropriate social behavior. Often inappropriate behaviors are preceded by inability to communicate ones needs.\r\n\r\nOur Speech Language Pathologist can help children\r\n\r\nApproach others in socially acceptable ways\r\n\r\nAsk for permission rather than acting impulsively\r\n\r\nFacilitate children to make and keep friends\r\n\r\nShare toys/materials\r\n\r\nListen to instructions given to a  group\r\n\r\nAttend to task at hand\r\n\r\nFollow directions in a small group setting\r\n\r\nSeek attention appropriately and more', 'assets_web/img/department/3d085263b48e42ce1f8f46b10482ee24.jpg', 1);
+INSERT INTO `department` (`dprt_id`, `main_id`, `name`, `flaticon`, `description`, `image`, `status`, `price`, `price_code`) VALUES
+(16, 2, 'Occupational Therapy', 'vitamins', 'Occupational Therapy facilitates people with a physical, sensory, or cognitive disability, be as independent as possible in all areas of their lives. OT can help children with various developmental delays improve their cognitive, physical, sensory, and motor skills.\r\n\r\nOur Occupational Therapist can help children improve \r\n\r\nBody Awareness and proprioceptive sense\r\n\r\nMovement coordination between the two sides of the body\r\n\r\nMotor control and organization, planning and coordination\r\n\r\nGross motor coordination and strengthening skills\r\n\r\nFine motor including handwriting, cutting and colouring\r\n\r\nSelf regulation and activities of daily living', 'assets_web/img/department/40c2613eacfe22e58d61e8f611a1a794.jpeg', 1, 350.55, 'pl_FnAPjRCdMSFBJG'),
+(18, 2, 'Speech Language Therapy', 'vitamins', 'Oral Sensory issues related to speech and feeding skills, improving receptive and expressive communication, speech clarity and the use socially acceptable ways to communicate (Pragmatics) are a few areas that will be targeted in our speech therapy sessions.\r\n\r\nOur Speech-Language Pathologist can help children\r\n\r\nImprove oral motor skills\r\n\r\nImprove speech clarity\r\n\r\nImprove feeding skills\r\n\r\nImprove comprehension of spoken words\r\n\r\nIncrease mean length of utterances (length of sentences)\r\n\r\nReduce/ eliminate echolalia by replacing meaningless utterances with meaningful words\r\n\r\nUse grammatically appropriate sentences \r\n\r\nProgress in social use of language (Pragmatics)', 'assets_web/img/department/492e8b388705e91f65a7f62e7de1e87c.jpeg', 1, 300, 'pl_Fo4L9HkiAPlQ5j'),
+(19, 2, 'Handwriting Program', 'vitamins', 'We conduct regular handwriting programs for Speech Therapists, School Teachers, Occupational Therapists, and Parents who can help and aid the children with learning to teach handwriting\r\n\r\nOur Handwriting Specialist can help children\r\n\r\nImprove body awareness and posture for writing\r\n\r\nImprove pencil grip\r\n\r\nWrite upper case, lower case, and numbers with proper spacing and size\r\n\r\nBe able to copy words and sentences from the board\r\n\r\nImprove speed of writing', 'assets_web/img/department/36d51d9d519ba9f6d4ad1ec0a20c1d68.jpg', 1, 325, 'pl_Fo4TL2qPTwKRmM'),
+(20, 2, 'Social Skills Training', 'vitamins', 'A persistent problem of children with autistic spectrum disorders is inappropriate social behavior. Often inappropriate behaviors are preceded by inability to communicate ones needs.\r\n\r\nOur Speech Language Pathologist can help children\r\n\r\nApproach others in socially acceptable ways\r\n\r\nAsk for permission rather than acting impulsively\r\n\r\nFacilitate children to make and keep friends\r\n\r\nShare toys/materials\r\n\r\nListen to instructions given to a  group\r\n\r\nAttend to task at hand\r\n\r\nFollow directions in a small group setting\r\n\r\nSeek attention appropriately and more', 'assets_web/img/department/3d085263b48e42ce1f8f46b10482ee24.jpg', 1, 310, 'pl_Fo4UcKJV20S1Tf'),
+(21, 3, 'Occupational Therapy', 'vitamins', 'Occupational Therapy facilitates people with a physical, sensory, or cognitive disability, be as independent as possible in all areas of their lives. OT can help children with various developmental delays improve their cognitive, physical, sensory, and motor skills.\r\n\r\nOur Occupational Therapist can help children improve \r\n\r\nBody Awareness and proprioceptive sense\r\n\r\nMovement coordination between the two sides of the body\r\n\r\nMotor control and organization, planning and coordination\r\n\r\nGross motor coordination and strengthening skills\r\n\r\nFine motor including handwriting, cutting and colouring\r\n\r\nSelf regulation and activities of daily living', 'assets_web/img/department/40c2613eacfe22e58d61e8f611a1a794.jpeg', 1, 350.55, 'pl_FnAPjRCdMSFBJG'),
+(22, 3, 'Speech Language Therapy', 'vitamins', 'Oral Sensory issues related to speech and feeding skills, improving receptive and expressive communication, speech clarity and the use socially acceptable ways to communicate (Pragmatics) are a few areas that will be targeted in our speech therapy sessions.\r\n\r\nOur Speech-Language Pathologist can help children\r\n\r\nImprove oral motor skills\r\n\r\nImprove speech clarity\r\n\r\nImprove feeding skills\r\n\r\nImprove comprehension of spoken words\r\n\r\nIncrease mean length of utterances (length of sentences)\r\n\r\nReduce/ eliminate echolalia by replacing meaningless utterances with meaningful words\r\n\r\nUse grammatically appropriate sentences \r\n\r\nProgress in social use of language (Pragmatics)', 'assets_web/img/department/492e8b388705e91f65a7f62e7de1e87c.jpeg', 1, 300, 'pl_Fo4L9HkiAPlQ5j'),
+(23, 3, 'Handwriting Program', 'vitamins', 'We conduct regular handwriting programs for Speech Therapists, School Teachers, Occupational Therapists, and Parents who can help and aid the children with learning to teach handwriting\r\n\r\nOur Handwriting Specialist can help children\r\n\r\nImprove body awareness and posture for writing\r\n\r\nImprove pencil grip\r\n\r\nWrite upper case, lower case, and numbers with proper spacing and size\r\n\r\nBe able to copy words and sentences from the board\r\n\r\nImprove speed of writing', 'assets_web/img/department/36d51d9d519ba9f6d4ad1ec0a20c1d68.jpg', 1, 325, 'pl_Fo4TL2qPTwKRmM'),
+(24, 3, 'Social Skills Training', 'vitamins', 'A persistent problem of children with autistic spectrum disorders is inappropriate social behavior. Often inappropriate behaviors are preceded by inability to communicate ones needs.\r\n\r\nOur Speech Language Pathologist can help children\r\n\r\nApproach others in socially acceptable ways\r\n\r\nAsk for permission rather than acting impulsively\r\n\r\nFacilitate children to make and keep friends\r\n\r\nShare toys/materials\r\n\r\nListen to instructions given to a  group\r\n\r\nAttend to task at hand\r\n\r\nFollow directions in a small group setting\r\n\r\nSeek attention appropriately and more', 'assets_web/img/department/3d085263b48e42ce1f8f46b10482ee24.jpg', 1, 310, 'pl_Fo4UcKJV20S1Tf');
 
 -- --------------------------------------------------------
 
@@ -914,16 +985,16 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (12, 'doctor', 'Pathologist', 'طبيب', 'ডাক্তার', NULL),
 (13, 'representative', 'Representative', 'وكيل', 'প্রতিনিধি', NULL),
 (14, 'dashboard', 'Dashboard', 'لوحة القيادة', 'ড্যাশবোর্ড', NULL),
-(15, 'department', 'Branch', ' قسم، أقسام', 'বিভাগ', NULL),
+(15, 'department', 'Service', ' قسم، أقسام', 'বিভাগ', NULL),
 (16, 'add_department', 'Add Service', 'أضف إلى القسم', 'বিভাগ যোগ করুন', 'Ajouter un département'),
 (17, 'department_list', 'Service List', 'قائمة القسم', 'বিভাগ তালিকা', NULL),
 (18, 'add_doctor', 'Add Pathologist', 'اضافة طبيب', 'ডাক্তার যোগ করুন', 'Ajouter un docteur'),
 (19, 'doctor_list', 'Pathologist List', 'قائمة الطبيب', 'ডাক্তার তালিকা', NULL),
 (20, 'add_representative', 'Add Representative', 'إضافة ممثل', 'প্রতিনিধি যোগ করুন', 'Ajouter un représentant'),
 (21, 'representative_list', 'Representative List', 'قائمة تمثيلية', 'প্রতিনিধি তালিকা', NULL),
-(22, 'patient', 'Customer', 'صبور', 'রোগী', NULL),
-(23, 'add_patient', 'Add Customer', 'يضيف المريض', 'রোগী যোগ করুন', 'Ajouter un patient'),
-(24, 'patient_list', 'Customer List', 'قائمة المريض', 'রোগীর তালিকা', NULL),
+(22, 'patient', 'Parent', 'صبور', 'রোগী', NULL),
+(23, 'add_patient', 'Add Parent', 'يضيف المريض', 'রোগী যোগ করুন', 'Ajouter un patient'),
+(24, 'patient_list', 'Parent List', 'قائمة المريض', 'রোগীর তালিকা', NULL),
 (25, 'schedule', 'Schedule', 'جدول', 'সময়সূচী ', NULL),
 (26, 'add_schedule', 'Add Schedule', 'إضافة جدول', 'সময়সূচী যোগ করুন', 'ajouter un horaire'),
 (27, 'schedule_list', 'Schedule List', 'قائمة الجدول الزمني', 'সময়সূচীর তালিকা', NULL),
@@ -989,18 +1060,18 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (87, 'update_date', 'Update Date', 'تاريخ التحديث', 'আপডেট তারিখ', NULL),
 (88, 'print', 'Print', 'طباعة', 'ছাপা', NULL),
 (89, 'representative_edit', 'Representative Edit', 'تحرير ممثل', 'প্রতিনিধি সম্পাদনা', NULL),
-(90, 'patient_information', 'Customer Information', 'معلومات المريض', 'রোগীর তথ্য', NULL),
+(90, 'patient_information', 'Parent Information', 'معلومات المريض', 'রোগীর তথ্য', NULL),
 (91, 'other', 'Other', 'آخر', 'অন্যান্য', NULL),
-(92, 'patient_id', 'Customer ID', 'رقم المريض', 'রোগী আইডি', NULL),
+(92, 'patient_id', 'Parent ID', 'رقم المريض', 'রোগী আইডি', NULL),
 (93, 'age', 'Age', 'عمر', 'বয়স', 'âge'),
-(94, 'patient_edit', 'Customer Edit', 'تعديل المريض', 'রোগী সম্পাদনা', NULL),
+(94, 'patient_edit', 'Parent Edit', 'تعديل المريض', 'রোগী সম্পাদনা', NULL),
 (95, 'id_no', 'ID No.', 'رقم بطاقة الهوية', 'আইডি নাম্বার', NULL),
 (96, 'select_option', 'Select Option', 'حدد الخيار', 'বিকল্প নির্বাচন', NULL),
 (97, 'doctor_name', 'Pathologist Name', 'اسم الطبيب', 'ডাক্তার নাম', NULL),
 (98, 'day', 'Day', 'يوم', 'দিন', NULL),
 (99, 'start_time', 'Start Time', 'وقت البدء', 'সময় শুরু', NULL),
 (100, 'end_time', 'End Time', 'وقت النهاية', 'শেষ সময়', NULL),
-(101, 'per_patient_time', 'Per Customer Time', 'لكل مريض', 'প্রতি রোগীর সময়', NULL),
+(101, 'per_patient_time', 'Per Parent Time', 'لكل مريض', 'প্রতি রোগীর সময়', NULL),
 (102, 'serial_visibility_type', 'Serial Visibility', 'نوع الرؤية التسلسلية', 'সিরিয়াল দৃশ্যমানতা টাইপ', NULL),
 (103, 'sequential', 'Sequential', 'تسلسلي', 'ক্রমানুসারে', NULL),
 (104, 'timestamp', 'Timestamp', 'الطابع الزمني', 'টাইমস্ট্যাম্প', NULL),
@@ -1011,7 +1082,7 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (109, 'problem', 'Problem', 'مشكلة', 'সমস্যা', NULL),
 (110, 'appointment_date', 'Appointment Date', 'موعد الموعد', 'সাক্ষাৎকারের তারিখ', 'date de rendez-vous'),
 (111, 'you_are_already_registered', 'You are already registered!', 'انت مسجل مسبقا', 'আপনি ইতোমধ্যে নিবন্ধিত', NULL),
-(112, 'invalid_patient_id', 'Invalid customer ID', 'معرف المريض غير صالح', 'অবৈধ রোগী আইডি', NULL),
+(112, 'invalid_patient_id', 'Invalid parent ID', 'معرف المريض غير صالح', 'অবৈধ রোগী আইডি', NULL),
 (113, 'invalid_input', 'Invalid Input', 'مدخل غير صالح', 'ভুল ইনপুট', NULL),
 (114, 'no_doctor_available', 'No Pathologist Available', 'لا يوجد طبيب متاح', 'কোন ডাক্তার পাওয়া যায় না', NULL),
 (115, 'invalid_department', 'Invalid Department!', 'قسم غير صالح', 'অবৈধ বিভাগ', NULL),
@@ -1115,7 +1186,7 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (213, 'appointment_form', 'Appointment Form', 'نموذج التعيين', 'অ্যাপয়েন্টমেন্ট ফর্ম', 'formulaire de rendez-vous'),
 (214, 'contact', 'Contact', 'اتصل', 'যোগাযোগ', NULL),
 (215, 'optional', 'Optional', 'اختياري', 'ঐচ্ছিক', NULL),
-(216, 'customer_comments', 'Customer Comments', 'تعليقات العملاء', 'গ্রাহক মন্তব্য', NULL),
+(216, 'customer_comments', 'Parent Comments', 'تعليقات العملاء', 'গ্রাহক মন্তব্য', NULL),
 (217, 'need_a_doctor_for_checkup', 'Need a Pathologist for Check-up?', 'بحاجة الى طبيب للفحص', 'চেকআপ জন্য একটি ডাক্তার প্রয়োজন', NULL),
 (218, 'just_make_an_appointment_and_you_are_done', 'JUST MAKE AN APPOINTMENT & YOU\'RE DONE ! ', 'مجرد تحديد موعد وانتهيت', 'শুধু একটি অ্যাপয়েন্টমেন্ট করুন এবং আপনার সম্পন্ন হবে ', NULL),
 (219, 'get_an_appointment', 'Get an appointment', 'الحصول على موعد', 'একটি অ্যাপয়েন্টমেন্ট পেতে', NULL),
@@ -1153,7 +1224,7 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (251, 'invoice_edit', 'Invoice Edit', 'تحرير الفاتورة', 'চালান সম্পাদনা', NULL),
 (252, 'update', 'Update', 'تحديث', 'হালনাগাদ', NULL),
 (253, 'all', 'All', 'الكل', 'সব', 'toutes'),
-(254, 'patient_wise', 'Customer Wise', 'مريض حكيم', 'রোগী অনুযায়ী', NULL),
+(254, 'patient_wise', 'Parent Wise', 'مريض حكيم', 'রোগী অনুযায়ী', NULL),
 (255, 'account_wise', 'Account Wise', 'حساب حكيم', 'অ্যাকাউন্ট অনুযায়ী', 'Âge du compte'),
 (256, 'debit_report', 'Debit Report', 'تقرير الخصم', 'ডেবিট রিপোর্ট', NULL),
 (257, 'credit_report', 'Credit Report', 'تقرير الائتمان', 'ক্রেডিট রিপোর্ট', NULL),
@@ -1243,15 +1314,15 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (341, 'upload_successfully', 'Upload Successfully!', 'تحميل بنجاح', 'সফলভাবে আপলোড করা হয়েছে', NULL),
 (342, 'app_setting', 'App Setting', 'إعداد التطبيق', 'অ্যাপ্লিকেশন সেটিং', 'réglage de l\'application'),
 (343, 'case_manager', 'Case Manager', 'مدير الحالة', 'মামলা ব্যাবস্থাপক', ''),
-(344, 'patient_status', 'Customer Status', 'حالة المريض', 'রোগীর অবস্থা', NULL),
-(345, 'patient_status_edit', 'Edit Customer Status', 'تعديل حالة المريض', 'রোগীর অবস্থা সম্পাদনা', NULL),
-(346, 'add_patient_status', 'Add Customer Status', 'إضافة حالة المريض', 'রোগীর অবস্থা যোগ করুন', 'Ajouter le statut du patient'),
+(344, 'patient_status', 'Parent Status', 'حالة المريض', 'রোগীর অবস্থা', NULL),
+(345, 'patient_status_edit', 'Edit Parent Status', 'تعديل حالة المريض', 'রোগীর অবস্থা সম্পাদনা', NULL),
+(346, 'add_patient_status', 'Add Parent Status', 'إضافة حالة المريض', 'রোগীর অবস্থা যোগ করুন', 'Ajouter le statut du patient'),
 (347, 'add_new_status', 'Add New Status', 'إضافة حالة جديدة', 'খবরের  অবস্থা যোগ করুন', 'Ajouter un nouveau statut'),
 (348, 'case_manager_list', 'Case Manager List', 'قائمة مدير الحالة', 'কেস ম্যানেজার তালিকা', ''),
 (349, 'hospital_address', 'Hospital Address', 'عنوان المستشفى', 'হাসপাতাল ঠিকানা', NULL),
 (350, 'ref_doctor_name', 'Ref. Pathologist Name', 'اسم الطبيب المرجعي', 'রেফারেন্স ডাক্তারের নাম', NULL),
 (351, 'hospital_name', 'Hospital Name', 'اسم المستشفى', 'হাসপাতালের  নাম', NULL),
-(352, 'patient_name', 'Customer  Name', 'اسم المريض', 'রোগীর নাম', NULL),
+(352, 'patient_name', 'Parent  Name', 'اسم المريض', 'রোগীর নাম', NULL),
 (353, 'document_list', 'Document List', 'قائمة المستندات', 'নথি তালিকা', NULL),
 (354, 'add_document', 'Add Document', 'إضافة وثيقة', 'নথি যোগ করুন', 'Ajouter un document'),
 (355, 'upload_by', 'Update by', 'تحميل بواسطة', 'হালনাগাদ', NULL),
@@ -1262,8 +1333,8 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (360, 'add_insurance', 'Add Insurance', 'إضافة التأمين', 'বীমা যোগ করুন', 'Ajouter une assurance'),
 (361, 'insurance_list', 'Insurance List', 'قائمة التأمين', 'বীমা তালিকা', NULL),
 (362, 'insurance_name', 'Insurance Name', 'اسم التأمين', 'বীমা নাম', NULL),
-(366, 'add_patient_case_study', 'Add Customer Case Study', 'إضافة دراسة حالة المريض', 'রোগীর ক্ষেত্রে অধ্যয়ন যোগ করুন', 'Ajouter une étude de cas à un patient'),
-(367, 'patient_case_study_list', 'Customer Case Study List', 'قائمة دراسة حالة المريض', 'রোগীর ক্ষেত্রে অধ্যয়ন তালিকা', NULL),
+(366, 'add_patient_case_study', 'Add Parent Case Study', 'إضافة دراسة حالة المريض', 'রোগীর ক্ষেত্রে অধ্যয়ন যোগ করুন', 'Ajouter une étude de cas à un patient'),
+(367, 'patient_case_study_list', 'Parent Case Study List', 'قائمة دراسة حالة المريض', 'রোগীর ক্ষেত্রে অধ্যয়ন তালিকা', NULL),
 (368, 'food_allergies', 'Food Allergies', 'حساسية الطعام', 'খাবারে এ্যালার্জী', NULL),
 (369, 'tendency_bleed', 'Tendency Bleed', 'نزف الميل', 'প্রবণতা রক্তপাত', NULL),
 (370, 'heart_disease', 'Heart Disease', 'مرض القلب', 'হৃদরোগ', NULL),
@@ -1288,7 +1359,7 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (391, 'new', 'New', 'الجديد', 'নতুন', NULL),
 (392, 'case_study', 'Case Study', 'دراسة الحالة', 'কেস স্টাডি', NULL),
 (393, 'chief_complain', 'Chief Complain', 'الشكوى الرئيسية', 'প্রধান অভিযোগ', NULL),
-(394, 'patient_notes', 'Customer Notes', 'ملاحظات المريض', 'রোগীর নোট', NULL),
+(394, 'patient_notes', 'Parent Notes', 'ملاحظات المريض', 'রোগীর নোট', NULL),
 (395, 'visiting_fees', 'Visiting Fees', 'رسوم الزيارة', 'ভিসিটিং ফি', 'frais de visite'),
 (396, 'diagnosis', 'Diagnosis', 'التشخيص', 'রোগ নির্ণয়', NULL),
 (397, 'prescription_id', 'Prescription ID', 'معرف وصفة طبية', 'প্রেসক্রিপশন আইডি', NULL),
@@ -1335,7 +1406,7 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (439, 'limit_approval', 'Limit Approval', 'موافقة الحد', 'অনুমোদন সীমিত', NULL),
 (440, 'insurance_limit_approval', 'Insurance Limit Approval', 'موافقة حد التأمين', 'বীমা সীমা অনুমোদন', NULL),
 (441, 'billing', 'Billing', 'الفواتير', 'বিলিং', ''),
-(442, 'add_admission', 'Add Customer Admission', 'اضف القبول', 'ভর্তি যোগ করুন', 'Ajouter des admissions'),
+(442, 'add_admission', 'Add Parent Admission', 'اضف القبول', 'ভর্তি যোগ করুন', 'Ajouter des admissions'),
 (443, 'add_service', 'Add Service', 'أضف الخدمة', 'সেবা যোগ করুন', 'ajouter un service'),
 (444, 'service_list', 'Service List', 'قائمة الخدمات', 'সেবা তালিকা', NULL),
 (445, 'service_name', 'Service Name', 'اسم الخدمة', 'সেবার নাম', NULL),
@@ -1350,7 +1421,7 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (454, 'guardian_relation', 'Guardian Relation', 'علاقة الولي', 'অভিভাবক সম্পর্ক', NULL),
 (455, 'guardian_contact', 'Guardian Contact', 'الاتصال الوصي', 'অভিভাবক যোগাযোগ', NULL),
 (456, 'guardian_address', 'Guardian Address', 'عنوان الوصي', 'অভিভাবক ঠিকানা', NULL),
-(457, 'admission_list', 'Customer Admission List', 'قائمة القبول', 'ভর্তি তালিকা', 'list'),
+(457, 'admission_list', 'Parent Admission List', 'قائمة القبول', 'ভর্তি তালিকা', 'list'),
 (458, 'admission_id', 'Admission ID', 'معرف القبول', 'ভর্তি আইডি', 'identifiant d\'admission'),
 (459, 'edit_admission', 'Edit Admission', 'تحرير القبول', 'ভর্তি সম্পাদনা করুন', NULL),
 (460, 'add_advance', 'Add Advance Payment', 'إضافة مسبقا', 'আগাম যোগ করুন', 'Ajouter une avance'),
@@ -1406,10 +1477,10 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (514, 'available', 'Available ', 'متاح', 'সহজলভ্য', ''),
 (515, 'sex', 'Sex', 'جنس', 'লিঙ্গ', NULL),
 (516, 'medications_and_visits', 'Medications and Visits', 'الأدوية والزيارات', 'ঔষধ এবং ভিজিট', NULL),
-(517, 'add_medication', 'Add Customer Medication', 'إضافة الدواء', 'ঔষধ যোগ করুন', 'Ajouter un médicament'),
-(518, 'medication_list', 'Customer Medication List', 'قائمة الأدوية', 'ঔষধ তালিকা', NULL),
-(519, 'add_visit', 'Add Customer Visit', 'أضف زيارة', 'পরিদর্শন যোগ করুন', 'ajouter visite'),
-(520, 'visit_list', 'Customer Visit List', 'قائمة الزيارة', 'ভিসিট তালিকা', NULL),
+(517, 'add_medication', 'Add Parent Medication', 'إضافة الدواء', 'ঔষধ যোগ করুন', 'Ajouter un médicament'),
+(518, 'medication_list', 'Parent Medication List', 'قائمة الأدوية', 'ঔষধ তালিকা', NULL),
+(519, 'add_visit', 'Add Parent Visit', 'أضف زيارة', 'পরিদর্শন যোগ করুন', 'ajouter visite'),
+(520, 'visit_list', 'Parent Visit List', 'قائمة الزيارة', 'ভিসিট তালিকা', NULL),
 (521, 'dosage', 'Dosage', 'جرعة', 'ডোজ', NULL),
 (522, 'per_day_intake', 'Per Day Intake', 'في اليوم الواحد', 'প্রতি দিন ভোজন', NULL),
 (523, 'full_stomach', 'Full Stomach', 'معدة ممتلئة', 'ভরা পেটে', NULL),
@@ -1418,7 +1489,7 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (526, 'to_date', 'To Date', 'حتى الآن', 'তারিখ ', NULL),
 (527, 'prescribe_by', 'Prescribe By', 'يصف', 'প্রেসক্রিব ', NULL),
 (528, 'intake_time', 'Intake Time', 'وقت الاستلام', 'ভোজনের সময়', NULL),
-(529, 'medication_edit', 'Customer Medication Edit', 'تحرير الدواء', 'ঔষধ সম্পাদনা', NULL),
+(529, 'medication_edit', 'Parent Medication Edit', 'تحرير الدواء', 'ঔষধ সম্পাদনা', NULL),
 (530, 'visit_date', 'Visit Date', 'تاريخ الزيارة', 'ভিসিট তারিখ', NULL),
 (531, 'visit_time', 'Visit Time', 'وقت الزيارة', 'ভিসিট টাইম ', NULL),
 (532, 'finding', 'Finding', 'العثور على', 'খোঁজা ', NULL),
@@ -1500,8 +1571,8 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (616, 'data_not_available', 'Data not available!', 'البيانات غير متوفرة', 'তথ্য পাওয়া যায় নাই ', NULL),
 (617, 'lets_talk', 'Let\'s Talk!', 'يتيح لك التحدث', 'চল কথা বলি', NULL),
 (618, 'my_schedule_for_this_week', 'My schedule for this week', 'جدول أعمالي لهذا الأسبوع', 'এই সপ্তাহের জন্য আমার সময়সূচী', NULL),
-(619, 'old_patient', 'Old Customer', 'مريض قديم', 'পুরাতন রোগী', NULL),
-(620, 'new_patient', 'New Customer', 'مريض جديد', 'নতুন রোগী', NULL),
+(619, 'old_patient', 'Existing Parent', 'مريض قديم', 'পুরাতন রোগী', NULL),
+(620, 'new_patient', 'New Parent', 'مريض جديد', 'নতুন রোগী', NULL),
 (621, '1', '1', '1', '১', '1'),
 (622, '2', '2', '2', '২ ', '2'),
 (623, 'book_appointment', 'Book Appointment', 'موعد الكتاب', 'অ্যাপয়েন্টমেন্ট বরাদ্দ করুন', ''),
@@ -1511,7 +1582,7 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (627, 'help_us_with_accurate_information_about_the_following_details', 'Help us with accurate information about the following details', 'ساعدنا بمعلومات دقيقة حول التفاصيل التالية', 'নিম্নলিখিত বিবরণ সম্পর্কে সঠিক তথ্য দিয়ে  আমাদের সাহায্য করুন', NULL),
 (628, 'i_consent_to_having_this_website_store_my_submitted_information_so_they_can_respond_to_my_inquiry', 'I consent to having this website store my submitted information so they can respond to my inquiry.', 'أوافق على تخزين موقع الويب هذا المعلومات التي أرسلتها حتى يتمكنوا من الرد على استفساري', 'আমি এই ওয়েবসাইট এ আমার তথ্য জমা থাকার অনুমতি দিচ্ছি যাতে তারা আমার তদন্তের সাড়া দিতে পারেন', NULL),
 (629, 'please_provide_a_valid_id', 'Please provide a valid ID.', 'يرجى تقديم معرف صالح', 'বৈধ আইডি প্রদান করুন', NULL),
-(630, 'if_forgot_patient_id_please_selected_the_checkbox', 'If Forgot Customer ID Please Selected The CheckBox', 'إذا نسيت   معرف المريض يرجى تحديد خانة الاختيار', 'রোগীর আইডি ভুলে গেলে চেকবক্স নির্বাচন করুন', NULL),
+(630, 'if_forgot_patient_id_please_selected_the_checkbox', 'If Forgot Parent ID Please Selected The CheckBox', 'إذا نسيت   معرف المريض يرجى تحديد خانة الاختيار', 'রোগীর আইডি ভুলে গেলে চেকবক্স নির্বাচন করুন', NULL),
 (631, 'fax', 'Fax', 'الفاكس', 'ফ্যাক্স', NULL),
 (632, 'text', 'Text', 'نص', 'পাঠ', NULL),
 (633, 'map_longitude', 'Map Longitude', 'خريطة الطول', 'মানচিত্র দ্রাঘিমাংশ', NULL),
@@ -1526,7 +1597,7 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (642, 'sign_up_with_linkedin', 'Sign up with LinkedIn', 'قم بالتسجيل مع linkedin', 'লিংকডইন দিয়ে সাইন আপ করুন', NULL),
 (643, 'sign_up_with_google', 'Sign up with Google', 'اشترك مع جوجل', 'গুগল দিয়ে সাইন আপ করুন', NULL);
 INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`) VALUES
-(644, 'related_departments', 'Related Departments', 'الإدارات ذات الصلة', 'সম্পর্কিত বিভাগ', NULL),
+(644, 'related_departments', 'Related Servicess', 'الإدارات ذات الصلة', 'সম্পর্কিত বিভাগ', NULL),
 (645, 'sign_in', 'Sign In', 'تسجيل الدخول', 'প্রবেশ কর', NULL),
 (646, 'sign_up', 'Sign Up', 'سجل', 'নিবন্ধন করুন', NULL),
 (647, 'remind', 'Remind', 'تذكير', 'মনে করা ', NULL),
@@ -1556,7 +1627,7 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (671, 'free_bed_list', 'Free bed list', 'قائمة سرير مجاني', 'মুক্ত বিছানা তালিকা', 'Liste de lit gratuit'),
 (672, 'discharged', 'Discharged', 'تفريغها', 'কর্মচ্যুত', 'déchargée'),
 (673, 'welcome_back', 'Welcome back!', '!مرحبا بعودتك', 'ফিরে আসার জন্য স্বাগতম!', 'Nous saluons le retour!'),
-(674, 'today_patient_list', 'Today Customer list', 'اليوم قائمة المرضى', 'আজ রোগীর তালিকা', 'Liste de patients aujourd\'hui'),
+(674, 'today_patient_list', 'Today Parent list', 'اليوم قائمة المرضى', 'আজ রোগীর তালিকা', 'Liste de patients aujourd\'hui'),
 (675, 'chart_of_account', 'Chart Of Account', NULL, NULL, NULL),
 (676, 'debit_voucher', 'Debit Voucher', NULL, NULL, NULL),
 (677, 'credit_voucher', 'Credit Voucher', NULL, NULL, NULL),
@@ -1625,7 +1696,7 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (740, 'admission', 'Admission', NULL, NULL, NULL),
 (741, 'yes', 'Yes', NULL, NULL, NULL),
 (742, 'no', 'No', NULL, NULL, NULL),
-(743, 'patient_visit', 'Customer Visit', NULL, NULL, NULL),
+(743, 'patient_visit', 'Parent Visit', NULL, NULL, NULL),
 (744, 'complete_bill_list', 'Complete Bill List', NULL, NULL, NULL),
 (745, 'trial_balance_with_opening', 'Trail Balance With Opening', NULL, NULL, NULL),
 (746, 'as_on', 'As On', NULL, NULL, NULL),
@@ -1642,7 +1713,7 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (757, 'import_csv_data', 'Import CSV Data', NULL, NULL, NULL),
 (758, 'sample_csv', 'Sample CSV', NULL, NULL, NULL),
 (759, 'edit_prescription', 'Edit Prescription', NULL, NULL, NULL),
-(760, 'add_new_patient', 'Add New Customer', NULL, NULL, NULL),
+(760, 'add_new_patient', 'Add New Parent', NULL, NULL, NULL),
 (761, 'create_setting', 'Create Setting', NULL, NULL, NULL),
 (762, 'common_setting', 'Common Settings', NULL, NULL, NULL),
 (763, 'auto_update', 'Auto Update', NULL, NULL, NULL),
@@ -1666,7 +1737,7 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (781, 'packages_list', 'Package List', 'البريد الإلكتروني', 'ই-মেইল', NULL),
 (782, 'checkout', 'Checkout', 'البريد الإلكتروني', 'ই-মেইল', NULL),
 (783, 'thank_you', 'Thank You!', 'البريد الإلكتروني', 'ই-মেইল', NULL),
-(784, 'order_placed', 'You have successfully purchased package. Please visit the customer dashboard to select the appointment.', 'البريد الإلكتروني', 'ই-মেইল', NULL),
+(784, 'order_placed', 'You have successfully purchased package. Please visit the parent dashboard to select the appointment.', 'البريد الإلكتروني', 'ই-মেইল', NULL),
 (785, 'package_order', 'Package Orders', 'الإدارات', 'বিভাগ', NULL),
 (786, 'packages_order_list', 'Orders', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL),
 (787, 'add_package_order', 'Create Order', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL),
@@ -1676,7 +1747,7 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (791, 'order_id', 'Order Id', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL),
 (792, 'discount_price', 'Discount (INR)', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL),
 (793, 'other_charges', 'Other Charges (INR)', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL),
-(794, 'patient_code', 'Customer Code', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL),
+(794, 'patient_code', 'Parent Code', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL),
 (795, 'package_id', 'Package ID', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL),
 (796, 'offline', 'Offline', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL),
 (797, 'online', 'Online', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL),
@@ -1695,7 +1766,9 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (810, 'invalid_main_department', 'Invalid Main Department', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL),
 (811, 'appointment_type', 'Appointment Type', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL),
 (812, 'payment_type', 'Payment Type', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL),
-(813, 'no_servicess_available', 'no servicess available', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL);
+(813, 'no_servicess_available', 'no servicess available', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL),
+(814, 'department_price', 'Service Price (INR)', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL),
+(815, 'department_price_code', 'Service Price Code', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL);
 
 -- --------------------------------------------------------
 
@@ -1737,7 +1810,7 @@ CREATE TABLE `main_department` (
 --
 
 INSERT INTO `main_department` (`id`, `name`, `description`, `status`) VALUES
-(2, 'Main Branch', '1336, 2nd Cross, Nanjappa Layout, Babusapalya, Banswadi Extn, Bangalore 560043', 1),
+(2, ' Kalyani Nagar Branch', '1336, 2nd Cross, Nanjappa Layout, Babusapalya, Banswadi Extn, Bangalore 560043', 1),
 (3, 'Kothanur Branch', 'Saikrupa, No 31/255, Sangam Enclave, K Narayanapura, Kothanur, Bangalore 560077', 1);
 
 -- --------------------------------------------------------
@@ -1760,7 +1833,7 @@ CREATE TABLE `main_department_lang` (
 --
 
 INSERT INTO `main_department_lang` (`id`, `main_id`, `language`, `name`, `description`, `status`) VALUES
-(9, 2, 'english', 'Main Branch', '1336, 2nd Cross, Nanjappa Layout, Babusapalya, Banswadi Extn, Bangalore 560043', 1),
+(9, 2, 'english', ' Kalyani Nagar Branch', '1336, 2nd Cross, Nanjappa Layout, Babusapalya, Banswadi Extn, Bangalore 560043', 1),
 (17, 3, 'english', 'Kothanur Branch', 'Saikrupa, No 31/255, Sangam Enclave, K Narayanapura, Kothanur, Bangalore 560077', 1);
 
 -- --------------------------------------------------------
@@ -1959,10 +2032,9 @@ CREATE TABLE `package_orders_appointments` (
 --
 
 INSERT INTO `package_orders_appointments` (`package_order_appoinment_id`, `package_order_id`, `package_appointment_id`, `package_appoinment_status`, `created_by`, `updated_by`, `created_date`, `updated_date`) VALUES
-(8, 3, 26, 'Active', 2, 2, '2020-09-29 08:50:18', '2020-09-29 08:50:18'),
-(9, 3, 27, 'Active', 3, 3, '2020-09-29 08:50:44', '2020-09-29 08:50:44'),
-(10, 5, 28, 'Active', 5, 5, '2020-09-29 09:22:15', '2020-09-29 09:22:15'),
-(11, 6, 29, 'Active', 3, 3, '2020-09-29 10:18:52', '2020-09-29 10:18:52');
+(13, 6, 48, 'Active', 2, 2, '2020-10-13 10:38:00', '2020-10-13 10:38:00'),
+(14, 6, 49, 'Active', 3, 3, '2020-10-13 10:45:19', '2020-10-13 10:45:19'),
+(15, 6, 50, 'Active', 3, 3, '2020-10-13 10:58:36', '2020-10-13 10:58:36');
 
 -- --------------------------------------------------------
 
@@ -2157,6 +2229,13 @@ CREATE TABLE `pr_prescription` (
   `reference_to` varchar(50) DEFAULT NULL,
   `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `pr_prescription`
+--
+
+INSERT INTO `pr_prescription` (`id`, `appointment_id`, `patient_id`, `patient_type`, `doctor_id`, `chief_complain`, `insurance_id`, `policy_no`, `weight`, `blood_pressure`, `medicine`, `diagnosis`, `visiting_fees`, `patient_notes`, `reference_by`, `reference_to`, `date`) VALUES
+(1, 'A90MD3OR', 'PELWQ10H', 'New', 2, 'asdasd', 0, '', '98', '90-120', '[{\"name\":\"asas\",\"type\":\"azc\",\"instruction\":\"aas\",\"days\":\"4\"},{\"name\":\"asdas\",\"type\":\"asd\",\"instruction\":\"ads\",\"days\":\"4\"}]', '[{\"name\":\"asdas\",\"instruction\":\"adad\"},{\"name\":\"asdad\",\"instruction\":\"asdasd\"},{\"name\":\"\",\"instruction\":\"\"}]', 50, 'asdads', 'Sunil', NULL, '2020-10-12');
 
 -- --------------------------------------------------------
 
@@ -3292,8 +3371,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `firstname`, `lastname`, `email`, `password`, `user_role`, `department_id`, `picture`, `date_of_birth`, `sex`, `blood_group`, `vacation`, `facebook`, `twitter`, `youtube`, `dribbble`, `behance`, `created_by`, `create_date`, `update_date`, `status`) VALUES
-(2, 'Sunil', 'Nalawade', 'sunilnalawade15@gmail.com', '21232f297a57a5a743894a0e4a801fc3', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
-(3, 'Chitra', 'Thadathil', 'ChitraThadathil@yopmail.coom', 'b3666d14ca079417ba6c2a99f079b2ac', 2, 18, 'assets/images/doctor/1404a5d127eb3ef3a008e5500bf52b0e.jpg', '1970-01-01', 'Female', NULL, '', '', '', '', '', '', 3, '2020-09-17', NULL, 1),
+(2, 'Sunil', 'Nalawade', 'sunilnalawade15@gmail.com', '21232f297a57a5a743894a0e4a801fc3', 1, NULL, 'assets/images/doctor/2eb3514b4a53df74226e744ef901eef3.jpg', '1970-01-01', 'Male', NULL, '', '', '', '', '', '', 2, '2020-10-08', NULL, 1),
+(3, 'Chitra', 'Thadathil', 'ChitraThadathil@yopmail.coom', 'd41d8cd98f00b204e9800998ecf8427e', 2, 18, 'assets/images/doctor/1404a5d127eb3ef3a008e5500bf52b0e.jpg', '1970-01-01', 'Male', 'A+', '', '', '', '', '', '', 2, '2020-10-10', NULL, 1),
 (4, 'Shyama', 'K. M', 'Shyamakm@yopmail.com', 'b3666d14ca079417ba6c2a99f079b2ac', 2, 16, 'assets/images/doctor/4ab7c8309e8d124ed87b7dc9bf13d493.jpg', '2020-09-17', 'Female', 'A+', NULL, NULL, NULL, NULL, NULL, NULL, 2, '2020-09-17', NULL, 1),
 (5, 'Nazeer', 'Shaik', 'nazeer@yopmail.com', 'd3c7bcf4f2343a1bf8de53c3f235cf14', 11, NULL, 'assets/images/human_resources/f9ccbeda1c7cc2e69e24e4a373e86fbb.png', NULL, 'Male', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, '2020-09-17', NULL, 1),
 (6, 'Ligin', 'John', 'liginjohn@yopmail.com', 'd41d8cd98f00b204e9800998ecf8427e', 2, 19, 'assets/images/doctor/fa2f8fbfe6a18efe3b376f6f2ab2d724.png', '1989-10-11', 'Female', 'B+', NULL, NULL, NULL, NULL, NULL, NULL, 2, '2020-10-08', NULL, 1),
@@ -3333,7 +3412,7 @@ CREATE TABLE `user_lang` (
 --
 
 INSERT INTO `user_lang` (`id`, `user_id`, `firstname`, `lastname`, `language`, `designation`, `address`, `phone`, `mobile`, `career_title`, `short_biography`, `specialist`, `degree`) VALUES
-(1, 3, 'Chitra ', 'Thadathil', 'english', 'Director', '1336, 2nd Cross, Nanjappa Layout, Babusapalya, Banswadi Extn, Bangalore 560043', '', '1234567890', 'Director', '', 'Director', ''),
+(1, 3, 'Chitra ', 'Thadathil', 'english', 'Director', '1336, 2nd Cross, Nanjappa Layout, Babusapalya, Banswadi Extn, Bangalore 560043', '', '1234567890', 'Director', '<p>Director</p>', 'Director', '<p>MSc (Speech and Hearing)</p>'),
 (2, 4, 'Shyama', 'K. M', 'english', 'Pathologist', 'DCCD, SaiKrupa, No 31/255, Sangam Enclave, K Narayanapura, Kothanur,  Bangalore - 560077', '1234567890', '1234567890', 'Pathologist', '', 'Pathologist', ''),
 (3, 5, 'Nazeer', 'Shaik', 'english', 'Manager', 'DIMENSIONS CENTRE FOR CHILD DEVELOPMENT 2nd Cross, Nanjappa Garden, Babusapalya, Bangalore - 560043', '', '1234567890', 'Manager', '', 'Manager', ''),
 (4, 6, 'Ligin', 'John', 'english', 'Speech-Language Pathologist', 'DIMENSIONS CENTRE FOR CHILD DEVELOPMENT 2nd Cross, Nanjappa Garden, Babusapalya, Bangalore - 560043', '1234567890', '1234567890', 'Speech-Language Pathologist', '', 'Speech-Language Pathologist', '<p>Speech-Language Pathologist</p>'),
@@ -3417,7 +3496,12 @@ INSERT INTO `user_log` (`id`, `user_id`, `in_time`, `out_time`, `date`, `status`
 (28, 2, '11:05:51', '00:00:00', '2020-10-05', 1),
 (29, 2, '12:42:59', '00:00:00', '2020-10-06', 1),
 (30, 2, '09:27:29', '00:00:00', '2020-10-07', 1),
-(31, 2, '09:32:10', '00:00:00', '2020-10-08', 1);
+(31, 2, '09:32:10', '00:00:00', '2020-10-08', 1),
+(32, 2, '14:14:57', '00:00:00', '2020-10-09', 1),
+(33, 2, '08:34:18', '00:00:00', '2020-10-10', 1),
+(34, 2, '23:16:44', '00:00:00', '2020-10-11', 1),
+(35, 2, '11:33:17', '00:00:00', '2020-10-12', 1),
+(36, 2, '07:16:37', '00:00:00', '2020-10-13', 1);
 
 -- --------------------------------------------------------
 
@@ -3555,7 +3639,7 @@ INSERT INTO `ws_menu` (`id`, `name`, `parent_id`, `position`, `fixed`, `status`)
 (6, 'Contact', 0, 7, 1, 1),
 (7, 'Help', 2, 3, 0, 0),
 (8, 'Condition & Policy', 2, 2, 0, 1),
-(9, 'Customer Login', 0, 8, 1, 1),
+(9, 'Parent Login', 0, 8, 1, 1),
 (12, 'Support', 14, 1, 0, 1),
 (13, 'Patient Role', 2, 1, 0, 1),
 (14, 'Others', 0, 9, 0, 1),
@@ -3612,7 +3696,7 @@ INSERT INTO `ws_menu_lang` (`id`, `menu_id`, `title`, `language`) VALUES
 (30, 8, 'Condition et politique', 'french'),
 (31, 8, 'الشرط والسياسة', 'arabic'),
 (32, 8, 'শর্ত ও নীতি', 'bangla'),
-(33, 9, 'Customer Login', 'english'),
+(33, 9, 'Parent Login', 'english'),
 (34, 9, 'ইউজার লগইন', 'bangla'),
 (35, 9, 'تسجيل دخول المريض', 'arabic'),
 (36, 9, 'Connexion du patient', 'french'),
@@ -4616,55 +4700,55 @@ ALTER TABLE `acn_account_transaction`
 -- AUTO_INCREMENT for table `appointment`
 --
 ALTER TABLE `appointment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `bill`
 --
 ALTER TABLE `bill`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `bill_admission`
 --
 ALTER TABLE `bill_admission`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `bill_advanced`
 --
 ALTER TABLE `bill_advanced`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `bill_details`
 --
 ALTER TABLE `bill_details`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `bill_package`
 --
 ALTER TABLE `bill_package`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `bill_service`
 --
 ALTER TABLE `bill_service`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `bm_bed`
 --
 ALTER TABLE `bm_bed`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `bm_bed_assign`
 --
 ALTER TABLE `bm_bed_assign`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `bm_bed_transfer`
@@ -4676,7 +4760,7 @@ ALTER TABLE `bm_bed_transfer`
 -- AUTO_INCREMENT for table `bm_room`
 --
 ALTER TABLE `bm_room`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `cm_patient`
@@ -4772,7 +4856,7 @@ ALTER TABLE `inc_limit_approval`
 -- AUTO_INCREMENT for table `language`
 --
 ALTER TABLE `language`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=814;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=816;
 
 --
 -- AUTO_INCREMENT for table `mail_setting`
@@ -4832,7 +4916,7 @@ ALTER TABLE `package_orders`
 -- AUTO_INCREMENT for table `package_orders_appointments`
 --
 ALTER TABLE `package_orders_appointments`
-  MODIFY `package_order_appoinment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `package_order_appoinment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `package_prices`
@@ -4880,7 +4964,7 @@ ALTER TABLE `pr_case_study`
 -- AUTO_INCREMENT for table `pr_prescription`
 --
 ALTER TABLE `pr_prescription`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `role_permission`
@@ -4994,7 +5078,7 @@ ALTER TABLE `user_language`
 -- AUTO_INCREMENT for table `user_log`
 --
 ALTER TABLE `user_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `ws_about`
@@ -5048,7 +5132,7 @@ ALTER TABLE `ws_news_language`
 -- AUTO_INCREMENT for table `ws_page_content`
 --
 ALTER TABLE `ws_page_content`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `ws_partner`

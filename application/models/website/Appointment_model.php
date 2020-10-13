@@ -12,7 +12,10 @@ class Appointment_model extends CI_Model {
 
 	public function create($data = [])
 	{	 
-		return $this->db->insert($this->table,$data);
+		$this->db->insert($this->table,$data);
+		$insert_id = $this->db->insert_id();
+
+   return  $insert_id;
 	}
  
 	public function read()
@@ -21,11 +24,17 @@ class Appointment_model extends CI_Model {
 				appointment.*, 
 				user.firstname, 
 				user.lastname,  
-				department.name
+				department.name,
+				main_department.name as branch_name,
+				schedule.schedule_type,
+				schedule.start_time,
+				schedule.end_time
 			")
 			->from($this->table)
 			->join('user','user.user_id = appointment.doctor_id')
 			->join('department','department.dprt_id = appointment.department_id')
+			->join('main_department', 'department.main_id=main_department.id', 'left')
+			->join('schedule','schedule.schedule_id = appointment.schedule_id')
 			->order_by('appointment.id','desc')
 			->get()
 			->result();
@@ -44,7 +53,9 @@ class Appointment_model extends CI_Model {
 				user.picture,  
 				usrLn.degree,  
 				department.name as department,
+				main_department.name as branch_name,
 				schedule.available_days,
+				schedule.schedule_type,
 				schedule.start_time,
 				schedule.end_time,
 				patient.firstname AS pfirstname,
@@ -58,6 +69,7 @@ class Appointment_model extends CI_Model {
 			->join('user','user.user_id = appointment.doctor_id')
 			->join('user_lang as usrLn','usrLn.user_id = appointment.doctor_id')
 			->join('department','department.dprt_id = appointment.department_id')
+			->join('main_department', 'department.main_id=main_department.id', 'left')
 			->join('patient','patient.patient_id = appointment.patient_id')
 			->join('schedule','schedule.schedule_id = appointment.schedule_id')
 			->where('appointment.appointment_id',$appointment_id)

@@ -16,21 +16,29 @@ $(document).ready(function() {
             },
             success : function(data) 
             {
-                if (data.status == true) {
+                if (data.status == true) 
+                {
                     department_list.html(data.message);
                     // available_day.html(data.available_days);
                     output.html('');
-                } else if (data.status == false) {
+                } 
+                else if (data.status == false) 
+                {
                     department_list.html('');
                     output.html(data.message).addClass('text-danger').removeClass('text-success');
-                } else {
+                } 
+                else 
+                {
                     department_list.html('');
                     output.html(data.message).addClass('text-danger').removeClass('text-success');
                 }
             }, 
-            error : function()
+            error : function(xhr, status, error)
             {
-                alert('failed');
+                var err = eval("(" + xhr.responseText + ")");
+                console.log(err);
+                alert(err.Message);
+                //alert('failed');
             }
         });
     }); 
@@ -50,6 +58,9 @@ $(document).ready(function() {
             },
             success : function(data) 
             {
+                console.log(data)
+                $('#price').val(data.price);
+                $('#price_code').val(data.price_code);
                 if (data.status == true) {
                     doctor_list.html(data.message);
                     available_day.html(data.available_days);
@@ -62,18 +73,21 @@ $(document).ready(function() {
                     output.html(data.message).addClass('text-danger').removeClass('text-success');
                 }
             }, 
-            error : function()
+            error : function(xhr, status, error)
             {
-                alert('failed');
+                var err = eval("(" + xhr.responseText + ")");
+                console.log(err);
+                alert(err.Message);
             }
         });
     }); 
     //doctor_id
     $("#doctor_id").change(function(){
         var doctor_id = $('#doctor_id'); 
-        var output = $('#available_days'); 
+        var output = $('#available_days');
+        console.log($('#appointment_type_id').val());
         var schedule_type = $('#appointment_type_id').val();
-        console.log(schedule_type);
+        //console.log(schedule_type);
 
         $.ajax({
             url  : '<?= base_url('website/appointment/schedule_day_by_doctor/') ?>',
@@ -86,6 +100,7 @@ $(document).ready(function() {
             },
             success : function(data) 
             {
+                console.log(data);
                 if (data.status == true) {
                     output.html(data.message).addClass('text-success').removeClass('text-danger');
                 } else if (data.status == false) {
@@ -94,19 +109,23 @@ $(document).ready(function() {
                     output.html(data.message).addClass('text-danger').removeClass('text-success');
                 }
             }, 
-            error : function()
+            error : function(xhr, status, error)
             {
+                console.log(error);
                 alert('failed');
+                // var err = eval("(" + xhr.responseText + ")");
+                // console.log(err);
+                //alert(err.Message);
             }
         });
     });
     //date
     $("#date").change(function(){
-        var date        = $('#date'); 
-        var serial_preview   = $('#serial_preview'); 
-        var doctor_id   = $('#doctor_id'); 
-        var schedule_id = $("#schedule_id"); 
-        var patient_id  = $("#patient_id"); 
+        var date            = $('#date'); 
+        var serial_preview  = $('#serial_preview'); 
+        var doctor_id       = $('#doctor_id'); 
+        var schedule_id     = $("#schedule_id"); 
+        var patient_id      = $("#patient_id"); 
  
         $.ajax({
             url  : '<?= base_url('website/appointment/serial_by_date/') ?>',
@@ -132,7 +151,7 @@ $(document).ready(function() {
                     serial_preview.html(data.message).addClass('text-danger').removeClass('text-success');
                 }
             }, 
-            error : function()
+            error : function(xhr, status, error)
             {
                 alert('failed');
             }

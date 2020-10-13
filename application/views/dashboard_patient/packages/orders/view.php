@@ -183,50 +183,9 @@
       </div>
       <?php echo form_open('dashboard_patient/appointment/appointment/create_appointment','class="form-inner"') ?> 
       <div class="modal-body">
-            <div class="form-group row">
-                <input type="hidden" name="patient_id" id="patient_id" value="<?php echo print_value($order, 'patient_code', true);?>"/>
-                <input type="hidden" name="order_id" id="order_id" value="<?php echo print_value($order, 'order_id', true);?>"/>
-                <label for="department_id" class="col-xs-3 col-form-label"><?php echo display('department_name') ?> <i class="text-danger">*</i></label>
-                <div class="col-xs-9">
-                    <?php echo form_dropdown('department_id',$department_list,'','class="form-control" id="department_id"') ?>
-                    <span class="doctor_error"></span>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="doctor_id" class="col-xs-3 col-form-label"><?php echo display('doctor_name') ?> <i class="text-danger">*</i></label>
-                <div class="col-xs-9">
-                    <?php echo form_dropdown('doctor_id','','','class="form-control" id="doctor_id"') ?>
-                    <div id="available_days"></div>
-                </div>
-            </div> 
-
-            <div class="form-group row">
-                <label for="date" class="col-xs-3 col-form-label"><?php echo display('appointment_date') ?> <i class="text-danger">*</i></label>
-                <div class="col-xs-9"> 
-                    <input name="date" type="text" class="datepicker-avaiable-days form-control" id="date" placeholder="<?php echo display('appointment_date') ?>" >
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="serial_no" class="col-xs-3 col-form-label"><?php echo display('serial_no') ?> <i class="text-danger">*</i></label>
-                <div class="col-xs-9">
-                    <div id="serial_preview">
-                        <div type="button" class="btn btn-success disabled btn-sm"> 01</div>
-                        <div type="button" class="btn btn-success disabled btn-sm"> 02</div>
-                        <div type="button" class="btn btn-success disabled btn-sm"> 03</div>...
-                        <div type="button" class="slbtn btn btn-success disabled btn-sm"> N</div>
-
-                    </div>
-                    <input type="hidden" name="schedule_id" id="schedule_id"/>
-                    <input type="hidden" name="serial_no" id="serial_no"/>
-                </div>
-            </div> 
-
-            <div class="form-group row">
-                <label for="problem" class="col-xs-3 col-form-label"><?php echo display('problem') ?></label>
-                <div class="col-xs-9">
-                    <textarea name="problem" class="form-control" placeholder="<?php echo display('problem') ?>" maxlength="140" rows="7"></textarea>
-                </div>
-            </div>  
+            <input type="hidden" name="patient_id" id="patient_id" value="<?php echo print_value($order, 'patient_code', true);?>"/>
+            <input type="hidden" name="order_id" id="order_id" value="<?php echo print_value($order, 'order_id', true);?>"/>
+            <?php @$this->load->view('appointment/form_row');?>
 
             <div class="form-group row">
                 <label class="col-sm-3"><?php echo display('status') ?></label>
@@ -305,72 +264,7 @@
                 }
             });
         });
-        $("#department_id").change(function(){
-            var output = $('.doctor_error'); 
-            var doctor_list = $('#doctor_id');
-            var available_day = $('#available_day');
-
-            $.ajax({
-                url  : '<?= base_url('dashboard_patient/appointment/appointment/doctor_by_department/') ?>',
-                type : 'post',
-                dataType : 'JSON',
-                data : {
-                    '<?= $this->security->get_csrf_token_name(); ?>' : '<?= $this->security->get_csrf_hash(); ?>',
-                    department_id : $(this).val()
-                },
-                success : function(data) 
-                {
-                    if (data.status == true) {
-                        doctor_list.html(data.message);
-                        available_day.html(data.available_days);
-                        output.html('');
-                    } else if (data.status == false) {
-                        doctor_list.html('');
-                        output.html(data.message).addClass('text-danger').removeClass('text-success');
-                    } else {
-                        doctor_list.html('');
-                        output.html(data.message).addClass('text-danger').removeClass('text-success');
-                    }
-                }, 
-                error : function()
-                {
-                    alert('failed');
-                }
-            });
-        }); 
-
-
-        //doctor_id
-        $("#doctor_id").change(function(){
-            var doctor_id = $('#doctor_id'); 
-            var output = $('#available_days'); 
-
-            $.ajax({
-                url  : '<?= base_url('dashboard_patient/appointment/appointment/schedule_day_by_doctor/') ?>',
-                type : 'post',
-                dataType : 'JSON',
-                data : {
-                    '<?= $this->security->get_csrf_token_name(); ?>' : '<?= $this->security->get_csrf_hash(); ?>',
-                    doctor_id : $(this).val(),
-                    slot_type : "<?php echo isset($slot_type) ? $slot_type: 2 ; ?>"
-                },
-                success : function(data) 
-                {
-                    if (data.status == true) {
-                        output.html(data.message).addClass('text-success').removeClass('text-danger');
-                    } else if (data.status == false) {
-                        output.html(data.message).addClass('text-danger').removeClass('text-success');
-                    } else {
-                        output.html(data.message).addClass('text-danger').removeClass('text-success');
-                    }
-                }, 
-                error : function()
-                {
-                    alert('failed');
-                }
-            });
-        });
-
+        
         //date
         $("#date").change(function(){
             var date        = $('#date'); 
@@ -436,3 +330,4 @@
         });
     });
 </script>
+<?php @$this->load->view('appointment/scripts');?>

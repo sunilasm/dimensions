@@ -13,11 +13,29 @@
     </div>
 </div>
 <div class="form-group row">
-    <label class="col-xs-3 col-form-label"> <?= display('appointment_type')?> *</label>
+    <label for="department_price" class="col-xs-3 col-form-label"> <?= display('department_price')?> *</label>
     <div class="col-xs-9">
-        <?php echo form_dropdown('schedule_type',$appointment_type,$appointment->appointment_type_id,'class="form-control basic-single" id="appointment_type_id"') ?>
+        <input type="text" class="form-control" name="price" id="price" placeholder="<?= display('department_price'); ?>" readonly="true">
+        <input type="hidden" name="price_code" id="price_code" value=""/>
     </div>
 </div>
+<?php if(isset($appointment_type)) : ?>
+<div class="form-group row">
+    <label class="col-sm-3"><?php echo display('appointment_type') ?></label>
+    <div class="col-xs-9">
+        <div class="form-check">
+            <label class="radio-inline">
+            <input type="radio" name="appointment_type_id" id="appointment_type_id" value="1" <?php echo  set_radio('schedule_type', '1', TRUE); ?> ><?php echo 'Inperson' ?>
+            </label>
+            <label class="radio-inline">
+            <input type="radio" name="appointment_type_id" id="appointment_type_id" value="2" <?php echo  set_radio('schedule_type', '2'); ?> ><?php echo "Online" ?>
+            </label>
+        </div>
+    </div>
+</div>
+<?php else: ?>
+    <input type="hidden" name="appointment_type_id" id="appointment_type_id" value="2" />
+<?php endif; ?>
 <div class="form-group row">
     <label for="doctor_id" class="col-xs-3 col-form-label"><?php echo display('doctor_name') ?> <i class="text-danger">*</i></label>
     <div class="col-xs-9">
@@ -57,10 +75,18 @@
 </div>
 <?php if(isset($payment_type_list)) : ?>
 <div class="form-group row">
-    <label class="col-xs-3 col-form-label"> <?= display('payment_type')?> *</label>
+    <label class="col-sm-3"><?php echo display('payment_type') ?></label>
     <div class="col-xs-9">
-        <?php echo form_dropdown('payment_type_id',$payment_type_list,$appointment->payment_type_id,'class="form-control basic-single" id="payment_type_id"') ?>
-        <span class="doctor_error"></span>
+        <div class="form-check">
+            <label class="radio-inline">
+                <input type="radio" name="payment_type_id" id="payment_type_id" value="Cash" <?php echo  set_radio('payment_type_id', 'Cash', TRUE); ?> ><?php echo 'Cash' ?>
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="payment_type_id" id="payment_type_id" value="Online" <?php echo  set_radio('payment_type_id', 'Online'); ?> ><?php echo "Online" ?>
+            </label>
+        </div>
     </div>
 </div>
+<?php else: ?>
+    <input type="hidden" name="payment_type_id" id="payment_type_id" value="Cash"/>
 <?php endif; ?>
