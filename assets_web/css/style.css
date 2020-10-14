@@ -3219,7 +3219,7 @@ dd {
 @media(min-width: 768px){
     .dl-horizontal dt {
         float: left;
-        width: 100px;
+        width: 150px;
         overflow: hidden;
         clear: left;
         color: #353d57;
@@ -3861,4 +3861,23 @@ a.appointment-link i {
     .col-block{
         margin-bottom: 30px;
     }
+}
+
+/**********************/
+.floatR
+{
+    float: right;
+}
+.pT10
+{
+    padding-top:10px;
+    padding-bottom:10px;
+}
+.floatC
+{
+    float:center;
+}
+.text-c
+{
+    text-align: center;
 }

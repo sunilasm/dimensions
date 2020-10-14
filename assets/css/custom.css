@@ -6731,4 +6731,12 @@ content: "\f196";
     -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
     transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 }
-
+.floatR
+{
+    float: right;
+}
+.pT10
+{
+    padding-top:10px;
+    padding-bottom:10px;
+}

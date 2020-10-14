@@ -4,8 +4,12 @@
         <div  class="panel panel-info"> 
             <div class="panel-heading">
                 <div class="row">
+                    <div class="col-md-12 pT10">
+                        <?php @$this->load->view('appointment/top_buttons');?>
+                    </div>
+                </div>
+                <div class="row">
                     <?php @$this->load->view('appointment/doctor_details');?>
-                   
                 </div>
             </div>
 

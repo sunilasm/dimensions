@@ -186,7 +186,24 @@
                                     </div>
                                 </div>
                             <?php }?>
- 
+                            <div class="form-group row">
+                                <label for="meeting_url" class="col-xs-3 col-form-label"><?php echo display('meeting_url') ?></label>
+                                <div class="col-xs-9">
+                                    <input type="text" name="meeting_url" class="form-control" placeholder="<?php echo display('meeting_url') ?>" id="meeting_url" value="<?php echo $doctor->meeting_url ?>" >
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="meeting_user_id" class="col-xs-3 col-form-label"><?php echo display('meeting_user_id') ?></label>
+                                <div class="col-xs-9">
+                                    <input type="text" name="meeting_user_id" class="form-control" placeholder="<?php echo display('meeting_user_id') ?>" id="meeting_user_id" value="<?php echo $doctor->meeting_user_id ?>" >
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="meeting_password" class="col-xs-3 col-form-label"><?php echo display('meeting_password') ?></label>
+                                <div class="col-xs-9">
+                                    <input type="password" name="meeting_password" class="form-control" placeholder="<?php echo display('meeting_password') ?>" id="meeting_password" value="<?php echo $doctor->meeting_password ?>" >
+                                </div>
+                            </div>
                             <div class="form-group row">
                                 <label class="col-sm-3"><?php echo display('status') ?></label>
                                 <div class="col-xs-9">

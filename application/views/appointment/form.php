@@ -39,7 +39,7 @@
 </div>
 <div class="form-group">
     <label><?= display('appointment_date')?> *</label>
-    <input type="text" class="form-control datepicker" name="date" id="date" placeholder="<?= display('appointment_date')?>" autocomplete="off">
+    <input type="text" class="form-control datepicker1" name="date" id="date" placeholder="<?= display('appointment_date')?>" autocomplete="off">
 </div>
     <div class="form-group">
     <label><?php echo display('serial_no') ?> <i class="text-danger">*</i></label>

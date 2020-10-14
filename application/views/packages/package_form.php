@@ -72,6 +72,12 @@
                                     <input name="package_sort_order"  type="text" class="form-control" id="package_sort_order" placeholder="<?php echo display('package_sort_order') ?>" value="<?php echo $package->package_sort_order ?>">
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <label for="payment_code" class="col-xs-3 col-form-label"><?php echo display('payment_code') ?> <i class="text-danger">*</i></label>
+                                <div class="col-xs-9">
+                                    <input name="payment_code"  type="text" class="form-control" id="payment_code" placeholder="<?php echo display('payment_code') ?>" value="<?php echo $package->payment_code ?>">
+                                </div>
+                            </div>
                             <!--Radio-->
                             <div class="form-group row">
                                 <label class="col-sm-3"><?php echo display('package_status') ?></label>

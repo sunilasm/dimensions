@@ -35,6 +35,7 @@
                         <input type="hidden" id="package_price" name="package_price" value="<?php echo isset($cart['items']->package_special_price) ? $cart['items']->package_special_price  : ''; ?>">
                         <input type="hidden" id="package_slots" name="package_slots" value="<?php echo isset($cart['items']->package_slots) ? $cart['items']->package_slots : ''; ?>">
                         <input type="hidden" id="discount_price" name="discount_price" value="0">
+                        <input type="hidden" id="payment_code" name="payment_code" value="<?php echo isset($cart['items']->payment_code) ? $cart['items']->payment_code : ''; ?>">
                         <?php 
                             $other = 0;
                             $other = (float) ($cart['total']['total'] - $cart['total']['subtotal']);

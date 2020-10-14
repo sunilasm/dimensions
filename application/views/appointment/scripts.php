@@ -157,5 +157,15 @@ $(document).ready(function() {
             }
         });
     });
+    $(".datepicker1").datepicker({
+        dateFormat: "yy-mm-dd",
+        changeMonth: true,
+        changeYear: true,
+        showButtonPanel: false,
+        //minDate: 0,
+        todayHighlight: true,
+        //startDate: today 
+        //beforeShowDay: DisableDays 
+     });
 });
 </script>

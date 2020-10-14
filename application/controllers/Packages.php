@@ -58,6 +58,7 @@ class Packages extends CI_Controller {
 			'package_description' 		=> $this->input->post('package_description', true),
 			'package_status'      		=> $this->input->post('package_status',true),
 			'package_sort_order'      	=> $this->input->post('package_sort_order',true),
+			'payment_code'      	=> $this->input->post('payment_code',true),
 			'created_by'      		=> $this->session->userdata('user_id'),
 			'updated_by'      		=> $this->session->userdata('user_id'),
 			'created_date'      		=> date('Y-m-d h:i:s'),
@@ -69,15 +70,6 @@ class Packages extends CI_Controller {
 			if (empty($postData['package_id'])) {
 				if ($this->package_model->create($postData)) {
 					$ID = $this->db->insert_id();
-					// $langData = [
-					// 	'main_id' 	  => $ID,
-					// 	'language' 	  => $this->session->userdata('tableLang'),
-					// 	'name' 		  => $this->input->post('name',true),
-					// 	'description' => $this->input->post('description',true),
-					// 	'status'      => $this->input->post('status',true)
-					// ]; 
-					// $this->package_model->create_lang($langData);
-					#set success message
 					$this->session->set_flashdata('message', display('save_successfully'));
 				} else {
 					#set exception message

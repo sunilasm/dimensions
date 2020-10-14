@@ -395,14 +395,7 @@ $(document).ready(function() {
         $(this).removeClass('btn-primary').addClass('btn-danger').not(".disabled");
     });
 
-    $( ".datepicker-avaiable-days" ).datepicker({
-        dateFormat: "yy-mm-dd",
-        changeMonth: true,
-        changeYear: true,
-        showButtonPanel: false,
-        minDate: 0,  
-        // beforeShowDay: DisableDays 
-     });
+    
 
     // for search input field show hide
     if(document.getElementById('customCheck2').checked) {

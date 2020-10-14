@@ -73,6 +73,9 @@ class Doctor extends CI_Controller {
         	'date_of_birth' => date('Y-m-d', strtotime(($this->input->post('date_of_birth',true) != null)? $this->input->post('date_of_birth',true): date('Y-m-d'))),
 			'sex' 		   => $this->input->post('sex',true),
 			'blood_group'  => $this->input->post('blood_group',true),
+			'meeting_url'  => $this->input->post('meeting_url',true),
+			'meeting_user_id'  => $this->input->post('meeting_user_id',true),
+			'meeting_password'  => $this->input->post('meeting_password',true),
 			'created_by'   => $this->session->userdata('user_id'),
 			'create_date'  => date('Y-m-d'),
 			'status'       => $this->input->post('status',true),
@@ -297,7 +300,7 @@ class Doctor extends CI_Controller {
 			$data['title'] = display('edit_doctor');  
 		#-------------------------------#
 		$data['department_list'] = $this->department_model->department_list(); 
-		$data['doctor'] = $this->doctor_model->read_by_id($user_id);
+		$data['doctor'] = $this->doctor_model->read_by_id($user_id); 
 		$data['languages'] = $this->doctor_model->read_language($user_id);
 		#-------------------------------#
 		if (($data['doctor']->user_id != $this->session->userdata('user_id'))

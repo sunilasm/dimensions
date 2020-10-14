@@ -137,8 +137,8 @@ class Process extends CI_Controller {
 	private function get_cart_other()
 	{
 		$response = array();
-		$response[0]['title'] = 'GST';
-		$response[0]['value'] = 5.00;
+		// $response[0]['title'] = 'GST';
+		// $response[0]['value'] = 5.00;
 
 		return $response;
 	 }
@@ -197,19 +197,27 @@ class Process extends CI_Controller {
 			#if empty $order_id then insert data
 			if (empty($postData['order_id'])) 
 			{
-				if ($this->order_model->create($postData)) 
+				$payment_code = $this->input->post('payment_code',true);
+				if($payment_code)
 				{
-					$ID = $this->db->insert_id();
-					$this->session->set_flashdata('message', display('order_placed'));
 					$this->session->unset_userdata('cart');
-					redirect('cart/process/thank_you');
-				} 
-				else 
-				{
-					#set exception message
-					$this->session->set_flashdata('exception',display('please_try_again'));
-					redirect('cart/process/checkout');
+					$this->session->set_userdata('order', $postData);
+					$pauyment_url ="https://razorpay.com/payment-button/".trim($payment_code)."/view/?utm_source=payment_button&utm_medium=button&utm_campaign=payment_button";
+					redirect($pauyment_url); exit;
 				}
+				// if ($this->order_model->create($postData)) 
+				// {
+				// 	$ID = $this->db->insert_id();
+				// 	$this->session->set_flashdata('message', display('order_placed'));
+				// 	$this->session->unset_userdata('cart');
+				// 	redirect('cart/process/thank_you');
+				// } 
+				// else 
+				// {
+				// 	#set exception message
+				// 	$this->session->set_flashdata('exception',display('please_try_again'));
+				// 	redirect('cart/process/checkout');
+				// }
 			}
 		}
 		
@@ -248,6 +256,21 @@ class Process extends CI_Controller {
 		$data['basics'] = $this->home_model->basic_setting();  
 		$data['section'] = $this->home_model->section('checkout');
 		$data['banner'] = $this->db->select("image")->from('ws_banner')->where('status', 1)->limit(3)->order_by('id', 'DESC')->get()->result();
+		
+		$orderData = $this->session->userdata('order');
+		if(isset($orderData) && count($orderData))
+		{
+			if($this->order_model->create($orderData))
+			{
+				$data['message']  = display('order_placed');
+				$this->session->unset_userdata('order');
+			}
+			else
+			{
+				$data['exception']  = display('please_try_again');
+			}
+			
+		}
 		$data['languageList'] = $this->home_model->languageList();
 		$data['parent_menu'] = $this->menu_model->get_parent_menu();
 		$data['content'] = $this->load->view('website/cart/thank_you',$data,true);

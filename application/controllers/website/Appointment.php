@@ -409,7 +409,9 @@ class Appointment extends CI_Controller {
         $data['parent_menu'] = $this->menu_model->get_parent_menu();
         $data['deptsFooter'] = $this->department_model->read_footer();
         $data['appointment'] = $this->appointment_model->read_by_id($appointment_id);
-        //echo "<pre>".print_r($data, true); exit;
+        $data['back_url'] = '';
+       
+        //echo "<pre>".print_r($data['appointment'], true); exit;
         if(empty($data['appointment'])) show_404();
         $data['setting'] = $this->home_model->setting(); 
         #-------------------------------#   
