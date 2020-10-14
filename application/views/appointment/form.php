@@ -1,3 +1,18 @@
+<?php if(isset($appointment_type)) : ?>
+<div class="form-group">
+    <label><?php echo display('appointment_type') ?></label>
+    <div class="form-check">
+        <label class="radio-inline">
+        <input type="radio" name="appointment_type_id" class="appointment_type_id" value="1" <?php echo  set_radio('appointment_type_id', '1', TRUE); ?> ><?php echo ' Inperson' ?>
+        </label>
+        <label class="radio-inline">
+        <input type="radio" name="appointment_type_id"  class="appointment_type_id" value="2" <?php echo  set_radio('appointment_type_id', '2'); ?> ><?php echo " Online" ?>
+        </label>
+    </div>
+</div>
+<?php else: ?>
+    <input type="hidden" name="appointment_type_id" id="appointment_type_id" value="2" />
+<?php endif; ?>
 <div class="form-group">
     <label> <?= display('branch_name')?> *</label>
         <?php echo form_dropdown('id',$main_department_list,$appointment->id,'class="form-control basic-single" id="id"') ?>
@@ -13,25 +28,6 @@
     <input type="text" class="form-control" name="price" id="price" placeholder="<?= display('department_price'); ?>" readonly="true">
     <input type="hidden" name="price_code" id="price_code" value=""/>
 </div>
-<?php if(isset($appointment_type)) : ?>
-<div class="form-group">
-    <label><?php echo display('appointment_type') ?></label>
-    <div class="form-check">
-        <label class="radio-inline">
-        <input type="radio" name="appointment_type_id" id="appointment_type_id" value="1" <?php echo  set_radio('schedule_type', '1', TRUE); ?> ><?php echo 'Inperson' ?>
-        </label>
-        <label class="radio-inline">
-        <input type="radio" name="appointment_type_id"  id="appointment_type_id" value="2" <?php echo  set_radio('schedule_type', '2'); ?> ><?php echo "Online" ?>
-        </label>
-    </div>
-</div>
-<?php else: ?>
-    <input type="hidden" name="appointment_type_id" id="appointment_type_id" value="2" />
-<?php endif; ?>
-<!-- <div class="form-group">
-    <label> <?= display('appointment_type')?> *</label>
-        <?php echo form_dropdown('schedule_type',$appointment_type,$appointment->appointment_type_id,'class="form-control basic-single" id="appointment_type_id"') ?>
-</div> -->
 <div class="form-group">
     <label> <?= display('doctor_name')?>*</label>
     <?php echo form_dropdown('doctor_id','','','class="form-control basic-single" id="doctor_id"') ?>

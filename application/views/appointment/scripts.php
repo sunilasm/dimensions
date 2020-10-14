@@ -86,8 +86,8 @@ $(document).ready(function() {
         var doctor_id = $('#doctor_id'); 
         var output = $('#available_days');
         console.log($('#appointment_type_id').val());
-        var schedule_type = $('#appointment_type_id').val();
-        //console.log(schedule_type);
+        var schedule_type = $('input[name="appointment_type_id"]:checked').val();;
+        console.log(schedule_type);
 
         $.ajax({
             url  : '<?= base_url('website/appointment/schedule_day_by_doctor/') ?>',
@@ -100,7 +100,7 @@ $(document).ready(function() {
             },
             success : function(data) 
             {
-                console.log(data);
+                //console.log(data);
                 if (data.status == true) {
                     output.html(data.message).addClass('text-success').removeClass('text-danger');
                 } else if (data.status == false) {
@@ -118,6 +118,18 @@ $(document).ready(function() {
                 //alert(err.Message);
             }
         });
+    });
+    
+    $(".appointment_type_id").change(function(){
+        //console.log( "ID:" + $(".appointment_type_id").val());
+        console.log(this.value);
+        // if (this.value == '2') {
+            
+        //     alert("Allot Thai Gayo Bhai");
+        // }
+        // else if (this.value == '1') {
+        //     alert("Transfer Thai Gayo");
+        // }
     });
     //date
     $("#date").change(function(){
@@ -162,7 +174,7 @@ $(document).ready(function() {
         changeMonth: true,
         changeYear: true,
         showButtonPanel: false,
-        //minDate: 0,
+        minDate: 0,
         todayHighlight: true,
         //startDate: today 
         //beforeShowDay: DisableDays 

@@ -1,3 +1,20 @@
+<?php if(isset($appointment_type)) : ?>
+<div class="form-group row">
+    <label class="col-sm-3"><?php echo display('appointment_type') ?></label>
+    <div class="col-xs-9">
+        <div class="form-check">
+            <label class="radio-inline">
+            <input type="radio" name="appointment_type_id" class="appointment_type_id" value="1" <?php echo  set_radio('schedule_type', '1', TRUE); ?> ><?php echo ' Inperson' ?>
+            </label>
+            <label class="radio-inline">
+            <input type="radio" name="appointment_type_id" class="appointment_type_id" value="2" <?php echo  set_radio('schedule_type', '2'); ?> ><?php echo " Online" ?>
+            </label>
+        </div>
+    </div>
+</div>
+<?php else: ?>
+    <input type="hidden" name="appointment_type_id" id="appointment_type_id" value="2" />
+<?php endif; ?>
 <div class="form-group row">
     <label class="col-xs-3 col-form-label"> <?= display('branch_name')?> *</label>
     <div class="col-xs-9">
@@ -19,23 +36,7 @@
         <input type="hidden" name="price_code" id="price_code" value=""/>
     </div>
 </div>
-<?php if(isset($appointment_type)) : ?>
-<div class="form-group row">
-    <label class="col-sm-3"><?php echo display('appointment_type') ?></label>
-    <div class="col-xs-9">
-        <div class="form-check">
-            <label class="radio-inline">
-            <input type="radio" name="appointment_type_id" id="appointment_type_id" value="1" <?php echo  set_radio('schedule_type', '1', TRUE); ?> ><?php echo 'Inperson' ?>
-            </label>
-            <label class="radio-inline">
-            <input type="radio" name="appointment_type_id" id="appointment_type_id" value="2" <?php echo  set_radio('schedule_type', '2'); ?> ><?php echo "Online" ?>
-            </label>
-        </div>
-    </div>
-</div>
-<?php else: ?>
-    <input type="hidden" name="appointment_type_id" id="appointment_type_id" value="2" />
-<?php endif; ?>
+
 <div class="form-group row">
     <label for="doctor_id" class="col-xs-3 col-form-label"><?php echo display('doctor_name') ?> <i class="text-danger">*</i></label>
     <div class="col-xs-9">
