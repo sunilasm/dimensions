@@ -58,7 +58,7 @@ $(document).ready(function() {
             },
             success : function(data) 
             {
-                console.log(data)
+                //console.log(data)
                 $('#price').val(data.price);
                 $('#price_code').val(data.price_code);
                 if (data.status == true) {
@@ -85,9 +85,9 @@ $(document).ready(function() {
     $("#doctor_id").change(function(){
         var doctor_id = $('#doctor_id'); 
         var output = $('#available_days');
-        console.log($('#appointment_type_id').val());
+        //console.log($('#appointment_type_id').val());
         var schedule_type = $('input[name="appointment_type_id"]:checked').val();;
-        console.log(schedule_type);
+        console.log("Schedule type:"+schedule_type);
 
         $.ajax({
             url  : '<?= base_url('website/appointment/schedule_day_by_doctor/') ?>',
@@ -122,7 +122,7 @@ $(document).ready(function() {
     
     $(".appointment_type_id").change(function(){
         //console.log( "ID:" + $(".appointment_type_id").val());
-        console.log(this.value);
+        console.log("appointment_type:"+this.value);
         // if (this.value == '2') {
             
         //     alert("Allot Thai Gayo Bhai");
@@ -169,14 +169,16 @@ $(document).ready(function() {
             }
         });
     });
+    var nowDate = new Date();
+    var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
     $(".datepicker1").datepicker({
+        minDate: 0,
         dateFormat: "yy-mm-dd",
         changeMonth: true,
         changeYear: true,
-        showButtonPanel: false,
-        minDate: 0,
+        showButtonPanel: false,        
         todayHighlight: true,
-        //startDate: today 
+        startDate: today, 
         //beforeShowDay: DisableDays 
      });
 });
