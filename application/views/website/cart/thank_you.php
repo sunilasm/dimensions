@@ -2,9 +2,9 @@
     <div class="container">
         <!--Grid row-->
         <div class="row">
-            <div class="col-md-12" style="margin-bottom:10px; margin-top:20px;">
+            <div class="col-md-12" style="margin-bottom:10px; margin-top:20px; min-height:300px;">
                 <h4 class="mb-3"><?php echo display('thank_you'); ?></h4>
-                <?php if ($message) { ?>
+                <?php if (isset($message) && $message != '') { ?>
 
                 <div class="alert alert-success">
                 <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
@@ -26,7 +26,7 @@
                 </div>
 
                 <?php } ?>
-                <?php if ($exception) { ?>
+                <?php if (isset($exception) && $exception != '') { ?>
 
                 <div class="alert alert-danger">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>

@@ -74,6 +74,6 @@ class Payment extends CI_Controller {
         #-------------------------------#   
 
         $data['content'] = $this->load->view('website/payment/thanks',$data, true);
-        $this->load->view('website/index', $data);
+        $this->load->view('website/index_plain', $data);
     }
 }

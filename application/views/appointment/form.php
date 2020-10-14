@@ -11,7 +11,7 @@
     </div>
 </div>
 <?php else: ?>
-    <input type="hidden" name="appointment_type_id" id="appointment_type_id" value="2" />
+    <input type="hidden" name="appointment_type_id" id="appointment_type_id" class="appointment_type_id" value="2" />
 <?php endif; ?>
 <div class="form-group">
     <label> <?= display('branch_name')?> *</label>
@@ -23,11 +23,16 @@
         <?php echo form_dropdown('department_id',$department_list,$appointment->department_id,'class="form-control basic-single" id="department_id"') ?>
     <span class="doctor_error"></span>
 </div>
+<?php if(isset($appointment_type)) : ?>
 <div class="form-group">
     <label> <?= display('department_price')?> *</label>
     <input type="text" class="form-control" name="price" id="price" placeholder="<?= display('department_price'); ?>" readonly="true">
     <input type="hidden" name="price_code" id="price_code" value=""/>
 </div>
+<?php else: ?>
+    <input type="hidden" name="price" id="price" class="price" value="" />
+    <input type="hidden" name="price_code" id="price_code" class="price_code" value="" />
+<?php endif; ?>
 <div class="form-group">
     <label> <?= display('doctor_name')?>*</label>
     <?php echo form_dropdown('doctor_id','','','class="form-control basic-single" id="doctor_id"') ?>

@@ -86,7 +86,11 @@ $(document).ready(function() {
         var doctor_id = $('#doctor_id'); 
         var output = $('#available_days');
         //console.log($('#appointment_type_id').val());
-        var schedule_type = $('input[name="appointment_type_id"]:checked').val();;
+        <?php if(isset($appointment_type)) : ?>
+        var schedule_type = $('input[name="appointment_type_id"]:checked').val();
+        <?php else: ?>
+        var schedule_type = $('#appointment_type_id').val();
+        <?php endif; ?>
         console.log("Schedule type:"+schedule_type);
 
         $.ajax({

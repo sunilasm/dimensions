@@ -59,9 +59,9 @@ class Process extends CI_Controller {
 		if(isset($cart['items']))
 		{
 			$subtotal = $this->get_cart_subtotal($cart['items']);
-			$other = (sizeof($cart['items'])) ? $this->get_cart_other() : array();
+			$other = (count($cart['items'])) ? $this->get_cart_other() : array();
 			$cart['total'] = array(
-				'items' => sizeof($cart['items']),
+				'items' => count($cart['items']),
 				'subtotal' => $subtotal,
 				'other' => $other,
 				'total' => $this->get_cart_total($other, $subtotal),
@@ -200,7 +200,6 @@ class Process extends CI_Controller {
 				$payment_code = $this->input->post('payment_code',true);
 				if($payment_code)
 				{
-					$this->session->unset_userdata('cart');
 					$this->session->set_userdata('order', $postData);
 					$pauyment_url ="https://razorpay.com/payment-button/".trim($payment_code)."/view/?utm_source=payment_button&utm_medium=button&utm_campaign=payment_button";
 					redirect($pauyment_url); exit;
@@ -271,6 +270,7 @@ class Process extends CI_Controller {
 			}
 			
 		}
+		$this->session->unset_userdata('cart');
 		$data['languageList'] = $this->home_model->languageList();
 		$data['parent_menu'] = $this->menu_model->get_parent_menu();
 		$data['content'] = $this->load->view('website/cart/thank_you',$data,true);
