@@ -4,12 +4,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  |----Packages for BackEnd-------|
 */
 class Leaves extends CI_Controller {
+
 	public function __construct()
 	{
 		parent::__construct();
 		
 		$this->load->model(array(
-			//'leave_model',
+			'leave_model',
+			'department_model'			
 			//'setting_model'
 		));
 		
@@ -23,6 +25,7 @@ class Leaves extends CI_Controller {
 		$data['module'] = display("leaves");
 		$data['title'] = display('leave_list');
 		#-------------------------------#
+		$data['leaves'] = $this->leave_model->read();
 		$data['content'] = $this->load->view('leaves/index',$data,true);
 		$this->load->view('layout/main_wrapper',$data);
 		//echo "<pre>".print_r($data, true); exit;
@@ -43,14 +46,55 @@ class Leaves extends CI_Controller {
 		redirect('login'); 
 		$data['module'] = display("leaves");
 		$data['title'] = display('add_leave');
+
+		$current_logged_user=$this->session->userid;
 		#-------------------------------#
 		
+		$this->form_validation->set_rules('leave_type', display('leave_type'),'required|max_length[8]');
+		//$this->form_validation->set_rules('from_date', display('from_date'),'required|max_length[10]');
+		//$this->form_validation->set_rules('to_date', display('to_date'),'required|max_length[10]');
+		$this->form_validation->set_rules('leave_description', display('leave_description'),'trim');
+		
 		#-------------------------------#
+		$data['leave'] = (object)$postData = [
+			'leave_id' 	 => $this->input->post('leave_id',true),
+			/*'emp_id' 	      => $this->input->post('emp_id',true),
+			'department_names' 	      => $this->input->post('department_names',true),
+			'first_name' 	      => $this->input->post('first_name',true),
+			'last_name' 	      => $this->input->post('last_name',true),
+			'email' 	      => $this->input->post('email',true),*/
+			'leave_type' => $this->input->post('leave_type',true),		 	
+			'from_date' => date('Y-m-d', strtotime(($this->input->post('from_date') != null)? $this->input->post('from_date'): date('Y-m-d'))),
+			'to_date' => date('Y-m-d', strtotime(($this->input->post('to_date') != null)? $this->input->post('to_date'): date('Y-m-d'))),
+			'leave_description' => $this->input->post('leave_description', true),
+		]; 
 		
         if ($this->form_validation->run() === true) 
         {
+			if (empty($postData['leave_id'])) {
+				
+				if ($this->leave_model->create($postData)) {
+					#set success message
+					$this->session->set_flashdata('message',display('save_successfully'));
+				} else {
+					#set exception message
+					$this->session->set_flashdata('exception',display('please_try_again'));
+				}
+				redirect('leaves/index');
+			} else {
+				if ($this->leave_model->update($postData)) {
+					#set success message
+					$this->session->set_flashdata('message',display('update_successfully'));
+				} else {
+					#set exception message
+					$this->session->set_flashdata('exception',display('please_try_again'));
+				}
+				//redirect('leave/edit/'.$postData['leave_id']);
+				redirect('leaves/index');
+			}
 
 		} else {
+			$data['department_list'] = $this->department_model->department_list();
 			$data['content'] = $this->load->view('leaves/apply_leave',$data,true);
 			$this->load->view('layout/main_wrapper',$data);
 		} 
