@@ -5,11 +5,7 @@
             <div class="col-md-12" style="margin-bottom:10px; margin-top:20px; min-height:300px;">
                 <h4 class="mb-3"><?php echo display('thank_you'); ?></h4>
                 <?php if (isset($message) && $message != '') { ?>
-
-                <div class="alert alert-success">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-                    <strong><?php echo $message; ?></strong>
-                </div>
+                    <p><?php echo $message; ?>.</p>
                 <?php } ?>
                 <?php if ($this->session->flashdata('message')) { ?>
 
