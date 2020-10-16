@@ -23,7 +23,7 @@
       <div class="mb-3">
         <div class="pt-4 wish-list">
 
-          <h5 class="mb-4">Cart (<span><?php echo isset($cart['items']) ? count($cart['items']): 0; ?></span> items)</h5>
+          <h5 class="mb-4">Cart (<span><?php echo (isset($cart['items'])) ? count($cart['items']): 0; ?></span> items)</h5>
           <?php if ($this->session->flashdata('success')) { ?>
 
           <div class="alert alert-success">
