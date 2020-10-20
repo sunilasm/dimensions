@@ -25,6 +25,52 @@
 
                 <!-- Tab panes --> 
                 <div class="col-xs-12 tab-content">
+                <div role="tabpanel" class="tab-pane active" id="home">
+                        <div class="row">
+                            <div class="col-md-12"> 
+                                <table width="100%" class="datatable table table-striped table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th><?php echo display('serial') ?></th>
+                                            <th><?php echo display('emp_id') ?></th>
+                                            <th><?php echo display('department_names') ?></th>
+                                            <th><?php echo display('first_name') ?></th>
+                                            <th><?php echo display('last_name') ?></th>
+                                            <th><?php echo display('manager_id') ?></th>
+                                            <th><?php echo display('manager_name') ?></th>
+                                            <th><?php echo display('posting_date') ?></th>
+                                            <th><?php echo display('action') ?></th> 
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php if (!empty($leaves)) { ?>
+                                            <?php $sl = 1; ?>
+                                            <?php foreach ($leaves as $leave) { ?>
+                                                <tr class="<?php echo ($sl & 1)?"odd gradeX":"even gradeC" ?>">
+                                                    <td><?php echo $sl; ?></td>
+                                                    <td><?php echo $leave->emp_id; ?></td>
+                                                    <td><?php echo $leave->department_names; ?></td>
+                                                    <td><?php echo $leave->firstname; ?></td>
+                                                    <td><?php echo $leave->lastname; ?></td>
+                                                    <td><?php echo $leave->manager_id; ?></td>
+                                                    <td><?php echo $leave->manager_name; ?></td>
+                                                    <td><?php echo $leave->posting_date; ?></td>                                                  
+                                                    <td class="center">
+                                                     <a href="<?php echo base_url("leaves/add_leaves/$leave->user_id") ?>" class="btn btn-xs btn-success"><i class="fa fa-plus"></i></a> 
+                                                    <!-- <a href="<?php echo base_url("leaves/view/$leave->user_id") ?>" class="btn btn-xs btn-info"><i class="fa fa-eye"></i></a> 
+                                                     <a href="<?php echo base_url("leave/form/$leave->user_id") ?>" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>-->   
+                                                     <a href="<?php echo base_url("leaves/delete/$leave->user_id/$leave->user_role") ?>" class="btn btn-xs btn-danger" onclick="return confirm('<?php echo display('are_you_sure') ?>')"><i class="fa fa-trash"></i></a> 
+                                                    </td>                                                   
+                                                   
+                                                </tr>
+                                                <?php $sl++; ?>
+                                            <?php } ?> 
+                                        <?php } ?> 
+                                    </tbody>
+                                </table>  <!-- /.table-responsive -->
+                            </div>
+                        </div>
+                    </div> 
                 </div>  
 
             </div>
