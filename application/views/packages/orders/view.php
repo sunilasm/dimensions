@@ -239,13 +239,13 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <?php echo form_open('orders/appointment','class="form-inner"') ?> 
+      <?php echo form_open('orders/appointment','class="form-inner" id="appointmentForm"') ?> 
       <div class="modal-body">
             <input type="hidden" name="patient_id" id="patient_id" value="<?php echo print_value($order, 'patient_code', true);?>"/>
             <input type="hidden" name="order_id" id="order_id" value="<?php echo print_value($order, 'order_id', true);?>"/>
             <?php @$this->load->view('appointment/form_row');?>
-
-            <div class="form-group row">
+            <input type="hidden" name="status" id="status" class="status" value="1" />
+            <!-- <div class="form-group row">
                 <label class="col-sm-3"><?php echo display('status') ?></label>
                 <div class="col-xs-9">
                     <div class="form-check">
@@ -257,18 +257,18 @@
                         </label>
                     </div>
                 </div>
-            </div>
+            </div> -->
       </div>
       <div class="modal-footer">
         <div class="form-group row">
-                <div class="col-sm-offset-3 col-sm-6">
-                    <div class="ui buttons">
-                        <button type="reset" class="ui button"><?php echo display('reset') ?></button>
-                        <div class="or"></div>
-                        <button class="ui positive button"><?php echo display('save') ?></button>
-                    </div>
+            <div class="col-sm-offset-3 col-sm-6">
+                <div class="ui buttons">
+                    <button type="reset" class="ui button"><?php echo display('reset') ?></button>
+                    <div class="or"></div>
+                    <button class="ui positive button book-appointment"><?php echo display('save') ?></button>
                 </div>
             </div>
+        </div>
       </div>
       <?php echo form_close() ?>
     </div>

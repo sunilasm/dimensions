@@ -1,3 +1,4 @@
+<input type="hidden" name="payment_id" id="payment_id" class="payment_id" value="" />
 <?php if(isset($appointment_type)) : ?>
 <div class="form-group">
     <label><?php echo display('appointment_type') ?></label>
@@ -62,18 +63,18 @@
     <label><?php echo display('payment_type') ?></label>
     <div class="form-check">
         <label class="radio-inline">
-            <input type="radio" name="payment_type_id" id="payment_type_id" value="Cash" <?php echo  set_radio('payment_type_id', 'Cash', TRUE); ?> ><?php echo 'Cash' ?>
+            <input type="radio" name="payment_type_id" id="payment_type_id" class="payment_type_id" value="Cash" <?php echo  set_radio('payment_type_id', 'Cash', TRUE); ?> ><?php echo 'Cash' ?>
         </label>
         <label class="radio-inline">
-            <input type="radio" name="payment_type_id" id="payment_type_id" value="Online" <?php echo  set_radio('payment_type_id', 'Online'); ?> ><?php echo "Online" ?>
+            <input type="radio" name="payment_type_id" id="payment_type_id" class="payment_type_id" value="Online" <?php echo  set_radio('payment_type_id', 'Online'); ?> ><?php echo "Online" ?>
         </label>
     </div>
 </div>
 <?php else: ?>
-    <input type="hidden" name="payment_type_id" id="payment_type_id" value="Cash"/>
+    <input type="hidden" name="payment_type_id" id="payment_type_id" class="payment_type_id" value="Cash"/>
 <?php endif; ?>
-<!-- <div class="form-group">
-    <label> <?= display('payment_type')?> *</label>
-        <?php echo form_dropdown('payment_type_id',$payment_type_list,$appointment->payment_type_id,'class="form-control basic-single" id="payment_type_id"') ?>
-    <span class="doctor_error"></span>
-</div> -->
+
+<div class="form-group">
+    <label><?= display('receipt')?> </label>
+    <input type="text" class="form-control" name="receipt_id" id="receipt_id" placeholder="<?= display('receipt_id')?>" autocomplete="off">
+</div>

@@ -22,7 +22,7 @@
             </div>
 
             <?php } ?>
-            <form class="needs-validation" method="post" action="<?php echo base_url('cart/process/checkout/'); ?>">
+            <form class="needs-validation" method="post" action="<?php echo base_url('cart/process/checkout/'); ?>" id="checkoutForm">
                 <?php                     
                     $name = isset($patient['fullname']) ? $patient['fullname'] : '';
                     $patient_name = explode(' ',$name);
@@ -35,14 +35,17 @@
                         <input type="hidden" id="package_price" name="package_price" value="<?php echo isset($cart['items']->package_special_price) ? $cart['items']->package_special_price  : ''; ?>">
                         <input type="hidden" id="package_slots" name="package_slots" value="<?php echo isset($cart['items']->package_slots) ? $cart['items']->package_slots : ''; ?>">
                         <input type="hidden" id="discount_price" name="discount_price" value="0">
+                        <input type="hidden" id="payment_id" name="payment_id" value="">
+                        <input type="hidden" id="receipt_id" name="receipt_id" value="">
                         <input type="hidden" id="payment_code" name="payment_code" value="<?php echo isset($cart['items']->payment_code) ? $cart['items']->payment_code : ''; ?>">
+                        
                         <?php 
                             $other = 0;
                             $other = (float) ($cart['total']['total'] - $cart['total']['subtotal']);
                         ?>
                         <input type="hidden" id="other" name="other" value="<?php echo $other; ?>">
                         <input type="hidden" id="total_price" name="total_price" value="<?php echo isset($cart['total']['total']) ? $cart['total']['total'] : 0; ?>">
-                        
+                        <input type="hidden" id="discount_price" name="discount_price" value="0">
                         <label for="firstname">First name</label>
                         <input type="text" class="form-control" id="firstname" name="firstname" placeholder="" value="<?php echo isset($patient_name[0]) ? $patient_name[0] : ''; ?>" required="">
                         <div class="invalid-feedback">
@@ -103,67 +106,8 @@
                     </div>
                 </div>
                 <hr class="mb-4">
-            <!-- <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="same-address">
-                <label class="custom-control-label" for="same-address">Shipping address is the same as my billing address</label>
-            </div>
-            <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="save-info">
-                <label class="custom-control-label" for="save-info">Save this information for next time</label>
-            </div>
-            <hr class="mb-4"> -->
-
-            <!-- <h4 class="mb-3">Payment</h4>
-
-            <div class="d-block my-3">
-                <div class="custom-control custom-radio">
-                <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked="" required="">
-                <label class="custom-control-label" for="credit">Credit card</label>
-                </div>
-                <div class="custom-control custom-radio">
-                <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required="">
-                <label class="custom-control-label" for="debit">Debit card</label>
-                </div>
-                <div class="custom-control custom-radio">
-                <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required="">
-                <label class="custom-control-label" for="paypal">Paypal</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                <label for="cc-name">Name on card</label>
-                <input type="text" class="form-control" id="cc-name" placeholder="" required="">
-                <small class="text-muted">Full name as displayed on card</small>
-                <div class="invalid-feedback">
-                    Name on card is required
-                </div>
-                </div>
-                <div class="col-md-6 mb-3">
-                <label for="cc-number">Credit card number</label>
-                <input type="text" class="form-control" id="cc-number" placeholder="" required="">
-                <div class="invalid-feedback">
-                    Credit card number is required
-                </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-3 mb-3">
-                <label for="cc-expiration">Expiration</label>
-                <input type="text" class="form-control" id="cc-expiration" placeholder="" required="">
-                <div class="invalid-feedback">
-                    Expiration date required
-                </div>
-                </div>
-                <div class="col-md-3 mb-3">
-                <label for="cc-expiration">CVV</label>
-                <input type="text" class="form-control" id="cc-cvv" placeholder="" required="">
-                <div class="invalid-feedback">
-                    Security code required
-                </div>
-                </div>
-            </div>
-            <hr class="mb-4"> -->
-            <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+           
+            <button class="btn btn-primary btn-lg btn-block pay" type="button">Continue to checkout</button>
             </form>
         </div>    
     <!--Grid column-->
@@ -219,3 +163,57 @@
 </div>
 </section>
 <!--Section: Block Content-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script type="text/javascript">
+    jQuery(document).on('click', '.pay', function (e) 
+    {
+        console.log('asdas');
+        var form = jQuery('#checkoutForm')[0];
+        form.checkValidity()
+        if(form.checkValidity())
+        {
+            var total = (jQuery('form#checkoutForm').find('input#total_price').val() * 100);
+            console.log('Total:'+total);
+            var merchant_order_id = '<?php echo get_order_id();?>';
+            var merchant_surl_id = '';
+            var merchant_furl_id = '';
+           
+            var merchant_total = total;
+            var merchant_amount = total;
+            var currency_code_id = 'INR';
+            var key_id = "<?php echo RAZOR_KEY_ID; ?>";
+            var store_name = 'Dimensions';
+            var store_description = 'Evidence based scientific method in treating children with communication needs.';
+            var store_logo = 'https://images.squarespace-cdn.com/content/5d79d3841f6ecd2d550dabbc/1574355058382-ONWDW5HC9R8AMSNL1FR0/DCCD_Logo_Final.png?format=1500w&content-type=image%2Fpng';
+            //var email = jQuery('form#appointmentForm').find('input#billing-email').val();
+            //var phone = jQuery('form#appointmentForm').find('input#billing-phone').val();
+            var razorpay_options = {
+                key: key_id,
+                amount: merchant_total,
+                name: store_name,
+                description: store_description,
+                image: store_logo,
+                netbanking: true,
+                currency: currency_code_id,
+                notes: {
+                    soolegal_order_id: merchant_order_id,
+                },
+                handler: function (transaction) {
+                    console.log('Payment_id:'+transaction.razorpay_payment_id);
+                    jQuery('form#checkoutForm').find('input#payment_id').val(transaction.razorpay_payment_id);
+                    jQuery('form#checkoutForm').find('input#receipt_id').val(transaction.razorpay_payment_id);
+                    $("#checkoutForm").submit();
+                },
+                "modal": {
+                    "ondismiss": function () {
+                        // code here
+                    }
+                }
+            };
+            var objrzpv1 = new Razorpay(razorpay_options);
+            objrzpv1.open();
+            e.preventDefault();
+        }
+    });
+</script>

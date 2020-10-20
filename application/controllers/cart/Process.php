@@ -185,6 +185,7 @@ class Process extends CI_Controller {
 			'package_price'   => $this->input->post('package_price',true),
 			'package_slots'   => $this->input->post('package_slots',true),
 			'discount_price'  => $this->input->post('discount_price',true),
+			'payment_id' 	 		=> $this->input->post('payment_id',true),
 			'other'     			=> $this->input->post('other',true),
 			'total_price'    	=> $this->input->post('total_price',true),
 			'created_by'      => $this->session->userdata('user_id'),
@@ -197,26 +198,41 @@ class Process extends CI_Controller {
 			#if empty $order_id then insert data
 			if (empty($postData['order_id'])) 
 			{
-				$payment_code = $this->input->post('payment_code',true);
-				if($payment_code)
+				$payment_id = $this->input->post('payment_id',true);
+				if($payment_id)
 				{
-					$this->session->set_userdata('order', $postData);
-					$pauyment_url ="https://razorpay.com/payment-button/".trim($payment_code)."/view/?utm_source=payment_button&utm_medium=button&utm_campaign=payment_button";
-					redirect($pauyment_url); exit;
+					$amount = $this->input->post('total_price', true);
+					$data = array(
+							'amount' => ($amount * 100),
+							'currency' => CURRENCY,
+					);
+					$this->load->model('transaction_model');
+					$response = $this->transaction_model->index($payment_id, $data);
+					if($response['status'])
+					{
+							if ($this->order_model->create($postData)) 
+							{
+								$ID = $this->db->insert_id();
+								//$this->session->set_flashdata('message', display('order_placed'));
+								$this->session->unset_userdata('cart');
+								//$this->session->unset_userdata('order');
+								redirect('cart/process/thank_you');
+							} 
+							else 
+							{
+								#set exception message
+								$this->session->set_flashdata('exception',display('please_try_again'));
+								redirect($_SERVER['HTTP_REFERER']);
+							}
+					}
+					else
+					{
+							$message['exception'] = $response['error']; 
+							$this->session->set_flashdata($message);
+							redirect($_SERVER['HTTP_REFERER']);
+					}
 				}
-				// if ($this->order_model->create($postData)) 
-				// {
-				// 	$ID = $this->db->insert_id();
-				// 	$this->session->set_flashdata('message', display('order_placed'));
-				// 	$this->session->unset_userdata('cart');
-				// 	redirect('cart/process/thank_you');
-				// } 
-				// else 
-				// {
-				// 	#set exception message
-				// 	$this->session->set_flashdata('exception',display('please_try_again'));
-				// 	redirect('cart/process/checkout');
-				// }
+			
 			}
 		}
 		
@@ -256,20 +272,8 @@ class Process extends CI_Controller {
 		$data['section'] = $this->home_model->section('checkout');
 		$data['banner'] = $this->db->select("image")->from('ws_banner')->where('status', 1)->limit(3)->order_by('id', 'DESC')->get()->result();
 		
-		$orderData = $this->session->userdata('order');
-		if(isset($orderData) && count($orderData))
-		{
-			if($this->order_model->create($orderData))
-			{
-				$data['message']  = display('order_placed');
-				$this->session->unset_userdata('order');
-			}
-			else
-			{
-				$data['exception']  = display('please_try_again');
-			}
-			
-		}
+		$data['message']  = display('order_placed');
+		
 		$this->session->unset_userdata('cart');
 		$data['languageList'] = $this->home_model->languageList();
 		$data['parent_menu'] = $this->menu_model->get_parent_menu();

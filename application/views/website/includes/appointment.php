@@ -234,7 +234,7 @@
                             </div>
 
                             <?php @$this->load->view('appointment/form');?>
-                            <button type="submit" class="btn btn-block btn-primary"><?= display('book_appointment')?></button>
+                            <button type="submit" class="btn btn-block btn-primary book-appointment"><?= display('book_appointment')?></button>
                             <?= form_close() ?>
                         </div>
                         <!--  -->

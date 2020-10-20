@@ -16,6 +16,8 @@ if(isset($_SERVER['HTTP_REFERER']))
         <a href="<?php echo (isset($appointment->meeting_url)) ? $appointment->meeting_url : ''; ?>" class="btn btn-block btn-primary" target="_blank">Start Meeting</a>
     </div>
 <!-- <?php endif; ?> -->
+<?php if(isset($appointment->schedule_type) && $appointment->schedule_type == 2) : ?>
 <div class="col-md-3 floatR">
     <a href="<?php echo (isset($appointment->meeting_url)) ? $appointment->meeting_url : ''; ?>" class="btn btn-block btn-primary" target="_blank">Start Meeting</a>
 </div>
+<?php endif; ?>

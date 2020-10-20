@@ -1,3 +1,4 @@
+<input type="hidden" name="payment_id" id="payment_id" class="payment_id" value="" />
 <?php if(isset($appointment_type)) : ?>
 <div class="form-group row">
     <label class="col-sm-3"><?php echo display('appointment_type') ?></label>
@@ -80,14 +81,20 @@
     <div class="col-xs-9">
         <div class="form-check">
             <label class="radio-inline">
-                <input type="radio" name="payment_type_id" id="payment_type_id" value="Cash" <?php echo  set_radio('payment_type_id', 'Cash', TRUE); ?> ><?php echo 'Cash' ?>
+                <input type="radio" name="payment_type_id" id="payment_type_id" class="payment_type_id" value="Cash" <?php echo  set_radio('payment_type_id', 'Cash', TRUE); ?> ><?php echo 'Cash' ?>
             </label>
             <label class="radio-inline">
-                <input type="radio" name="payment_type_id" id="payment_type_id" value="Online" <?php echo  set_radio('payment_type_id', 'Online'); ?> ><?php echo "Online" ?>
+                <input type="radio" name="payment_type_id" id="payment_type_id" class="payment_type_id" value="Online" <?php echo  set_radio('payment_type_id', 'Online'); ?> ><?php echo "Online" ?>
             </label>
         </div>
     </div>
 </div>
 <?php else: ?>
-    <input type="hidden" name="payment_type_id" id="payment_type_id" value="Cash"/>
+    <input type="hidden" name="payment_type_id" id="payment_type_id" class="payment_type_id" value="Cash"/>
 <?php endif; ?>
+<div class="form-group row">
+    <label for="receipt" class="col-xs-3 col-form-label"><?php echo display('receipt') ?> </label>
+    <div class="col-xs-9"> 
+        <input name="receipt_id" type="text" class="form-control" id="receipt_id" placeholder="<?php echo display('receipt_id') ?>" value="<?php echo get_order_id(); ?>" readonly>
+    </div>
+</div>

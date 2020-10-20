@@ -251,6 +251,7 @@ class Orders extends CI_Controller {
 					'doctor_id'      => $this->input->post('doctor_id',true), 
 					'schedule_id'    => $this->input->post('schedule_id',true), 
 					'serial_no'      => $this->input->post('serial_no',true), 
+					'payment_id'     => $this->input->post('receipt_id',true), 
 					'problem'        => $this->input->post('problem',true), 
 					'date'           => date('Y-m-d',strtotime($this->input->post('date',true))),
 					'created_by'     => $this->session->userdata('user_id'), 

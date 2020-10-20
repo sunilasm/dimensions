@@ -75,19 +75,31 @@ class Appointment extends CI_Controller {
             
             if($this->input->post('payment_type_id',true) == 'Online')
             {
-                $appointment = array();
-                $appointment['postData'] = $postData;
-                $appointment['formData'] = $this->input->post();
-                $appointment['appointment_id'] = $postData['appointment_id'];
-                $appointment['appointment_source'] = 'backend';
-                $this->session->set_userdata('appointment', $appointment);
-                $pauyment_url ="https://razorpay.com/payment-button/".trim($appointment['formData']['price_code'])."/view/?utm_source=payment_button&utm_medium=button&utm_campaign=payment_button";
-                redirect($pauyment_url); exit;
-                //echo "<pre>".print_r($this->session->userdata('appointment'),true)."</pre>"; //exit;
+                $postData['payment_mode'] = 'Online';
+                $payment_id = $this->input->post('receipt_id', true);
+                $amount = $this->input->post('price', true);
+                $data = array(
+                    'amount' => ($amount * 100),
+                    'currency' => CURRENCY,
+                );
+                $this->load->model('transaction_model');
+                $response = $this->transaction_model->index($payment_id, $data);
+                if($response['status'])
+                {
+                    $postData['payment_mode'] = 'Online';
+                    $postData['payment_id'] = $response['payment_id'];
+                }
+                else
+                {
+                    $message['exception'] = $response['error']; 
+                    $this->session->set_flashdata($message);
+                    redirect($_SERVER['HTTP_REFERER']);
+                }
             }
             else
             {
                 $postData['payment_mode'] = 'Cash';
+                $postData['payment_id'] = $this->input->post('receipt_id',true);
             }
 
             /*if empty $id then insert data*/

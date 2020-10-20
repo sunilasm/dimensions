@@ -132,7 +132,32 @@ if (!function_exists('print_schedule_type')) {
     }
 }
 
+function get_order_id()
+{
+    $response = "order_";
+    $response .= randStrGen(3,7);
+    return $response;
+}
+function randStrGen($mode = null, $len = null)
+{
+    $result = "";
+    if($mode == 1):
+        $chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    elseif($mode == 2):
+        $chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    elseif($mode == 3):
+        $chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+    elseif($mode == 4):
+        $chars = "0123456789";
+    endif;
 
+    $charArray = str_split($chars);
+    for($i = 0; $i < $len; $i++) {
+            $randItem = array_rand($charArray);
+            $result .="".$charArray[$randItem];
+    }
+    return $result;
+}
 // $autoload['helper'] =  array('language_helper');
 
 /*display a language*/

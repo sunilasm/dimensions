@@ -55,7 +55,7 @@ class Appointment extends CI_Controller {
             'create_date'    => date('Y-m-d'),
             'status'         => $this->input->post('status',true)
         ]; 
-        //echo "<pre>".print_r($data['appointment'], true); exit;
+        // "<pre>".print_r($data['appointment'], true); exit;
         $data['order_appointment'] = (object)$order_appointment = [
             'package_order_id'          => $this->input->post('order_id',true), 
             'package_appointment_id'    => '', 
@@ -83,19 +83,31 @@ class Appointment extends CI_Controller {
         if ($this->form_validation->run() === true && $check_patient_id->status === true && $check_appointment_exists === true) {
             if($this->input->post('payment_type_id',true) == 'Online')
             {
-                $appointment = array();
-                $appointment['postData'] = $postData;
-                $appointment['formData'] = $this->input->post();
-                $appointment['appointment_id'] = $postData['appointment_id'];
-                $appointment['appointment_source'] = 'patient';
-                $this->session->set_userdata('appointment', $appointment);
-                $pauyment_url ="https://razorpay.com/payment-button/".trim($appointment['formData']['price_code'])."/view/?utm_source=payment_button&utm_medium=button&utm_campaign=payment_button";
-                redirect($pauyment_url); exit;
-                //echo "<pre>".print_r($this->session->userdata('appointment'),true)."</pre>"; //exit;
+                $postData['payment_mode'] = 'Online';
+                $payment_id = $this->input->post('receipt_id', true);
+                $amount = $this->input->post('price', true);
+                $data = array(
+                    'amount' => ($amount * 100),
+                    'currency' => CURRENCY,
+                );
+                $this->load->model('transaction_model');
+                $response = $this->transaction_model->index($payment_id, $data);
+                if($response['status'])
+                {
+                    $postData['payment_mode'] = 'Online';
+                    $postData['payment_id'] = $response['payment_id'];
+                }
+                else
+                {
+                    $message['exception'] = $response['error']; 
+                    $this->session->set_flashdata($message);
+                    redirect($_SERVER['HTTP_REFERER']);
+                }
             }
             else
             {
                 $postData['payment_mode'] = 'Cash';
+                $postData['payment_id'] = $this->input->post('receipt_id',true);
             }
             /*if empty $id then insert data*/
             $id = $this->appointment_model->create($postData);
@@ -133,7 +145,7 @@ class Appointment extends CI_Controller {
         $data['title'] = display('appointment');
         /* ------------------------------- */
         $data['appointment'] = $this->appointment_model->read_by_id($appointment_id);
-        //echo "<pre>".print_r($data['appointment'], true); exit;
+        //// "<pre>".print_r($data['appointment'], true); exit;
         $data['content'] = $this->load->view('dashboard_patient/appointment/appointment_view',$data,true);
         $this->load->view('dashboard_patient/main_wrapper',$data);
       } 
@@ -402,6 +414,7 @@ class Appointment extends CI_Controller {
                 'doctor_id'      => $this->input->post('doctor_id',true), 
                 'schedule_id'    => $this->input->post('schedule_id',true), 
                 'serial_no'      => $this->input->post('serial_no',true), 
+                'payment_id'     => $this->input->post('receipt_id',true), 
                 'problem'        => $this->input->post('problem',true), 
                 'date'           => date('Y-m-d',strtotime($this->input->post('date',true))),
                 'created_by'     => $this->session->userdata('user_id'), 

@@ -18,7 +18,7 @@
             <div class="panel-body panel-form">
                 <div class="row">
                     <div class="col-md-11 col-sm-12">
-                        <?php echo form_open('appointment/create','class="form-inner"') ?> 
+                        <?php echo form_open('appointment/create','class="form-inner" id="appointmentForm"') ?> 
                             <?php $patientID = (!empty($this->session->userdata('patientID'))?$this->session->userdata('patientID'):null)?>
                             <!-- patient id -->
                             <div class="form-group row">
@@ -45,7 +45,9 @@
 
                             
                             <?php @$this->load->view('appointment/form_row');?>
-                            <div class="form-group row">
+                            
+                            <input type="hidden" name="status" id="status" class="status" value="1" />
+                            <!-- <div class="form-group row">
                                 <label class="col-sm-3"><?php echo display('status') ?></label>
                                 <div class="col-xs-9">
                                     <div class="form-check">
@@ -57,7 +59,7 @@
                                         </label>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
 
 
                             <div class="form-group row">
@@ -65,7 +67,7 @@
                                     <div class="ui buttons">
                                         <button type="reset" class="ui button"><?php echo display('reset') ?></button>
                                         <div class="or"></div>
-                                        <button class="ui positive button"><?php echo display('save') ?></button>
+                                        <button class="ui positive button book-appointment"><?php echo display('save') ?></button>
                                     </div>
                                 </div>
                             </div>
