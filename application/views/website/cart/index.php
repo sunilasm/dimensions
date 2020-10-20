@@ -23,7 +23,7 @@
       <div class="mb-3">
         <div class="pt-4 wish-list">
 
-          <h5 class="mb-4">Cart (<span><?php echo (isset($cart['items'])) ? count($cart['items']): 0; ?></span> items)</h5>
+          <h5 class="mb-4">Cart (<span><?php echo (isset($cart['total']['items'])) ? $cart['total']['items']: 0; ?></span> items)</h5>
           <?php if ($this->session->flashdata('success')) { ?>
 
           <div class="alert alert-success">
@@ -39,7 +39,7 @@
           </div>
 
           <?php } ?>
-          <?php if(isset($cart['items']) && count($cart['items'])) : ?>
+          <?php if(isset($cart['total']['items']) && $cart['total']['items']) : ?>
           <div class="row mb-4">
             <div class="col-md-5 col-lg-3 col-xl-3">
               <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">

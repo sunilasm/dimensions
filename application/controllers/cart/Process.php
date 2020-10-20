@@ -52,16 +52,16 @@ class Process extends CI_Controller {
 			$data['package'] = $this->package_model->read_by_id($package_id);
 			$cart['items'] = $data['package'];
 		}
-		//echo "<pre>".print_r($data['package'],true); exit;
+		//echo "<pre>".print_r($cart['items'],true); exit;
 		
 		//$cart['items'] = count($cart['items']) ? $cart['items'] : array();
 		//echo "<pre>".print_r($cart['items'],true); exit;
 		if(isset($cart['items']))
 		{
 			$subtotal = $this->get_cart_subtotal($cart['items']);
-			$other = (count($cart['items'])) ? $this->get_cart_other() : array();
+			$other = (count((array)$cart['items'])) ? $this->get_cart_other() : array();
 			$cart['total'] = array(
-				'items' => count($cart['items']),
+				'items' => (isset($cart['items']->package_id)) ? 1 : 0,
 				'subtotal' => $subtotal,
 				'other' => $other,
 				'total' => $this->get_cart_total($other, $subtotal),
