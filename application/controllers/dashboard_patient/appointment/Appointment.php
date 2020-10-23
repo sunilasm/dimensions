@@ -8,18 +8,19 @@ class Appointment extends CI_Controller {
         parent::__construct();
 
         $this->load->model(array(
-            'dashboard_patient/appointment/appointment_model',
+            'appointment_model',
             'dashboard_patient/appointment/department_model',
             'dashboard_patient/appointment/department_model',
             'order_model',
             'main_department_model'
         ));
  
-        if ($this->session->userdata('isLogIn_patient') == false) 
-            redirect('login'); 
+       
     } 
 
     public function index(){ 
+        if ($this->session->userdata('isLogIn_patient') == false) 
+        redirect('login'); 
         $data['module'] = display("dashboard_patient");
         $data['title'] = display('appointment');
         /* ------------------------------- */
@@ -30,6 +31,8 @@ class Appointment extends CI_Controller {
     } 
 
     public function create(){
+        if ($this->session->userdata('isLogIn_patient') == false) 
+        redirect('login'); 
         $data['module'] = display("dashboard_patient");
         $data['title'] = display('add_appointment');
         //echo "<pre>".print_r($data, true); exit();
@@ -84,6 +87,7 @@ class Appointment extends CI_Controller {
             if($this->input->post('payment_type_id',true) == 'Online')
             {
                 $postData['payment_mode'] = 'Online';
+                
                 $payment_id = $this->input->post('receipt_id', true);
                 $amount = $this->input->post('price', true);
                 $data = array(
@@ -95,6 +99,7 @@ class Appointment extends CI_Controller {
                 if($response['status'])
                 {
                     $postData['payment_mode'] = 'Online';
+                    $postData['status'] = 1;
                     $postData['payment_id'] = $response['payment_id'];
                 }
                 else
@@ -107,6 +112,7 @@ class Appointment extends CI_Controller {
             else
             {
                 $postData['payment_mode'] = 'Cash';
+                $postData['status'] = 2;
                 $postData['payment_id'] = $this->input->post('receipt_id',true);
             }
             /*if empty $id then insert data*/
@@ -141,6 +147,8 @@ class Appointment extends CI_Controller {
  
 
       public function view($appointment_id = null){
+        if ($this->session->userdata('isLogIn_patient') == false) 
+        redirect('login'); 
         $data['module'] = display("dashboard_patient");
         $data['title'] = display('appointment');
         /* ------------------------------- */
@@ -176,6 +184,38 @@ class Appointment extends CI_Controller {
         }
         return $result;
     }
+    public function cancell($appointment_id = null) 
+    {
+        $data = array();
+        $data['status'] = 3;
+        if($this->appointment_model->update($appointment_id, $data)) 
+        {
+            /*set success message*/
+            $this->session->set_flashdata('message', display('cancell_successfully'));
+        } 
+        else 
+        {
+            /*set exception message*/
+            $this->session->set_flashdata('exception', display('please_try_again'));
+        }
+        redirect($_SERVER['HTTP_REFERER']);
+    }
+    public function confirm($appointment_id = null) 
+    {
+        $data = array();
+        $data['status'] = 1;
+        if($this->appointment_model->update($appointment_id, $data)) 
+        {
+            /*set success message*/
+            $this->session->set_flashdata('message', display('confirm_successfully'));
+        } 
+        else 
+        {
+            /*set exception message*/
+            $this->session->set_flashdata('exception', display('please_try_again'));
+        }
+        redirect($_SERVER['HTTP_REFERER']);
+    }
     /*
     |----------------------------------------------
     |         Ends of id genaretor
@@ -185,6 +225,9 @@ class Appointment extends CI_Controller {
 
     public function check_patient($mode = null)
     {
+        if ($this->session->userdata('isLogIn_patient') == false) 
+        redirect('login'); 
+        
         $patient_id = $this->input->post('patient_id');
 
         if (!empty($patient_id)) {
@@ -415,11 +458,12 @@ class Appointment extends CI_Controller {
                 'schedule_id'    => $this->input->post('schedule_id',true), 
                 'serial_no'      => $this->input->post('serial_no',true), 
                 'payment_id'     => $this->input->post('receipt_id',true), 
+                'payment_mode'   => 'Cash', 
                 'problem'        => $this->input->post('problem',true), 
                 'date'           => date('Y-m-d',strtotime($this->input->post('date',true))),
                 'created_by'     => $this->session->userdata('user_id'), 
                 'create_date'    => date('Y-m-d'),
-                'status'         => $this->input->post('status',true)
+                'status'         => 1
         ]; 
         
         $data['order_appointment'] = (object)$order_appointment = [
@@ -491,6 +535,8 @@ class Appointment extends CI_Controller {
                 ->where('doctor_id', $doctor_id)
                 ->where('schedule_id', $schedule_id) 
                 ->where('date', $date)
+                ->where('status', 1)
+                ->or_where('status', 2)
                 ->get()
                 ->num_rows();
                 

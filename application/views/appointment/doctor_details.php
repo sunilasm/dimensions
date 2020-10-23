@@ -11,6 +11,8 @@
         <dd><?php echo print_value($appointment, 'price'); ?></dd>
         <dt><?php echo display('payment_type') ?></dt> 
         <dd><?php echo print_value($appointment, 'payment_mode'); ?></dd>
+        <dt><?php echo display('receipt_id') ?></dt> 
+        <dd><?php echo print_value($appointment, 'payment_id'); ?></dd>
         <dt><?php echo display('available_days') ?></dt> 
         <dd><?php echo print_value($appointment, 'available_days'); ?></dd>
         <dt><?php echo display('schedule_type') ?></dt> 
@@ -23,5 +25,6 @@
     <dl class="dl-horizontal">
         <dt><?php echo display('serial_no') ?></dt> <dd>#<?php echo ($appointment->serial_no<=9)?"0$appointment->serial_no":$appointment->serial_no ?></dd>
         <dt><?php echo display('date') ?></dt> <dd><?php echo print_date($appointment, 'date'); ?></dd>
+        <dt><?php echo display('status') ?></dt> <dd><?php echo get_appointment_status($appointment->status); ?></dd>
     </dl>
 </div>

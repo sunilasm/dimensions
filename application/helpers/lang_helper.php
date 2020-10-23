@@ -158,6 +158,34 @@ function randStrGen($mode = null, $len = null)
     }
     return $result;
 }
+
+function get_appointment_status($status_id = 2)
+{
+    $response = 'Pending';
+
+    switch($status_id)
+    {
+        case '1':
+            $response = 'Confirmed';
+            break;
+        case '2':
+            $response = 'Pending';
+            break;
+        case '3':
+            $response = 'Cancelled';
+            break;
+        case '4':
+            $response = 'Closed';
+            break;
+        case '5':
+            $response = 'Completed';
+            break;
+        default:
+            $response = 'Pending';
+    }
+
+    return $response;
+}
 // $autoload['helper'] =  array('language_helper');
 
 /*display a language*/

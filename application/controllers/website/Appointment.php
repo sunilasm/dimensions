@@ -76,6 +76,7 @@ class Appointment extends CI_Controller {
                 if($response['status'])
                 {
                     $postData['payment_mode'] = 'Online';
+                    $postData['status'] = 1;
                     $postData['payment_id'] = $response['payment_id'];
                 }
                 else
@@ -88,6 +89,7 @@ class Appointment extends CI_Controller {
             else
             {
                 $postData['payment_mode'] = 'Cash';
+                $postData['status'] = 2;
                 $postData['payment_id'] = $this->input->post('receipt_id',true);
             }
             /*if empty $id then insert data*/
@@ -804,6 +806,8 @@ class Appointment extends CI_Controller {
             ->where('schedule_id', $schedule_id)
             ->where('serial_no', $serial_no)
             ->where('date', $date)
+            ->where('status', 1)
+            ->or_where('status', 2)
             ->get()
             ->num_rows();
             

@@ -124,7 +124,7 @@ class Orders extends CI_Controller {
 		$data['slot_type'] = 2;
 		$data['order'] = $this->order_model->read_by_id($id);
 		$package['package'] = array();
-		if(count($data['order']))
+		if(count((array)$data['order']))
 		{
 			$data['package'] = $this->package_model->read_by_id($data['order']->package_id);
 			$data['appointments_booked'] = $this->order_model->booked_slots_count_by_order($data['order']->order_id, 'Active');
@@ -219,6 +219,8 @@ class Orders extends CI_Controller {
 							->where('doctor_id', $doctor_id)
 							->where('schedule_id', $schedule_id) 
 							->where('date', $date)
+							->where('status', 1)
+							->or_where('status', 2)
 							->get()
 							->num_rows();
 							
@@ -252,11 +254,12 @@ class Orders extends CI_Controller {
 					'schedule_id'    => $this->input->post('schedule_id',true), 
 					'serial_no'      => $this->input->post('serial_no',true), 
 					'payment_id'     => $this->input->post('receipt_id',true), 
+					'payment_mode'   => 'Cash', 
 					'problem'        => $this->input->post('problem',true), 
 					'date'           => date('Y-m-d',strtotime($this->input->post('date',true))),
 					'created_by'     => $this->session->userdata('user_id'), 
 					'create_date'    => date('Y-m-d'),
-					'status'         => $this->input->post('status',true)
+					'status'         => 1
 			]; 
 			
 			$data['order_appointment'] = (object)$order_appointment = [

@@ -45,7 +45,7 @@ class Orders extends CI_Controller {
 			$data['slot_type'] = 2;
 			$data['order'] = $this->order_model->read_by_id($id);
 			$package['package'] = array();
-			if(count($data['order']))
+			if(count((array)$data['order']))
 			{
 				$data['package'] = $this->package_model->read_by_id($data['order']->package_id);
 				$data['appointments_booked'] = $this->order_model->booked_slots_count_by_order($data['order']->order_id, 'Active');

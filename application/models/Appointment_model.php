@@ -16,6 +16,17 @@ class Appointment_model extends CI_Model {
 		$insert_id = $this->db->insert_id();
 		return $insert_id;
 	}
+	public function update($id = 0, $data = [])
+	{	 
+		$response_id = $id;
+		if($id)
+		{
+			$response_id =  $this->db->update($this->table, $data, array('appointment_id' => $id));
+			// $this->db->where('id', $id);
+			// $this->db->update($this->table, $data);
+		}
+		return $response_id;
+	}
  
 	public function read()
 	{
@@ -34,6 +45,8 @@ class Appointment_model extends CI_Model {
 			->join('schedule','schedule.schedule_id = appointment.schedule_id')
 			->where('user.user_id', $this->session->userdata('user_id'))
 			->where('appointment.status', 1)
+			->or_where('appointment.status', 2)
+			->or_where('appointment.status', 3)
 			->order_by('appointment.id','desc')
 			->get()
 			->result();
@@ -55,7 +68,6 @@ class Appointment_model extends CI_Model {
 			->join('user','user.user_id = appointment.doctor_id')
 			->join('department','department.dprt_id = appointment.department_id')
 			->join('schedule','schedule.schedule_id = appointment.schedule_id')
-			->where('appointment.status', 1)
 			->order_by('appointment.id','desc')
 			->get()
 			->result();

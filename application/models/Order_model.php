@@ -73,9 +73,12 @@ class Order_model extends CI_Model {
 	{
 		$result = $this->db->select("package_orders_appointments.*")
 			->from('package_orders_appointments')
+			->join('appointment', 'appointment.id = package_orders_appointments.package_appointment_id')
 			->where('package_orders_appointments.package_order_id',$order_id)
-			->where('package_orders_appointments.package_appoinment_status', $status)
-			//->order_by('package_orders_appointments.id','desc')
+			->where('appointment.status', 1)
+			->or_where('appointment.status', 2)
+			->or_where('appointment.status', 6)
+			->order_by('package_orders_appointments.package_order_appoinment_id','desc')
 			->get()
 			->num_rows();
 			//echo $this->db->last_query(); exit;
@@ -84,7 +87,10 @@ class Order_model extends CI_Model {
 	public function read_slots_by_order($order_id = null)
 	{
 		return $this->db->select("
-				package_orders_appointments.*,
+				package_orders_appointments.package_order_appoinment_id,
+				package_orders_appointments.package_order_id,
+				package_orders_appointments.package_appoinment_status,
+				package_orders_appointments.package_appointment_id,
 				appointment.*, 
 				appointment.appointment_id, 
 				appointment.serial_no, 
@@ -92,12 +98,18 @@ class Order_model extends CI_Model {
 				appointment.date, 
 				usrLn.firstname, 
 				usrLn.lastname,  
-				user.picture,  
+				user.picture,
+				user.meeting_url,  
+				user.meeting_user_id,  
+				user.meeting_password,    
 				usrLn.degree,  
-				department.name as department,
+				department.name as name,
+				department.price as price,
+				main_department.name as branch_name,
 				schedule.available_days,
 				schedule.start_time,
 				schedule.end_time,
+				schedule.schedule_type,
 				patient.firstname AS pfirstname,
 				patient.lastname AS plastname,
 				patient.date_of_birth,
@@ -110,6 +122,7 @@ class Order_model extends CI_Model {
 			->join('user','user.user_id = appointment.doctor_id','left')
 			->join('user_lang as usrLn','usrLn.user_id = appointment.doctor_id')
 			->join('department','department.dprt_id = appointment.department_id','left')
+			->join('main_department', 'department.main_id=main_department.id', 'left')
 			->join('patient','patient.patient_id = appointment.patient_id')
 			->join('schedule','schedule.schedule_id = appointment.schedule_id','left')
 			->where('package_orders_appointments.package_order_id',$order_id)

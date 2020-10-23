@@ -87,6 +87,7 @@ class Appointment extends CI_Controller {
                 if($response['status'])
                 {
                     $postData['payment_mode'] = 'Online';
+                    $postData['status'] = 1;
                     $postData['payment_id'] = $response['payment_id'];
                 }
                 else
@@ -99,6 +100,7 @@ class Appointment extends CI_Controller {
             else
             {
                 $postData['payment_mode'] = 'Cash';
+                $postData['status'] = 2;
                 $postData['payment_id'] = $this->input->post('receipt_id',true);
             }
 
@@ -220,7 +222,8 @@ class Appointment extends CI_Controller {
     }
  
 
-    public function view($appointment_id = null){  
+    public function view($appointment_id = null)
+    {  
         $data['module'] = display("appointment");
         $data['title'] = display('appointment');
         /* ------------------------------- */
@@ -234,14 +237,51 @@ class Appointment extends CI_Controller {
 
     public function delete($appointment_id = null) 
     {
-        if ($this->appointment_model->delete($appointment_id)) {
+        $data = array();
+        $data['status'] = 4;
+        if($this->appointment_model->update($appointment_id, $data)) 
+        {
             /*set success message*/
             $this->session->set_flashdata('message', display('delete_successfully'));
-        } else {
+        } 
+        else 
+        {
             /*set exception message*/
             $this->session->set_flashdata('exception', display('please_try_again'));
         }
-        redirect('appointment');
+        redirect($_SERVER['HTTP_REFERER']);
+    }
+    public function cancell($appointment_id = null) 
+    {
+        $data = array();
+        $data['status'] = 3;
+        if($this->appointment_model->update($appointment_id, $data)) 
+        {
+            /*set success message*/
+            $this->session->set_flashdata('message', display('cancell_successfully'));
+        } 
+        else 
+        {
+            /*set exception message*/
+            $this->session->set_flashdata('exception', display('please_try_again'));
+        }
+        redirect($_SERVER['HTTP_REFERER']);
+    }
+    public function confirm($appointment_id = null) 
+    {
+        $data = array();
+        $data['status'] = 1;
+        if($this->appointment_model->update($appointment_id, $data)) 
+        {
+            /*set success message*/
+            $this->session->set_flashdata('message', display('confirm_successfully'));
+        } 
+        else 
+        {
+            /*set exception message*/
+            $this->session->set_flashdata('exception', display('please_try_again'));
+        }
+        redirect($_SERVER['HTTP_REFERER']);
     }
 
     // create new patient
@@ -626,7 +666,9 @@ class Appointment extends CI_Controller {
                 ->where('patient_id', $patient_id)
                 ->where('doctor_id', $doctor_id)
                 ->where('schedule_id', $schedule_id) 
-            ->where('date', $date)
+                ->where('date', $date)
+                ->where('status', 1)
+                ->or_where('status', 2)
                 ->get()
                 ->num_rows();
                 
