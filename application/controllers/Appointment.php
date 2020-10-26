@@ -12,11 +12,12 @@ class Appointment extends CI_Controller {
             'department_model', 'patient_model', 'main_department_model'
         ));
         
-        if ($this->session->userdata('isLogIn') == false) 
-        redirect('login'); 
+        
     }
    
-    public function index(){ 
+    public function index(){
+        if ($this->session->userdata('isLogIn') == false) 
+        redirect('login'); 
         $data['module'] = display("appointment");
         $data['title'] = display('appointment'); 
         /* ------------------------------- */
@@ -32,6 +33,8 @@ class Appointment extends CI_Controller {
     } 
 
     public function create(){
+        if ($this->session->userdata('isLogIn') == false) 
+        redirect('login'); 
         $data['module'] = display("appointment");
         $data['title'] = display('add_appointment');
         /* ------------------------------- */
@@ -255,17 +258,68 @@ class Appointment extends CI_Controller {
     {
         $data = array();
         $data['status'] = 3;
-        if($this->appointment_model->update($appointment_id, $data)) 
+        $refund_status  = false;
+
+        $appointment = $this->appointment_model->read_by_id($appointment_id);
+        //echo "<pre>".print_r($appointment,true);
+        if(isset($appointment->payment_mode) && trim($appointment->payment_mode) == 'Online')
         {
-            /*set success message*/
-            $this->session->set_flashdata('message', display('cancell_successfully'));
-        } 
-        else 
-        {
-            /*set exception message*/
-            $this->session->set_flashdata('exception', display('please_try_again'));
+            $this->load->model('transaction_model');
+            $request_data = array();
+            $request_data['amount'] = $appointment->price;
+            $response = $this->transaction_model->refund($appointment->payment_id, $request_data);
+            //echo "<pre>".print_r($response,true);exit;
+            if($response['status'])
+            {
+                $refund_data = array();
+
+                $refund_data['payment_id']  = $appointment->payment_id;
+                $refund_data['refund_id']   = $response['result']->id;
+                $refund_data['amount']      = $response['result']->amount;
+                $refund_data['receipt']     = $response['result']->receipt;
+                $refund_data['status']      = $response['result']->status;
+                $refund_data['speed_processed']      = $response['result']->speed_processed;
+                //$refund_data['created_date'] = date()
+
+                $status = $this->transaction_model->insert_refund_data($refund_data);
+
+                if($status)
+                {
+                    $refund_status = true;
+                }
+            }
+            else
+            {
+                $refund_status = false;
+            }
         }
-        redirect($_SERVER['HTTP_REFERER']);
+        else
+        {
+            //echo "ref"; 
+            $refund_status = true;
+        }
+        //exit;
+        //echo "<pre>".print_r($appointment,true); exit;
+        if($refund_status)
+        {
+            if($this->appointment_model->update($appointment_id, $data)) 
+            {
+                /*set success message*/
+                $this->session->set_flashdata('message', display('cancell_successfully'));
+            } 
+            else 
+            {
+                /*set exception message*/
+                $this->session->set_flashdata('exception', display('please_try_again')." : database error!");
+            }
+            redirect($_SERVER['HTTP_REFERER']);
+        }
+        else
+        {
+            $this->session->set_flashdata('exception', display('please_try_again')." :refund error!");
+            redirect($_SERVER['HTTP_REFERER']);
+        }
+        
     }
     public function confirm($appointment_id = null) 
     {
@@ -286,6 +340,8 @@ class Appointment extends CI_Controller {
 
     // create new patient
     public function create_patient(){
+        if ($this->session->userdata('isLogIn') == false) 
+        redirect('login'); 
         $data['module'] = display("appointment");
         $this->form_validation->set_rules('firstname', display('first_name'),'required|max_length[50]');
         $this->form_validation->set_rules('lastname', display('last_name'),'required|max_length[50]');

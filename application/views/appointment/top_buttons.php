@@ -32,13 +32,13 @@ if(isset($_SERVER['HTTP_REFERER']))
     if($appointment->status == 2 || $appointment->status == 1){
 ?>
 <div class="col-md-2 floatR">
-    <a href="<?php echo base_url("dashboard_patient/appointment/appointment/cancell/$appointment->appointment_id") ?>" onclick="return confirm('<?php echo display('are_you_sure') ?>')" class="btn btn-block btn-primary btn-danger"><i class="fa fa-times-circle"></i> Cancell </a> 
+    <a href="<?php echo base_url("appointment/cancell/$appointment->appointment_id") ?>" onclick="return confirm('<?php echo display('are_you_sure') ?>')" class="btn btn-block btn-primary btn-danger"><i class="fa fa-times-circle"></i> Cancell </a> 
 </div>
 <?php } ?>
 <?php
     if($appointment->status == 2 ){
 ?>
 <div class="col-md-2 floatR">
-    <a href="<?php echo base_url("dashboard_patient/appointment/appointment/confirm/$appointment->appointment_id") ?>" onclick="return confirm('<?php echo display('are_you_sure') ?>')" class="btn btn-block btn-primary btn-success"><i class="fa fa fa-check-circle"></i> Confirm </a> 
+    <a href="<?php echo base_url("appointment/confirm/$appointment->appointment_id") ?>" onclick="return confirm('<?php echo display('are_you_sure') ?>')" class="btn btn-block btn-primary btn-success"><i class="fa fa fa-check-circle"></i> Confirm </a> 
 </div>
 <?php } ?>

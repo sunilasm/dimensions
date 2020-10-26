@@ -88,6 +88,12 @@ class Appointment_model extends CI_Model {
 				user.meeting_user_id,  
 				user.meeting_password,  
 				usrLn.degree,  
+				transaction.transaction_id,  
+				transaction.refund_id,  
+				transaction.amount as refund_amount,  
+				transaction.status as refund_status,  
+				transaction.speed_processed as speed_processed,  
+				transaction.created_date as refund_date,  
 				department.name as department,
 				department.price as price,
 				main_department.name as branch_name,
@@ -109,6 +115,7 @@ class Appointment_model extends CI_Model {
 			->join('main_department', 'department.main_id=main_department.id', 'left')
 			->join('patient','patient.patient_id = appointment.patient_id')
 			->join('schedule','schedule.schedule_id = appointment.schedule_id','left')
+			->join('transaction','transaction.payment_id = appointment.payment_id','left')
 			->where('appointment.appointment_id',$appointment_id)
 			->where('usrLn.language', (!empty($this->language)?$this->language:$this->defualt))
 			->order_by('appointment.id','desc')

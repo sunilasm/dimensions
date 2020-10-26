@@ -153,7 +153,7 @@ class Appointment extends CI_Controller {
         $data['title'] = display('appointment');
         /* ------------------------------- */
         $data['appointment'] = $this->appointment_model->read_by_id($appointment_id);
-        //// "<pre>".print_r($data['appointment'], true); exit;
+        //echo "<pre>".print_r($data['appointment'], true); exit;
         $data['content'] = $this->load->view('dashboard_patient/appointment/appointment_view',$data,true);
         $this->load->view('dashboard_patient/main_wrapper',$data);
       } 

@@ -19,6 +19,9 @@
                     <?php @$this->load->view('appointment/patient_details');?>
                 </div>  
             </div> 
+            <?php if(isset($appointment->refund_id)) : ?>
+                <?php @$this->load->view('appointment/refund_details');?>
+            <?php endif; ?>
             <div class="panel-footer">
                 <div class="text-center">
                     <strong><?php echo $this->session->userdata('title') ?></strong>
