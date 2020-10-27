@@ -16,9 +16,6 @@ class Orders extends CI_Controller {
 			'main_department_model'
 		));
 		
-		if ($this->session->userdata('isLogIn') == false) 
-		redirect('login');
-
 	}
     public function index()
     {
@@ -132,6 +129,7 @@ class Orders extends CI_Controller {
 			$data['appointments'] = $this->order_model->read_slots_by_order($data['order']->order_id);
 			$data['department_list'] = $this->department_model->department_list(); 
 		}
+		$data['back_url'] = $_SERVER['HTTP_REFERER'];
 		//echo "<pre>".print_r($data, true); exit;
 		//echo "<pre>".print_r($this->session->userdata(), true); exit;
 		//$data['appointment_type'] = $this->main_department_model->appointment_type();
@@ -335,7 +333,73 @@ class Orders extends CI_Controller {
 		}
 		redirect('orders');
 	}
+	public function cancell($order_id = null) 
+	{
+			$data = array();
+			$data['order_status'] = "Cancelled";
+			$refund_status  = false;
 
+			$order = $this->order_model->read_by_id($order_id);
+			//echo "<pre>".print_r($order,true); exit;
+			if(isset($order->payment_id) && trim($order->payment_id) != '')
+			{
+					$this->load->model('transaction_model');
+					$request_data = array();
+					//$request_data['amount'] = $order->total_price;
+					$response = $this->transaction_model->refund($order->payment_id, $request_data);
+					//echo "<pre>".print_r($response,true);exit;
+					if($response['status'])
+					{
+							$refund_data = array();
+
+							$refund_data['payment_id']  = $order->payment_id;
+							$refund_data['refund_id']   = $response['result']->id;
+							$refund_data['amount']      = $order->total_price;
+							$refund_data['receipt']     = $response['result']->receipt;
+							$refund_data['status']      = $response['result']->status;
+							$refund_data['speed_processed']      = $response['result']->speed_processed;
+							//$refund_data['created_date'] = date()
+
+							$status = $this->transaction_model->insert_refund_data($refund_data);
+
+							if($status)
+							{
+									$refund_status = true;
+							}
+					}
+					else
+					{
+							$refund_status = false;
+					}
+			}
+			else
+			{
+					//echo "ref"; 
+					$refund_status = true;
+			}
+			//exit;
+			//echo "<pre>".print_r($appointment,true); exit;
+			if($refund_status)
+			{
+					if($this->order_model->update_order($order_id, $data)) 
+					{
+							/*set success message*/
+							$this->session->set_flashdata('message', display('cancell_successfully'));
+					} 
+					else 
+					{
+							/*set exception message*/
+							$this->session->set_flashdata('exception', display('please_try_again')." : database error!");
+					}
+					redirect($_SERVER['HTTP_REFERER']);
+			}
+			else
+			{
+					$this->session->set_flashdata('exception', display('please_try_again')." :refund error!");
+					redirect($_SERVER['HTTP_REFERER']);
+			}
+			
+	}
 	public function list()
 	{
 		$this->load->model(array(

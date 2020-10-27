@@ -15,6 +15,17 @@ class Order_model extends CI_Model {
 	{	 
 		return $this->db->insert($this->table,$data);
 	}
+	public function update_order($id = 0, $data = [])
+	{	 
+		$response_id = $id;
+		if($id)
+		{
+			$response_id =  $this->db->update($this->table, $data, array('order_id' => $id));
+			// $this->db->where('id', $id);
+			// $this->db->update($this->table, $data);
+		}
+		return $response_id;
+	}
 	public function create_appointment($data = [])
 	{	 
 		return $this->db->insert('package_orders_appointments',$data);

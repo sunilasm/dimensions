@@ -37,8 +37,9 @@
                                             <th><?php echo display('patient_name') ?></th> 
                                             <th><?php echo display('mobile') ?></th>
                                             <th><?php echo display('package_title') ?></th>
-                                            <th><?php echo display('package_price') ?></th>
+                                            <!-- <th><?php echo display('package_price') ?></th> -->
                                             <th><?php echo display('order_total') ?></th>
+                                            <th><?php echo display('order_status') ?></th>
                                             <th><?php echo display('order_date') ?></th>
                                             <?php
                                             if($this->permission->method('package_order_list','update')->access() || $this->permission->method('package_order_list','delete')->access()){
@@ -57,8 +58,9 @@
                                                     <td><?php echo $package->firstname.' '.$package->lastname; ?></td>
                                                     <td><?php echo $package->mobile; ?></td>
                                                     <td><?php echo $package->package_title; ?></td>
-                                                    <td><?php echo $package->package_special_price; ?></td>
+                                                    <!-- <td><?php echo $package->package_special_price; ?></td> -->
                                                     <td><?php echo $package->total_price; ?></td>
+                                                    <td><?php echo $package->order_status; ?></td>
                                                     <td><?php echo $package->created_date; ?></td>
                                                     
                                                     <!-- <td><?php echo $package->package_sort_order; ?></td> -->
@@ -73,11 +75,11 @@
                                                         <a href="<?php echo base_url("orders/view/$package->order_id") ?>" class="btn btn-xs  btn-success"><i class="fa fa-eye"></i></a> 
                                                     <?php } ?>
 
-                                                     <?php
+                                                     <!-- <?php
                                                      if($this->permission->method('package_order_list','delete')->access()){
                                                      ?>
                                                         <a href="<?php echo base_url("orders/delete/$package->order_id") ?>" onclick="return confirm('<?php echo display("are_you_sure") ?>')" class="btn btn-xs  btn-danger"><i class="fa fa-trash"></i></a> 
-                                                     <?php } ?>
+                                                     <?php } ?> -->
 
                                                     </td>
                                                     <?php } ?>

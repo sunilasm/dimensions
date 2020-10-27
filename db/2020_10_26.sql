@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 20, 2020 at 02:49 PM
+-- Generation Time: Oct 27, 2020 at 06:54 AM
 -- Server version: 5.7.31-0ubuntu0.16.04.1
--- PHP Version: 7.1.33-17+ubuntu16.04.1+deb.sury.org+1
+-- PHP Version: 7.2.34-4+ubuntu16.04.1+deb.sury.org+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -390,6 +390,19 @@ CREATE TABLE `appointment` (
   `create_date` date DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `appointment`
+--
+
+INSERT INTO `appointment` (`id`, `appointment_id`, `patient_id`, `department_id`, `doctor_id`, `schedule_id`, `serial_no`, `date`, `problem`, `payment_mode`, `payment_id`, `created_by`, `create_date`, `status`) VALUES
+(89, 'A4D6U6DW', 'PELWQ10H', 18, 3, 7, 1, '2020-10-20', 'test', 'Cash', 'order_glt87k8', 2, '2020-10-20', 1),
+(90, 'A55GL1O9', 'PELWQ10H', 18, 3, 8, 1, '2020-10-21', 'test', 'Cash', 'order_ffqhfe7', 2, '2020-10-21', 4),
+(91, 'ALP6RH2P', 'PELWQ10H', 18, 3, 6, 1, '2020-10-27', 'test', 'Cash', 'order_85ng2s6', 3, '2020-10-21', 4),
+(92, 'AD9DYTD6', 'PELWQ10H', 18, 3, 1, 1, '2020-10-23', 'test', 'Cash', 'order_8txi9td', 2, '2020-10-21', 1),
+(93, 'ANWH4VGD', 'PELWQ10H', 18, 3, 8, 1, '2020-10-21', 'test', 'Cash', 'order_a8i2h3h', 3, '2020-10-21', 3),
+(94, 'AF2X7VMP', 'PELWQ10H', 18, 3, 6, 1, '2020-10-27', 'test', 'Cash', 'order_iah6n85', 2, '2020-10-22', 3),
+(95, 'AE6EQUHN', 'PELWQ10H', 18, 3, 8, 1, '2020-10-28', 'test', 'Online', 'pay_FtLgQDzAJw22DM', 2, '2020-10-26', 3);
 
 -- --------------------------------------------------------
 
@@ -1757,7 +1770,10 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (818, 'meeting_user_id', 'Meeting User ID', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL),
 (819, 'meeting_password', 'Meeting Password', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL),
 (820, 'receipt_id', 'Receipt ID', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL),
-(821, 'receipt', 'Payment Receipt', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL);
+(821, 'receipt', 'Payment Receipt', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL),
+(822, 'cancell_successfully', 'Cancelled successfully!', 'حذف بنجاح', 'সফলভাবে মুছে ফেলা হয়েছে', NULL),
+(823, 'confirm_successfully', 'Confirmed successfully!', 'حذف بنجاح', 'সফলভাবে মুছে ফেলা হয়েছে', NULL),
+(824, 'order_status', 'Order Status', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL);
 
 -- --------------------------------------------------------
 
@@ -1990,6 +2006,17 @@ CREATE TABLE `package_orders` (
   `updated_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `package_orders`
+--
+
+INSERT INTO `package_orders` (`order_id`, `patient_id`, `package_id`, `quantity`, `package_price`, `package_slots`, `discount_price`, `other`, `total_price`, `order_status`, `payment_id`, `created_by`, `updated_by`, `created_date`, `updated_date`) VALUES
+(13, 3, 4, 1, 54.5, 5, 0, 0, 54.5, 'Cancelled', 'pay_FrRAdavk3LVtgs', 3, 3, '2020-10-21 11:03:34', '2020-10-21 11:03:34'),
+(14, 3, 4, 1, 54.5, 5, 0, 0, 54.5, 'Cancelled', 'pay_FtPbIPkNn2WoLQ', 3, 3, '2020-10-26 10:49:35', '2020-10-26 10:49:35'),
+(15, 3, 4, 1, 54.5, 5, 0, 0, 54.5, 'Cancelled', 'pay_FtPeTFEtaSxXcg', 3, 3, '2020-10-26 10:52:27', '2020-10-26 10:52:27'),
+(16, 3, 4, 1, 54.5, 5, 0, 0, 54.5, 'Cancelled', 'pay_FtPh8Y2OG5Nv1k', 3, 3, '2020-10-26 10:55:00', '2020-10-26 10:55:00'),
+(17, 3, 4, 1, 54.5, 5, 0, 0, 54.5, 'Ordered', 'pay_Ftk1o292cxRctz', 3, 3, '2020-10-27 06:48:24', '2020-10-27 06:48:24');
+
 -- --------------------------------------------------------
 
 --
@@ -2012,10 +2039,9 @@ CREATE TABLE `package_orders_appointments` (
 --
 
 INSERT INTO `package_orders_appointments` (`package_order_appoinment_id`, `package_order_id`, `package_appointment_id`, `package_appoinment_status`, `created_by`, `updated_by`, `created_date`, `updated_date`) VALUES
-(17, 10, 85, 'Active', 2, 2, '2020-10-20 11:40:14', '2020-10-20 11:40:14'),
-(18, 10, 86, 'Active', 2, 2, '2020-10-20 11:43:13', '2020-10-20 11:43:13'),
-(19, 10, 87, 'Active', 2, 2, '2020-10-20 11:46:30', '2020-10-20 11:46:30'),
-(20, 10, 88, 'Active', 3, 3, '2020-10-20 12:01:46', '2020-10-20 12:01:46');
+(21, 13, 90, 'Active', 2, 2, '2020-10-21 11:08:18', '2020-10-21 11:08:18'),
+(22, 13, 91, 'Active', 3, 3, '2020-10-21 11:11:06', '2020-10-21 11:11:06'),
+(23, 13, 94, 'Active', 2, 2, '2020-10-22 12:47:19', '2020-10-22 12:47:19');
 
 -- --------------------------------------------------------
 
@@ -2052,13 +2078,6 @@ CREATE TABLE `package_renewals` (
   `created_date` date NOT NULL,
   `updated_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='package renewals data';
-
---
--- Dumping data for table `package_renewals`
---
-
-INSERT INTO `package_renewals` (`package_renewal_id`, `package_order_id`, `package_renewal_order_id`, `renewal_status`, `renewal_email_flag`, `created_by`, `updated_by`, `created_date`, `updated_date`) VALUES
-(1, 1, 0, 'Pending', 'Pending', 2, 2, '2020-10-07', '2020-10-07 10:19:04');
 
 -- --------------------------------------------------------
 
@@ -2210,13 +2229,6 @@ CREATE TABLE `pr_prescription` (
   `reference_to` varchar(50) DEFAULT NULL,
   `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `pr_prescription`
---
-
-INSERT INTO `pr_prescription` (`id`, `appointment_id`, `patient_id`, `patient_type`, `doctor_id`, `chief_complain`, `insurance_id`, `policy_no`, `weight`, `blood_pressure`, `medicine`, `diagnosis`, `visiting_fees`, `patient_notes`, `reference_by`, `reference_to`, `date`) VALUES
-(1, 'A90MD3OR', 'PELWQ10H', 'New', 2, 'asdasd', 0, '', '98', '90-120', '[{\"name\":\"asas\",\"type\":\"azc\",\"instruction\":\"aas\",\"days\":\"4\"},{\"name\":\"asdas\",\"type\":\"asd\",\"instruction\":\"ads\",\"days\":\"4\"}]', '[{\"name\":\"asdas\",\"instruction\":\"adad\"},{\"name\":\"asdad\",\"instruction\":\"asdasd\"},{\"name\":\"\",\"instruction\":\"\"}]', 50, 'asdads', 'Sunil', NULL, '2020-10-12');
 
 -- --------------------------------------------------------
 
@@ -3320,6 +3332,32 @@ INSERT INTO `time_slot` (`id`, `slot_name`, `slot`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `transaction`
+--
+
+CREATE TABLE `transaction` (
+  `transaction_id` int(11) NOT NULL,
+  `payment_id` varchar(255) NOT NULL,
+  `refund_id` varchar(255) NOT NULL,
+  `amount` float NOT NULL,
+  `receipt` varchar(255) DEFAULT NULL,
+  `status` varchar(100) NOT NULL,
+  `speed_processed` varchar(100) NOT NULL,
+  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Refund transactions';
+
+--
+-- Dumping data for table `transaction`
+--
+
+INSERT INTO `transaction` (`transaction_id`, `payment_id`, `refund_id`, `amount`, `receipt`, `status`, `speed_processed`, `created_date`) VALUES
+(1, 'pay_FtLgQDzAJw22DM', 'rfnd_FtMRoLr81LQrXE', 300, NULL, 'processed', 'normal', '2020-10-26 07:44:19'),
+(2, 'pay_FtPeTFEtaSxXcg', 'rfnd_FtPeqP1OCEPKwK', 54.5, NULL, 'processed', 'normal', '2020-10-26 10:52:44'),
+(3, 'pay_FtPh8Y2OG5Nv1k', 'rfnd_FtPiW8nLucJukZ', 54.5, NULL, 'processed', 'normal', '2020-10-26 10:56:13');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
@@ -3489,7 +3527,13 @@ INSERT INTO `user_log` (`id`, `user_id`, `in_time`, `out_time`, `date`, `status`
 (37, 2, '10:08:39', '00:00:00', '2020-10-14', 1),
 (38, 2, '11:14:08', '00:00:00', '2020-10-16', 1),
 (39, 2, '12:49:23', '00:00:00', '2020-10-19', 1),
-(40, 2, '06:34:23', '00:00:00', '2020-10-20', 1);
+(40, 2, '06:34:23', '00:00:00', '2020-10-20', 1),
+(41, 2, '10:55:52', '00:00:00', '2020-10-21', 1),
+(42, 2, '10:53:26', '00:00:00', '2020-10-22', 1),
+(43, 2, '00:16:36', '00:00:00', '2020-10-24', 1),
+(44, 2, '23:16:21', '00:00:00', '2020-10-25', 1),
+(45, 2, '06:52:44', '00:00:00', '2020-10-26', 1),
+(46, 2, '06:41:03', '00:00:00', '2020-10-27', 1);
 
 -- --------------------------------------------------------
 
@@ -4507,6 +4551,12 @@ ALTER TABLE `time_slot`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `transaction`
+--
+ALTER TABLE `transaction`
+  ADD PRIMARY KEY (`transaction_id`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -4688,7 +4738,7 @@ ALTER TABLE `acn_account_transaction`
 -- AUTO_INCREMENT for table `appointment`
 --
 ALTER TABLE `appointment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
 
 --
 -- AUTO_INCREMENT for table `bill`
@@ -4844,7 +4894,7 @@ ALTER TABLE `inc_limit_approval`
 -- AUTO_INCREMENT for table `language`
 --
 ALTER TABLE `language`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=822;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=825;
 
 --
 -- AUTO_INCREMENT for table `mail_setting`
@@ -4898,13 +4948,13 @@ ALTER TABLE `package`
 -- AUTO_INCREMENT for table `package_orders`
 --
 ALTER TABLE `package_orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `package_orders_appointments`
 --
 ALTER TABLE `package_orders_appointments`
-  MODIFY `package_order_appoinment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `package_order_appoinment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `package_prices`
@@ -5045,6 +5095,12 @@ ALTER TABLE `time_slot`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `transaction`
+--
+ALTER TABLE `transaction`
+  MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
@@ -5066,7 +5122,7 @@ ALTER TABLE `user_language`
 -- AUTO_INCREMENT for table `user_log`
 --
 ALTER TABLE `user_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `ws_about`

@@ -35,8 +35,9 @@
                                             <th><?php echo display('patient_name') ?></th> 
                                             <th><?php echo display('mobile') ?></th>
                                             <th><?php echo display('package_title') ?></th>
-                                            <th><?php echo display('package_price') ?></th>
+                                            <!-- <th><?php echo display('package_price') ?></th> -->
                                             <th><?php echo display('order_total') ?></th>
+                                            <th><?php echo display('order_status') ?></th>
                                             <th><?php echo display('order_date') ?></th>
                                             <th><?php echo display('action') ?></th>
 
@@ -51,8 +52,9 @@
                                                     <td><?php echo $package->firstname.' '.$package->lastname; ?></td>
                                                     <td><?php echo $package->mobile; ?></td>
                                                     <td><?php echo $package->package_title; ?></td>
-                                                    <td><?php echo $package->package_special_price; ?></td>
+                                                    <!-- <td><?php echo $package->package_special_price; ?></td> -->
                                                     <td><?php echo $package->total_price; ?></td>
+                                                    <td><?php echo $package->order_status; ?></td>
                                                     <td><?php echo $package->created_date; ?></td>
                                                     
                                                     <!-- <td><?php echo $package->package_sort_order; ?></td> -->

@@ -22,7 +22,7 @@ if(isset($_SERVER['HTTP_REFERER']))
 </div>
 <?php endif; ?>
 <?php
-    if($appointment->status == 3){
+    if($appointment->status == 3 && $this->permission->method('appointment','delete')->access()){
 ?>
 <div class="col-md-2 floatR">
     <a href="<?php echo base_url("appointment/delete/$appointment->appointment_id") ?>" onclick="return confirm('<?php echo display('are_you_sure') ?>')" class="btn btn-block btn-primary btn-danger"><i class="fa fa-trash"></i> Delete </a> 

@@ -16,8 +16,15 @@
                     ?>
                     <button type="button" onclick="printContent('PrintMe')" class="btn btn-danger" ><i class="fa fa-print"></i></button> 
                     <?php } ?>
-                    
+                   
                 </div>
+                <?php if(isset($back_url) && $back_url != '') : ?>
+                    <a class="btn btn-primary floatR" href="<?php echo $back_url; ?>"> Back </a> 
+                <?php endif; ?>
+                <?php if(isset($order->order_status) && $order->order_status == 'Ordered' && $appointments_booked == 0) : ?>
+                    <!-- <a class="btn btn-primary btn-danger marginR10 floatR" style="margin-right: 10px" href="<?php echo $back_url; ?>"> Cancell </a>  -->
+                    <a href="<?php echo base_url("orders/cancell/$order->order_id") ?>" onclick="return confirm('<?php echo display('are_you_sure') ?>')" class="btn btn-primary btn-danger marginR10 floatR" style="margin-right: 10px"><i class="fa fa-times-circle"></i> Cancell </a> 
+                <?php endif; ?>
             </div> 
 
 
@@ -48,6 +55,7 @@
                                     <dt><?php echo display('discount_price') ?></dt><dd><?php echo print_value($order, 'discount_price'); ?></dd> 
                                     <dt><?php echo display('other_charges') ?></dt><dd><?php echo print_value($order, 'other'); ?></dd> 
                                     <dt><?php echo display('order_total') ?></dt><dd><?php echo print_value($order, 'total_price'); ?></dd> 
+                                    <dt><?php echo "Order Status" ?></dt><dd><?php echo print_value($order, 'order_status'); ?></dd> 
                                     <dt><?php echo display('order_date') ?></dt><dd><?php echo print_date($order, 'created_date'); ?></dd> 
                                 </dl> 
                             </div>
@@ -90,6 +98,7 @@
                                     <dt><?php echo display('package_price') ?></dt><dd><?php echo print_value($package, 'package_price'); ?></dd> 
                                     <dt><?php echo display('package_special_price') ?></dt><dd><?php echo print_value($package, 'package_special_price'); ?></dd> 
                                     <dt><?php echo display('package_slots') ?></dt><dd><?php echo print_value($package, 'package_slots'); ?></dd> 
+                                   
                                 </dl> 
                             </div>
                             <div class="col-sm-6">
@@ -119,9 +128,11 @@
                                             <dt><?php echo "Open Slots"; ?></dt><dd><?php echo isset($appointments_available) ? $appointments_available : 0;  ?> 
                                         </dl>
                                     </div>
+                                    <?php if($order->order_status == 'Ordered' && $appointments_available ) : ?>
                                     <div class="col-sm-3" style="text-align:right;">
                                         <a class="ui positive button" data-toggle="modal" data-target="#addAppiontment"><?php echo 'Book Slot'; ?></a> 
                                     </div>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                             <div class="col-sm-12">
