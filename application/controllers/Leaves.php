@@ -25,11 +25,123 @@ class Leaves extends CI_Controller {
 		$data['module'] = display("leaves");
 		$data['title'] = display('leave_list');
 		#-------------------------------#
-		$data['leaves'] = $this->leave_model->read();
+		//echo "<pre>".print_r($this->session->userdata(), true); exit;
+		$role = $this->session->userdata('user_role');
+		if($role==1 || $role == 11 ){
+			$data['leaves'] = $this->leave_model->read();
+		}else{
+			$data['leaves'] = $this->leave_model->read_by_user_id($this->session->userdata('user_id'));
+		}
+		//echo "<pre>".print_r($data, true); exit;
 		$data['content'] = $this->load->view('leaves/index',$data,true);
 		$this->load->view('layout/main_wrapper',$data);
 		//echo "<pre>".print_r($data, true); exit;
 	}
+	public function approvals(){
+		if ($this->session->userdata('isLogIn') == false) 
+		// redirect('login'); 
+		$data['module'] = display("leaves");
+		$data['title'] = display('leave_list');
+		#-------------------------------#
+		//echo "<pre>".print_r($this->session->userdata(), true); exit;
+		$role = $this->session->userdata('user_role');
+		$data['leaves'] = $this->leave_model->get_leaves(['user_leaves.status' => 1]);
+		//echo "<pre>".print_r($data, true); exit;
+		$data['content'] = $this->load->view('leaves/approvals',$data,true);
+		$this->load->view('layout/main_wrapper',$data);
+		//echo "<pre>".print_r($data, true); exit;
+	}
+
+	public function view($leave_id = null)
+	{  
+			$data['module'] = display("leaves");
+			$data['title'] = display('leaves');
+			/* ------------------------------- */
+			$data['back_url'] = $_SERVER['HTTP_REFERER'];
+			$data['leave'] = $leave = $this->leave_model->read_by_id($leave_id);
+			//echo "<pre>".print_r($data,true)."</pre>"; exit;
+			$data['edit'] = false;
+			$data['approver'] = false;
+			$role = $this->session->userdata('user_role');
+			if(count((array) $data['leave']))
+			{
+				if($role==1 || $role == 11)
+				{
+					$data['edit'] = true;
+					$data['approver'] = true;
+				}
+				elseif($this->session->userdata('user_id') == $leave->user_id)
+				{
+					$data['edit'] = true;
+				}
+
+				if($this->session->userdata('user_id') == 3)
+				{
+					$data['approver'] = true;
+				}
+			}
+			//echo "<pre>".print_r($data,true)."</pre>"; exit;
+			$data['content'] = $this->load->view('leaves/view',$data,true);
+			$this->load->view('layout/main_wrapper',$data);
+	} 
+
+	public function cancell($leave_id = null) 
+	{
+			$data = array();
+			$data['status'] = 4;
+			//$data['leave_id'] = $leave_id;
+			if($this->leave_model->update($leave_id, $data)) 
+			{
+					/*set success message*/
+					$this->session->set_flashdata('message', display('cancell_successfully'));
+			} 
+			else 
+			{
+					/*set exception message*/
+					$this->session->set_flashdata('exception', display('please_try_again'));
+			}
+			redirect($_SERVER['HTTP_REFERER']);
+	}
+	public function approve($leave_id = null) 
+	{
+			$data = array();
+			$data['status'] = 2;
+			//$data['leave_id'] = $leave_id;
+			if($this->leave_model->update($leave_id, $data)) 
+			{
+					/*set success message*/
+					$this->session->set_flashdata('message', display('approved_successfully'));
+			} 
+			else 
+			{
+					/*set exception message*/
+					$this->session->set_flashdata('exception', display('please_try_again'));
+			}
+			redirect($_SERVER['HTTP_REFERER']);
+	}
+	public function reject() 
+	{
+			$data = array();
+			$leave_id = 0;
+			$data = (object)$postData = [
+				'status' => $this->input->post('status',true),		 	
+				'manager_description' => $this->input->post('manager_description', true),
+			]; 
+			$leave_id = $this->input->post('leave_id',true);
+			//$data['leave_id'] = $leave_id;
+			if($this->leave_model->update($leave_id, $data)) 
+			{
+					/*set success message*/
+					$this->session->set_flashdata('message', display('rejected_successfully'));
+			} 
+			else 
+			{
+					/*set exception message*/
+					$this->session->set_flashdata('exception', display('please_try_again'));
+			}
+			redirect($_SERVER['HTTP_REFERER']);
+	}
+		
 	public function managers(){
 		if ($this->session->userdata('isLogIn') == false) 
 		// redirect('login'); 
@@ -41,9 +153,11 @@ class Leaves extends CI_Controller {
 		//echo "<pre>".print_r($data, true); exit;
 	}
 
-	public function create(){
+	public function create($leave_id = 0)
+	{
 		if ($this->session->userdata('isLogIn') == false) 
 		redirect('login'); 
+
 		$data['module'] = display("leaves");
 		$data['title'] = display('add_leave');
 
@@ -54,24 +168,62 @@ class Leaves extends CI_Controller {
 		//$this->form_validation->set_rules('from_date', display('from_date'),'required|max_length[10]');
 		//$this->form_validation->set_rules('to_date', display('to_date'),'required|max_length[10]');
 		$this->form_validation->set_rules('leave_description', display('leave_description'),'trim');
-		
+		$leave_present = false;
+		$appointments_present = false;
 		#-------------------------------#
 		$data['leave'] = (object)$postData = [
 			'leave_id' 	 => $this->input->post('leave_id',true),
-			/*'emp_id' 	      => $this->input->post('emp_id',true),
-			'department_names' 	      => $this->input->post('department_names',true),
-			'first_name' 	      => $this->input->post('first_name',true),
-			'last_name' 	      => $this->input->post('last_name',true),
-			'email' 	      => $this->input->post('email',true),*/
+			'user_id' 	 => $this->input->post('user_id',true),
+			'status' 	 => $this->input->post('status',true),
 			'leave_type' => $this->input->post('leave_type',true),		 	
 			'from_date' => date('Y-m-d', strtotime(($this->input->post('from_date') != null)? $this->input->post('from_date'): date('Y-m-d'))),
 			'to_date' => date('Y-m-d', strtotime(($this->input->post('to_date') != null)? $this->input->post('to_date'): date('Y-m-d'))),
 			'leave_description' => $this->input->post('leave_description', true),
-		]; 
+		];
+
+		$postData['updated_by'] = $this->session->userdata('user_id');
+		$postData['updated_date'] = date('Y-m-d h:i:s');
+
+		if(!$leave_id)
+		{
+			$postData['created_by'] = $this->session->userdata('user_id');
+			$postData['created_date'] = $this->session->userdata('user_id');
+
+			$where = [
+				' user_leaves.user_id' => $this->input->post('user_id',true),
+				' user_leaves.from_date' => date('Y-m-d', strtotime(($this->input->post('from_date') != null)? $this->input->post('from_date'): date('Y-m-d'))),
+				' user_leaves.to_date' => date('Y-m-d', strtotime(($this->input->post('to_date') != null)? $this->input->post('to_date'): date('Y-m-d'))),
+			];
+			$present = $this->leave_model->get_leaves($where);
+			//echo "<pre>".print_r($present, true); exit;
+			if(count((array)$present))
+			{
+				/*set exception message*/
+				$this->session->set_flashdata('exception', 'Leave already present for specified days!');
+				redirect($_SERVER['HTTP_REFERER']);
+			}
+		}		
 		
-        if ($this->form_validation->run() === true) 
-        {
-			if (empty($postData['leave_id'])) {
+		// Check any present appoinments
+		$this->load->model('appointment_model');
+		$appointments_where = [
+			'doctor_id' => $this->input->post('user_id',true),
+			'date <=' => date('Y-m-d', strtotime(($this->input->post('from_date') != null)? $this->input->post('from_date'): date('Y-m-d'))),
+			'date >=' => date('Y-m-d', strtotime(($this->input->post('to_date') != null)? $this->input->post('to_date'): date('Y-m-d'))),
+			'status' => 1
+		];
+		$appointments = $this->appointment_model->check_appointments($appointments_where);
+		if(count((array) $appointments))
+		{
+			/*set exception message*/
+			$this->session->set_flashdata('exception', 'Please cancell all the appointments on specified dates!');
+			redirect($_SERVER['HTTP_REFERER']);
+		}
+
+		if ($this->form_validation->run() === true) 
+		{
+			if (empty($postData['leave_id'])) 
+			{
 				
 				if ($this->leave_model->create($postData)) {
 					#set success message
@@ -81,8 +233,10 @@ class Leaves extends CI_Controller {
 					$this->session->set_flashdata('exception',display('please_try_again'));
 				}
 				redirect('leaves/index');
-			} else {
-				if ($this->leave_model->update($postData)) {
+			} 
+			else 
+			{
+				if ($this->leave_model->update($this->input->post('leave_id',true), $postData)) {
 					#set success message
 					$this->session->set_flashdata('message',display('update_successfully'));
 				} else {
@@ -93,9 +247,14 @@ class Leaves extends CI_Controller {
 				redirect('leaves/index');
 			}
 
-		} else {
+		} 
+		else 
+		{
+			$data['leave'] = $this->leave_model->read_by_id($leave_id);
 			$data['department_list'] = $this->department_model->department_list();
+			//echo "<pre>".print_r($data, true); exit;
 			$data['content'] = $this->load->view('leaves/apply_leave',$data,true);
+			//echo "<pre>".print_r($this->session->userdata(), true); exit;
 			$this->load->view('layout/main_wrapper',$data);
 		} 
 	}

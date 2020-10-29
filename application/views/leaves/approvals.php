@@ -3,16 +3,6 @@
     <div class="col-sm-12">
         <div  class="panel panel-default thumbnail">
             <?php
-             if($this->permission->method('leaves','create')->access()){
-            ?>
-            <div class="panel-heading no-print">
-                <div class="btn-group"> 
-                    <a class="btn btn-success" href="<?php echo base_url("leaves/create") ?>"> <i class="fa fa-plus"></i>  <?php echo display('add_leave') ?> </a>  
-                </div>
-            </div>
-            <?php } ?>
-
-            <?php
             if($this->permission->method('leaves','read')->access()  || $this->permission->method('leaves','update')->access() || $this->permission->method('leaves','delete')->access()){
             ?>
             <div class="panel-body">

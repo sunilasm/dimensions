@@ -730,7 +730,7 @@ $settings = $this->db->select("site_align")
     if($this->permission->module('add_employee')->access() || $this->permission->module('accountant_list')->access() || $this->permission->module('laboratorist_list')->access() || $this->permission->module('nurse_list')->access() || $this->permission->module('pharmacist_list')->access() || $this->permission->module('receptionist_list')->access() || $this->permission->module('representative_list')->access() || $this->permission->module('case_manager_list')->access()){
     ?>
 
-    <li class="treeview  <?php echo (($this->uri->segment(1) == "leaves") ? "active" : null) ?>">
+    <li class="treeview  <?php echo (($this->uri->segment(1) == "employee") ? "active" : null) ?>">
         <a href="#">
             <i class="fa fa-users"></i> <span><?php echo display('human_resources') ?></span>
             <span class="pull-right-container">
@@ -778,12 +778,17 @@ $settings = $this->db->select("site_align")
             ?>
             <li class="<?php echo (($this->uri->segment(1) == "leaves" && $this->uri->segment(2) == "create")? "active" : null) ?>"><a href="<?php echo base_url("leaves/create") ?>"><?php echo display('add_leave') ?></a></li>
             <?php } ?>
-
             <?php
+            if($this->session->userdata('user_role') == 1 ||  $this->session->userdata('user_role') == 11 || $this->session->userdata('user_id') == 3){
+            ?>
+            <li class="<?php echo (($this->uri->segment(1) == "leaves" && $this->uri->segment(2) == "approvals")? "active" : null) ?>"><a href="<?php echo base_url("leaves/approvals") ?>"><?php echo "Approvals" ?></a></li>
+            <?php } ?>
+
+            <!-- <?php
             if($this->permission->method('leaves','create')->access()){
             ?>
             <li class="<?php echo (($this->uri->segment(1) == "leaves" && $this->uri->segment(2) == "managers")? "active" : null) ?>"><a href="<?php echo base_url("leaves/managers") ?>"><?php echo display('managers') ?></a></li>
-            <?php } ?>
+            <?php } ?> -->
 
         </ul>
     </li>

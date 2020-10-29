@@ -182,6 +182,78 @@ function get_appointment_status($status_id = 2)
             break;
         default:
             $response = 'Pending';
+            break;
+    }
+
+    return $response;
+}
+function get_leave_status($status_id = 2)
+{
+    $response = 'Pending';
+
+    switch($status_id)
+    {
+        case '1':
+            $response = 'Pending';
+            break;
+        case '2':
+            $response = 'Approved';
+            break;
+        case '3':
+            $response = 'Rejected';
+            break;
+        case '4':
+            $response = 'Cancelled';
+            break;
+        case '5':
+            $response = 'Closed';
+            break;
+        default:
+            $response = 'Pending';
+            break;
+    }
+
+    return $response;
+}
+function get_leave_type_list()
+{
+    $response = [
+        0 => 'Select',
+        1 => 'Sick leave',
+        2 => 'Casual leave',
+        3 => 'Maternity leave',
+        4 => 'Paternity leave',
+        5 => 'Unpaid Leave',
+    ];
+    return $response;
+}
+function get_leave_type($leave_type_id = 2)
+{
+    $response = 'Sick leave';
+
+    switch($leave_type_id)
+    {
+        case '1':
+            $response = 'Sick leave';
+            break;
+        case '2':
+            $response = 'Casual leave';
+            break;
+        case '3':
+            $response = 'Maternity leave';
+            break;
+        case '4':
+            $response = 'Paternity leave';
+            break;
+        case '5':
+            $response = 'Unpaid Leave';
+            break;
+        case '5':
+            $response = 'Half Day';
+            break;
+        default:
+            $response = 'Sick leave';
+            break;
     }
 
     return $response;

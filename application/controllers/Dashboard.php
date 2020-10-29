@@ -290,7 +290,7 @@ public function index(){
             $data['allPatient']   =  trim($allPatient,',');
             $data['allAppoint']   =  trim($allAppoint,',');
             $data['allPrescrip']  =  trim($allPrescrip,',');
-            $data['lastPatient']    = $this->dashboard_model->today_patient();  
+            $data['lastPatient']    = $this->dashboard_model->today_patient();
 
             $data['content']  = $this->load->view('home',$data,true);
             $this->load->view('layout/main_wrapper',$data);

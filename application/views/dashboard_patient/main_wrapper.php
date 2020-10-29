@@ -113,9 +113,9 @@ $settings = $this->db->select("site_align")
                             <a href="<?php echo base_url('dashboard_patient/home') ?>"><i class="fa ti-home"></i> <?php echo display('dashboard') ?></a>
                         </li>   
 
-                        <li class="<?php echo (($this->uri->segment(2) == 'case_manager') ? "active" : null) ?>">
+                        <!-- <li class="<?php echo (($this->uri->segment(2) == 'case_manager') ? "active" : null) ?>">
                             <a href="<?php echo base_url('dashboard_patient/case_manager/patient/index') ?>"><i class="fa fa-heartbeat"></i><span> <?php echo display('status') ?></a>
-                        </li>    
+                        </li>     -->
 
 
                         <li class="treeview <?php echo (($this->uri->segment(2) == "document") ? "active" : null) ?>">

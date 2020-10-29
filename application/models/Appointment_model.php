@@ -72,7 +72,14 @@ class Appointment_model extends CI_Model {
 			->get()
 			->result();
 	} 
- 
+	public function check_appointments($where = array())
+	{
+		return $this->db->select("*")
+			->from($this->table)
+			->where($where)
+			->get()
+			->result();
+	}
 	public function read_by_id($appointment_id = null)
 	{ 
 		return $this->db->select("
