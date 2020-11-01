@@ -38,7 +38,8 @@ class Schedule_model extends CI_Model {
 
 	public function read_by_doctor_id($user_id = null) 
 	{
-		return $this->db->select("time_slot.id, time_slot.slot as name")
+		return $this->db->distinct()
+			->select("time_slot.id, time_slot.slot as name")
 			->from($this->table)
 			->join('time_slot','time_slot.id = schedule.slot_id','left')
 			->where('doctor_id',$user_id)

@@ -113,7 +113,7 @@ class Doctors extends CI_Controller {
 		$data['languages'] = $this->doctor_model->read_languages($user_id);
 		$data['slots'] = $this->schedule_model->read_by_doctor_id($user_id); 
 		$data['schedules'] = $this->schedule_model->schedule_by_slot_id($user_id); 
-        
+        //echo "<pre>".print_r($data,true); exit;
         $data['content'] = $this->load->view('website/doctor_details',$data,true);
 		$this->load->view('website/index', $data);
 	}
@@ -147,7 +147,7 @@ class Doctors extends CI_Controller {
         $data['deptsFooter'] = $this->department_model->read_footer();
         $data['parent_menu'] = $this->menu_model->get_parent_menu();
         $data['departments'] = $this->department_model->read();
-        //print_r($data['departments']);
+        //echo "<pre>".print_r($data,true); exit;
         // die();
 		$data['content'] = $this->load->view('website/doctors_timetable',$data,true);
 		$this->load->view('website/index', $data);

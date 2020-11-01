@@ -12,9 +12,9 @@ class Department_model extends CI_Model {
  
 	public function read()
 	{
-		return $this->db->select("department.dprt_id,department.main_id, department.flaticon, department.image, lang.*") 
-			->from('department_lang as lang')
+		return $this->db->select("department.dprt_id,department.main_id, department.flaticon, department.image, lang.*, main_department.name as branch_name") 	->from('department_lang as lang')
 			->join($this->table, 'department.dprt_id=lang.department_id', 'left')
+			->join('main_department', 'department.main_id=main_department.id', 'left')
 			->where('lang.language', (!empty($this->language)?$this->language:$this->defualt))
 			->where('lang.status', 1)
 			->order_by('lang.name','asc')
@@ -24,11 +24,11 @@ class Department_model extends CI_Model {
 
 	public function read_footer()
 	{
-		return $this->db->select("department.dprt_id,department.main_id, department.flaticon, department.image, lang.*") 
-			->from('department_lang as lang')
+		return $this->db->select("department.dprt_id,department.main_id, department.flaticon, department.image, lang.*, main_department.name as branch_name") 	->from('department_lang as lang')
 			->join($this->table, 'department.dprt_id=lang.department_id', 'left')
+			->join('main_department', 'department.main_id=main_department.id', 'left')
 			->where('lang.language', (!empty($this->language)?$this->language:$this->defualt))
-			->where('lang.status', 1)
+			->where('lang.status', 1) 
 			->limit(7)
 			->order_by('lang.name','asc')
 			->get()

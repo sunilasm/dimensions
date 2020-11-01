@@ -67,6 +67,7 @@
                                 </div>
                                 <div class="box-text">
                                     <h5><input type="button" class="btn btn-info btn-sm view_data" value="<?= $department->name; ?>" id="<?= $department->dprt_id; ?>"></h5>
+                                    <p>(<?php echo $department->branch_name; ?>)</p>
                                 </div>
                             </div>
                         <!-- /.box widget -->

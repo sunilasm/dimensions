@@ -153,7 +153,7 @@
                         <div class="box-widget">
                             <div class="box-text">
                                 <div class="event-container">
-                                   <b><a class="event_header" href=""><?= display('time')?></a></b>
+                                   <b><a class="event_header" href="javacript:void(0);"><?= display('time')?></a></b>
                                     <div class="hours_container"><span></span></div>
                                     <b><a class="event_header"><?= $value->name?></a></b>
                                 </div>
@@ -171,11 +171,11 @@
                                             <div class="box-widget">
                                                 <div class="box-text">
                                                     <div class="event-container">
-                                                       <b><a class="event_header" href=""><?= $doctor->firstname.' '.$doctor->lastname?></a></b>
+                                                       <b><a class="event_header" href="javacript:void(0);"><?= $doctor->firstname.' '.$doctor->lastname?></a></b>
                                                         <div class="before_hour_text"><?= $doctor->designation ?></div>
                                                         
                                                         <div class="hours_container"><span  class="hours"><?= date('H:i', strtotime($schedule->start_time)).' - '.date('H:i', strtotime($schedule->end_time))?></span></div>
-                                                        <b><a class="event_header"><?= $schedule->available_days?></a></b>
+                                                        <b><a class="event_header" href="javacript:void(0);"><?= $schedule->available_days?></a></b>
                                                     </div>
                                                 </div>
                                             </div>
