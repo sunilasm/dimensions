@@ -25,20 +25,27 @@ if(isset($_SERVER['HTTP_REFERER']))
     if($appointment->status == 3 && $this->permission->method('appointment','delete')->access()){
 ?>
 <div class="col-md-2 floatR">
-    <a href="<?php echo base_url("appointment/delete/$appointment->appointment_id") ?>" onclick="return confirm('<?php echo display('are_you_sure') ?>')" class="btn btn-block btn-primary btn-danger"><i class="fa fa-trash"></i> Delete </a> 
+    <a href="<?php echo base_url("appointment/delete/$appointment->appointment_id") ?>" onclick="return confirm('<?php echo 'Are you sure you want to delete this appointment?' ?>')" class="btn btn-block btn-primary btn-danger"><i class="fa fa-trash"></i> Delete </a> 
 </div>
 <?php } ?>
 <?php
     if($appointment->status == 2 || $appointment->status == 1){
 ?>
 <div class="col-md-2 floatR">
-    <a href="<?php echo base_url("appointment/cancell/$appointment->appointment_id") ?>" onclick="return confirm('<?php echo display('are_you_sure') ?>')" class="btn btn-block btn-primary btn-danger"><i class="fa fa-times-circle"></i> Cancell </a> 
+    <a href="<?php echo base_url("appointment/cancell/$appointment->appointment_id") ?>" onclick="return confirm('<?php echo 'Are you sure you want to cancel this appointment?'; ?>')" class="btn btn-block btn-primary btn-danger"><i class="fa fa-times-circle"></i> Cancel </a> 
 </div>
 <?php } ?>
 <?php
     if($appointment->status == 2 ){
 ?>
 <div class="col-md-2 floatR">
-    <a href="<?php echo base_url("appointment/confirm/$appointment->appointment_id") ?>" onclick="return confirm('<?php echo display('are_you_sure') ?>')" class="btn btn-block btn-primary btn-success"><i class="fa fa fa-check-circle"></i> Confirm </a> 
+    <a href="<?php echo base_url("appointment/confirm/$appointment->appointment_id") ?>" onclick="return confirm('<?php echo 'Are you sure you want to confirm this appointment?' ?>')" class="btn btn-block btn-primary btn-success"><i class="fa fa fa-check-circle"></i> Confirm </a> 
+</div>
+<?php } ?>
+<?php
+    if($appointment->status == 1 && ($this->session->userdata('user_role') == 2) ){
+?>
+<div class="col-md-2 floatR">
+    <a href="<?php echo base_url("appointment/complete/$appointment->appointment_id") ?>" onclick="return confirm('<?php echo 'Are you sure you want to mark this appointment as Done?' ?>')" class="btn btn-block btn-primary btn-success"><i class="fa fa fa-check-circle"></i> Done </a> 
 </div>
 <?php } ?>

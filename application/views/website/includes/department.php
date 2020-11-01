@@ -16,9 +16,9 @@
                 <div class="col-6 col-md-4 col-lg-2">
                     <div class="box-widget">
                         <!-- <a href="<?= base_url('departments/details/'.$department->dprt_id.'/'.url_title($department->name))?>"> -->
-                        <a href="">
+                        <a href="javascript:void(0);">
                             <div class="box-icon">
-                                <i class="flaticon-<?= (!empty($department->flaticon)?$department->flaticon:'heart');?>"></i>
+                                <i class="fa <?= (!empty($department->flaticon)?"flaticon-".$department->flaticon:'fa-university');?>"></i>
                             </div>
                             <div class="box-text">
                                 <h5><?= $department->name;?></h5>

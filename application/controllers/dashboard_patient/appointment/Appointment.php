@@ -24,8 +24,8 @@ class Appointment extends CI_Controller {
         $data['module'] = display("dashboard_patient");
         $data['title'] = display('appointment');
         /* ------------------------------- */
-        $data['appointments'] = $this->appointment_model->read();
-        //echo "<pre>".print_r($this->session->userdata(), true); exit;
+        $data['appointments'] = $this->appointment_model->get(['appointment.patient_id' => $this->session->userdata('patient_id')]);
+        //echo "<pre>".print_r($data, true); exit;
         $data['content'] = $this->load->view('dashboard_patient/appointment/appointment',$data,true);
         $this->load->view('dashboard_patient/main_wrapper',$data);
     } 
@@ -75,15 +75,35 @@ class Appointment extends CI_Controller {
         //check appointment exists
         $check_appointment_exists = $this->check_appointment_exists(
             $this->input->post('patient_id',true), 
-            $this->input->post('doctor_id',true), 
-            $this->input->post('schedule_id',true), 
+            $this->input->post('doctor_id',true),
+            $this->input->post('schedule_id',true),
+            $this->input->post('serial_no',true), 
             date('Y-m-d',strtotime($this->input->post('date',true)))
         );
+
+        
         if ($check_appointment_exists === false) {
             $this->session->set_flashdata('exception',display('you_are_already_registered')); 
         } 
         /* ------------------------------- */
         if ($this->form_validation->run() === true && $check_patient_id->status === true && $check_appointment_exists === true) {
+            $leave_where = array(
+                'user_leaves.user_id' => $this->input->post('doctor_id',true), 
+                'user_leaves.from_date <=' => date('Y-m-d',strtotime($this->input->post('date',true))),
+                'user_leaves.to_date >=' => date('Y-m-d',strtotime($this->input->post('date',true))),
+            );
+    
+            $this->load->model('leave_model');
+    
+            $leaves = $this->leave_model->get_active_leaves($leave_where);
+    
+            if(count((array) $leaves))
+            {
+                $message['exception'] = "Selected pathologiest is on leave on selected dates(".$this->input->post('date',true)."). Please select another pathogiest or different date."; 
+                $this->session->set_flashdata($message);
+                redirect($_SERVER['HTTP_REFERER']);
+            }
+
             if($this->input->post('payment_type_id',true) == 'Online')
             {
                 $postData['payment_mode'] = 'Online';
@@ -526,6 +546,7 @@ class Appointment extends CI_Controller {
         $patient_id  = null,
         $doctor_id  = null,
         $schedule_id  = null,
+        $serial_no = null,
         $date  = null 
     ) {
         if (!empty($patient_id) && !empty($doctor_id) && !empty($schedule_id)) {
@@ -535,8 +556,8 @@ class Appointment extends CI_Controller {
                 ->where('doctor_id', $doctor_id)
                 ->where('schedule_id', $schedule_id) 
                 ->where('date', $date)
-                ->where('status', 1)
-                ->or_where('status', 2)
+                ->where('serial_no', $serial_no)
+                ->where_in('status', ['1','2'])
                 ->get()
                 ->num_rows();
                 

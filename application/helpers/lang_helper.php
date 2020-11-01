@@ -172,7 +172,7 @@ function get_appointment_status($status_id = 2)
             $response = 'Pending';
             break;
         case '3':
-            $response = 'Cancelled';
+            $response = 'Canceled';
             break;
         case '4':
             $response = 'Closed';
@@ -203,7 +203,7 @@ function get_leave_status($status_id = 2)
             $response = 'Rejected';
             break;
         case '4':
-            $response = 'Cancelled';
+            $response = 'Canceled';
             break;
         case '5':
             $response = 'Closed';

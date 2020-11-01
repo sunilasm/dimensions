@@ -24,7 +24,7 @@ class Employee extends CI_Controller {
 		$data['employees'] = $this->employee_model->employees_list();
 		$data['employeeLang'] = $this->employee_model->employees_lang();
 		$data['role_name'] = $this->employee_model->role_list();
-
+		//echo "<pre>".print_r($data,true); exit;
 		$data['content'] = $this->load->view('human_resources/view', $data, true);
 		$this->load->view('layout/main_wrapper',$data);
 	} 

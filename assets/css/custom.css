@@ -6740,3 +6740,7 @@ content: "\f196";
     padding-top:10px;
     padding-bottom:10px;
 }
+.serial_no, .slbtn
+{
+    margin: 3px 3px;
+}

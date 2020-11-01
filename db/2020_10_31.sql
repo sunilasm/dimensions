@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 27, 2020 at 06:54 AM
+-- Generation Time: Nov 01, 2020 at 11:29 AM
 -- Server version: 5.7.31-0ubuntu0.16.04.1
 -- PHP Version: 7.2.34-4+ubuntu16.04.1+deb.sury.org+1
 
@@ -391,19 +391,6 @@ CREATE TABLE `appointment` (
   `status` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `appointment`
---
-
-INSERT INTO `appointment` (`id`, `appointment_id`, `patient_id`, `department_id`, `doctor_id`, `schedule_id`, `serial_no`, `date`, `problem`, `payment_mode`, `payment_id`, `created_by`, `create_date`, `status`) VALUES
-(89, 'A4D6U6DW', 'PELWQ10H', 18, 3, 7, 1, '2020-10-20', 'test', 'Cash', 'order_glt87k8', 2, '2020-10-20', 1),
-(90, 'A55GL1O9', 'PELWQ10H', 18, 3, 8, 1, '2020-10-21', 'test', 'Cash', 'order_ffqhfe7', 2, '2020-10-21', 4),
-(91, 'ALP6RH2P', 'PELWQ10H', 18, 3, 6, 1, '2020-10-27', 'test', 'Cash', 'order_85ng2s6', 3, '2020-10-21', 4),
-(92, 'AD9DYTD6', 'PELWQ10H', 18, 3, 1, 1, '2020-10-23', 'test', 'Cash', 'order_8txi9td', 2, '2020-10-21', 1),
-(93, 'ANWH4VGD', 'PELWQ10H', 18, 3, 8, 1, '2020-10-21', 'test', 'Cash', 'order_a8i2h3h', 3, '2020-10-21', 3),
-(94, 'AF2X7VMP', 'PELWQ10H', 18, 3, 6, 1, '2020-10-27', 'test', 'Cash', 'order_iah6n85', 2, '2020-10-22', 3),
-(95, 'AE6EQUHN', 'PELWQ10H', 18, 3, 8, 1, '2020-10-28', 'test', 'Online', 'pay_FtLgQDzAJw22DM', 2, '2020-10-26', 3);
-
 -- --------------------------------------------------------
 
 --
@@ -720,8 +707,8 @@ CREATE TABLE `department` (
 --
 
 INSERT INTO `department` (`dprt_id`, `main_id`, `name`, `flaticon`, `description`, `image`, `status`, `price`, `price_code`) VALUES
-(16, 2, 'Occupational Therapy', 'vitamins', 'Occupational Therapy facilitates people with a physical, sensory, or cognitive disability, be as independent as possible in all areas of their lives. OT can help children with various developmental delays improve their cognitive, physical, sensory, and motor skills.\r\n\r\nOur Occupational Therapist can help children improve \r\n\r\nBody Awareness and proprioceptive sense\r\n\r\nMovement coordination between the two sides of the body\r\n\r\nMotor control and organization, planning and coordination\r\n\r\nGross motor coordination and strengthening skills\r\n\r\nFine motor including handwriting, cutting and colouring\r\n\r\nSelf regulation and activities of daily living', 'assets_web/img/department/40c2613eacfe22e58d61e8f611a1a794.jpeg', 1, 350.55, 'pl_FnAPjRCdMSFBJG'),
-(18, 2, 'Speech Language Therapy', 'vitamins', 'Oral Sensory issues related to speech and feeding skills, improving receptive and expressive communication, speech clarity and the use socially acceptable ways to communicate (Pragmatics) are a few areas that will be targeted in our speech therapy sessions.\r\n\r\nOur Speech-Language Pathologist can help children\r\n\r\nImprove oral motor skills\r\n\r\nImprove speech clarity\r\n\r\nImprove feeding skills\r\n\r\nImprove comprehension of spoken words\r\n\r\nIncrease mean length of utterances (length of sentences)\r\n\r\nReduce/ eliminate echolalia by replacing meaningless utterances with meaningful words\r\n\r\nUse grammatically appropriate sentences \r\n\r\nProgress in social use of language (Pragmatics)', 'assets_web/img/department/492e8b388705e91f65a7f62e7de1e87c.jpeg', 1, 300, 'pl_Fo4L9HkiAPlQ5j'),
+(16, 2, 'Occupational Therapy', 'fa-university', 'Occupational Therapy facilitates people with a physical, sensory, or cognitive disability, be as independent as possible in all areas of their lives. OT can help children with various developmental delays improve their cognitive, physical, sensory, and motor skills.\r\n\r\nOur Occupational Therapist can help children improve \r\n\r\nBody Awareness and proprioceptive sense\r\n\r\nMovement coordination between the two sides of the body\r\n\r\nMotor control and organization, planning and coordination\r\n\r\nGross motor coordination and strengthening skills\r\n\r\nFine motor including handwriting, cutting and colouring\r\n\r\nSelf regulation and activities of daily living', 'assets_web/img/department/40c2613eacfe22e58d61e8f611a1a794.jpeg', 1, 350.55, 'pl_FnAPjRCdMSFBJG'),
+(18, 2, 'Speech Language Therapy', 'fa-university', 'Oral Sensory issues related to speech and feeding skills, improving receptive and expressive communication, speech clarity and the use socially acceptable ways to communicate (Pragmatics) are a few areas that will be targeted in our speech therapy sessions.\r\n\r\nOur Speech-Language Pathologist can help children\r\n\r\nImprove oral motor skills\r\n\r\nImprove speech clarity\r\n\r\nImprove feeding skills\r\n\r\nImprove comprehension of spoken words\r\n\r\nIncrease mean length of utterances (length of sentences)\r\n\r\nReduce/ eliminate echolalia by replacing meaningless utterances with meaningful words\r\n\r\nUse grammatically appropriate sentences \r\n\r\nProgress in social use of language (Pragmatics)', 'assets_web/img/department/492e8b388705e91f65a7f62e7de1e87c.jpeg', 1, 300, 'pl_Fo4L9HkiAPlQ5j'),
 (19, 2, 'Handwriting Program', 'vitamins', 'We conduct regular handwriting programs for Speech Therapists, School Teachers, Occupational Therapists, and Parents who can help and aid the children with learning to teach handwriting\r\n\r\nOur Handwriting Specialist can help children\r\n\r\nImprove body awareness and posture for writing\r\n\r\nImprove pencil grip\r\n\r\nWrite upper case, lower case, and numbers with proper spacing and size\r\n\r\nBe able to copy words and sentences from the board\r\n\r\nImprove speed of writing', 'assets_web/img/department/36d51d9d519ba9f6d4ad1ec0a20c1d68.jpg', 1, 325, 'pl_Fo4TL2qPTwKRmM'),
 (20, 2, 'Social Skills Training', 'vitamins', 'A persistent problem of children with autistic spectrum disorders is inappropriate social behavior. Often inappropriate behaviors are preceded by inability to communicate ones needs.\r\n\r\nOur Speech Language Pathologist can help children\r\n\r\nApproach others in socially acceptable ways\r\n\r\nAsk for permission rather than acting impulsively\r\n\r\nFacilitate children to make and keep friends\r\n\r\nShare toys/materials\r\n\r\nListen to instructions given to a  group\r\n\r\nAttend to task at hand\r\n\r\nFollow directions in a small group setting\r\n\r\nSeek attention appropriately and more', 'assets_web/img/department/3d085263b48e42ce1f8f46b10482ee24.jpg', 1, 310, 'pl_Fo4UcKJV20S1Tf'),
 (21, 3, 'Occupational Therapy', 'vitamins', 'Occupational Therapy facilitates people with a physical, sensory, or cognitive disability, be as independent as possible in all areas of their lives. OT can help children with various developmental delays improve their cognitive, physical, sensory, and motor skills.\r\n\r\nOur Occupational Therapist can help children improve \r\n\r\nBody Awareness and proprioceptive sense\r\n\r\nMovement coordination between the two sides of the body\r\n\r\nMotor control and organization, planning and coordination\r\n\r\nGross motor coordination and strengthening skills\r\n\r\nFine motor including handwriting, cutting and colouring\r\n\r\nSelf regulation and activities of daily living', 'assets_web/img/department/40c2613eacfe22e58d61e8f611a1a794.jpeg', 1, 350.55, 'pl_FnAPjRCdMSFBJG'),
@@ -778,7 +765,8 @@ CREATE TABLE `document` (
 --
 
 INSERT INTO `document` (`id`, `patient_id`, `doctor_id`, `description`, `hidden_attach_file`, `date`, `upload_by`) VALUES
-(1, 'PELWQ10H', 3, 'demo', './assets/attachments/1e66e75c816473de4ed8fd55f445b8a8.jpg', '2020-09-30', 2);
+(1, 'PELWQ10H', 3, 'demo', './assets/attachments/1e66e75c816473de4ed8fd55f445b8a8.jpg', '2020-09-30', 2),
+(2, 'PELWQ10H', 3, 'test document', './assets/attachments/cf5013ccfc4c29e5f71a2171a62ba50f.png', '2020-10-27', 0);
 
 -- --------------------------------------------------------
 
@@ -1773,7 +1761,14 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (821, 'receipt', 'Payment Receipt', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL),
 (822, 'cancell_successfully', 'Cancelled successfully!', 'حذف بنجاح', 'সফলভাবে মুছে ফেলা হয়েছে', NULL),
 (823, 'confirm_successfully', 'Confirmed successfully!', 'حذف بنجاح', 'সফলভাবে মুছে ফেলা হয়েছে', NULL),
-(824, 'order_status', 'Order Status', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL);
+(824, 'order_status', 'Order Status', 'قائمة الإدارة الرئيسية', 'প্রধান বিভাগ তালিকা', NULL),
+(825, 'leave_type', 'Leave Type', 'دور المستخدم', 'ব্যবহারকারীর নিয়ম', NULL),
+(826, 'leave_description', 'Leave Description', 'دور المستخدم', 'ব্যবহারকারীর নিয়ম', NULL),
+(827, 'leave_information', 'Leave Information', 'دور المستخدم', 'ব্যবহারকারীর নিয়ম', NULL),
+(828, 'applied_date', 'Leave Applied On', 'دور المستخدم', 'ব্যবহারকারীর নিয়ম', NULL),
+(829, 'leave_status', 'Leave Status', 'دور المستخدم', 'ব্যবহারকারীর নিয়ম', NULL),
+(830, 'approved_successfully', 'Approved successfully!', 'حذف بنجاح', 'সফলভাবে মুছে ফেলা হয়েছে', NULL),
+(831, 'rejected_successfully', 'Rejected successfully!', 'حذف بنجاح', 'সফলভাবে মুছে ফেলা হয়েছে', NULL);
 
 -- --------------------------------------------------------
 
@@ -2006,17 +2001,6 @@ CREATE TABLE `package_orders` (
   `updated_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `package_orders`
---
-
-INSERT INTO `package_orders` (`order_id`, `patient_id`, `package_id`, `quantity`, `package_price`, `package_slots`, `discount_price`, `other`, `total_price`, `order_status`, `payment_id`, `created_by`, `updated_by`, `created_date`, `updated_date`) VALUES
-(13, 3, 4, 1, 54.5, 5, 0, 0, 54.5, 'Cancelled', 'pay_FrRAdavk3LVtgs', 3, 3, '2020-10-21 11:03:34', '2020-10-21 11:03:34'),
-(14, 3, 4, 1, 54.5, 5, 0, 0, 54.5, 'Cancelled', 'pay_FtPbIPkNn2WoLQ', 3, 3, '2020-10-26 10:49:35', '2020-10-26 10:49:35'),
-(15, 3, 4, 1, 54.5, 5, 0, 0, 54.5, 'Cancelled', 'pay_FtPeTFEtaSxXcg', 3, 3, '2020-10-26 10:52:27', '2020-10-26 10:52:27'),
-(16, 3, 4, 1, 54.5, 5, 0, 0, 54.5, 'Cancelled', 'pay_FtPh8Y2OG5Nv1k', 3, 3, '2020-10-26 10:55:00', '2020-10-26 10:55:00'),
-(17, 3, 4, 1, 54.5, 5, 0, 0, 54.5, 'Ordered', 'pay_Ftk1o292cxRctz', 3, 3, '2020-10-27 06:48:24', '2020-10-27 06:48:24');
-
 -- --------------------------------------------------------
 
 --
@@ -2033,15 +2017,6 @@ CREATE TABLE `package_orders_appointments` (
   `created_date` datetime NOT NULL,
   `updated_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Package order appointment schedule';
-
---
--- Dumping data for table `package_orders_appointments`
---
-
-INSERT INTO `package_orders_appointments` (`package_order_appoinment_id`, `package_order_id`, `package_appointment_id`, `package_appoinment_status`, `created_by`, `updated_by`, `created_date`, `updated_date`) VALUES
-(21, 13, 90, 'Active', 2, 2, '2020-10-21 11:08:18', '2020-10-21 11:08:18'),
-(22, 13, 91, 'Active', 3, 3, '2020-10-21 11:11:06', '2020-10-21 11:11:06'),
-(23, 13, 94, 'Active', 2, 2, '2020-10-22 12:47:19', '2020-10-22 12:47:19');
 
 -- --------------------------------------------------------
 
@@ -2129,17 +2104,8 @@ CREATE TABLE `patient` (
 
 INSERT INTO `patient` (`id`, `patient_id`, `firstname`, `lastname`, `email`, `password`, `phone`, `mobile`, `address`, `sex`, `blood_group`, `date_of_birth`, `affliate`, `picture`, `created_by`, `create_date`, `status`, `user_role`) VALUES
 (1, 'P6953OWI', 'asdas', 'asd', 'admin@demo.com', 'e10adc3949ba59abbe56e057f20f883e', '0987', '09876543', 'sdfsd dsdf', 'Male', 'A+', '2019-02-08', NULL, '', 1, '2020-05-23', 1, ''),
-(2, 'PELWQ10G', 'Jerin', 'khan', 'jerin@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-06-15', 1, ''),
 (3, 'PELWQ10H', 'Demo', 'Patient', 'demopatient@yopmail.com', '827ccb0eea8a706c4c34a16891f84e7b', '', '1234567889', 'asda', 'Male', '', '2020-09-24', NULL, '', 2, '2020-08-20', 1, ''),
-(4, 'P6LFZXUZ', 'Test', 'Appointment', 'test@yopmail.com', '827ccb0eea8a706c4c34a16891f84e7b', NULL, '1234567890', NULL, NULL, NULL, NULL, NULL, NULL, 0, '2020-09-29', 1, ''),
-(5, 'P1T5J4O7', 'jhvjasd', 'kjbasd', 'kjbasdasd@yopmail.com', 'e10adc3949ba59abbe56e057f20f883e', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-10-08', 1, ''),
-(6, 'PG0BRJ96', 'asdasd', 'asdasd', 'jhvjasd@gmail.om', 'e807f1fcf82d132f9bb018ca6738a19f', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-10-08', 1, ''),
-(7, 'PKZZBHWS', 'adasda', 'asdasda', 'rootasdasd@jhasd.com', 'e10adc3949ba59abbe56e057f20f883e', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-10-08', 1, ''),
-(8, 'P4PPJYBM', 'asdasd', 'asdasd', 'asdadsa@gmail.vom', 'e10adc3949ba59abbe56e057f20f883e', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-10-08', 1, ''),
-(9, 'PTWWYFI4', 'kjvasda', 'kjbasda', 'kjbsjkafa@kjasd.com', 'e10adc3949ba59abbe56e057f20f883e', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-10-08', 1, ''),
-(10, 'PQ8XZZ67', 'dfsdfdsfdsd', 'dgdfgdg', 'dfgdfgdfgdroot@gklnasd.com', '827ccb0eea8a706c4c34a16891f84e7b', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-10-08', 1, ''),
-(11, 'PDO6DWYM', 'sdfsdf', 'sdfsdfsd', 'rootsdfsdfs@gasdnas.com', 'e10adc3949ba59abbe56e057f20f883e', '1234567890', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-10-08', 1, ''),
-(12, 'PY4FETFA', 'adadasdasdad', 'asdasdsad', 'asdasdasdasdasda@jbkjasda.com', 'e10adc3949ba59abbe56e057f20f883e', NULL, '1234567890', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-10-08', 1, '');
+(13, 'PGSM0JU0', 'Sonali', 'Nalawade', 'sonali.n@yopmail.com', '827ccb0eea8a706c4c34a16891f84e7b', '', '1234567890', 'Banglore', 'Female', 'O-', '1990-01-27', NULL, 'assets/images/patient/0ab57dde63a96e7ac9d509b9a76a5d6a.jpg', 13, '2020-10-30', 1, '');
 
 -- --------------------------------------------------------
 
@@ -2493,128 +2459,6 @@ INSERT INTO `role_permission` (`id`, `fk_module_id`, `role_id`, `create`, `read`
 (2133, 74, 9, 0, 0, 0, 0),
 (2134, 131, 9, 0, 1, 0, 0),
 (2135, 132, 9, 0, 1, 0, 0),
-(2990, 127, 2, 0, 1, 0, 0),
-(2991, 128, 2, 0, 0, 0, 0),
-(2992, 129, 2, 0, 0, 0, 0),
-(2993, 130, 2, 0, 0, 0, 0),
-(2994, 3, 2, 0, 0, 0, 0),
-(2995, 4, 2, 0, 0, 0, 0),
-(2996, 121, 2, 0, 0, 0, 0),
-(2997, 122, 2, 0, 0, 0, 0),
-(2998, 6, 2, 0, 0, 0, 0),
-(2999, 7, 2, 0, 0, 0, 0),
-(3000, 8, 2, 0, 1, 1, 0),
-(3001, 9, 2, 0, 1, 0, 0),
-(3002, 10, 2, 0, 0, 0, 0),
-(3003, 11, 2, 0, 0, 0, 0),
-(3004, 12, 2, 1, 1, 1, 1),
-(3005, 13, 2, 0, 1, 0, 0),
-(3006, 126, 2, 1, 1, 1, 1),
-(3007, 14, 2, 1, 1, 0, 0),
-(3008, 15, 2, 0, 1, 0, 0),
-(3009, 16, 2, 0, 0, 0, 0),
-(3010, 17, 2, 0, 0, 0, 0),
-(3011, 18, 2, 0, 0, 0, 0),
-(3012, 19, 2, 0, 0, 0, 0),
-(3013, 96, 2, 0, 0, 0, 0),
-(3014, 97, 2, 0, 0, 0, 0),
-(3015, 20, 2, 0, 0, 0, 0),
-(3016, 21, 2, 0, 0, 0, 0),
-(3017, 22, 2, 0, 0, 0, 0),
-(3018, 95, 2, 0, 0, 0, 0),
-(3019, 23, 2, 0, 0, 0, 0),
-(3020, 24, 2, 0, 0, 0, 0),
-(3021, 25, 2, 0, 0, 0, 0),
-(3022, 26, 2, 0, 0, 0, 0),
-(3023, 27, 2, 0, 0, 0, 0),
-(3024, 28, 2, 0, 0, 0, 0),
-(3025, 29, 2, 0, 0, 0, 0),
-(3026, 30, 2, 0, 0, 0, 0),
-(3027, 31, 2, 0, 0, 0, 0),
-(3028, 123, 2, 0, 0, 0, 0),
-(3029, 124, 2, 0, 0, 0, 0),
-(3030, 125, 2, 0, 0, 0, 0),
-(3031, 32, 2, 0, 0, 0, 0),
-(3032, 33, 2, 0, 0, 0, 0),
-(3033, 34, 2, 0, 0, 0, 0),
-(3034, 35, 2, 0, 0, 0, 0),
-(3035, 36, 2, 0, 0, 0, 0),
-(3036, 37, 2, 0, 0, 0, 0),
-(3037, 38, 2, 0, 0, 0, 0),
-(3038, 39, 2, 0, 0, 0, 0),
-(3039, 40, 2, 0, 0, 0, 0),
-(3040, 41, 2, 0, 0, 0, 0),
-(3041, 42, 2, 0, 0, 0, 0),
-(3042, 43, 2, 0, 0, 0, 0),
-(3043, 44, 2, 0, 0, 0, 0),
-(3044, 45, 2, 0, 0, 0, 0),
-(3045, 46, 2, 0, 0, 0, 0),
-(3046, 47, 2, 0, 0, 0, 0),
-(3047, 54, 2, 0, 0, 0, 0),
-(3048, 55, 2, 0, 0, 0, 0),
-(3049, 56, 2, 0, 0, 0, 0),
-(3050, 57, 2, 0, 0, 0, 0),
-(3051, 58, 2, 0, 0, 0, 0),
-(3052, 59, 2, 0, 0, 0, 0),
-(3053, 60, 2, 0, 1, 0, 0),
-(3054, 61, 2, 0, 0, 0, 0),
-(3055, 62, 2, 0, 0, 0, 0),
-(3056, 63, 2, 0, 0, 0, 0),
-(3057, 64, 2, 0, 0, 0, 0),
-(3058, 65, 2, 0, 0, 0, 0),
-(3059, 66, 2, 0, 0, 0, 0),
-(3060, 67, 2, 0, 0, 0, 0),
-(3061, 68, 2, 0, 0, 0, 0),
-(3062, 69, 2, 0, 0, 0, 0),
-(3063, 70, 2, 0, 0, 0, 0),
-(3064, 75, 2, 0, 0, 0, 0),
-(3065, 76, 2, 0, 0, 0, 0),
-(3066, 77, 2, 0, 0, 0, 0),
-(3067, 98, 2, 0, 0, 0, 0),
-(3068, 103, 2, 1, 1, 1, 0),
-(3069, 104, 2, 1, 1, 1, 0),
-(3070, 78, 2, 0, 0, 0, 0),
-(3071, 79, 2, 0, 0, 0, 0),
-(3072, 80, 2, 0, 0, 0, 0),
-(3073, 81, 2, 0, 0, 0, 0),
-(3074, 82, 2, 0, 0, 0, 0),
-(3075, 83, 2, 0, 0, 0, 0),
-(3076, 84, 2, 0, 0, 0, 0),
-(3077, 85, 2, 0, 0, 0, 0),
-(3078, 86, 2, 0, 0, 0, 0),
-(3079, 87, 2, 0, 0, 0, 0),
-(3080, 88, 2, 0, 0, 0, 0),
-(3081, 89, 2, 0, 0, 0, 0),
-(3082, 90, 2, 0, 0, 0, 0),
-(3083, 91, 2, 0, 0, 0, 0),
-(3084, 92, 2, 0, 0, 0, 0),
-(3085, 93, 2, 0, 0, 0, 0),
-(3086, 94, 2, 0, 0, 0, 0),
-(3087, 111, 2, 0, 0, 0, 0),
-(3088, 112, 2, 0, 0, 0, 0),
-(3089, 113, 2, 0, 0, 0, 0),
-(3090, 114, 2, 0, 0, 0, 0),
-(3091, 115, 2, 0, 0, 0, 0),
-(3092, 116, 2, 0, 0, 0, 0),
-(3093, 117, 2, 0, 0, 0, 0),
-(3094, 118, 2, 0, 0, 0, 0),
-(3095, 119, 2, 0, 0, 0, 0),
-(3096, 120, 2, 0, 0, 0, 0),
-(3097, 99, 2, 0, 0, 0, 0),
-(3098, 101, 2, 0, 0, 0, 0),
-(3099, 102, 2, 0, 0, 0, 0),
-(3100, 105, 2, 0, 0, 0, 0),
-(3101, 106, 2, 0, 0, 0, 0),
-(3102, 107, 2, 0, 0, 0, 0),
-(3103, 108, 2, 0, 0, 0, 0),
-(3104, 109, 2, 0, 0, 0, 0),
-(3105, 110, 2, 0, 0, 0, 0),
-(3106, 71, 2, 0, 0, 0, 0),
-(3107, 72, 2, 0, 0, 0, 0),
-(3108, 73, 2, 0, 0, 0, 0),
-(3109, 74, 2, 0, 0, 0, 0),
-(3110, 131, 2, 0, 0, 0, 0),
-(3111, 132, 2, 0, 0, 0, 0),
 (3482, 133, 10, 1, 1, 1, 1),
 (3483, 127, 1, 0, 0, 0, 0),
 (3484, 128, 1, 0, 0, 0, 0),
@@ -2741,133 +2585,260 @@ INSERT INTO `role_permission` (`id`, `fk_module_id`, `role_id`, `create`, `read`
 (3605, 133, 1, 1, 1, 1, 1),
 (3606, 134, 1, 1, 1, 1, 1),
 (3607, 139, 1, 1, 1, 1, 1),
-(3608, 127, 11, 1, 1, 1, 0),
-(3609, 128, 11, 1, 1, 1, 0),
-(3610, 129, 11, 0, 0, 0, 0),
-(3611, 130, 11, 0, 0, 0, 0),
-(3612, 3, 11, 1, 1, 1, 1),
-(3613, 4, 11, 1, 1, 1, 1),
-(3614, 121, 11, 0, 0, 0, 0),
-(3615, 122, 11, 0, 0, 0, 0),
-(3616, 6, 11, 1, 1, 1, 1),
-(3617, 7, 11, 1, 1, 1, 1),
-(3618, 8, 11, 1, 1, 1, 1),
-(3619, 9, 11, 1, 1, 1, 1),
-(3620, 10, 11, 0, 0, 0, 0),
-(3621, 11, 11, 0, 0, 0, 0),
-(3622, 12, 11, 1, 1, 1, 1),
-(3623, 13, 11, 1, 1, 1, 1),
-(3624, 126, 11, 1, 1, 1, 1),
-(3625, 14, 11, 1, 1, 1, 1),
-(3626, 15, 11, 1, 1, 1, 1),
-(3627, 16, 11, 0, 0, 0, 0),
-(3628, 17, 11, 0, 0, 0, 0),
-(3629, 18, 11, 0, 0, 0, 0),
-(3630, 19, 11, 0, 0, 0, 0),
-(3631, 96, 11, 0, 0, 0, 0),
-(3632, 97, 11, 0, 0, 0, 0),
-(3633, 20, 11, 0, 0, 0, 0),
-(3634, 21, 11, 0, 0, 0, 0),
-(3635, 22, 11, 0, 0, 0, 0),
-(3636, 95, 11, 0, 0, 0, 0),
-(3637, 23, 11, 0, 0, 0, 0),
-(3638, 24, 11, 0, 0, 0, 0),
-(3639, 25, 11, 0, 0, 0, 0),
-(3640, 26, 11, 0, 0, 0, 0),
-(3641, 27, 11, 0, 0, 0, 0),
-(3642, 28, 11, 0, 0, 0, 0),
-(3643, 29, 11, 0, 0, 0, 0),
-(3644, 30, 11, 0, 0, 0, 0),
-(3645, 31, 11, 0, 0, 0, 0),
-(3646, 123, 11, 0, 0, 0, 0),
-(3647, 124, 11, 0, 0, 0, 0),
-(3648, 125, 11, 0, 0, 0, 0),
-(3649, 32, 11, 0, 0, 0, 0),
-(3650, 33, 11, 0, 0, 0, 0),
-(3651, 34, 11, 0, 0, 0, 0),
-(3652, 35, 11, 0, 0, 0, 0),
-(3653, 36, 11, 0, 0, 0, 0),
-(3654, 37, 11, 0, 0, 0, 0),
-(3655, 38, 11, 0, 0, 0, 0),
-(3656, 39, 11, 0, 0, 0, 0),
-(3657, 40, 11, 0, 0, 0, 0),
-(3658, 41, 11, 0, 0, 0, 0),
-(3659, 42, 11, 0, 0, 0, 0),
-(3660, 43, 11, 0, 0, 0, 0),
-(3661, 44, 11, 0, 0, 0, 0),
-(3662, 45, 11, 0, 0, 0, 0),
-(3663, 46, 11, 1, 1, 1, 1),
-(3664, 47, 11, 1, 1, 1, 1),
-(3665, 54, 11, 0, 0, 0, 0),
-(3666, 55, 11, 0, 0, 0, 0),
-(3667, 56, 11, 0, 0, 0, 0),
-(3668, 57, 11, 0, 0, 0, 0),
-(3669, 58, 11, 0, 0, 0, 0),
-(3670, 59, 11, 0, 0, 0, 0),
-(3671, 60, 11, 0, 0, 0, 0),
-(3672, 61, 11, 0, 0, 0, 0),
-(3673, 62, 11, 0, 0, 0, 0),
-(3674, 63, 11, 0, 0, 0, 0),
-(3675, 64, 11, 0, 0, 0, 0),
-(3676, 65, 11, 0, 0, 0, 0),
-(3677, 66, 11, 0, 0, 0, 0),
-(3678, 67, 11, 0, 0, 0, 0),
-(3679, 68, 11, 0, 0, 0, 0),
-(3680, 69, 11, 0, 0, 0, 0),
-(3681, 70, 11, 0, 0, 0, 0),
-(3682, 75, 11, 1, 1, 1, 1),
-(3683, 76, 11, 0, 0, 0, 0),
-(3684, 77, 11, 0, 0, 0, 0),
-(3685, 98, 11, 0, 0, 0, 0),
-(3686, 103, 11, 0, 1, 1, 0),
-(3687, 104, 11, 0, 1, 1, 0),
-(3688, 78, 11, 0, 0, 0, 0),
-(3689, 79, 11, 0, 0, 0, 0),
-(3690, 80, 11, 0, 0, 0, 0),
-(3691, 81, 11, 0, 0, 0, 0),
-(3692, 82, 11, 0, 0, 0, 0),
-(3693, 83, 11, 0, 0, 0, 0),
-(3694, 84, 11, 0, 0, 0, 0),
-(3695, 85, 11, 0, 0, 0, 0),
-(3696, 86, 11, 0, 0, 0, 0),
-(3697, 87, 11, 0, 0, 0, 0),
-(3698, 88, 11, 0, 0, 0, 0),
-(3699, 89, 11, 0, 0, 0, 0),
-(3700, 90, 11, 0, 0, 0, 0),
-(3701, 91, 11, 0, 0, 0, 0),
-(3702, 92, 11, 0, 0, 0, 0),
-(3703, 93, 11, 0, 0, 0, 0),
-(3704, 94, 11, 0, 0, 0, 0),
-(3705, 111, 11, 0, 0, 0, 0),
-(3706, 112, 11, 0, 0, 0, 0),
-(3707, 113, 11, 0, 0, 0, 0),
-(3708, 114, 11, 0, 0, 0, 0),
-(3709, 115, 11, 0, 0, 0, 0),
-(3710, 116, 11, 0, 0, 0, 0),
-(3711, 117, 11, 0, 0, 0, 0),
-(3712, 118, 11, 0, 0, 0, 0),
-(3713, 119, 11, 0, 0, 0, 0),
-(3714, 120, 11, 0, 0, 0, 0),
-(3715, 99, 11, 0, 0, 0, 0),
-(3716, 101, 11, 0, 0, 0, 0),
-(3717, 102, 11, 0, 0, 0, 0),
-(3718, 105, 11, 0, 0, 0, 0),
-(3719, 106, 11, 0, 0, 0, 0),
-(3720, 107, 11, 0, 0, 0, 0),
-(3721, 108, 11, 0, 0, 0, 0),
-(3722, 109, 11, 0, 0, 0, 0),
-(3723, 110, 11, 0, 0, 0, 0),
-(3724, 71, 11, 0, 0, 0, 0),
-(3725, 72, 11, 0, 0, 0, 0),
-(3726, 73, 11, 0, 0, 0, 0),
-(3727, 74, 11, 0, 0, 0, 0),
-(3728, 131, 11, 1, 1, 1, 1),
-(3729, 132, 11, 1, 1, 1, 1),
-(3730, 133, 11, 1, 1, 1, 1),
-(3731, 134, 11, 1, 1, 1, 0),
-(3732, 140, 11, 1, 1, 1, 1),
-(3733, 139, 11, 1, 1, 1, 1),
-(3734, 141, 11, 1, 1, 1, 1);
+(3735, 127, 11, 1, 1, 1, 0),
+(3736, 128, 11, 0, 0, 0, 0),
+(3737, 129, 11, 0, 0, 0, 0),
+(3738, 130, 11, 0, 0, 0, 0),
+(3739, 3, 11, 1, 1, 1, 1),
+(3740, 4, 11, 1, 1, 1, 1),
+(3741, 121, 11, 0, 0, 0, 0),
+(3742, 122, 11, 0, 0, 0, 0),
+(3743, 6, 11, 1, 1, 1, 1),
+(3744, 7, 11, 1, 1, 1, 1),
+(3745, 8, 11, 1, 1, 1, 1),
+(3746, 9, 11, 1, 1, 1, 1),
+(3747, 10, 11, 0, 0, 0, 0),
+(3748, 11, 11, 0, 0, 0, 0),
+(3749, 12, 11, 1, 1, 1, 1),
+(3750, 13, 11, 1, 1, 1, 1),
+(3751, 126, 11, 1, 1, 1, 1),
+(3752, 14, 11, 1, 1, 1, 1),
+(3753, 15, 11, 1, 1, 1, 1),
+(3754, 16, 11, 0, 0, 0, 0),
+(3755, 17, 11, 0, 0, 0, 0),
+(3756, 18, 11, 0, 0, 0, 0),
+(3757, 19, 11, 0, 0, 0, 0),
+(3758, 96, 11, 0, 0, 0, 0),
+(3759, 97, 11, 0, 0, 0, 0),
+(3760, 20, 11, 0, 0, 0, 0),
+(3761, 21, 11, 0, 0, 0, 0),
+(3762, 22, 11, 0, 0, 0, 0),
+(3763, 95, 11, 0, 0, 0, 0),
+(3764, 23, 11, 0, 0, 0, 0),
+(3765, 24, 11, 0, 0, 0, 0),
+(3766, 25, 11, 0, 0, 0, 0),
+(3767, 26, 11, 0, 0, 0, 0),
+(3768, 27, 11, 0, 0, 0, 0),
+(3769, 28, 11, 0, 0, 0, 0),
+(3770, 29, 11, 0, 0, 0, 0),
+(3771, 30, 11, 0, 0, 0, 0),
+(3772, 31, 11, 0, 0, 0, 0),
+(3773, 123, 11, 0, 0, 0, 0),
+(3774, 124, 11, 0, 0, 0, 0),
+(3775, 125, 11, 0, 0, 0, 0),
+(3776, 32, 11, 0, 0, 0, 0),
+(3777, 33, 11, 0, 0, 0, 0),
+(3778, 34, 11, 0, 0, 0, 0),
+(3779, 35, 11, 0, 0, 0, 0),
+(3780, 36, 11, 0, 0, 0, 0),
+(3781, 37, 11, 0, 0, 0, 0),
+(3782, 38, 11, 0, 0, 0, 0),
+(3783, 39, 11, 0, 0, 0, 0),
+(3784, 40, 11, 0, 0, 0, 0),
+(3785, 41, 11, 0, 0, 0, 0),
+(3786, 42, 11, 0, 0, 0, 0),
+(3787, 43, 11, 0, 0, 0, 0),
+(3788, 44, 11, 0, 0, 0, 0),
+(3789, 45, 11, 0, 0, 0, 0),
+(3790, 46, 11, 1, 1, 1, 1),
+(3791, 47, 11, 1, 1, 1, 1),
+(3792, 54, 11, 0, 0, 0, 0),
+(3793, 55, 11, 0, 0, 0, 0),
+(3794, 56, 11, 0, 0, 0, 0),
+(3795, 57, 11, 0, 0, 0, 0),
+(3796, 58, 11, 0, 0, 0, 0),
+(3797, 59, 11, 0, 0, 0, 0),
+(3798, 60, 11, 0, 0, 0, 0),
+(3799, 61, 11, 0, 0, 0, 0),
+(3800, 62, 11, 0, 0, 0, 0),
+(3801, 63, 11, 0, 0, 0, 0),
+(3802, 64, 11, 0, 0, 0, 0),
+(3803, 65, 11, 0, 0, 0, 0),
+(3804, 66, 11, 0, 0, 0, 0),
+(3805, 67, 11, 0, 0, 0, 0),
+(3806, 68, 11, 0, 0, 0, 0),
+(3807, 69, 11, 0, 0, 0, 0),
+(3808, 70, 11, 0, 0, 0, 0),
+(3809, 75, 11, 1, 1, 1, 1),
+(3810, 76, 11, 0, 0, 0, 0),
+(3811, 77, 11, 0, 0, 0, 0),
+(3812, 98, 11, 0, 0, 0, 0),
+(3813, 103, 11, 0, 1, 1, 0),
+(3814, 104, 11, 0, 1, 1, 0),
+(3815, 78, 11, 0, 0, 0, 0),
+(3816, 79, 11, 0, 0, 0, 0),
+(3817, 80, 11, 0, 0, 0, 0),
+(3818, 81, 11, 0, 0, 0, 0),
+(3819, 82, 11, 0, 0, 0, 0),
+(3820, 83, 11, 0, 0, 0, 0),
+(3821, 84, 11, 0, 0, 0, 0),
+(3822, 85, 11, 0, 0, 0, 0),
+(3823, 86, 11, 0, 0, 0, 0),
+(3824, 87, 11, 0, 0, 0, 0),
+(3825, 88, 11, 0, 0, 0, 0),
+(3826, 89, 11, 0, 0, 0, 0),
+(3827, 90, 11, 0, 0, 0, 0),
+(3828, 91, 11, 0, 0, 0, 0),
+(3829, 92, 11, 0, 0, 0, 0),
+(3830, 93, 11, 0, 0, 0, 0),
+(3831, 94, 11, 0, 0, 0, 0),
+(3832, 111, 11, 0, 0, 0, 0),
+(3833, 112, 11, 0, 0, 0, 0),
+(3834, 113, 11, 0, 0, 0, 0),
+(3835, 114, 11, 0, 0, 0, 0),
+(3836, 115, 11, 0, 0, 0, 0),
+(3837, 116, 11, 0, 0, 0, 0),
+(3838, 117, 11, 0, 0, 0, 0),
+(3839, 118, 11, 0, 0, 0, 0),
+(3840, 119, 11, 0, 0, 0, 0),
+(3841, 120, 11, 0, 0, 0, 0),
+(3842, 99, 11, 0, 0, 0, 0),
+(3843, 101, 11, 0, 0, 0, 0),
+(3844, 102, 11, 0, 0, 0, 0),
+(3845, 105, 11, 0, 0, 0, 0),
+(3846, 106, 11, 0, 0, 0, 0),
+(3847, 107, 11, 0, 0, 0, 0),
+(3848, 108, 11, 0, 0, 0, 0),
+(3849, 109, 11, 0, 0, 0, 0),
+(3850, 110, 11, 0, 0, 0, 0),
+(3851, 71, 11, 0, 0, 0, 0),
+(3852, 72, 11, 0, 0, 0, 0),
+(3853, 73, 11, 0, 0, 0, 0),
+(3854, 74, 11, 0, 0, 0, 0),
+(3855, 131, 11, 1, 1, 1, 1),
+(3856, 132, 11, 1, 1, 1, 1),
+(3857, 133, 11, 1, 1, 1, 1),
+(3858, 134, 11, 1, 1, 1, 0),
+(3859, 140, 11, 1, 1, 1, 1),
+(3860, 139, 11, 1, 1, 1, 1),
+(3861, 141, 11, 1, 1, 1, 1),
+(3862, 127, 2, 0, 1, 0, 0),
+(3863, 128, 2, 0, 0, 0, 0),
+(3864, 129, 2, 0, 0, 0, 0),
+(3865, 130, 2, 0, 0, 0, 0),
+(3866, 3, 2, 0, 0, 0, 0),
+(3867, 4, 2, 0, 0, 0, 0),
+(3868, 121, 2, 0, 0, 0, 0),
+(3869, 122, 2, 0, 0, 0, 0),
+(3870, 6, 2, 0, 0, 0, 0),
+(3871, 7, 2, 0, 0, 0, 0),
+(3872, 8, 2, 0, 1, 1, 0),
+(3873, 9, 2, 0, 1, 0, 0),
+(3874, 10, 2, 0, 0, 0, 0),
+(3875, 11, 2, 0, 0, 0, 0),
+(3876, 12, 2, 1, 1, 1, 1),
+(3877, 13, 2, 0, 1, 0, 0),
+(3878, 126, 2, 1, 1, 1, 1),
+(3879, 14, 2, 1, 1, 0, 0),
+(3880, 15, 2, 0, 1, 0, 0),
+(3881, 16, 2, 0, 0, 0, 0),
+(3882, 17, 2, 0, 0, 0, 0),
+(3883, 18, 2, 0, 0, 0, 0),
+(3884, 19, 2, 0, 0, 0, 0),
+(3885, 96, 2, 0, 0, 0, 0),
+(3886, 97, 2, 0, 0, 0, 0),
+(3887, 20, 2, 0, 0, 0, 0),
+(3888, 21, 2, 0, 0, 0, 0),
+(3889, 22, 2, 0, 0, 0, 0),
+(3890, 95, 2, 0, 0, 0, 0),
+(3891, 23, 2, 0, 0, 0, 0),
+(3892, 24, 2, 0, 0, 0, 0),
+(3893, 25, 2, 0, 0, 0, 0),
+(3894, 26, 2, 0, 0, 0, 0),
+(3895, 27, 2, 0, 0, 0, 0),
+(3896, 28, 2, 0, 0, 0, 0),
+(3897, 29, 2, 0, 0, 0, 0),
+(3898, 30, 2, 0, 0, 0, 0),
+(3899, 31, 2, 0, 0, 0, 0),
+(3900, 123, 2, 0, 0, 0, 0),
+(3901, 124, 2, 0, 0, 0, 0),
+(3902, 125, 2, 0, 0, 0, 0),
+(3903, 32, 2, 0, 0, 0, 0),
+(3904, 33, 2, 0, 0, 0, 0),
+(3905, 34, 2, 0, 0, 0, 0),
+(3906, 35, 2, 0, 0, 0, 0),
+(3907, 36, 2, 0, 0, 0, 0),
+(3908, 37, 2, 0, 0, 0, 0),
+(3909, 38, 2, 0, 0, 0, 0),
+(3910, 39, 2, 0, 0, 0, 0),
+(3911, 40, 2, 0, 0, 0, 0),
+(3912, 41, 2, 0, 0, 0, 0),
+(3913, 42, 2, 0, 0, 0, 0),
+(3914, 43, 2, 0, 0, 0, 0),
+(3915, 44, 2, 0, 0, 0, 0),
+(3916, 45, 2, 0, 0, 0, 0),
+(3917, 46, 2, 0, 0, 0, 0),
+(3918, 47, 2, 0, 0, 0, 0),
+(3919, 54, 2, 0, 0, 0, 0),
+(3920, 55, 2, 0, 0, 0, 0),
+(3921, 56, 2, 0, 0, 0, 0),
+(3922, 57, 2, 0, 0, 0, 0),
+(3923, 58, 2, 0, 0, 0, 0),
+(3924, 59, 2, 0, 0, 0, 0),
+(3925, 60, 2, 0, 1, 0, 0),
+(3926, 61, 2, 0, 0, 0, 0),
+(3927, 62, 2, 0, 0, 0, 0),
+(3928, 63, 2, 0, 0, 0, 0),
+(3929, 64, 2, 0, 0, 0, 0),
+(3930, 65, 2, 0, 0, 0, 0),
+(3931, 66, 2, 0, 0, 0, 0),
+(3932, 67, 2, 0, 0, 0, 0),
+(3933, 68, 2, 0, 0, 0, 0),
+(3934, 69, 2, 0, 0, 0, 0),
+(3935, 70, 2, 0, 0, 0, 0),
+(3936, 75, 2, 0, 0, 0, 0),
+(3937, 76, 2, 0, 0, 0, 0),
+(3938, 77, 2, 0, 0, 0, 0),
+(3939, 98, 2, 0, 0, 0, 0),
+(3940, 103, 2, 1, 1, 1, 0),
+(3941, 104, 2, 1, 1, 1, 0),
+(3942, 78, 2, 0, 0, 0, 0),
+(3943, 79, 2, 0, 0, 0, 0),
+(3944, 80, 2, 0, 0, 0, 0),
+(3945, 81, 2, 0, 0, 0, 0),
+(3946, 82, 2, 0, 0, 0, 0),
+(3947, 83, 2, 0, 0, 0, 0),
+(3948, 84, 2, 0, 0, 0, 0),
+(3949, 85, 2, 0, 0, 0, 0),
+(3950, 86, 2, 0, 0, 0, 0),
+(3951, 87, 2, 0, 0, 0, 0),
+(3952, 88, 2, 0, 0, 0, 0),
+(3953, 89, 2, 0, 0, 0, 0),
+(3954, 90, 2, 0, 0, 0, 0),
+(3955, 91, 2, 0, 0, 0, 0),
+(3956, 92, 2, 0, 0, 0, 0),
+(3957, 93, 2, 0, 0, 0, 0),
+(3958, 94, 2, 0, 0, 0, 0),
+(3959, 111, 2, 0, 0, 0, 0),
+(3960, 112, 2, 0, 0, 0, 0),
+(3961, 113, 2, 0, 0, 0, 0),
+(3962, 114, 2, 0, 0, 0, 0),
+(3963, 115, 2, 0, 0, 0, 0),
+(3964, 116, 2, 0, 0, 0, 0),
+(3965, 117, 2, 0, 0, 0, 0),
+(3966, 118, 2, 0, 0, 0, 0),
+(3967, 119, 2, 0, 0, 0, 0),
+(3968, 120, 2, 0, 0, 0, 0),
+(3969, 99, 2, 0, 0, 0, 0),
+(3970, 101, 2, 0, 0, 0, 0),
+(3971, 102, 2, 0, 0, 0, 0),
+(3972, 105, 2, 0, 0, 0, 0),
+(3973, 106, 2, 0, 0, 0, 0),
+(3974, 107, 2, 0, 0, 0, 0),
+(3975, 108, 2, 0, 0, 0, 0),
+(3976, 109, 2, 0, 0, 0, 0),
+(3977, 110, 2, 0, 0, 0, 0),
+(3978, 71, 2, 0, 0, 0, 0),
+(3979, 72, 2, 0, 0, 0, 0),
+(3980, 73, 2, 0, 0, 0, 0),
+(3981, 74, 2, 0, 0, 0, 0),
+(3982, 131, 2, 0, 0, 0, 0),
+(3983, 132, 2, 0, 0, 0, 0),
+(3984, 133, 2, 0, 0, 0, 0),
+(3985, 134, 2, 0, 0, 0, 0),
+(3986, 140, 2, 0, 0, 0, 0),
+(3987, 139, 2, 1, 1, 1, 0),
+(3988, 141, 2, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -2893,16 +2864,15 @@ CREATE TABLE `schedule` (
 --
 
 INSERT INTO `schedule` (`schedule_id`, `slot_id`, `doctor_id`, `start_time`, `end_time`, `available_days`, `per_patient_time`, `schedule_type`, `serial_visibility_type`, `status`) VALUES
-(1, 1, 3, '08:00:00', '11:00:00', 'Friday', '01:00:00', 1, 1, 1),
-(2, 1, 3, '08:00:00', '10:00:00', 'Monday', '02:00:00', 1, 1, 1),
-(4, 1, 4, '08:00:00', '10:00:00', 'Monday', '02:00:00', 2, 1, 1),
-(5, 4, 4, '10:00:00', '12:00:00', 'Monday', '02:00:00', 2, 1, 1),
-(6, 1, 3, '08:00:00', '10:00:00', 'Tuesday', '02:00:00', 2, 1, 1),
-(7, 3, 3, '04:00:00', '06:00:00', 'Tuesday', '02:00:00', 1, 1, 1),
-(8, 5, 3, '02:00:00', '04:00:00', 'Wednesday', '02:00:00', 2, 1, 1),
-(9, 1, 6, '08:00:00', '10:00:00', 'Monday', '02:00:00', 1, 1, 1),
-(10, 4, 6, '10:00:00', '12:00:00', 'Monday', '02:00:00', 2, 1, 1),
-(11, 1, 7, '08:00:00', '10:00:00', 'Monday', '00:00:02', 1, 1, 1);
+(15, 4, 3, '09:00:00', '12:00:00', 'Monday', '01:00:00', 1, 2, 1),
+(16, 2, 3, '13:00:00', '16:00:00', 'Monday', '01:00:00', 2, 2, 1),
+(17, 5, 3, '17:00:00', '20:00:00', 'Monday', '01:00:00', 1, 2, 1),
+(18, 4, 3, '09:00:00', '12:00:00', 'Tuesday', '01:00:00', 1, 2, 1),
+(19, 4, 4, '09:00:00', '12:00:00', 'Monday', '01:00:00', 1, 2, 1),
+(20, 2, 4, '13:00:00', '16:00:00', 'Monday', '01:00:00', 1, 2, 1),
+(21, 4, 4, '09:00:00', '12:00:00', 'Tuesday', '01:00:00', 1, 2, 1),
+(22, 4, 3, '09:00:00', '12:00:00', 'Wednesday', '01:00:00', 1, 2, 1),
+(23, 4, 3, '09:00:00', '12:00:00', 'Thursday', '01:00:00', 1, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -2921,10 +2891,10 @@ CREATE TABLE `sec_role` (
 
 INSERT INTO `sec_role` (`id`, `type`) VALUES
 (1, 'Admin'),
-(2, 'Doctor'),
+(2, 'Pathologist'),
 (3, 'Accountant'),
 (4, 'Laboratorist'),
-(5, 'Nurse'),
+(5, 'Support Staff'),
 (6, 'Pharmacist'),
 (7, 'Receptionist'),
 (8, 'Representative'),
@@ -2952,18 +2922,19 @@ CREATE TABLE `sec_userrole` (
 
 INSERT INTO `sec_userrole` (`id`, `user_id`, `roleid`, `createby`, `createdate`) VALUES
 (1, '1', 1, '1', '2019-09-29 00:00:00'),
-(2, '2', 2, '1', '2020-06-11 06:23:24'),
+(2, '2', 1, '1', '2020-06-11 06:23:24'),
 (3, '3', 2, '2', '2020-08-20 11:00:03'),
 (4, '5', 11, '2', '2020-09-17 00:00:00'),
 (5, '6', 2, '2', '2020-09-29 00:00:00'),
 (6, '7', 2, '2', '2020-09-30 00:00:00'),
 (7, '8', 2, '2', '2020-09-30 00:00:00'),
-(8, '9', 1, '2', '2020-09-30 00:00:00'),
+(8, '9', 11, '2', '2020-09-30 00:00:00'),
 (9, '10', 2, '2', '2020-09-30 00:00:00'),
 (10, '11', 7, '2', '2020-09-30 00:00:00'),
 (11, '12', 7, '2', '2020-09-30 00:00:00'),
 (12, '13', 5, '2', '2020-09-30 00:00:00'),
-(13, '14', 5, '2', '2020-09-30 00:00:00');
+(13, '14', 5, '2', '2020-09-30 00:00:00'),
+(14, '4', 2, '2', '2020-08-20 11:00:03');
 
 -- --------------------------------------------------------
 
@@ -3323,11 +3294,9 @@ CREATE TABLE `time_slot` (
 --
 
 INSERT INTO `time_slot` (`id`, `slot_name`, `slot`, `status`) VALUES
-(1, 'Morning', '08:00 - 10:00', 1),
-(2, 'Afternoon', '12:00 - 2:00', 1),
-(3, 'Evening', '04:00-06:00', 1),
-(4, 'Morning', '10:00-12:00', 1),
-(5, 'Evening', '05:00 - 07:00', 1);
+(2, 'Afternoon', '13:00 - 16:00', 1),
+(4, 'Morning', '09:00-12:00', 1),
+(5, 'Evening', '17:00 - 20:00', 1);
 
 -- --------------------------------------------------------
 
@@ -3353,7 +3322,8 @@ CREATE TABLE `transaction` (
 INSERT INTO `transaction` (`transaction_id`, `payment_id`, `refund_id`, `amount`, `receipt`, `status`, `speed_processed`, `created_date`) VALUES
 (1, 'pay_FtLgQDzAJw22DM', 'rfnd_FtMRoLr81LQrXE', 300, NULL, 'processed', 'normal', '2020-10-26 07:44:19'),
 (2, 'pay_FtPeTFEtaSxXcg', 'rfnd_FtPeqP1OCEPKwK', 54.5, NULL, 'processed', 'normal', '2020-10-26 10:52:44'),
-(3, 'pay_FtPh8Y2OG5Nv1k', 'rfnd_FtPiW8nLucJukZ', 54.5, NULL, 'processed', 'normal', '2020-10-26 10:56:13');
+(3, 'pay_FtPh8Y2OG5Nv1k', 'rfnd_FtPiW8nLucJukZ', 54.5, NULL, 'processed', 'normal', '2020-10-26 10:56:13'),
+(4, 'pay_Fv6QJmU9Bc5rfi', 'rfnd_Fv6be7jtL7AOk0', 300, NULL, 'processed', 'normal', '2020-10-30 17:32:32');
 
 -- --------------------------------------------------------
 
@@ -3393,9 +3363,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `firstname`, `lastname`, `email`, `password`, `user_role`, `department_id`, `picture`, `date_of_birth`, `sex`, `blood_group`, `vacation`, `facebook`, `twitter`, `youtube`, `dribbble`, `behance`, `meeting_url`, `meeting_user_id`, `meeting_password`, `created_by`, `create_date`, `update_date`, `status`) VALUES
-(2, 'Sunil', 'Nalawade', 'sunilnalawade15@gmail.com', '21232f297a57a5a743894a0e4a801fc3', 1, NULL, 'assets/images/doctor/2eb3514b4a53df74226e744ef901eef3.jpg', '1970-01-01', 'Male', NULL, '', '', '', '', '', '', '', '', '', 2, '2020-10-08', NULL, 1),
-(3, 'Chitra', 'Thadathil', 'ChitraThadathil@yopmail.coom', '63a9f0ea7bb98050796b649e85481845', 2, 18, 'assets/images/doctor/1404a5d127eb3ef3a008e5500bf52b0e.jpg', '1970-01-01', 'Male', 'A+', '', '', '', '', '', '', 'https://meet.google.com/gju-bsoj-uex', 'root', 'root123', 2, '2020-10-14', NULL, 1),
-(4, 'Shyama', 'K. M', 'Shyamakm@yopmail.com', 'b3666d14ca079417ba6c2a99f079b2ac', 2, 16, 'assets/images/doctor/4ab7c8309e8d124ed87b7dc9bf13d493.jpg', '2020-09-17', 'Female', 'A+', NULL, NULL, NULL, NULL, NULL, NULL, '', '', '', 2, '2020-09-17', NULL, 1),
+(2, 'Sunil', 'Nalawade', 'sunilnalawade15@gmail.com', '21232f297a57a5a743894a0e4a801fc3', 1, NULL, 'assets/images/doctor/2eb3514b4a53df74226e744ef901eef3.jpg', '1970-01-01', 'Male', NULL, '', '', '', '', '', '', '', '', '', 2, '2020-10-30', NULL, 1),
+(3, 'Chitra', 'Thadathil', 'ChitraThadathil@yopmail.coom', 'b3666d14ca079417ba6c2a99f079b2ac', 2, 18, 'assets/images/doctor/1404a5d127eb3ef3a008e5500bf52b0e.jpg', '1970-01-01', 'Male', 'A+', '', '', '', '', '', '', 'https://meet.google.com/gju-bsoj-uex', 'root', 'root123', 2, '2020-10-29', NULL, 1),
+(4, 'Shyama', 'K. M', 'Shyamakm@yopmail.com', 'b3666d14ca079417ba6c2a99f079b2ac', 2, 16, 'assets/images/doctor/4ab7c8309e8d124ed87b7dc9bf13d493.jpg', '2020-09-17', 'Male', 'A+', NULL, NULL, NULL, NULL, NULL, NULL, '', 'root', '', 2, '2020-10-30', NULL, 1),
 (5, 'Nazeer', 'Shaik', 'nazeer@yopmail.com', 'd3c7bcf4f2343a1bf8de53c3f235cf14', 11, NULL, 'assets/images/human_resources/f9ccbeda1c7cc2e69e24e4a373e86fbb.png', NULL, 'Male', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', '', 2, '2020-09-17', NULL, 1),
 (6, 'Ligin', 'John', 'liginjohn@yopmail.com', 'd41d8cd98f00b204e9800998ecf8427e', 2, 19, 'assets/images/doctor/fa2f8fbfe6a18efe3b376f6f2ab2d724.png', '1989-10-11', 'Female', 'B+', NULL, NULL, NULL, NULL, NULL, NULL, '', '', '', 2, '2020-10-08', NULL, 1),
 (7, 'Emily', 'Lalan', 'emily@yopmail.com', 'd41d8cd98f00b204e9800998ecf8427e', 2, 22, 'assets/images/human_resources/b93eac4237f4aad9e14c5ebf2b936cec.jpg', '2020-09-30', 'Male', '', NULL, NULL, NULL, NULL, NULL, NULL, '', '', '', 2, '2020-10-08', NULL, 1),
@@ -3471,6 +3441,66 @@ INSERT INTO `user_language` (`id`, `user_id`, `name`, `type`, `rating`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `user_leaves`
+--
+
+CREATE TABLE `user_leaves` (
+  `leave_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `leave_type` tinyint(4) NOT NULL,
+  `from_date` date DEFAULT NULL,
+  `to_date` date DEFAULT NULL,
+  `leave_description` text,
+  `manager_description` text,
+  `status` tinyint(1) NOT NULL DEFAULT '1',
+  `created_by` int(11) NOT NULL,
+  `updated_by` int(11) NOT NULL,
+  `created_date` datetime DEFAULT NULL,
+  `updated_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='User Leaves table';
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_leave_balance`
+--
+
+CREATE TABLE `user_leave_balance` (
+  `leave_balance_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `leave_type` varchar(65) DEFAULT NULL,
+  `total_leaves` float NOT NULL DEFAULT '0',
+  `leave_balance` float NOT NULL DEFAULT '0',
+  `leave_taken` float NOT NULL DEFAULT '0',
+  `created_by` int(11) NOT NULL,
+  `updated_by` int(11) NOT NULL,
+  `created_date` datetime DEFAULT NULL,
+  `updated_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='User Leave Balance Table';
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_leave_manager`
+--
+
+CREATE TABLE `user_leave_manager` (
+  `leave_manager_mapping_id` int(11) NOT NULL,
+  `manager_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT '1',
+  `assigned_date` date NOT NULL,
+  `from_date` date DEFAULT NULL,
+  `to_date` date DEFAULT NULL,
+  `created_by` int(11) NOT NULL,
+  `updated_by` int(11) NOT NULL,
+  `created_date` datetime DEFAULT NULL,
+  `updated_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='User Manager Mapping Table';
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user_log`
 --
 
@@ -3533,7 +3563,16 @@ INSERT INTO `user_log` (`id`, `user_id`, `in_time`, `out_time`, `date`, `status`
 (43, 2, '00:16:36', '00:00:00', '2020-10-24', 1),
 (44, 2, '23:16:21', '00:00:00', '2020-10-25', 1),
 (45, 2, '06:52:44', '00:00:00', '2020-10-26', 1),
-(46, 2, '06:41:03', '00:00:00', '2020-10-27', 1);
+(46, 2, '06:41:03', '00:00:00', '2020-10-27', 1),
+(47, 5, '07:06:55', '07:48:59', '2020-10-27', 1),
+(48, 2, '09:15:25', '00:00:00', '2020-10-28', 1),
+(49, 2, '08:42:15', '15:31:22', '2020-10-29', 1),
+(50, 3, '14:38:53', '15:42:02', '2020-10-29', 0),
+(51, 2, '14:16:47', '00:00:00', '2020-10-30', 1),
+(52, 3, '18:22:57', '00:00:00', '2020-10-30', 1),
+(53, 4, '18:44:18', '18:59:23', '2020-10-30', 1),
+(54, 2, '09:08:44', '00:00:00', '2020-11-01', 1),
+(55, 3, '09:35:37', '00:00:00', '2020-11-01', 1);
 
 -- --------------------------------------------------------
 
@@ -3676,7 +3715,8 @@ INSERT INTO `ws_menu` (`id`, `name`, `parent_id`, `position`, `fixed`, `status`)
 (13, 'Patient Role', 2, 1, 0, 1),
 (14, 'Others', 0, 9, 0, 1),
 (16, 'Packages', 0, 3, 0, 1),
-(18, 'Mission', 14, 3, 0, 1);
+(18, 'Mission', 14, 3, 0, 1),
+(19, 'Staff Login', 0, 10, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -3742,7 +3782,8 @@ INSERT INTO `ws_menu_lang` (`id`, `menu_id`, `title`, `language`) VALUES
 (44, 14, 'autres', 'french'),
 (45, 16, 'Packages', 'english'),
 (46, 16, 'Packages', 'arabic'),
-(48, 18, 'Mission', 'english');
+(48, 18, 'Mission', 'english'),
+(49, 19, 'Satff Login', 'english');
 
 -- --------------------------------------------------------
 
@@ -3829,10 +3870,11 @@ INSERT INTO `ws_page_content` (`id`, `menu_id`, `url`, `title`, `description`, `
 (4, 4, 'doctors', '', '', '', '2018-11-27', 1),
 (5, 5, 'departments', '', '', '', '2018-11-27', 1),
 (6, 6, 'contact', '', '', '', '2018-11-27', 1),
-(8, 9, 'patient_login', 'Patient Login', '<p>fdgdg</p>', '', '2018-11-28', 1),
+(8, 9, 'parent_login', 'Patient Login', '<p>fdgdg</p>', '', '2018-11-28', 1),
 (34, 14, 'page', '', '', '', '2018-12-20', 1),
 (35, 12, 'page', 'We are supported our clients 24 Hours', '<p>We are supported our clients 24 Hours</p>\r\n<p>We are supported our clients 24 Hours</p>\r\n<p>We are supported our clients 24 Hours</p>\r\n<p>We are supported our clients 24 Hours</p>\r\n<p>We are supported our clients 24 Hours</p>\r\n<p> </p>', '', '2018-12-20', 1),
-(36, 16, 'packages/list', '', '', '', '2018-11-27', 1);
+(36, 16, 'packages/list', '', '', '', '2018-11-27', 1),
+(37, 19, 'login', 'Staff Login', '<p>fdgdg</p>', '', '2018-11-28', 1);
 
 -- --------------------------------------------------------
 
@@ -4575,6 +4617,24 @@ ALTER TABLE `user_language`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `user_leaves`
+--
+ALTER TABLE `user_leaves`
+  ADD PRIMARY KEY (`leave_id`);
+
+--
+-- Indexes for table `user_leave_balance`
+--
+ALTER TABLE `user_leave_balance`
+  ADD PRIMARY KEY (`leave_balance_id`);
+
+--
+-- Indexes for table `user_leave_manager`
+--
+ALTER TABLE `user_leave_manager`
+  ADD PRIMARY KEY (`leave_manager_mapping_id`);
+
+--
 -- Indexes for table `user_log`
 --
 ALTER TABLE `user_log`
@@ -4738,7 +4798,7 @@ ALTER TABLE `acn_account_transaction`
 -- AUTO_INCREMENT for table `appointment`
 --
 ALTER TABLE `appointment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
 
 --
 -- AUTO_INCREMENT for table `bill`
@@ -4834,7 +4894,7 @@ ALTER TABLE `department_lang`
 -- AUTO_INCREMENT for table `document`
 --
 ALTER TABLE `document`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `enquiry`
@@ -4894,7 +4954,7 @@ ALTER TABLE `inc_limit_approval`
 -- AUTO_INCREMENT for table `language`
 --
 ALTER TABLE `language`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=825;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=832;
 
 --
 -- AUTO_INCREMENT for table `mail_setting`
@@ -4966,7 +5026,7 @@ ALTER TABLE `package_prices`
 -- AUTO_INCREMENT for table `package_renewals`
 --
 ALTER TABLE `package_renewals`
-  MODIFY `package_renewal_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `package_renewal_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `package_slots`
@@ -4978,7 +5038,7 @@ ALTER TABLE `package_slots`
 -- AUTO_INCREMENT for table `patient`
 --
 ALTER TABLE `patient`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `pa_visit`
@@ -5002,19 +5062,19 @@ ALTER TABLE `pr_case_study`
 -- AUTO_INCREMENT for table `pr_prescription`
 --
 ALTER TABLE `pr_prescription`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `role_permission`
 --
 ALTER TABLE `role_permission`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3735;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3989;
 
 --
 -- AUTO_INCREMENT for table `schedule`
 --
 ALTER TABLE `schedule`
-  MODIFY `schedule_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `schedule_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `sec_role`
@@ -5026,7 +5086,7 @@ ALTER TABLE `sec_role`
 -- AUTO_INCREMENT for table `sec_userrole`
 --
 ALTER TABLE `sec_userrole`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `setting`
@@ -5092,13 +5152,13 @@ ALTER TABLE `sub_module`
 -- AUTO_INCREMENT for table `time_slot`
 --
 ALTER TABLE `time_slot`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -5119,10 +5179,28 @@ ALTER TABLE `user_language`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `user_leaves`
+--
+ALTER TABLE `user_leaves`
+  MODIFY `leave_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `user_leave_balance`
+--
+ALTER TABLE `user_leave_balance`
+  MODIFY `leave_balance_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `user_leave_manager`
+--
+ALTER TABLE `user_leave_manager`
+  MODIFY `leave_manager_mapping_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `user_log`
 --
 ALTER TABLE `user_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `ws_about`
@@ -5152,13 +5230,13 @@ ALTER TABLE `ws_basic`
 -- AUTO_INCREMENT for table `ws_menu`
 --
 ALTER TABLE `ws_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `ws_menu_lang`
 --
 ALTER TABLE `ws_menu_lang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `ws_news`
@@ -5176,7 +5254,7 @@ ALTER TABLE `ws_news_language`
 -- AUTO_INCREMENT for table `ws_page_content`
 --
 ALTER TABLE `ws_page_content`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `ws_partner`

@@ -124,7 +124,7 @@ public function index(){
      } 
     }  
 
-    public function patient_login(){
+    public function parent_login(){
 
         $cart_redirect = false;
         $cart_redirect = ($this->input->get('cart') == true) ? true : false;
@@ -170,7 +170,7 @@ public function index(){
              else {
                 $this->session->set_flashdata('exception',display('incorrect_email_password'));
                 //redirect to login form
-                redirect('patient_login'); 
+                redirect('parent_login'); 
             }
             $permission = array();
             if(!empty($checkPermission))
@@ -228,7 +228,7 @@ public function index(){
                  #set exception message
                  $this->session->set_flashdata('exception',display('incorrect_email_password'));
                 //redirect to login form
-                redirect('patient_login');
+                redirect('parent_login');
             }
           }
           else {
@@ -236,7 +236,7 @@ public function index(){
                 $data['setting'] = $this->setting_model->read();
                 $data['section'] = $this->home_model->section('signin');
                 $data['contents'] = $this->load->view('website/login',$data, true);
-                $this->load->view('website/patient_login_wrapper',$data);
+                $this->load->view('website/parent_login_wrapper',$data);
           } 
     }
 
@@ -506,7 +506,7 @@ public function index(){
         $data['setting'] = $this->setting_model->read();
         $data['section'] = $this->home_model->section('signup');
         $data['contents'] = $this->load->view('website/registration',$data, true);
-        $this->load->view('website/patient_login_wrapper',$data);
+        $this->load->view('website/parent_login_wrapper',$data);
     }
 
     public function save_registration(){
@@ -561,7 +561,7 @@ public function index(){
             if(!empty($checkEmail)){
                 $this->session->set_flashdata('message', display('update_successfully'));
                 //redirect to login form
-                redirect('patient_login');
+                redirect('parent_login');
             }else {
                  #set exception message
                  $this->session->set_flashdata('exception',display('email_is_not_existed'));
@@ -572,7 +572,7 @@ public function index(){
             $data['title'] = display('password');
             $data['setting'] = $this->setting_model->read();
             $data['contents'] = $this->load->view('website/forgot_password',$data, true);
-            $this->load->view('website/patient_login_wrapper',$data);
+            $this->load->view('website/parent_login_wrapper',$data);
         } 
     }
 

@@ -33,10 +33,9 @@
                                     <td><?php echo $sl; ?></td>
                                     <td>
                                       <a href="<?php echo base_url("dashboard_patient/appointment/appointment/view/$appointment->appointment_id") ?>" class=""><?php echo $appointment->appointment_id; ?></i></a> 
-                                      
                                     </td>
                                     <td><?php echo $appointment->patient_id; ?></td>
-                                    <td><?php echo $appointment->name; ?></td>
+                                    <td><?php echo $appointment->department; ?></td>
                                     <td><?php echo $appointment->firstname.' '.$appointment->lastname; ?></td>
                                     <td><?php echo $appointment->start_time.' - '.$appointment->end_time; ?></td>
                                     <td><?php echo ($appointment->schedule_type == 1) ? 'Inperson' : 'Online'; ?></td>
@@ -45,16 +44,6 @@
                                     <td><?php echo get_appointment_status($appointment->status); ?></td>
                                     <td class="center">
                                         <a href="<?php echo base_url("dashboard_patient/appointment/appointment/view/$appointment->appointment_id") ?>" class="btn btn-xs btn-success"><i class="fa fa-eye"></i></a>
-                                        <?php
-                                         if($appointment->status == 2 || $appointment->status == 1){
-                                        ?>
-                                          <a href="<?php echo base_url("appointment/cancell/$appointment->appointment_id") ?>" onclick="return confirm('<?php echo display('are_you_sure') ?>')" class="btn btn-xs btn-danger"><i class="fa fa-times-circle"></i></a> 
-                                        <?php } ?>
-                                        <?php
-                                         if($appointment->status == 2 ){
-                                        ?>
-                                          <a href="<?php echo base_url(" appointment/confirm/$appointment->appointment_id") ?>" onclick="return confirm('<?php echo display('are_you_sure') ?>')" class="btn btn-xs btn-danger"><i class="fa fa-check-circle"></i></a> 
-                                        <?php } ?>
                                     </td>
                                 </tr>
                                 <?php $sl++; ?>

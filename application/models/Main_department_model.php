@@ -2,7 +2,7 @@
 
 class Main_department_model extends CI_Model {
 
-	private $table = 'main_department';
+	private $table = 'main_department'; 
 
 	public function __construct()
 	{

@@ -51,7 +51,7 @@ class Home extends CI_Controller {
        $data['departments'] = $this->department_model->read();
        $data['main_departments'] = $this->main_department_model->read();
        $data['deptsFooter'] = $this->department_model->read_footer();
-       $data['sliderDepart'] = $this->main_department_model->read();
+       $data['sliderDepart'] = $this->main_department_model->read(); 
     //    $data['department_list'] = $this->department_model->department_list();
        $data['main_department_list'] = $this->main_department_model->main_department_list();
        $data['appointment_type'] = $this->main_department_model->appointment_type();

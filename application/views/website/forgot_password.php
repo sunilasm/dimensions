@@ -36,5 +36,5 @@
             <button type="submit" class="btn btn-primary btn-block"><?= display('update').' '.display('password')?></button>
         </form>
     </div>
-    <p class="m-t-10"><a href="<?php echo base_url('patient_login');?>"><?= display('sign_in')?></a></p>
+    <p class="m-t-10"><a href="<?php echo base_url('parent_login');?>"><?= display('sign_in')?></a></p>
 </div>

@@ -34,6 +34,18 @@ class Leave_model extends CI_Model {
 			->get()
 			->result();
 	}
+	public function get_active_leaves($where = array())
+	{
+		return $this->db->select($this->get_select_fileds())
+			->from($this->table)
+			->join('user','user.user_id = user_leaves.user_id','left')
+			->join('department','department.dprt_id = user.department_id','left')
+			->where($where)
+			->where_in('user_leaves.status', ['1', '2'])
+			->order_by('user_leaves.leave_id','desc')
+			->get()
+			->result();
+	}
 
 	
 	public function read_by_id($id = null)

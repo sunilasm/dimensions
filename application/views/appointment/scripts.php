@@ -125,15 +125,13 @@ $(document).ready(function() {
     });
     
     $(".appointment_type_id").change(function(){
-        //console.log( "ID:" + $(".appointment_type_id").val());
-        console.log("appointment_type:"+this.value);
-        // if (this.value == '2') {
-            
-        //     alert("Allot Thai Gayo Bhai");
-        // }
-        // else if (this.value == '1') {
-        //     alert("Transfer Thai Gayo");
-        // }
+        //console.log("appointment_type:"+this.value);
+        $("#id").val('selected');        
+        $("#price").attr('value','');
+        $("#price_code").attr('value','');
+        $("#date").attr('value','');
+        $("#department_id").attr('value','selected');
+        $("#doctor_id").attr('value','selected');
     });
     $(".payment_type_id").change(function(){
         //console.log( "ID:" + $(".appointment_type_id").val());
@@ -147,6 +145,12 @@ $(document).ready(function() {
             $("#receipt_id").attr('readonly',true);
         }
     });
+    $('#serial_preview' ).on( 'click', 'div.serial_no', function () { 
+        console.log("asdas:"+$(this).attr('data-schedule'));
+        $("#schedule_id").val($(this).attr('data-schedule'));
+        $("#serial_no").val($(this).attr('data-item'));
+    });
+    
     //date
     $("#date").change(function(){
         var date            = $('#date'); 
@@ -174,8 +178,10 @@ $(document).ready(function() {
             },
             success : function(data) 
             { 
+                console.log(data);
                 if (data.status == true) {
                     //set schedule id
+                    console.log(data.message);
                     schedule_id.val(data.schedule_id); 
                     serial_preview.html(data.message);
                 } else if (data.status == false) {
@@ -188,6 +194,8 @@ $(document).ready(function() {
             }, 
             error : function(xhr, status, error)
             {
+                var err = eval("(" + xhr.responseText + ")");
+                console.log(err);
                 alert('failed');
             }
         });

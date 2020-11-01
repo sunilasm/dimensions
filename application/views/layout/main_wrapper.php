@@ -15,7 +15,7 @@ $settings = $this->db->select("site_align")
         <title><?= display('dashboard') ?> - <?php echo (!empty($title)?$title:null) ?></title>
 
         <!-- Favicon and touch icons -->
-        <link rel="shortcut icon" href="<?= base_url($this->session->userdata('favicon')) ?>">
+        <link rel="shortcut icon" href="<?= (!empty($basics->favicon)?base_url($basics->favicon):base_url('assets_web/img/placeholder/favicon.png')) ?>">
 
         <!-- jquery ui css -->
         <link href="<?php echo base_url('assets/css/jquery-ui.min.css') ?>" rel="stylesheet" type="text/css"/>

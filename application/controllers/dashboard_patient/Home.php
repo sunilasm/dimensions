@@ -14,7 +14,7 @@ class Home extends CI_Controller {
  
         
         if ($this->session->userdata('isLogIn_patient') == false) 
-        redirect('patient_login'); 
+        redirect('parent_login'); 
     }
  
     public function index(){
@@ -139,7 +139,7 @@ class Home extends CI_Controller {
     public function logout()
     {  
         $this->session->sess_destroy(); 
-        redirect('patient_login');
+        redirect('parent_login');
     } 
  
 

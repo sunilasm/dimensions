@@ -61,7 +61,9 @@
                                             'kidney-1'   => 'Kidney 1',
                                             'kidney-2'   => 'Kidney 2',
                                             'sperm-2'   => 'Pregnancy',
-                                            'surgery'   => 'Surgery'
+                                            'surgery'   => 'Surgery',
+                                            'fa-university'   => 'fa-university',
+                                            
                                         );
                                         echo form_dropdown('flaticon',$flaticon,$department->flaticon,'class="form-control" id="flaticon"'); 
                                     ?>

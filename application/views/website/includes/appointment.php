@@ -472,7 +472,7 @@ function patientInfo(id){
 
                     setTimeout(function(){ 
                         if(data.message){
-                            window.location="<?= base_url('patient_login')?>";
+                            window.location="<?= base_url('parent_login')?>";
                         }else{
                             history.go(0);
                         }

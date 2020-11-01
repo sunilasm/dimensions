@@ -30,7 +30,7 @@
         <!-- <?= display('remind')?> <a href="<?php echo base_url('forgot_password');?>"><?= display('password')?></a> -->
     </div>
     <div class="register-form">
-        <?php echo form_open('patient_login','id="loginForm" novalidate'); ?>
+        <?php echo form_open('parent_login','id="loginForm" novalidate'); ?>
 
             <div class="form-group">
                 <input type="email" placeholder="<?= display('email') ?>" name="email" id="email" class="form-control"> 

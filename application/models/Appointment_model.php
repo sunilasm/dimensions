@@ -128,7 +128,84 @@ class Appointment_model extends CI_Model {
 			->order_by('appointment.id','desc')
 			->get()
 			->row();
-	}  
+	}
+	private function get_select_fileds()
+	{
+		$response = "
+			appointment.*, 
+			appointment.appointment_id, 
+			appointment.serial_no, 
+			appointment.problem, 
+			appointment.date, 
+			usrLn.firstname, 
+			usrLn.lastname,  
+			user.picture,
+			user.meeting_url,  
+			user.meeting_user_id,  
+			user.meeting_password,  
+			usrLn.degree,  
+			transaction.transaction_id,  
+			transaction.refund_id,  
+			transaction.amount as refund_amount,  
+			transaction.status as refund_status,  
+			transaction.speed_processed as speed_processed,  
+			transaction.created_date as refund_date,  
+			department.name as department,
+			department.price as price,
+			main_department.name as branch_name,
+			schedule.available_days,
+			schedule.start_time,
+			schedule.end_time,
+			schedule.schedule_type,
+			patient.firstname AS pfirstname,
+			patient.lastname AS plastname,
+			patient.date_of_birth,
+			patient.sex,
+			patient.mobile,
+			patient.picture,
+		";
+		return $response;
+	}
+	public function get($where = array())
+	{
+		$response = array();
+		if(count((array)$where))
+		{
+			$response = $this->db->select($this->get_select_fileds())
+			->from($this->table)
+			->join('user','user.user_id = appointment.doctor_id','left')
+			->join('user_lang as usrLn','usrLn.user_id = appointment.doctor_id')
+			->join('department','department.dprt_id = appointment.department_id','left')
+			->join('main_department', 'department.main_id=main_department.id', 'left')
+			->join('patient','patient.patient_id = appointment.patient_id')
+			->join('schedule','schedule.schedule_id = appointment.schedule_id','left')
+			->join('transaction','transaction.payment_id = appointment.payment_id','left')
+			->where($where)
+			->where('usrLn.language', (!empty($this->language)?$this->language:$this->defualt))
+			->order_by('appointment.id','desc')
+			->get()
+			->result();
+
+		}
+		else
+		{
+			$response = $this->db->select($this->get_select_fileds())
+			->from($this->table)
+			->join('user','user.user_id = appointment.doctor_id','left')
+			->join('user_lang as usrLn','usrLn.user_id = appointment.doctor_id')
+			->join('department','department.dprt_id = appointment.department_id','left')
+			->join('main_department', 'department.main_id=main_department.id', 'left')
+			->join('patient','patient.patient_id = appointment.patient_id')
+			->join('schedule','schedule.schedule_id = appointment.schedule_id','left')
+			->join('transaction','transaction.payment_id = appointment.payment_id','left')
+			->where('usrLn.language', (!empty($this->language)?$this->language:$this->defualt))
+			->order_by('appointment.id','desc')
+			->get()
+			->result();
+		}
+		
+		return $response;
+	}
  
 	public function delete($appointment_id = null)
 	{

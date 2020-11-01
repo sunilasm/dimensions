@@ -191,7 +191,7 @@ $settings = $this->db->select("site_align")
                     <div class="p-l-30 p-r-30">
                         <div class="header-icon"><i class="pe-7s-world"></i></div>
                         <div class="header-title">
-                            <h1><?php echo ucwords(str_replace('_', ' ', $this->uri->segment(1))) ?></h1>
+                            <h1><?php echo ucwords($title); ?></h1>
                             <small><?php echo (!empty($title)?$title:null) ?></small> 
                         </div>
                     </div>

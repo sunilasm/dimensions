@@ -101,7 +101,9 @@ class Department extends CI_Controller {
 				redirect('department/edit/'.$postData['dprt_id']);
 			}
 
-		} else {
+		} 
+		else 
+		{
 			$data['main_department'] = $this->main_department_model->main_department_list();
 			$data['content'] = $this->load->view('department/department_form',$data,true);
 			$this->load->view('layout/main_wrapper',$data);

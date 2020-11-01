@@ -21,7 +21,7 @@
                                                         foreach ($sliderDepart as $department) {
                                                     ?>
                                                     <div class="icon-box" data-toggle="tooltip" data-placement="top" title="<?= $department->name;?>">
-                                                        <i class="flaticon-vitamins<?= $department->flaticon;?>"></i>
+                                                        <i class="fa fa-university <?= $department->flaticon;?>"></i>
                                                     </div>
                                                     <?php } }?>
                                                     <a href="<?= base_url('departments')?>" class="icon-box view-all">

@@ -51,7 +51,7 @@ class Appointment extends CI_Controller {
         $check_appointment_exists = $this->check_appointment_exists(
             $this->input->post('patient_id',true), 
             $this->input->post('doctor_id',true), 
-            $this->input->post('schedule_id',true), 
+            $this->input->post('schedule_id',true),
             date('Y-m-d',strtotime($this->input->post('date',true)))
         );
         if ($check_appointment_exists === false) {
@@ -59,9 +59,27 @@ class Appointment extends CI_Controller {
             $this->session->set_flashdata($message);
             redirect($_SERVER['HTTP_REFERER']);
         }
+
         /* ------------------------------- */
         if ($this->form_validation->run() === true && $check_patient_id->status === true && $check_appointment_exists === true) 
         {
+            $leave_where = array(
+                'user_leaves.user_id' => $this->input->post('doctor_id',true), 
+                'user_leaves.from_date <=' => date('Y-m-d',strtotime($this->input->post('date',true))),
+                'user_leaves.to_date >=' => date('Y-m-d',strtotime($this->input->post('date',true))),
+            );
+    
+            $this->load->model('leave_model');
+            //echo "<pre>".print_r($leave_where,true); 
+            $leaves = $this->leave_model->get_active_leaves($leave_where);
+            //echo "<pre>".print_r($leaves,true); exit;
+            if(count((array) $leaves))
+            {
+                $message['exception'] = "Selected pathologiest is on leave on selected dates(".$this->input->post('date',true)."). Please select another pathogiest or different date."; 
+                $this->session->set_flashdata($message);
+                redirect($_SERVER['HTTP_REFERER']); exit;
+            }
+
             if($this->input->post('payment_type_id',true) == 'Online')
             {
                 $postData['payment_mode'] = 'Online';
@@ -619,7 +637,9 @@ class Appointment extends CI_Controller {
         $date       = date("Y-m-d", strtotime($this->input->post('date'))); 
         $day        = date("l", strtotime($this->input->post('date'))); 
         $schedule_type = $this->input->post('schedule_type');
-        if (!empty($doctor_id) && !empty($patient_id) && !empty($day)) {
+
+        if (!empty($doctor_id) && !empty($patient_id) && !empty($day)) 
+        {
             $query = $this->db->select('*')
                 ->from('schedule')
                 ->where('doctor_id',$doctor_id) 
@@ -628,65 +648,77 @@ class Appointment extends CI_Controller {
                 ->where('status',1)
                 ->order_by('available_days','desc')
                 ->get();
- 
+            //echo "<pre>".print_r($result = $query->result(),true); exit;
             if ($query->num_rows() > 0) {
-                $result = $query->row();
-                /*--------- ------------------------------- */
-                /*get start and end time*/
-                $start_time   = strtotime($result->start_time);
-                $end_time     = strtotime($result->end_time);
+                $records = $query->result();
 
-                /*convert per patient time to minute*/
-                $time_parse = date_parse($result->per_patient_time);
-                $minute = $time_parse['hour'] * 60 + $time_parse['minute'];
-
-                /*count total minute*/
-                $total_minute = round(abs($end_time - $start_time) / 60,2); 
-                /*total serial*/  
-                $total_serial = round(abs($total_minute / $minute));
-
-                /*--------- ------------------------------- */ 
                 $serial = null; 
+                foreach($records as $result)
+                {
+                    //echo "<pre>".print_r($result,true);
+                    /*--------- ------------------------------- */
+                    /*get start and end time*/
+                    $start_time   = strtotime($result->start_time);
+                    $end_time     = strtotime($result->end_time);
 
-                if ($result->serial_visibility_type == 2) {
-                    /*set sequential */
+                    /*convert per patient time to minute*/
+                    $time_parse = date_parse($result->per_patient_time);
+                    $minute = $time_parse['hour'] * 60 + $time_parse['minute'];
+
+                    /*count total minute*/
+                    $total_minute = round(abs($end_time - $start_time) / 60,2); 
+                    /*total serial*/  
+                    $total_serial = round(abs($total_minute / $minute));
+                    
+                    /*--------- ------------------------------- */ 
                     $seq = 1;
-                    $timestamp = strtotime($result->start_time);
-                    while ($seq <= $total_serial) {
-                        $time_from = date('H:i',$timestamp); 
-                        $timestamp = strtotime("+$minute minutes" , $timestamp); 
-                        $time_to   = date('H:i',$timestamp);
-
-                        /*check time sequence*/
-                        if ($this->check_time_sequence($doctor_id, $result->schedule_id, $seq, $date) === true) {
-                            //store time sequential
-                            $serial .= "<div data-item=\"$seq\" class=\"serial_no btn btn-primary btn-sm\">$time_from - $time_to</div>"; 
-                        } else {
-                            /*store time sequential*/
-                            $serial .= "<div class=\"btn btn-danger disabled btn-sm\">$time_from - $time_to</div>";
-                        }
-
-                        $seq++;
+                    if ($result->serial_visibility_type == 2) 
+                    {
+                        /*set sequential */
+                        
+                        $timestamp = strtotime($result->start_time);
+                        while ($seq <= $total_serial) {
+                            $time_from = date('H:i',$timestamp); 
+                            $timestamp = strtotime("+$minute minutes" , $timestamp); 
+                            $time_to   = date('H:i',$timestamp);
+    
+                            /*check time sequence*/
+                            if ($this->check_time_sequence($doctor_id, $result->schedule_id, $seq, $date) === true) {
+                                //store time sequential
+                                $serial .= "<div data-schedule=\"$result->schedule_id\" data-item=\"$seq\" class=\"serial_no btn btn-primary btn-sm\">$time_from - $time_to</div>"; 
+                            } else {
+                                /*store time sequential*/
+                                $serial .= "<div data-schedule=\"$result->schedule_id\" class=\"btn btn-danger disabled btn-sm\">$time_from - $time_to</div>";
+                            }
+    
+                            $seq++;
+                        } 
+                        $data['type'] = display('sequential');
                     } 
-                    $data['type'] = display('sequential');
-                } else {
-                    /*set timestamp*/
-                    $ts = 1;   
-                    while ($ts <= $total_serial) {
-
-                        /*check time sequence*/
-                        if ($this->check_time_sequence($doctor_id, $result->schedule_id, $ts, $date) === true) {
-                            //store timestamp
-                            $serial .= "<div data-item=\"$ts\" class=\"serial_no btn btn-primary btn-sm\">".(($ts<=9)?"0$ts":$ts)."</div>";
-                        } else {
-                            /*store timestamp*/
-                            $serial .= "<div class=\"btn btn-danger disabled btn-sm\">".(($ts<=9)?"0$ts":$ts)."</div>";
+                    else 
+                    {
+                        /*set timestamp*/
+                        $ts = 1;   
+                        while ($ts <= $total_serial) {
+    
+                            /*check time sequence*/
+                            if ($this->check_time_sequence($doctor_id, $result->schedule_id, $ts, $date) === true) 
+                            {
+                                //store timestamp
+                                $serial .= "<div data-schedule=\"$result->schedule_id\" data-item=\"$ts\" class=\"serial_no btn btn-primary btn-sm\">".(($ts<=9)?"0$ts":$ts)."</div>";
+                            } 
+                            else 
+                            {
+                                /*store timestamp*/
+                                $serial .= "<div data-schedule=\"$result->schedule_id\" class=\"btn btn-danger disabled btn-sm\">".(($ts<=9)?"0$ts":$ts)."</div>";
+                            }
+    
+                            $ts++;
                         }
-
-                        $ts++;
-                    }
-                    $data['type'] = display('timestamp');
-                } 
+                        $data['type'] = display('timestamp');
+                    } 
+                }
+                //exit;
                 $data['schedule_id'] = $result->schedule_id;
                 $data['message']     = $serial;
                 $data['status']      = true;
@@ -734,7 +766,7 @@ class Appointment extends CI_Controller {
                 $total_minute = round(abs($end_time - $start_time) / 60,2); 
                 /*total serial*/  
                 $total_serial = round(abs($total_minute / $minute));
-
+                
                 /*--------- ------------------------------- */ 
                 $serial = null; 
 
@@ -806,8 +838,7 @@ class Appointment extends CI_Controller {
             ->where('schedule_id', $schedule_id)
             ->where('serial_no', $serial_no)
             ->where('date', $date)
-            ->where('status', 1)
-            ->or_where('status', 2)
+            ->where_in('status', ['1','2'])
             ->get()
             ->num_rows();
             

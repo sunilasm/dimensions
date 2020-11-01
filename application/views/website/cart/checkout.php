@@ -113,7 +113,7 @@
     <!--Grid column-->
     <?php else : ?>
         <div class="col-md-8" style="margin-bottom:10px; margin-top:20px;">
-            <a href="<?php echo base_url('patient_login?cart=true'); ?>" class="btn btn-primary btn-lg btn-block" type="submit">Sign In/ Register</a>
+            <a href="<?php echo base_url('parent_login?cart=true'); ?>" class="btn btn-primary btn-lg btn-block" type="submit">Sign In/ Register</a>
         </div>
     <?php endif; ?>
     <!--Grid column-->

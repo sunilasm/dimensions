@@ -109,6 +109,7 @@ $settings = $this->db->select("language")->get('setting')->row();
                 <ul class="navbar-nav mr-auto">
 
                     <!-- Parent menu -->
+                    <?php //echo "<pre>".print_r($parent_menu,true); exit;?>
                     <?php if(!empty($parent_menu)){ ?>
                         <?php foreach ($parent_menu as $parent) { 
                             //print_r($parent);

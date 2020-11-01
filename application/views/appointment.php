@@ -48,7 +48,7 @@
                                       
                                     </td>
                                     <td><?php echo $appointment->patient_id; ?></td>
-                                    <td><?php echo $appointment->name; ?></td>
+                                    <td><?php echo $appointment->department; ?></td>
                                     <td><?php echo $appointment->firstname.' '.$appointment->lastname; ?></td>
                                     <td><?php echo $appointment->start_time.' - '.$appointment->end_time; ?></td>
                                     <td><?php echo ($appointment->schedule_type == 1) ? 'Inperson' : 'Online'; ?></td>

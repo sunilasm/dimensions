@@ -1,4 +1,4 @@
-<div class="content-wrapper">
+    <div class="content-wrapper">
         <!-- slider -->
         <?php @$this->load->view('website/includes/slider');?>
         <!-- /.End of slider -->

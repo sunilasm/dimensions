@@ -24,7 +24,7 @@
         <div class="wrapper">
             <div class="container-center">
                 <div class="register-logo text-center mb-3">
-                    <img src="<?= (!empty($setting->logo)?base_url($setting->logo):base_url('assets_web/img/placeholder/logo.png'))?>" alt="">
+                    <img src="<?= (!empty($setting->logo)?base_url($setting->logo):base_url('assets_web/img/placeholder/logo.png'))?>" alt="" style="width:100%;">
                 </div>
                 <!-- main contents -->
                 <?php echo $contents;?>
@@ -71,7 +71,7 @@
 
                             setTimeout(function(){ 
                                 if(data.message){
-                                    window.location="<?= base_url('patient_login')?>";
+                                    window.location="<?= base_url('parent_login')?>";
                                 }else{
                                     history.go(0);
                                 }
