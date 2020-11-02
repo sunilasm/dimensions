@@ -43,7 +43,7 @@
                                     <dt><?php echo display('other_charges') ?></dt><dd><?php echo print_value($order, 'other'); ?></dd> 
                                     <dt><?php echo display('order_total') ?></dt><dd><?php echo print_value($order, 'total_price'); ?></dd> 
                                     <dt><?php echo "Order Status" ?></dt><dd><?php echo print_value($order, 'order_status'); ?></dd> 
-                                    <dt><?php echo display('order_date') ?></dt><dd><?php echo print_date($order, 'created_date'); ?></dd> 
+                                    <dt><?php echo display('order_date') ?></dt><dd><?php echo print_date($order,'created_date')." ".print_time($order->created_date);; ?></dd> 
                                 </dl> 
                             </div>
                             <div class="col-sm-6"> 
@@ -146,13 +146,13 @@
                                                 <tr class="<?php echo ($sl & 1)?"odd gradeX":"even gradeC" ?>">
                                                 <td><?php echo $sl; ?></td>
                                                     <td>
-                                                    <a href="<?php echo base_url("appointment/view/$appointment->appointment_id") ?>" class=""><?php echo $appointment->appointment_id; ?></i></a> 
+                                                    <a href="<?php echo base_url("dashboard_patient/appointment/appointment/view/$appointment->appointment_id") ?>" class=""><?php echo $appointment->appointment_id; ?></i></a> 
                                                     
                                                     </td>
                                                     <td><?php echo $appointment->patient_id; ?></td>
                                                     <td><?php echo $appointment->name; ?></td>
                                                     <td><?php echo $appointment->firstname.' '.$appointment->lastname; ?></td>
-                                                    <td><?php echo $appointment->start_time.' - '.$appointment->end_time; ?></td>
+                                                    <td><?php echo date("h:i a", strtotime($appointment->start_time))." - ".date("h:i a", strtotime($appointment->end_time)); ?></td>
                                                     <td><?php echo ($appointment->schedule_type == 1) ? 'Inperson' : 'Online'; ?></td>
                                                     <!-- <td><?php echo $appointment->problem; ?></td> -->
                                                     <td><?php echo print_date($appointment, 'date'); ?></td>

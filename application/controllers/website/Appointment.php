@@ -614,7 +614,7 @@ class Appointment extends CI_Controller {
             $list = null;
             if ($query->num_rows() > 0) {
                 foreach ($query->result() as $value) {
-                    $list .= "<span><i class='fa fa-calendar'></i> $value->available_days [$value->start_time - $value->end_time]</span><br>";
+                    $list .= "<span><i class='fa fa-calendar'></i> $value->available_days [".date("h:i a", strtotime($value->start_time))." - ".date("h:i a",strtotime($value->end_time))."]</span><br>";
                 } 
                 $data['message'] = $list;
                 $data['status'] = true;
@@ -685,10 +685,10 @@ class Appointment extends CI_Controller {
                             /*check time sequence*/
                             if ($this->check_time_sequence($doctor_id, $result->schedule_id, $seq, $date) === true) {
                                 //store time sequential
-                                $serial .= "<div data-schedule=\"$result->schedule_id\" data-item=\"$seq\" class=\"serial_no btn btn-primary btn-sm\">$time_from - $time_to</div>"; 
+                                $serial .= "<div data-schedule=\"$result->schedule_id\" data-item=\"$seq\" class=\"serial_no btn btn-primary btn-sm\">".date("h:i a", strtotime($time_from))." -".date("h:i a", strtotime($time_to))." </div>"; 
                             } else {
                                 /*store time sequential*/
-                                $serial .= "<div data-schedule=\"$result->schedule_id\" class=\"btn btn-danger disabled btn-sm\">$time_from - $time_to</div>";
+                                $serial .= "<div data-schedule=\"$result->schedule_id\" class=\"btn btn-danger disabled btn-sm\">".date("h:i a", strtotime($time_from))." -".date("h:i a", strtotime($time_to))." </div>";
                             }
     
                             $seq++;

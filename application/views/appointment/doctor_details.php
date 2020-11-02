@@ -26,7 +26,8 @@
         <dt><?php echo display('serial_no') ?></dt> <dd>#<?php echo ($appointment->serial_no<=9)?"0$appointment->serial_no":$appointment->serial_no ?></dd>
         <dt><?php echo display('date') ?></dt> <dd><?php echo print_date($appointment, 'date'); ?></dd>
         <dt><?php echo display('available_days') ?></dt> <dd><?php echo print_value($appointment, 'available_days'); ?></dd>
-        <dt><?php echo display('schedule_time') ?></dt> <dd><?php echo "$appointment->start_time - $appointment->end_time" ?></dd>
+        <dt><?php echo display('schedule_time') ?></dt> 
+        <dd><?php echo date("h:i a", strtotime($appointment->start_time))." - ".date("h:i a", strtotime($appointment->end_time)); ?></dd>
         <dt><?php echo display('status') ?></dt> <dd><?php echo get_appointment_status($appointment->status); ?></dd>
     </dl>
 </div>

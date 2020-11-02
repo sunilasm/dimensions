@@ -167,7 +167,7 @@ $settings = $this->db->select("site_align")
             </span>
         </a>
         <ul class="treeview-menu">
-
+            <li class="<?php echo (($this->uri->segment(1) == "orders" && $this->uri->segment(2) == "add")? "active" : null) ?>"><a href="<?php echo base_url("packages_list") ?>"><?php echo "Add Package"; ?></a></li>
             <?php
             //if($this->permission->method('package_order_list','read')->access()){
             ?>

@@ -258,6 +258,16 @@ function get_leave_type($leave_type_id = 2)
 
     return $response;
 }
+
+function print_time($time = '')
+{
+    $response = '';
+    if($time)
+    {
+        $response = date("h:i a",strtotime($time));
+    }
+    return $response;
+}
 // $autoload['helper'] =  array('language_helper');
 
 /*display a language*/

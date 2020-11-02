@@ -61,7 +61,7 @@
                                                     <!-- <td><?php echo $package->package_special_price; ?></td> -->
                                                     <td><?php echo $package->total_price; ?></td>
                                                     <td><?php echo $package->order_status; ?></td>
-                                                    <td><?php echo $package->created_date; ?></td>
+                                                    <td><?php echo print_date($package, 'created_date'); ?></td>
                                                     
                                                     <!-- <td><?php echo $package->package_sort_order; ?></td> -->
                                                      
