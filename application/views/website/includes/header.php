@@ -20,7 +20,7 @@ $settings = $this->db->select("language")->get('setting')->row();
                            $phone = explode(",",$setting->phone);
                             ?>
                             <div class="icon"><span class="icon-mobile"></span></div>
-                            <a class="phone" href="#"><?= $phone[0];?></a>
+                            <a class="phone" href="#"><?= $setting->phone;?></a>
                          <?php endif; ?>
                     </div>
                 </div>

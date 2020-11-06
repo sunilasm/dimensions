@@ -6,6 +6,7 @@
                 <h4 class="mb-3"><?php echo display('thank_you'); ?></h4>
                 <?php if (isset($message) && $message != '') { ?>
                     <p><?php echo $message; ?>.</p>
+                    <a href="<?php echo base_url('dashboard_patient/packages/orders/index'); ?>" >Go to My Orders.</a>
                 <?php } ?>
                 <?php if ($this->session->flashdata('message')) { ?>
 

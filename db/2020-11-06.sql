@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 01, 2020 at 02:19 PM
+-- Generation Time: Nov 06, 2020 at 09:51 AM
 -- Server version: 5.7.31-0ubuntu0.16.04.1
 -- PHP Version: 7.2.34-4+ubuntu16.04.1+deb.sury.org+1
 
@@ -390,6 +390,15 @@ CREATE TABLE `appointment` (
   `create_date` date DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `appointment`
+--
+
+INSERT INTO `appointment` (`id`, `appointment_id`, `patient_id`, `department_id`, `doctor_id`, `schedule_id`, `serial_no`, `date`, `problem`, `payment_mode`, `payment_id`, `created_by`, `create_date`, `status`) VALUES
+(113, 'ACUP6UZ0', 'PELWQ10H', 18, 3, 25, 1, '2020-11-02', 'test', 'Cash', 'order_123445', 0, '2020-11-02', 2),
+(114, 'A3LM5I0X', 'PELWQ10H', 16, 4, 61, 1, '2020-11-03', 'test', 'Cash', 'order_msk6wso', 3, '2020-11-02', 1),
+(115, 'AFEBMGL4', 'PELWQ10H', 18, 3, 28, 1, '2020-11-09', '', 'Cash', 'order_31aa2q0', 3, '2020-11-05', 1);
 
 -- --------------------------------------------------------
 
@@ -966,14 +975,14 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (9, 'logout', 'Log Out', 'الخروج', 'প্রস্থান', NULL),
 (10, 'please_try_again', 'Please Try Again', 'حاول مرة اخرى', 'অনুগ্রহপূর্বক আবার চেষ্টা করুন', NULL),
 (11, 'admin', 'Admin', 'مشرف', 'অ্যাডমিন', 'admin'),
-(12, 'doctor', 'Pathologist', 'طبيب', 'ডাক্তার', NULL),
+(12, 'doctor', 'Clinician', 'طبيب', 'ডাক্তার', NULL),
 (13, 'representative', 'Representative', 'وكيل', 'প্রতিনিধি', NULL),
 (14, 'dashboard', 'Dashboard', 'لوحة القيادة', 'ড্যাশবোর্ড', NULL),
 (15, 'department', 'Service', ' قسم، أقسام', 'বিভাগ', NULL),
 (16, 'add_department', 'Add Service', 'أضف إلى القسم', 'বিভাগ যোগ করুন', 'Ajouter un département'),
 (17, 'department_list', 'Service List', 'قائمة القسم', 'বিভাগ তালিকা', NULL),
-(18, 'add_doctor', 'Add Pathologist', 'اضافة طبيب', 'ডাক্তার যোগ করুন', 'Ajouter un docteur'),
-(19, 'doctor_list', 'Pathologist List', 'قائمة الطبيب', 'ডাক্তার তালিকা', NULL),
+(18, 'add_doctor', 'Add Clinician', 'اضافة طبيب', 'ডাক্তার যোগ করুন', 'Ajouter un docteur'),
+(19, 'doctor_list', 'Clinician List', 'قائمة الطبيب', 'ডাক্তার তালিকা', NULL),
 (20, 'add_representative', 'Add Representative', 'إضافة ممثل', 'প্রতিনিধি যোগ করুন', 'Ajouter un représentant'),
 (21, 'representative_list', 'Representative List', 'قائمة تمثيلية', 'প্রতিনিধি তালিকা', NULL),
 (22, 'patient', 'Parent', 'صبور', 'রোগী', NULL),
@@ -989,8 +998,8 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (32, 'language_setting', 'Language Setting', 'إعدادات اللغة', 'ভাষা সেটিং', NULL),
 (33, 'appointment_report', 'Appointment Report', 'تقرير موعد', 'অ্যাপয়েন্টমেন্ট রিপোর্ট', 'rapport de rendez-vous'),
 (34, 'assign_by_all', 'Assign by All', 'تعيين من قبل الجميع', 'সবার দ্বারা  বরাদ্দ', 'assigner par tous'),
-(35, 'assign_by_doctor', 'Assign by Pathologist', 'تعيين من قبل الطبيب', 'ডাক্তার দ্বারা বরাদ্দ', 'assigner par le docteur'),
-(36, 'assign_to_doctor', 'Assign to Pathologist', 'تخصيص للطبيب', 'ডাক্তারকে  বরাদ্দ করা', ''),
+(35, 'assign_by_doctor', 'Assign by Clinician', 'تعيين من قبل الطبيب', 'ডাক্তার দ্বারা বরাদ্দ', 'assigner par le docteur'),
+(36, 'assign_to_doctor', 'Assign to Clinician', 'تخصيص للطبيب', 'ডাক্তারকে  বরাদ্দ করা', ''),
 (37, 'assign_by_representative', 'Assign by Representative', 'يعين من قبل ممثل', 'প্রতিনিধি দ্বারা বরাদ্দ', 'assigner par représentant'),
 (38, 'report', 'Report', 'أبلغ عن', 'প্রতিবেদন', NULL),
 (39, 'assign_by_me', 'Assign by Me', 'يعينني', 'আমার দ্বারা বরাদ্দ', 'assigner par moi'),
@@ -1028,9 +1037,9 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (71, 'date_of_birth', 'Date of Birth', 'تاريخ الولادة', 'জন্ম তারিখ', NULL),
 (72, 'address', 'Address', 'عنوان', 'ঠিকানা', 'Adresse'),
 (73, 'invalid_picture', 'Invalid Picture', 'الصورة غير صالحة', 'অবৈধ ছবি', NULL),
-(74, 'doctor_profile', 'Pathologist Profile', 'الملف الشخصي الطبيب', 'ডাক্তার প্রোফাইল', NULL),
+(74, 'doctor_profile', 'Clinician Profile', 'الملف الشخصي الطبيب', 'ডাক্তার প্রোফাইল', NULL),
 (75, 'edit_profile', 'Edit Profile', 'تعديل الملف الشخصي', 'জীবন বৃত্তান্ত সম্পাদনা', NULL),
-(76, 'edit_doctor', 'Edit Pathologist', 'تحرير الطبيب', 'ডাক্তার সম্পাদনা করুন', NULL),
+(76, 'edit_doctor', 'Edit Clinician', 'تحرير الطبيب', 'ডাক্তার সম্পাদনা করুন', NULL),
 (77, 'designation', 'Designation', 'تعيين', 'উপাধি', NULL),
 (78, 'short_biography', 'Short Biography', 'سيرة ذاتية قصيرة', 'সংক্ষিপ্ত জীবনী', NULL),
 (79, 'picture', 'Picture', 'صورة', 'ছবি', NULL),
@@ -1040,7 +1049,7 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (83, 'education_degree', 'Education/Degree', 'درجة التعليم', 'শীক্ষাগত ডিগ্রি', NULL),
 (84, 'create_date', 'Create Date', 'تاريخ الإنشاء', 'তারিখ তৈরি করুন', NULL),
 (85, 'view', 'View', 'رأي', 'দেখা', NULL),
-(86, 'doctor_information', 'Pathologist Information', 'معلومات الطبيب', 'ডাক্তার তথ্য', NULL),
+(86, 'doctor_information', 'Clinician Information', 'معلومات الطبيب', 'ডাক্তার তথ্য', NULL),
 (87, 'update_date', 'Update Date', 'تاريخ التحديث', 'আপডেট তারিখ', NULL),
 (88, 'print', 'Print', 'طباعة', 'ছাপা', NULL),
 (89, 'representative_edit', 'Representative Edit', 'تحرير ممثل', 'প্রতিনিধি সম্পাদনা', NULL),
@@ -1051,7 +1060,7 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (94, 'patient_edit', 'Parent Edit', 'تعديل المريض', 'রোগী সম্পাদনা', NULL),
 (95, 'id_no', 'ID No.', 'رقم بطاقة الهوية', 'আইডি নাম্বার', NULL),
 (96, 'select_option', 'Select Option', 'حدد الخيار', 'বিকল্প নির্বাচন', NULL),
-(97, 'doctor_name', 'Pathologist Name', 'اسم الطبيب', 'ডাক্তার নাম', NULL),
+(97, 'doctor_name', 'Clinician Name', 'اسم الطبيب', 'ডাক্তার নাম', NULL),
 (98, 'day', 'Day', 'يوم', 'দিন', NULL),
 (99, 'start_time', 'Start Time', 'وقت البدء', 'সময় শুরু', NULL),
 (100, 'end_time', 'End Time', 'وقت النهاية', 'শেষ সময়', NULL),
@@ -1068,7 +1077,7 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (111, 'you_are_already_registered', 'You are already registered!', 'انت مسجل مسبقا', 'আপনি ইতোমধ্যে নিবন্ধিত', NULL),
 (112, 'invalid_patient_id', 'Invalid parent ID', 'معرف المريض غير صالح', 'অবৈধ রোগী আইডি', NULL),
 (113, 'invalid_input', 'Invalid Input', 'مدخل غير صالح', 'ভুল ইনপুট', NULL),
-(114, 'no_doctor_available', 'No Pathologist Available', 'لا يوجد طبيب متاح', 'কোন ডাক্তার পাওয়া যায় না', NULL),
+(114, 'no_doctor_available', 'No Clinician Available', 'لا يوجد طبيب متاح', 'কোন ডাক্তার পাওয়া যায় না', NULL),
 (115, 'invalid_department', 'Invalid Department!', 'قسم غير صالح', 'অবৈধ বিভাগ', NULL),
 (116, 'no_schedule_available', 'No Schedule Available', 'لا يوجد جدول متاح', 'কোন সময়সূচী পাওয়া যায় নাই ', NULL),
 (117, 'please_fillup_all_required_fields', 'Please fillup all required filelds', 'رجاءا، إملأ جميع الحقول المطلوبة', 'সব প্রয়োজনীয় ফিল্ডগুলি পূরণ করুন', NULL),
@@ -1092,9 +1101,9 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (135, 'footer_text', 'Footer Text', 'نص التذييل', 'ফুটার টেক্সট ', NULL),
 (136, 'language', 'Language', 'لغة', 'ভাষা', NULL),
 (137, 'appointment_assign_by_all', 'Appointment Assign by All', 'تعيين موعد من قبل الجميع', 'অ্যাপয়েন্টমেন্ট সকলের দ্বারা বরাদ্দ', 'rendez-vous assigner par tous'),
-(138, 'appointment_assign_by_doctor', 'Appointment Assign by Pathologist', 'تعيين موعد من قبل الطبيب', 'অ্যাপয়েন্টমেন্ট ডাক্তার দ্বারা বরাদ্দ', 'rendez-vous assigner par le docteur'),
+(138, 'appointment_assign_by_doctor', 'Appointment Assign by Clinician', 'تعيين موعد من قبل الطبيب', 'অ্যাপয়েন্টমেন্ট ডাক্তার দ্বারা বরাদ্দ', 'rendez-vous assigner par le docteur'),
 (139, 'appointment_assign_by_representative', 'Appointment Assign by Representative', 'تعيين موعد من قبل ممثل', 'অ্যাপয়েন্টমেন্ট প্রতিনিধি দ্বারা বরাদ্দ', 'rendez-vous assigner par le représentant'),
-(140, 'appointment_assign_to_all_doctor', 'Appointment Assign to All Pathologist', 'تعيين موعد لجميع الأطباء', 'ডাক্তারদের সকল বরাদ্দ অ্যাপয়েন্টমেন্ট  ', 'rendez-vous assigner à tout le docteur'),
+(140, 'appointment_assign_to_all_doctor', 'Appointment Assign to All Clinician', 'تعيين موعد لجميع الأطباء', 'ডাক্তারদের সকল বরাদ্দ অ্যাপয়েন্টমেন্ট  ', 'rendez-vous assigner à tout le docteur'),
 (141, 'appointment_assign_to_me', 'Appointment Assign to Me', 'تعيين موعد لي', 'আমার বরাদ্দ অ্যাপয়েন্টমেন্ট ', 'rendez-vous me assigner'),
 (142, 'appointment_assign_by_me', 'Appointment Assign by Me', 'تعيين موعد من قبلي', 'অ্যাপয়েন্টমেন্ট আমার দ্বারা বরাদ্দ', 'rendez-vous assigner par moi'),
 (143, 'type', 'Type', 'نوع', 'টাইপ', NULL),
@@ -1109,7 +1118,7 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (152, 'information', 'Information', 'معلومات', 'তথ্য', NULL),
 (153, 'home', 'Home', 'الصفحة الرئيسية', 'হোম', NULL),
 (154, 'select_department', 'Select Service', 'اختر القسم', 'বিভাগ নির্বাচন করুন', NULL),
-(155, 'select_doctor', 'Select Pathologist', 'اختر الطبيب', 'ডাক্তার নির্বাচন করুন', NULL),
+(155, 'select_doctor', 'Select Clinician', 'اختر الطبيب', 'ডাক্তার নির্বাচন করুন', NULL),
 (156, 'select_representative', 'Select Representative', 'اختر ممثل', 'প্রতিনিধি নির্বাচন করুন', NULL),
 (157, 'post_id', 'Post ID', 'بعد معرف', 'পোস্ট আইডি', NULL),
 (158, 'thank_you_for_your_comment', 'Thank you for your comment!', 'شكرا لك على تعليقك', 'আপনার মন্তব্যের জন্য ধন্যবাদ', NULL),
@@ -1171,7 +1180,7 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (214, 'contact', 'Contact', 'اتصل', 'যোগাযোগ', NULL),
 (215, 'optional', 'Optional', 'اختياري', 'ঐচ্ছিক', NULL),
 (216, 'customer_comments', 'Parent Comments', 'تعليقات العملاء', 'গ্রাহক মন্তব্য', NULL),
-(217, 'need_a_doctor_for_checkup', 'Need a Pathologist for Check-up?', 'بحاجة الى طبيب للفحص', 'চেকআপ জন্য একটি ডাক্তার প্রয়োজন', NULL),
+(217, 'need_a_doctor_for_checkup', 'Need a Clinician for Check-up?', 'بحاجة الى طبيب للفحص', 'চেকআপ জন্য একটি ডাক্তার প্রয়োজন', NULL),
 (218, 'just_make_an_appointment_and_you_are_done', 'JUST MAKE AN APPOINTMENT & YOU\'RE DONE ! ', 'مجرد تحديد موعد وانتهيت', 'শুধু একটি অ্যাপয়েন্টমেন্ট করুন এবং আপনার সম্পন্ন হবে ', NULL),
 (219, 'get_an_appointment', 'Get an appointment', 'الحصول على موعد', 'একটি অ্যাপয়েন্টমেন্ট পেতে', NULL),
 (220, 'latest_news', 'Latest News', 'أحدث الأخبار', 'সর্বশেষ সংবাদ', NULL),
@@ -1304,16 +1313,16 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (347, 'add_new_status', 'Add New Status', 'إضافة حالة جديدة', 'খবরের  অবস্থা যোগ করুন', 'Ajouter un nouveau statut'),
 (348, 'case_manager_list', 'Case Manager List', 'قائمة مدير الحالة', 'কেস ম্যানেজার তালিকা', ''),
 (349, 'hospital_address', 'Hospital Address', 'عنوان المستشفى', 'হাসপাতাল ঠিকানা', NULL),
-(350, 'ref_doctor_name', 'Ref. Pathologist Name', 'اسم الطبيب المرجعي', 'রেফারেন্স ডাক্তারের নাম', NULL),
+(350, 'ref_doctor_name', 'Ref. Clinician Name', 'اسم الطبيب المرجعي', 'রেফারেন্স ডাক্তারের নাম', NULL),
 (351, 'hospital_name', 'Hospital Name', 'اسم المستشفى', 'হাসপাতালের  নাম', NULL),
 (352, 'patient_name', 'Parent  Name', 'اسم المريض', 'রোগীর নাম', NULL),
 (353, 'document_list', 'Document List', 'قائمة المستندات', 'নথি তালিকা', NULL),
 (354, 'add_document', 'Add Document', 'إضافة وثيقة', 'নথি যোগ করুন', 'Ajouter un document'),
 (355, 'upload_by', 'Update by', 'تحميل بواسطة', 'হালনাগাদ', NULL),
 (356, 'documents', 'Documents', 'مستندات', 'কাগজপত্র', NULL),
-(357, 'prescription', 'Prescription', 'وصفة طبية', 'প্রেসক্রিপশন', NULL),
-(358, 'add_prescription', 'Add Prescription', 'إضافة وصفة طبية', 'প্রেসক্রিপশন যোগ করুন', 'Ajouter une ordonnance'),
-(359, 'prescription_list', 'Prescription List', 'قائمة وصفة طبية', 'প্রেসক্রিপশন তালিকা', NULL),
+(357, 'prescription', 'Recommendation', 'وصفة طبية', 'প্রেসক্রিপশন', NULL),
+(358, 'add_prescription', 'Add Recommendation', 'إضافة وصفة طبية', 'প্রেসক্রিপশন যোগ করুন', 'Ajouter une ordonnance'),
+(359, 'prescription_list', 'Recommendation List', 'قائمة وصفة طبية', 'প্রেসক্রিপশন তালিকা', NULL),
 (360, 'add_insurance', 'Add Insurance', 'إضافة التأمين', 'বীমা যোগ করুন', 'Ajouter une assurance'),
 (361, 'insurance_list', 'Insurance List', 'قائمة التأمين', 'বীমা তালিকা', NULL),
 (362, 'insurance_name', 'Insurance Name', 'اسم التأمين', 'বীমা নাম', NULL),
@@ -1346,9 +1355,9 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (394, 'patient_notes', 'Parent Notes', 'ملاحظات المريض', 'রোগীর নোট', NULL),
 (395, 'visiting_fees', 'Visiting Fees', 'رسوم الزيارة', 'ভিসিটিং ফি', 'frais de visite'),
 (396, 'diagnosis', 'Diagnosis', 'التشخيص', 'রোগ নির্ণয়', NULL),
-(397, 'prescription_id', 'Prescription ID', 'معرف وصفة طبية', 'প্রেসক্রিপশন আইডি', NULL),
+(397, 'prescription_id', 'Recommendation ID', 'معرف وصفة طبية', 'প্রেসক্রিপশন আইডি', NULL),
 (398, 'name', 'Name', 'اسم', 'নাম', NULL),
-(399, 'prescription_information', 'Prescription Information', 'معلومات وصفة طبية', 'প্রেসক্রিপশন তথ্য', NULL),
+(399, 'prescription_information', 'Recommendation Information', 'معلومات وصفة طبية', 'প্রেসক্রিপশন তথ্য', NULL),
 (400, 'sms', 'SMS', 'رسالة قصيرة', 'এসএমএস ', NULL),
 (401, 'gateway_setting', 'Gateway Setting', 'إعداد البوابة', 'গেটওয়ে সেটিং', NULL),
 (402, 'time_zone', 'Time Zone', 'وحدة زمنية', 'সময় জোন ', NULL),
@@ -1540,7 +1549,7 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (601, 'contents', 'Contents', 'محتويات', 'বিষয়বস্তু', NULL),
 (602, 'make_an_appointment', 'Make an appointment!', 'إحجز موعد', 'একটি অ্যাপয়েন্টমেন্ট করা', NULL),
 (603, 'go_there', 'Go there', 'اذهب الى هناك', 'সেখানে যাও', NULL),
-(604, 'view_our_team_of_surgeons', 'View our team of pathologist', 'عرض فريقنا من الجراحين', 'আমাদের টীম সার্জনদের দেখুন', NULL),
+(604, 'view_our_team_of_surgeons', 'View our team of Clinician', 'عرض فريقنا من الجراحين', 'আমাদের টীম সার্জনদের দেখুন', NULL),
 (605, 'timetable', 'Timetable', 'الجدول الزمني', 'সময়সূচি', NULL),
 (606, 'benefits', 'Benefits', 'فوائد', 'সুবিধা', ''),
 (607, 'common_template', 'Common Template', 'قالب مشترك', 'সাধারণ টেমপ্লেট', NULL),
@@ -1696,7 +1705,7 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `arabic`, `bangla`, `french`)
 (756, 'google_map_embed', 'Google Map Embed', NULL, NULL, NULL),
 (757, 'import_csv_data', 'Import CSV Data', NULL, NULL, NULL),
 (758, 'sample_csv', 'Sample CSV', NULL, NULL, NULL),
-(759, 'edit_prescription', 'Edit Prescription', NULL, NULL, NULL),
+(759, 'edit_prescription', 'Edit Recommendation', NULL, NULL, NULL),
 (760, 'add_new_patient', 'Add New Parent', NULL, NULL, NULL),
 (761, 'create_setting', 'Create Setting', NULL, NULL, NULL),
 (762, 'common_setting', 'Common Settings', NULL, NULL, NULL),
@@ -2001,6 +2010,14 @@ CREATE TABLE `package_orders` (
   `updated_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `package_orders`
+--
+
+INSERT INTO `package_orders` (`order_id`, `patient_id`, `package_id`, `quantity`, `package_price`, `package_slots`, `discount_price`, `other`, `total_price`, `order_status`, `payment_id`, `created_by`, `updated_by`, `created_date`, `updated_date`) VALUES
+(18, 3, 4, 1, 54.5, 5, 0, 0, 54.5, 'Ordered', 'pay_FwBTMRQXT3PPuY', 3, 3, '2020-11-02 10:57:12', '2020-11-02 10:57:12'),
+(19, 3, 4, 1, 54.5, 5, 0, 0, 54.5, 'Ordered', 'pay_FxTghMtWjK2dFO', 3, 3, '2020-11-05 05:25:22', '2020-11-05 05:25:22');
+
 -- --------------------------------------------------------
 
 --
@@ -2017,6 +2034,15 @@ CREATE TABLE `package_orders_appointments` (
   `created_date` datetime NOT NULL,
   `updated_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Package order appointment schedule';
+
+--
+-- Dumping data for table `package_orders_appointments`
+--
+
+INSERT INTO `package_orders_appointments` (`package_order_appoinment_id`, `package_order_id`, `package_appointment_id`, `package_appoinment_status`, `created_by`, `updated_by`, `created_date`, `updated_date`) VALUES
+(24, 18, 112, 'Active', 3, 3, '2020-11-02 11:00:22', '2020-11-02 11:00:22'),
+(25, 18, 114, 'Active', 3, 3, '2020-11-02 11:47:00', '2020-11-02 11:47:00'),
+(26, 19, 115, 'Active', 3, 3, '2020-11-05 05:29:27', '2020-11-05 05:29:27');
 
 -- --------------------------------------------------------
 
@@ -2864,16 +2890,61 @@ CREATE TABLE `schedule` (
 --
 
 INSERT INTO `schedule` (`schedule_id`, `slot_id`, `doctor_id`, `start_time`, `end_time`, `available_days`, `per_patient_time`, `schedule_type`, `serial_visibility_type`, `status`) VALUES
-(15, 4, 3, '09:00:00', '12:00:00', 'Monday', '01:00:00', 1, 2, 1),
-(16, 2, 3, '13:00:00', '16:00:00', 'Monday', '01:00:00', 2, 2, 1),
-(17, 5, 3, '17:00:00', '20:00:00', 'Monday', '01:00:00', 1, 2, 1),
-(18, 4, 3, '09:00:00', '12:00:00', 'Tuesday', '01:00:00', 1, 2, 1),
-(19, 4, 4, '09:00:00', '12:00:00', 'Monday', '01:00:00', 1, 2, 1),
-(20, 2, 4, '13:00:00', '16:00:00', 'Monday', '01:00:00', 1, 2, 1),
-(21, 4, 4, '09:00:00', '12:00:00', 'Tuesday', '01:00:00', 1, 2, 1),
-(22, 4, 3, '09:00:00', '12:00:00', 'Wednesday', '01:00:00', 1, 2, 1),
-(23, 4, 3, '09:00:00', '12:00:00', 'Thursday', '01:00:00', 1, 2, 1),
-(24, 4, 3, '09:00:00', '12:00:00', 'Friday', '01:00:00', 1, 2, 1);
+(25, 4, 3, '09:00:00', '10:00:00', 'Monday', '01:00:00', 1, 2, 1),
+(26, 9, 3, '10:00:00', '11:00:00', 'Monday', '01:00:00', 1, 2, 1),
+(27, 10, 3, '11:00:00', '12:00:00', 'Monday', '01:00:00', 1, 2, 1),
+(28, 11, 3, '12:00:00', '13:00:00', 'Monday', '01:00:00', 2, 2, 1),
+(29, 12, 3, '14:00:00', '15:00:00', 'Monday', '01:00:00', 2, 2, 1),
+(30, 13, 3, '15:00:00', '16:00:00', 'Monday', '01:00:00', 2, 2, 1),
+(31, 2, 3, '13:00:00', '14:00:00', 'Monday', '01:00:00', 2, 2, 1),
+(32, 14, 3, '16:00:00', '17:00:00', 'Monday', '01:00:00', 2, 2, 1),
+(33, 5, 3, '17:00:00', '18:00:00', 'Monday', '01:00:00', 1, 2, 1),
+(34, 15, 3, '18:00:00', '19:00:00', 'Monday', '01:00:00', 1, 2, 1),
+(35, 16, 3, '19:00:00', '20:00:00', 'Monday', '01:00:00', 1, 2, 1),
+(36, 4, 3, '09:00:00', '10:00:00', 'Tuesday', '01:00:00', 1, 2, 1),
+(37, 9, 3, '10:00:00', '11:00:00', 'Tuesday', '01:00:00', 1, 2, 1),
+(38, 10, 3, '11:00:00', '12:00:00', 'Tuesday', '01:00:00', 1, 2, 1),
+(39, 11, 3, '12:00:00', '13:00:00', 'Tuesday', '01:00:00', 2, 2, 1),
+(40, 12, 3, '14:00:00', '15:00:00', 'Tuesday', '01:00:00', 2, 2, 1),
+(41, 13, 3, '15:00:00', '16:00:00', 'Tuesday', '01:00:00', 2, 2, 1),
+(42, 2, 3, '13:00:00', '14:00:00', 'Tuesday', '01:00:00', 2, 2, 1),
+(43, 14, 3, '16:00:00', '17:00:00', 'Tuesday', '01:00:00', 2, 2, 1),
+(44, 5, 3, '17:00:00', '18:00:00', 'Tuesday', '01:00:00', 1, 2, 1),
+(45, 15, 3, '18:00:00', '19:00:00', 'Tuesday', '01:00:00', 1, 2, 1),
+(46, 16, 3, '19:00:00', '20:00:00', 'Tuesday', '01:00:00', 1, 2, 1),
+(47, 4, 3, '09:00:00', '10:00:00', 'Wednesday', '01:00:00', 1, 2, 1),
+(48, 9, 3, '10:00:00', '11:00:00', 'Wednesday', '01:00:00', 1, 2, 1),
+(49, 10, 3, '11:00:00', '12:00:00', 'Wednesday', '01:00:00', 1, 2, 1),
+(50, 11, 3, '12:00:00', '13:00:00', 'Wednesday', '01:00:00', 2, 2, 1),
+(51, 12, 3, '14:00:00', '15:00:00', 'Wednesday', '01:00:00', 2, 2, 1),
+(52, 13, 3, '15:00:00', '16:00:00', 'Wednesday', '01:00:00', 2, 2, 1),
+(53, 2, 3, '13:00:00', '14:00:00', 'Wednesday', '01:00:00', 2, 2, 1),
+(54, 14, 3, '16:00:00', '17:00:00', 'Wednesday', '01:00:00', 2, 2, 1),
+(55, 5, 3, '17:00:00', '18:00:00', 'Wednesday', '01:00:00', 1, 2, 1),
+(56, 15, 3, '18:00:00', '19:00:00', 'Wednesday', '01:00:00', 1, 2, 1),
+(57, 16, 3, '19:00:00', '20:00:00', 'Wednesday', '01:00:00', 1, 2, 1),
+(58, 4, 4, '09:00:00', '10:00:00', 'Tuesday', '01:00:00', 1, 2, 1),
+(59, 9, 4, '10:00:00', '11:00:00', 'Tuesday', '01:00:00', 1, 2, 1),
+(60, 10, 4, '11:00:00', '12:00:00', 'Tuesday', '01:00:00', 1, 2, 1),
+(61, 11, 4, '12:00:00', '13:00:00', 'Tuesday', '01:00:00', 2, 2, 1),
+(62, 12, 4, '14:00:00', '15:00:00', 'Tuesday', '01:00:00', 2, 2, 1),
+(63, 13, 4, '15:00:00', '16:00:00', 'Tuesday', '01:00:00', 2, 2, 1),
+(64, 2, 4, '13:00:00', '14:00:00', 'Tuesday', '01:00:00', 2, 2, 1),
+(65, 14, 4, '16:00:00', '17:00:00', 'Tuesday', '01:00:00', 2, 2, 1),
+(66, 5, 4, '17:00:00', '18:00:00', 'Tuesday', '01:00:00', 1, 2, 1),
+(67, 15, 4, '18:00:00', '19:00:00', 'Tuesday', '01:00:00', 1, 2, 1),
+(68, 16, 4, '19:00:00', '20:00:00', 'Tuesday', '01:00:00', 1, 2, 1),
+(69, 4, 4, '09:00:00', '10:00:00', 'Wednesday', '01:00:00', 1, 2, 1),
+(70, 9, 4, '10:00:00', '11:00:00', 'Wednesday', '01:00:00', 1, 2, 1),
+(71, 10, 4, '11:00:00', '12:00:00', 'Wednesday', '01:00:00', 1, 2, 1),
+(72, 11, 4, '12:00:00', '13:00:00', 'Wednesday', '01:00:00', 2, 2, 1),
+(73, 12, 4, '14:00:00', '15:00:00', 'Wednesday', '01:00:00', 2, 2, 1),
+(74, 13, 4, '15:00:00', '16:00:00', 'Wednesday', '01:00:00', 2, 2, 1),
+(75, 2, 4, '13:00:00', '14:00:00', 'Wednesday', '01:00:00', 2, 2, 1),
+(76, 14, 4, '16:00:00', '17:00:00', 'Wednesday', '01:00:00', 2, 2, 1),
+(77, 5, 4, '17:00:00', '18:00:00', 'Wednesday', '01:00:00', 1, 2, 1),
+(78, 15, 4, '18:00:00', '19:00:00', 'Wednesday', '01:00:00', 1, 2, 1),
+(79, 16, 4, '19:00:00', '20:00:00', 'Wednesday', '01:00:00', 1, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -3295,9 +3366,17 @@ CREATE TABLE `time_slot` (
 --
 
 INSERT INTO `time_slot` (`id`, `slot_name`, `slot`, `status`) VALUES
-(2, 'Afternoon', '13:00 - 16:00', 1),
-(4, 'Morning', '09:00-12:00', 1),
-(5, 'Evening', '17:00 - 20:00', 1);
+(2, 'Afternoon 13-14', '13:00 - 14:00', 1),
+(4, 'Morning 9-10', '09:00-10:00', 1),
+(5, 'Evening 17-18', '17:00 - 18:00', 1),
+(9, 'Morning 10-11', '10:00 - 11:00', 1),
+(10, 'Morning 11-12', '11:00 - 12:00', 1),
+(11, 'Afternoon 12-13', '12:00 -13:00', 1),
+(12, 'Afternoon 14-15', '14:00 -15:00', 1),
+(13, 'Afternoon 15-16', '15:00 -16:00', 1),
+(14, 'Afternoon 16-17', '16:00 -17:00', 1),
+(15, 'Evening 18-19', '18:00 - 19:00', 1),
+(16, 'Evening 19-20', '19:00 - 20:00', 1);
 
 -- --------------------------------------------------------
 
@@ -3573,7 +3652,9 @@ INSERT INTO `user_log` (`id`, `user_id`, `in_time`, `out_time`, `date`, `status`
 (52, 3, '18:22:57', '00:00:00', '2020-10-30', 1),
 (53, 4, '18:44:18', '18:59:23', '2020-10-30', 1),
 (54, 2, '09:08:44', '00:00:00', '2020-11-01', 1),
-(55, 3, '09:35:37', '00:00:00', '2020-11-01', 1);
+(55, 3, '09:35:37', '00:00:00', '2020-11-01', 1),
+(56, 2, '08:37:56', '00:00:00', '2020-11-02', 1),
+(57, 2, '17:14:14', '00:00:00', '2020-11-05', 1);
 
 -- --------------------------------------------------------
 
@@ -4060,7 +4141,7 @@ CREATE TABLE `ws_setting` (
 --
 
 INSERT INTO `ws_setting` (`id`, `language`, `title`, `description`, `meta_tag`, `meta_keyword`, `phone`, `text`, `fax`, `address`, `closed_day`, `open_day`, `copyright_text`, `working_hour`, `isQRCode`, `status`) VALUES
-(1, 'english', 'DCCD', 'Evidence-based scientific method in treating children with communication needs.', 'Evidence based scientific method in treating children with communication needs.', '         Hospital, Appointment, System, \r\nHospital Appointment,Demo, Appointment', '(+91) 9880146677', '(+91) 9880146677', '(+91) 9880146677', 'DIMENSIONS CENTRE FOR CHILD DEVELOPMENT 2nd Cross, Nanjappa Garden, Babusapalya, Bangalore - 560043', 'Sunday ', 'Mon - Fri: 09:00AM - 08:00PM, Sat: 09:00AM - 01:30PM', '<p>Copyright &copy; 2020- DCCD&nbsp;.&nbsp;All rights reserved.</p>', '<table class=\"table\">\r\n                        <tbody>\r\n                            <tr>\r\n                                <td>Monday-Friday</td>\r\n                                <td class=\"text-right\">09:00AM-08:00PM</td>\r\n                            </tr>\r\n                            <tr>\r\n                                <td>Saturday</td>\r\n                                <td class=\"text-right\">09.00AM-01.30PM</td>\r\n                            </tr>\r\n                            <tr>\r\n                                <td>Sunday</td>\r\n                                <td class=\"text-right\">Closed</td>\r\n                            </tr>\r\n                        </tbody>\r\n                    </table>', 1, 1),
+(1, 'english', 'DCCD', 'Evidence-based scientific method in treating children with communication needs.', 'Evidence based scientific method in treating children with communication needs.', '          Hospital, Appointment, System, \r\nHospital Appointment,Demo, Appointment', '9880146677, 73385711234', '(+91) 9880146677', '(+91) 9880146677', 'DIMENSIONS CENTRE FOR CHILD DEVELOPMENT 2nd Cross, Nanjappa Garden, Babusapalya, Bangalore - 560043', 'Sunday ', 'Mon - Fri: 09:00AM - 08:00PM, Sat: 09:00AM - 01:30PM', '<p>Copyright &copy; 2020- DCCD&nbsp;.&nbsp;All rights reserved.</p>', '<table class=\"table\">\r\n                        <tbody>\r\n                            <tr>\r\n                                <td>Monday-Friday</td>\r\n                                <td class=\"text-right\">09:00AM-08:00PM</td>\r\n                            </tr>\r\n                            <tr>\r\n                                <td>Saturday</td>\r\n                                <td class=\"text-right\">09.00AM-01.30PM</td>\r\n                            </tr>\r\n                            <tr>\r\n                                <td>Sunday</td>\r\n                                <td class=\"text-right\">Closed</td>\r\n                            </tr>\r\n                        </tbody>\r\n                    </table>', 1, 1),
 (2, 'bangla', 'বিডি টাস্ক হাসপাতাল লি :', '', '', '      ', '৫৭৪৫৭৪৫৭, ৫৬৭৫৬৭৫৬,  ৫৭৬৬৭৫৬৫', '৫৭৬৬৭৫৬৫', '৫৬৭৫৬৭৫৬', 'Uttara, Dhaka-1230', '', '', '<p>কপিরাইট &copy; ২০১৬ - <a href=\"http://www.bdtask.com\" target=\"_blank\">বিডিস্ক</a>। সর্বস্বত্ব সংরক্ষিত.</p>', '<table class=\"table\">\r\n                        <tbody>\r\n                            <tr>\r\n                                <td>সোমবার - বুধবার</td>\r\n                                <td class=\"text-right\">০৮.০০-১৮.০০</td>\r\n                            </tr>\r\n                            <tr>\r\n                                <td>বৃহস্পতিবার - শুক্রবার</td>\r\n                                <td class=\"text-right\">০৮.০০-১৮.০০</td>\r\n                            </tr>\r\n                            <tr>\r\n                                <td>শনিবার</td>\r\n                                <td class=\"text-right\">০৮.০০-১৮.০০</td>\r\n                            </tr>\r\n                            <tr>\r\n                                <td>রবিবার</td>\r\n                                <td class=\"text-right\">বন্ধ</td>\r\n                            </tr>\r\n                        </tbody>\r\n                    </table>', 1, 1),
 (3, 'arabic', 'مستشفى Bdtask المحدودة', 'xc', 'vx', '  xcz', '(012)-345-6788, (022)-143-545-45, (011)-122-244-45', '(123) 456-7890', '(123) 456-7890', '123 / A، Street، State-12345، Demo', '', '', '<p>Copyright &copy; 2016-&nbsp;<a title=\"BDtask\" href=\"http://www.bdtask.com\" target=\"_blank\">BDtask</a>&nbsp;.&nbsp;All rights reserved.</p>', '<table class=\"table\">\r\n                        <tbody>\r\n                            <tr>\r\n                                <td>Monday-Wednesday</td>\r\n                                <td class=\"text-right\">08.00-18.00</td>\r\n                            </tr>\r\n                            <tr>\r\n                                <td>Thursday -Friday</td>\r\n                                <td class=\"text-right\">08.00-18.00</td>\r\n                            </tr>\r\n                            <tr>\r\n                                <td>Saturday</td>\r\n                                <td class=\"text-right\">08.00-18.00</td>\r\n                            </tr>\r\n                            <tr>\r\n                                <td>Sunday</td>\r\n                                <td class=\"text-right\">Closed</td>\r\n                            </tr>\r\n                        </tbody>\r\n                    </table>', 1, 1),
 (4, 'french', 'Bdtask Hospital Limited', 'b', 'bvc', '   vbc', '(012)-345-6788, (022)-143-545-45, (011)-122-244-45', '(123) 456-7890', '(123) 456-7890', 'vxcv', '', '', '<p>Copyright &copy; 2016-&nbsp;<a title=\"BDtask\" href=\"http://www.bdtask.com\" target=\"_blank\">BDtask</a>&nbsp;.&nbsp;All rights reserved.</p>', '<table class=\"table\">\r\n                        <tbody>\r\n                            <tr>\r\n                                <td>Monday-Wednesday</td>\r\n                                <td class=\"text-right\">08.00-18.00</td>\r\n                            </tr>\r\n                            <tr>\r\n                                <td>Thursday -Friday</td>\r\n                                <td class=\"text-right\">08.00-18.00</td>\r\n                            </tr>\r\n                            <tr>\r\n                                <td>Saturday</td>\r\n                                <td class=\"text-right\">08.00-18.00</td>\r\n                            </tr>\r\n                            <tr>\r\n                                <td>Sunday</td>\r\n                                <td class=\"text-right\">Closed</td>\r\n                            </tr>\r\n                        </tbody>\r\n                    </table>', 1, 1);
@@ -4799,7 +4880,7 @@ ALTER TABLE `acn_account_transaction`
 -- AUTO_INCREMENT for table `appointment`
 --
 ALTER TABLE `appointment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=116;
 
 --
 -- AUTO_INCREMENT for table `bill`
@@ -5009,13 +5090,13 @@ ALTER TABLE `package`
 -- AUTO_INCREMENT for table `package_orders`
 --
 ALTER TABLE `package_orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `package_orders_appointments`
 --
 ALTER TABLE `package_orders_appointments`
-  MODIFY `package_order_appoinment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `package_order_appoinment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `package_prices`
@@ -5075,7 +5156,7 @@ ALTER TABLE `role_permission`
 -- AUTO_INCREMENT for table `schedule`
 --
 ALTER TABLE `schedule`
-  MODIFY `schedule_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `schedule_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 
 --
 -- AUTO_INCREMENT for table `sec_role`
@@ -5153,7 +5234,7 @@ ALTER TABLE `sub_module`
 -- AUTO_INCREMENT for table `time_slot`
 --
 ALTER TABLE `time_slot`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `transaction`
@@ -5201,7 +5282,7 @@ ALTER TABLE `user_leave_manager`
 -- AUTO_INCREMENT for table `user_log`
 --
 ALTER TABLE `user_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `ws_about`
