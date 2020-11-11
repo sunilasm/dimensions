@@ -1440,5 +1440,6 @@ $settings = $this->db->select("site_align")
         <script src="<?php echo base_url() ?>assets/js/custom.js" type="text/javascript"></script>
         <!-- jstree view -->
         <script src="<?php echo base_url() ?>assets/vakata-jstree/dist/jstree.min.js"></script>
+        
     </body>
 </html>

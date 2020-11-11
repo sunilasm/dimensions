@@ -16,19 +16,20 @@ class Email_model extends CI_Model
             $messageBody = $this->load->view('email/general_email_template',$data,true);
             $this->load->library('email');
             $config['protocol']    	= 'smtp';
-            $config['smtp_host']    = 'smtp.gmail.com';
+            $config['smtp_host']    = 'mail.dimensionstherapy.org';
             $config['smtp_port']    = '587';
             $config['smtp_crypto']  = 'tls';
             $config['smtp_timeout'] = '5';
-            $config['smtp_user']    = 'hrportal.alertcenter@gmail.com';
-            $config['smtp_pass']    = 'asm@1234';
+            $config['smtp_user']    = 'nazeer@dimensionstherapy.org';
+            $config['smtp_pass']    = 'admin';
+            
             $config['charset']    	= 'utf-8';
             $config['newline']    	= "\r\n";
             $config['mailtype'] 	= 'html'; // or html
             $config['validation'] 	= TRUE; // bool whether to validate email or not 
             
             $this->email->initialize($config);
-            $from_email = 'hrportal.alertcenter@gmail.com';
+            $from_email = 'nazeer@dimensionstherapy.org';
             $from_name = $data['subject'];
             if(isset($data['from']) && !empty($data['from']) && isset($data['from_name']) && !empty($data['from_name']))
             {
@@ -52,12 +53,22 @@ class Email_model extends CI_Model
             //$this->email->send();
             //echo "<pre>".print_r($this->email,true); exit;;
             if($this->email->send()){
-            //echo "succeess";
-            $this->session->set_flashdata("email_sent","Email sent successfully.");
-            $sent=TRUE;
+                //echo "succeess";
+                $this->session->set_flashdata("email_sent","Email sent successfully.");
+                    $sent=TRUE;
             }
-            else{
-                //echo "error";
+            else
+            {
+                $from = $data['from'];
+                $to = $data['to'];
+                $subject = $data['subject'];
+                $message = $messageBody;
+                $headers = "From:" . $from;
+                $headers .= 'Cc: '.$data['cc']. "\r\n";
+                $headers .= "MIME-Version: 1.0\r\n";
+                $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+                mail($to,$subject,$message, $headers);
+                //show_error($this->email->print_debugger());
                 $this->session->set_flashdata("email_sent","Error in sending Email."); 
             }
 		}
@@ -290,9 +301,9 @@ class Email_model extends CI_Model
                             $subject = strtr($subject,$para);
                             $message = strtr($message,$para);
                             
-                            $from = 'hrportal.alertcenter@gmail.com';
+                            $from = 'nazeer@dimensionstherapy.org';
                             $to = $this->get_to_email_id($email_template['template_send_to'], $para);
-                            $cc = 'sunilnalawade15@gmail.com';
+                            $cc = 'nazeer@dimensionstherapy.org';
                             //echo "<pre>".print_r($to,true); exit;
                             if($to != '')
                             {
@@ -305,7 +316,7 @@ class Email_model extends CI_Model
                                     'message'   => $message
                                 ];
                                 
-                                if($this->email_model->send_mail($sendEmailData))
+                                if($this->send_mail($sendEmailData))
                                 {
                                     $response['status'] = true;
                                     $response['message'] = 'Email send successfully';
@@ -406,9 +417,9 @@ class Email_model extends CI_Model
                             $subject = strtr($subject,$para);
                             $message = strtr($message,$para);
                             //echo "<pre>".print_r($para,true); exit;
-                            $from = 'hrportal.alertcenter@gmail.com';
+                            $from = 'nazeer@dimensionstherapy.org';
                             $to = $this->get_to_email_id($email_template['template_send_to'], $para);
-                            $cc = 'sunilnalawade15@gmail.com';
+                            $cc = 'nazeer@dimensionstherapy.org';
                             //echo "<pre>".print_r($to,true); exit;
                             if($to != '')
                             {
@@ -421,7 +432,7 @@ class Email_model extends CI_Model
                                     'message'   => $message
                                 ];
                                 
-                                if($this->email_model->send_mail($sendEmailData))
+                                if($this->send_mail($sendEmailData))
                                 {
                                     $response['status'] = true;
                                     $response['message'] = 'Email send successfully';

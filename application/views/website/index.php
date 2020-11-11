@@ -27,12 +27,22 @@
         <link href="<?= base_url('assets_web/vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')?>" rel="stylesheet" type="text/css">
         <link href="<?= base_url('assets_web/css/style.css')?>" type="text/css" rel="stylesheet">
         <!-- <link href="<?= base_url('assets_web/font/flaticon.css')?>" type="text/css" rel="stylesheet"> -->
-        
+        <script type="text/javascript">
+            //$("body").prepend('<div id="preloader">Loading...</div>');
+            // Loader
+
+            $(window).on ('load', function ($){
+                jQuery('#loader').delay(100).fadeOut('slow');
+                jQuery('#loader-wrapper').delay(500).fadeOut('slow');
+                jQuery('#loading').hide(); 
+                console.log('on load');
+            });
+        </script>
     </head>
     <body>
-        <div id="loading">
+        <!-- <div id="loading">
             <img id="loading-image" src="<?php echo base_url('assets_web/img/status.gif'); ;?>" alt="Loading..." />
-        </div>
+        </div> -->
         <!-- header -->
         <?php @$this->load->view('website/includes/header');?>
         <!-- /.Main header -->
@@ -95,11 +105,6 @@
                 }); 
             });
         </script>
-        <script type="text/javascript">
-            //$("body").prepend('<div id="preloader">Loading...</div>');
-            $(document).ready(function() {
-                $("#loading").hide();
-            });
-        </script>
+        
     </body>
 </html>

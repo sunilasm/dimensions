@@ -391,8 +391,12 @@ function patientInfo(id){
                     password,
                     phone
                 },
+                beforeSend : function(xhr, opts){
+                    $('#submit').html("Loading");
+                },
                 success : function(data) { 
                     $('#loading-image').hide();
+                    $('#submit').html("Sign Up");
                     if (data.message) {
                         target.removeClass('alert alert-danger');
                         target.addClass('alert alert-info');
@@ -416,6 +420,7 @@ function patientInfo(id){
                 error   : function(xhr, status, error)
                 {
                     $('#loading-image').hide();
+                    $('#submit').html("Sign Up");
                     var err = eval("(" + xhr.responseText + ")");
                     console.log(err);
                     alert('failed');

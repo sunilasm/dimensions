@@ -629,7 +629,6 @@ public function index(){
  
     public function mail_test()
     {
-        //$this->email_model->parent_register(20);
-        $this->email_model->appointment(116);
+        $this->email_model->parent_register(20);
     }
 }
