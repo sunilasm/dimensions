@@ -410,8 +410,6 @@ function patientInfo(id){
                     setTimeout(function(){ 
                         if(data.message){
                             window.location="<?= base_url('parent_login')?>";
-                        }else{
-                            history.go(0);
                         }
                         
                     }, 1500);

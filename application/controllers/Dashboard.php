@@ -527,6 +527,18 @@ public function index(){
             'create_date'  => date('Y-m-d'),
             'status'       => 1,
         ]; 
+        $emailExists = $this->db->select('email')
+            ->where('email',$this->input->post('email',true)) 
+            ->get('patient')
+            ->num_rows();
+
+        $email_check = false;
+        if ($emailExists > 0) 
+        {
+            $data['exception'] = "Parent is already registered with this email id: ".$this->input->post('email',true);
+            $email_check = true;
+            echo json_encode($data); exit;
+        } 
         #-------------------------------#
         if ($this->form_validation->run() === true) {
             $this->db->insert('patient', $postData);
