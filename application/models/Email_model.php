@@ -395,7 +395,7 @@ class Email_model extends CI_Model
                     
                     foreach($parameters as $para)
                     {
-                        $demo = (ENVIRONMENT == 'production') ? false : true;
+                        $demo = (ENVIRONMENT == 'production') ? false : false;
                         $para = $this->set_paras($demo, $para);
                         //echo "<pre>Para:".print_r($para,true); exit;
                         if(!empty($para))
