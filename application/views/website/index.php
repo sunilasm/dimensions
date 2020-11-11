@@ -30,6 +30,9 @@
         
     </head>
     <body>
+        <div id="loading">
+            <img id="loading-image" src="<?php echo base_url('assets_web/img/status.gif'); ;?>" alt="Loading..." />
+        </div>
         <!-- header -->
         <?php @$this->load->view('website/includes/header');?>
         <!-- /.Main header -->
@@ -90,6 +93,12 @@
                         }
                     });
                 }); 
+            });
+        </script>
+        <script type="text/javascript">
+            //$("body").prepend('<div id="preloader">Loading...</div>');
+            $(document).ready(function() {
+                $("#loading").hide();
             });
         </script>
     </body>

@@ -530,8 +530,10 @@ public function index(){
         #-------------------------------#
         if ($this->form_validation->run() === true) {
             $this->db->insert('patient', $postData);
+            $user_id = $this->db->insert_id();
 
             if ($this->db->affected_rows() > 0) {
+                $this->email_model->parent_register($user_id);
                 #set success message
                 $data['message'] = display('thank_you_for_registration');
             } else {
@@ -625,4 +627,9 @@ public function index(){
         redirect('login');
     } 
  
+    public function mail_test()
+    {
+        //$this->email_model->parent_register(20);
+        $this->email_model->appointment(116);
+    }
 }

@@ -111,9 +111,11 @@ class Appointment extends CI_Controller {
                 $postData['payment_id'] = $this->input->post('receipt_id',true);
             }
             /*if empty $id then insert data*/
-            if ($this->appointment_model->create($postData)) 
+            $appointment_id = $this->appointment_model->create($postData);
+            if ($appointment_id) 
             {
-
+                //$this->email_model->appointment($appointment_id);
+                $this->email_model->appointment($appointment_id);
                 #-------------------------------------------------------#
                 #-------------------------SMS SEND -----------------------------#
                 #-------------------------------------------------------#
