@@ -138,6 +138,7 @@ class Appointment extends CI_Controller {
             /*if empty $id then insert data*/
             $id = $this->appointment_model->create($postData);
             if($id) {
+                $this->email_model->appointment($id);
                 $this->session->set_flashdata('message',display('save_successfully'));
                 /*set success message*/
                 if(isset($order_appointment['order_id']) && $order_appointment['order_id'])
@@ -519,6 +520,7 @@ class Appointment extends CI_Controller {
             $id = $this->appointment_model->create($postData);
                         
             if($id) {
+                $this->email_model->appointment($id);
                     $this->session->set_flashdata('message',display('save_successfully'));
                     /*set success message*/
                     

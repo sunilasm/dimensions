@@ -42,21 +42,21 @@
                             <div class="form-group row">
                                 <label for="name" class="col-xs-3 col-form-label"><?php echo display('section_name') ?> <i class="text-danger">*</i></label>
                                 <div class="col-xs-9">
-                                    <input name="name"  type="text" class="form-control" id="name" value="<?= $section->name ?>">
+                                    <input name="name" required  type="text" class="form-control" id="name" value="<?= $section->name ?>">
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="title" class="col-xs-3 col-form-label"><?php echo display('title') ?> </label>
+                                <label for="title" class="col-xs-3 col-form-label"><?php echo display('title') ?> <i class="text-danger">*</i></label>
                                 <div class="col-xs-9">
-                                    <input name="title"  type="text" class="form-control" id="title" placeholder="<?php echo display('title') ?>" value="<?= $section->title ?>">
+                                    <input name="title" reuired  type="text" class="form-control" id="title" placeholder="<?php echo display('title') ?>" value="<?= $section->title ?>">
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="description" class="col-xs-3 col-form-label"><?php echo display('subtitle_description') ?></label>
+                                <label for="description" class="col-xs-3 col-form-label"><?php echo display('subtitle_description') ?><i class="text-danger">*</i></label>
                                 <div class="col-xs-9">
-                                    <textarea name="description" class="form-control"  placeholder="<?php echo display('subtitle_description') ?>" rows="7"><?= $section->description ?></textarea>
+                                    <textarea name="description" required class="form-control"  placeholder="<?php echo display('subtitle_description') ?>" rows="7"><?= $section->description ?></textarea>
                                 </div>
                             </div>
                             

@@ -128,8 +128,9 @@ class Appointment extends CI_Controller {
             }
 
             /*if empty $id then insert data*/
-            if ($this->appointment_model->create($postData)) {
-
+            $appointment_id = $this->appointment_model->create($postData);
+            if ($id) {
+                $this->email_model->appointment($appointment_id);
                 #-------------------------------------------------------#
             #-------------------------SMS SEND -----------------------------#
                 #-------------------------------------------------------#

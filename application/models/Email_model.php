@@ -556,10 +556,12 @@ class Email_model extends CI_Model
             {
                 $response['##parent_email##'] = $parameters['##pemail##'];
             }
+
             if(isset($parameters['##appointment_url##']) && isset($parameters['##appointment_id##']))
             {
                 $response['##appointment_url##'] = $parameters['##appointment_url##'].$parameters['##appointment_id##'];
             }
+
             if(isset($parameters['##admin_appointment_url##']) && isset($parameters['##appointment_id##']))
             {
                 $response['##admin_appointment_url##'] = $parameters['##admin_appointment_url##'].$parameters['##appointment_id##'];
@@ -568,11 +570,11 @@ class Email_model extends CI_Model
             {
                 if(isset($parameters['##parent_email##']))
                 {
-                    $response['##parent_email##'] = 'parent_email@yopmail.com';
+                    $response['##parent_email##'] = $parameters['##parent_email##'];
                 }
                 if(isset($parameters['##pemail##']))
                 {
-                    $response['##parent_email##'] = 'parent_email@yopmail.com';
+                    $response['##parent_email##'] = $parameters['##pemail##'];
                 }
                 if(isset($parameters['##appointment_url##']) && isset($parameters['##appointment_id##']))
                 {
@@ -580,19 +582,7 @@ class Email_model extends CI_Model
                 }
                 if(isset($parameters['##demail##']))
                 {
-                    $response['##demail##'] = 'doctor_email@yopmail.com';
-                }
-                if(isset($parameters['##approver_email##']))
-                {
-                    $response['##approver_email##'] = 'approver_email@yopmail.com';
-                }
-                if(isset($parameters['##head_email##']))
-                {
-                    $response['##head_email##'] = 'head_email@yopmail.com';
-                }
-                if(isset($parameters['##hr_lead_email##']))
-                {
-                    $response['##hr_lead_email##'] = 'hr_lead_email@yopmail.com';
+                    $response['##demail##'] = $parameters['##demail##'];
                 }
             }            
         }

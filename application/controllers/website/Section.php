@@ -119,7 +119,7 @@ class Section extends CI_Controller {
 		#-------------------------------# 
 		$this->form_validation->set_rules('language', display('language'),'required');
 		$this->form_validation->set_rules('title', display('title'),'required|max_length[100]');
-		$this->form_validation->set_rules('description', display('description'),'required|trim|max_length[200]');
+		//$this->form_validation->set_rules('description', display('description'),'required|trim|max_length[200]');
 		#-------------------------------#		
 		
 		$data['section'] = (object)$secData = [
@@ -181,9 +181,12 @@ class Section extends CI_Controller {
 				}
 				redirect('website/section/edit_lang/'.$secData['id']);
 			}
-		} else {
+		} 
+		else 
+		{
 			$data['section'] = $this->section_model->read_by_id($id);
 			$data['languageList'] = $this->setting_model->languageList();
+			//echo "<pre>".print_r($data,true); exit;
 			$data['content'] = $this->load->view('website/pages/section_lang_form',$data,true);
 			$this->load->view('layout/main_wrapper',$data);
 		} 
@@ -223,6 +226,17 @@ class Section extends CI_Controller {
 	public function delete($id = null) 
 	{
 		if ($this->section_model->delete($id)) {
+			#set success message
+			$this->session->set_flashdata('message',display('delete_successfully'));
+		} else {
+			#set exception message
+			$this->session->set_flashdata('exception', display('please_try_again'));
+		}
+		redirect('website/section/');
+	}
+	public function delete_lang($id = null) 
+	{
+		if ($this->section_model->delete_lang($id)) {
 			#set success message
 			$this->session->set_flashdata('message',display('delete_successfully'));
 		} else {

@@ -11,7 +11,7 @@ class Section_model extends CI_Model {
 	}
 
 	public function create($data = [])
-	{	 
+	{
 		return $this->db->insert($this->table,$data);
 	}
 
