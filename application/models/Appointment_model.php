@@ -18,10 +18,17 @@ class Appointment_model extends CI_Model {
 	}
 	public function update($id = 0, $data = [])
 	{	 
-		$response_id = $id;
+		$response_id = '';
+		
 		if($id)
 		{
-			$response_id =  $this->db->update($this->table, $data, array('appointment_id' => $id));
+			$this->db->update($this->table, $data, array('appointment_id' => $id));
+			$appointment = $this->get(array($this->table.'.appointment_id' => $id));
+			if(isset($appointment[0]))
+			{
+				$response_id = $appointment[0]->id;
+			}
+			//echo "<pre>".print_r($appointment,true);
 			// $this->db->where('id', $id);
 			// $this->db->update($this->table, $data);
 		}

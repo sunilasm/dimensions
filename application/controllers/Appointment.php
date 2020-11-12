@@ -263,8 +263,10 @@ class Appointment extends CI_Controller {
     {
         $data = array();
         $data['status'] = 4;
-        if($this->appointment_model->update($appointment_id, $data)) 
+        $id = $this->appointment_model->update($appointment_id, $data);
+        if($id) 
         {
+            $this->email_model->appointment($id, 4);
             /*set success message*/
             $this->session->set_flashdata('message', display('delete_successfully'));
         } 
@@ -323,8 +325,11 @@ class Appointment extends CI_Controller {
         //echo "<pre>".print_r($appointment,true); exit;
         if($refund_status)
         {
-            if($this->appointment_model->update($appointment_id, $data)) 
+            $id = $this->appointment_model->update($appointment_id, $data);
+            //echo "<pre>".print_r($id,true); exit;
+            if($id) 
             {
+                $this->email_model->appointment($id, 3);
                 /*set success message*/
                 $this->session->set_flashdata('message', display('cancell_successfully'));
             } 
@@ -346,8 +351,10 @@ class Appointment extends CI_Controller {
     {
         $data = array();
         $data['status'] = 1;
-        if($this->appointment_model->update($appointment_id, $data)) 
+        $id = $this->appointment_model->update($appointment_id, $data);
+        if($id) 
         {
+            $this->email_model->appointment($id, 1);
             /*set success message*/
             $this->session->set_flashdata('message', display('confirm_successfully'));
         } 
@@ -362,8 +369,10 @@ class Appointment extends CI_Controller {
     {
         $data = array();
         $data['status'] = 5;
-        if($this->appointment_model->update($appointment_id, $data)) 
+        $id = $this->appointment_model->update($appointment_id, $data);
+        if($id) 
         {
+            $this->email_model->appointment($id, 5);
             /*set success message*/
             $this->session->set_flashdata('message', "Succcessfuly marked appointment as done!");
         } 
@@ -417,7 +426,7 @@ class Appointment extends CI_Controller {
             if(empty($rows)){
                 if ($this->patient_model->create($postData)) {
                     $patient_id = $this->db->insert_id();
-                    
+                    $this->email_model->parent_register($patient_id);
                     $this->session->set_userdata(['patientID'=> $postData['patient_id']]);
                     #-------------------------------------------------------#
                 #-------------------------SMS SEND -----------------------------#

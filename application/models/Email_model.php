@@ -16,12 +16,12 @@ class Email_model extends CI_Model
             $messageBody = $this->load->view('email/general_email_template',$data,true);
             $this->load->library('email');
             $config['protocol']    	= 'smtp';
-            $config['smtp_host']    = 'mail.dimensionstherapy.org';
+            $config['smtp_host']    = 'smtp.gmail.com';
             $config['smtp_port']    = '587';
             $config['smtp_crypto']  = 'tls';
             $config['smtp_timeout'] = '5';
-            $config['smtp_user']    = 'nazeer@dimensionstherapy.org';
-            $config['smtp_pass']    = 'admin';
+            $config['smtp_user']    = 'hrportal.alertcenter@gmail.com';
+            $config['smtp_pass']    = 'asm@1234';
             
             $config['charset']    	= 'utf-8';
             $config['newline']    	= "\r\n";
@@ -352,7 +352,7 @@ class Email_model extends CI_Model
             $email_conditions['status'] = 1;
             
             $template = $this->get_email_template($object = false, $email_conditions);
-            
+            //echo "<pre>".print_r($template,true); exit;
             $email_template = '';
             $profile_status_title = get_appointment_status($status_id);
 

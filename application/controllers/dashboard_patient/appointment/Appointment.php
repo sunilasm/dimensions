@@ -225,8 +225,10 @@ class Appointment extends CI_Controller {
     {
         $data = array();
         $data['status'] = 1;
-        if($this->appointment_model->update($appointment_id, $data)) 
-        {
+        $id = $this->appointment_model->update($appointment_id, $data);
+        if($id) 
+        {   
+            $this->email_model->appointment($id, 1);
             /*set success message*/
             $this->session->set_flashdata('message', display('confirm_successfully'));
         } 
