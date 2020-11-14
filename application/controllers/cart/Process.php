@@ -213,6 +213,7 @@ class Process extends CI_Controller {
 							if ($this->order_model->create($postData)) 
 							{
 								$ID = $this->db->insert_id();
+								$this->email_model->package_order($ID);
 								//$this->session->set_flashdata('message', display('order_placed'));
 								$this->session->unset_userdata('cart');
 								//$this->session->unset_userdata('order');

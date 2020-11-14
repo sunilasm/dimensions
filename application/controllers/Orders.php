@@ -129,7 +129,7 @@ class Orders extends CI_Controller {
 			$data['appointments'] = $this->order_model->read_slots_by_order($data['order']->order_id);
 			$data['department_list'] = $this->department_model->department_list(); 
 		}
-		$data['back_url'] = $_SERVER['HTTP_REFERER'];
+		$data['back_url'] = (isset($_SERVER['HTTP_REFERER'])) ? $_SERVER['HTTP_REFERER'] : '';
 		//echo "<pre>".print_r($data, true); exit;
 		//echo "<pre>".print_r($this->session->userdata(), true); exit;
 		//$data['appointment_type'] = $this->main_department_model->appointment_type();
@@ -326,6 +326,7 @@ class Orders extends CI_Controller {
 		if ($this->order_model->delete($id)) 
 		{
 			#set success message
+			$this->email_model->package_order($id, 3);
 			$this->session->set_flashdata('message', display('delete_successfully'));
 		} else {
 			#set exception message
@@ -333,7 +334,7 @@ class Orders extends CI_Controller {
 		}
 		redirect('orders');
 	}
-	public function cancell($order_id = null) 
+	public function cancel($order_id = null) 
 	{
 			$data = array();
 			$data['order_status'] = "Cancelled";
@@ -384,6 +385,7 @@ class Orders extends CI_Controller {
 					if($this->order_model->update_order($order_id, $data)) 
 					{
 							/*set success message*/
+							$this->email_model->package_order($order_id, 2);
 							$this->session->set_flashdata('message', display('cancell_successfully'));
 					} 
 					else 

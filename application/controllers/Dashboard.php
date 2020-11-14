@@ -641,6 +641,6 @@ public function index(){
  
     public function mail_test()
     {
-        $this->email_model->parent_register(20);
+        $this->email_model->package_order(19);
     }
 }

@@ -23,7 +23,7 @@
                 <?php endif; ?>
                 <?php if(isset($order->order_status) && $order->order_status == 'Ordered' && $appointments_booked == 0) : ?>
                     <!-- <a class="btn btn-primary btn-danger marginR10 floatR" style="margin-right: 10px" href="<?php echo $back_url; ?>"> Cancell </a>  -->
-                    <a href="<?php echo base_url("orders/cancell/$order->order_id") ?>" onclick="return confirm('<?php echo display('are_you_sure') ?>')" class="btn btn-primary btn-danger marginR10 floatR" style="margin-right: 10px"><i class="fa fa-times-circle"></i> Cancell </a> 
+                    <a href="<?php echo base_url("orders/cancel/$order->order_id") ?>" onclick="return confirm('<?php echo display('are_you_sure') ?>')" class="btn btn-primary btn-danger marginR10 floatR" style="margin-right: 10px"><i class="fa fa-times-circle"></i> cancel </a> 
                 <?php endif; ?>
             </div> 
 

@@ -556,6 +556,47 @@ class Email_model extends CI_Model
         $response =  ($object) ? $result->result() :  $result->result_array();
         return $response;
     }
+    // Get data for email
+    public function get_order_email_data($object = true, $conditions = array(), $like = array(), $order_by =['package_orders.order_id' => 'asc'], $limit = 0,$start = 0)
+    {
+        $response = array();
+        $this->db->select("
+        package_orders.order_id as ##order_id##, 
+        package_orders.order_status, 
+        package_orders.total_price, 
+        package_orders.created_date, 
+        patient.firstname AS ##pfirstname##,
+        patient.lastname AS ##plastname##,
+        patient.email AS ##pemail##,
+        patient.date_of_birth,
+        patient.sex,
+        patient.mobile,
+        patient.picture,
+        ");
+
+        $this->db->from('package_orders');
+        $this->db->join('patient','patient.id = package_orders.patient_id', 'left');
+        if(isset($conditions) && !empty($conditions)){
+            foreach($conditions as $key => $value)
+            {
+                $this->db->where($key, $value);
+            }
+        }
+        if(isset($order_by) && !empty($order_by)){
+            foreach($order_by as $key => $value)
+            {
+                $this->db->order_by($key, $value);
+            }
+        }
+        if(!empty($limit)){
+            $this->db->limit($limit,$start);
+        }
+        $result = $this->db->get();
+        //echo $this->db->last_query(); exit;
+
+        $response =  ($object) ? $result->result() :  $result->result_array();
+        return $response;
+    }
 
     public function set_paras($demo = false, $parameters = array())
     {
@@ -576,6 +617,10 @@ class Email_model extends CI_Model
             if(isset($parameters['##admin_appointment_url##']) && isset($parameters['##appointment_id##']))
             {
                 $response['##admin_appointment_url##'] = $parameters['##admin_appointment_url##'].$parameters['##appointment_id##'];
+            }
+            if(isset($parameters['##order_url##']) && isset($parameters['##order_url##']))
+            {
+                $response['##order_url##'] = $parameters['##order_url##'].$parameters['##order_id##'];
             }
             if($demo)
             {
@@ -613,29 +658,130 @@ class Email_model extends CI_Model
                     $response = (isset($parametters['##parent_email##'])) ? $parametters['##parent_email##'] : $testmail;
                     break;
 
-                case 'recruiter':
-                    $response = (isset($parametters['##recruiter_email##'])) ? $parametters['##recruiter_email##'] : $testmail;
-                    break;
-
-                case 'hr_lead':    
-                case 'hr_head':
-                    $response = (isset($parametters['##head_email##'])) ? $parametters['##head_email##'] : $testmail;
-                    break;
-
-                case 'candidate':
-                    $response = (isset($parametters['##candidate_email##'])) ? $parametters['##candidate_email##'] : $testmail;
-                    break;
-
-                case 'approver':
-                    $response = (isset($parametters['##approver_email##'])) ? $parametters['##approver_email##'] : $testmail;
-                    break;
-
                 default:
                     $response = 'sunil.n@yopmail.com';
                     break;
             }
         }
         //echo "<pre>$to_name".print_r($response,true); exit;
+        return $response;
+    }
+
+    // Execute email notification on actions
+    public function package_order($id = 0, $status_id = 1)
+    {
+        //ini_set('display_errors', 1); error_reporting(E_ALL);
+        $response = array();
+        $response['status'] = false;
+        $response['message'] = 'Email send failed';
+        $response['id'] = '';
+        
+        if($id && $status_id)
+        {
+            $email_conditions = array();
+            $email_conditions['template_type'] = 'package';
+            $email_conditions['template_type_status_id'] = $status_id;
+            $email_conditions['status'] = 1;
+            
+            $template = $this->get_email_template($object = false, $email_conditions);
+            //echo "<pre>".print_r($template,true); exit;
+            $email_template = '';
+            $profile_status_title = get_order_status($status_id);
+
+            $profile_url = base_url().'dashboard_patient/home/profile';
+            $login_url = base_url().'parent_login';
+
+            $footer = 'Request you to <a href="'.$login_url.'" target="_blank">Login</a> to DCCD.';
+           
+            $conditions = array('package_orders.order_id' => $id);
+            $request_parametters = $this->get_order_email_data($object=false, $conditions);
+            //echo "<pre>".print_r($request_parametters,true); exit;
+            if(!empty($request_parametters))
+            {
+                $request_parametters = $request_parametters[0];
+                $request_parametters['##footer##']          = $footer;
+                $request_parametters['##profile_url##']     = $profile_url;
+                $request_parametters['##login_url##']       = $login_url;
+                $request_parametters['##admin_login_url##'] = base_url().'login';
+                $request_parametters['##appointment_url##'] = base_url().'dashboard_patient/appointment/appointment/view/';
+                $request_parametters['##order_url##'] = base_url().'dashboard_patient/packages/orders/view/';
+                $request_parametters['##admin_appointment_url##'] = base_url().'appointment/view/';
+            }
+            if(isset($request_parametters['##status_title##']))
+            {
+                $request_parametters['##status_title##'] = $profile_status_title;
+            }
+           
+            //$additional = $this->get_additional_parameters($status_id, $job_applicant_id, $approver_level);
+            $parameters = array();
+            //echo "<pre>".print_r($request_parametters,true); exit;
+            if(!empty($additional))
+            {
+                $i = 0;
+                foreach($additional as $key => $additional_item)
+                {
+                    $parameters[$i] = array_merge($request_parametters, $additional_item);
+                    $i++;
+                }
+            }
+            else
+            {
+                $parameters[0] = $request_parametters;
+            }
+            //echo "<pre>".print_r($parameters,true); exit;
+            
+            //echo "<pre>".print_r($template,true); exit;
+            if(!empty($template))
+            {
+                foreach($template as $item)
+                {
+                    $email_template = $item;
+                    
+                    foreach($parameters as $para)
+                    {
+                        $demo = (ENVIRONMENT == 'production') ? false : false;
+                        $para = $this->set_paras($demo, $para);
+                        //echo "<pre>Para:".print_r($para,true); exit;
+                        if(!empty($para))
+                        {
+                            $subject = $email_template['subject'];
+                            $message = $email_template['message'];
+
+                            $subject = strtr($subject,$para);
+                            $message = strtr($message,$para);
+                            //echo "<pre>".print_r($para,true); exit;
+                            $from = 'nazeer@dimensionstherapy.org';
+                            $to = $this->get_to_email_id($email_template['template_send_to'], $para);
+                            $cc = 'sunilnalawade15@gmail.com';
+                            //echo "<pre>".print_r($to,true); exit;
+                            if($to != '')
+                            {
+                                $sendEmailData=[
+                                    'to'        => $to,
+                                    'cc'        => $cc,
+                                    'from'      => $from,
+                                    'from_name' => 'DCCD',
+                                    'subject'   => $subject,
+                                    'message'   => $message
+                                ];
+                                
+                                if($this->send_mail($sendEmailData))
+                                {
+                                    $response['status'] = true;
+                                    $response['message'] = 'Email send successfully';
+                                    $response['id'] = $id;
+                                }
+                            }
+                            else
+                            {
+                                $response['message'] = 'Email to not valid';
+                            }
+                        }
+                    }
+                    //exit;
+                }
+            }
+        }
         return $response;
     }
 }

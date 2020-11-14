@@ -53,7 +53,7 @@ class Orders extends CI_Controller {
 				$data['appointments'] = $this->order_model->read_slots_by_order($data['order']->order_id);
 				//$data['department_list'] = $this->department_model->department_list(); 
 			}
-			$data['back_url'] = $_SERVER['HTTP_REFERER'];
+			$data['back_url'] = (isset($_SERVER['HTTP_REFERER'])) ? $_SERVER['HTTP_REFERER'] : base_url('dashboard_patient/packages/orders/index');
 			//echo "<pre>".print_r($data, true); exit;
 			//echo "<pre>".print_r($this->session->userdata(), true); exit;
 			//$data['appointment_type'] = $this->main_department_model->appointment_type();

@@ -187,6 +187,7 @@ function get_appointment_status($status_id = 2)
 
     return $response;
 }
+
 function get_leave_status($status_id = 2)
 {
     $response = 'Pending';
@@ -266,6 +267,28 @@ function print_time($time = '')
     {
         $response = date("h:i a",strtotime($time));
     }
+    return $response;
+}
+function get_order_status($status_id = 1)
+{
+    $response = 'Ordered';
+
+    switch($status_id)
+    {
+        case '1':
+            $response = 'Ordered';
+            break;
+        case '2':
+            $response = 'Canceled';
+            break;
+        case '3':
+            $response = 'Closed';
+            break;        
+        default:
+            $response = 'Ordered';
+            break;
+    }
+
     return $response;
 }
 // $autoload['helper'] =  array('language_helper');
