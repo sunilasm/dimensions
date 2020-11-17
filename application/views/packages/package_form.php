@@ -22,7 +22,13 @@
                         <?php echo form_open_multipart('packages/create','class="form-inner"') ?> 
 
                             <?php echo form_hidden('package_id',$package->package_id) ?>
-
+                            <div class="form-group row">
+                                <label class="col-xs-3 col-form-label"> <?php echo "Category"?><i class="text-danger">*</i></label>
+                                <div class="col-xs-9">
+                                    <?php echo form_dropdown('package_category_id',$package_category,$package->package_category_id,'class="form-control basic-single" required id="id"') ?>
+                                    <span class="category_id_error"></span>
+                                </div>
+                            </div>
                             <div class="form-group row">
                                 <label for="package_title" class="col-xs-3 col-form-label"><?php echo display('package_title') ?> <i class="text-danger">*</i></label>
                                 <div class="col-xs-9">
@@ -33,6 +39,13 @@
                                 <label for="package_code" class="col-xs-3 col-form-label"><?php echo display('package_code') ?> <i class="text-danger">*</i></label>
                                 <div class="col-xs-9">
                                     <input name="package_code"  type="text" class="form-control" id="package_code" placeholder="<?php echo display('package_code') ?>" value="<?php echo $package->package_code ?>">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-xs-3 col-form-label"> <?php echo "Package Duration"; ?><i class="text-danger">*</i></label>
+                                <div class="col-xs-9">
+                                    <?php echo form_dropdown('package_duration',$package_durations,$package->package_duration,'class="form-control basic-single" required id="id"') ?>
+                                    <span class="package_duration_error"></span>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -72,12 +85,12 @@
                                     <input name="package_sort_order"  type="text" class="form-control" id="package_sort_order" placeholder="<?php echo display('package_sort_order') ?>" value="<?php echo $package->package_sort_order ?>">
                                 </div>
                             </div>
-                            <div class="form-group row">
+                            <!-- <div class="form-group row">
                                 <label for="payment_code" class="col-xs-3 col-form-label"><?php echo display('payment_code') ?> <i class="text-danger">*</i></label>
                                 <div class="col-xs-9">
                                     <input name="payment_code"  type="text" class="form-control" id="payment_code" placeholder="<?php echo display('payment_code') ?>" value="<?php echo $package->payment_code ?>">
                                 </div>
-                            </div>
+                            </div> -->
                             <!--Radio-->
                             <div class="form-group row">
                                 <label class="col-sm-3"><?php echo display('package_status') ?></label>

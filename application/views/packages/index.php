@@ -36,6 +36,7 @@
                                             <th><?php echo display('serial') ?></th>
                                             <th><?php echo display('package_title') ?></th> 
                                             <th><?php echo display('package_code') ?></th>
+                                            <th><?php echo "Category Name"; ?></th>
                                             <th><?php echo display('package_price') ?></th>
                                             <th><?php echo display('package_special_price') ?></th>
                                             <th><?php echo display('package_slots') ?></th>
@@ -58,6 +59,7 @@
                                                     <td><?php echo $sl; ?></td>
                                                     <td><?php echo $package->package_title; ?></td>
                                                     <td><?php echo $package->package_code; ?></td>
+                                                    <td><?php echo $package->category_name; ?></td>
                                                     <td><?php echo $package->package_price; ?></td>
                                                     <td><?php echo $package->package_special_price; ?></td>
                                                     <td><?php echo $package->package_slots; ?></td>
