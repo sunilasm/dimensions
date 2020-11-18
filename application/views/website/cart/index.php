@@ -43,8 +43,9 @@
           <div class="row mb-4">
             <div class="col-md-5 col-lg-3 col-xl-3">
               <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
-                <img class="img-fluid w-100"
-                  src="<?= (!empty($package->package_image)?base_url($package->package_image):base_url('assets_web/img/placeholder/profile.png'))?>" alt="Sample">
+                <span class="meta__avatar box-icon"><i class="fa fa-medkit" aria-hidden="true" style="font-size: 100px; color: #fa75ae;"></i></span>
+                <!-- <img class="img-fluid w-100"
+                  src="<?= (!empty($package->package_image)?base_url($package->package_image):base_url('assets_web/img/placeholder/profile.png'))?>" alt="Sample"> -->
                 <!-- <a href="#!">
                   <div class="mask">
                     <img class="img-fluid w-100"

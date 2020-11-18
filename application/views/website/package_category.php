@@ -59,10 +59,10 @@
                 <!-- <span class="dr-name">Special Code : <?= $category->category_name;?></span>
                 <div class="loader"></div> -->
                 <div class="meta meta--preview">
-                    <img class="meta__avatar" src="<?= (!empty($category->category_image_path)?base_url($category->category_image_path):base_url('assets_web/img/placeholder/profile.png'))?>" alt="author01" /> 
-                    <!-- <span class="meta__position"><?= $package->package_short_description;?></span> -->
+                    <!-- <img class="meta__avatar" src="<?= (!empty($category->category_image_path)?base_url($category->category_image_path):base_url('assets_web/img/placeholder/profile.png'))?>" alt="author01" />  -->
+                    <span class="meta__avatar box-icon"><i class="fa fa-medkit" aria-hidden="true" style="font-size: 100px; color: #fa75ae;"></i></span>
                 </div>
-                <div class="loader"></div>
+                <!-- <div class="loader"></div> -->
                 <!-- <span class="dr-name">Price : <?= $package->package_price; ?></span>
                 <span class="dr-name">Special Price : <?= $package->package_special_price;?></span>
                 <span class="dr-name">Package Slots : <?= $package->package_slots;?></span>

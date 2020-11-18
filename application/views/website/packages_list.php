@@ -58,11 +58,11 @@
                 <h2 class="title title--preview"><?= $package->package_title;?></h2>
                 <span class="dr-name">Special Code : <?= $package->package_code;?></span>
                 <div class="loader"></div>
-                <div class="meta meta--preview">
+                <!-- <div class="meta meta--preview">
                     <img class="meta__avatar" src="<?= (!empty($package->picture)?base_url($package->picture):base_url('assets_web/img/placeholder/profile.png'))?>" alt="author01" /> 
                     <span class="meta__position"><?= $package->package_short_description;?></span>
-                </div>
-                <div class="loader"></div>
+                </div> -->
+                <!-- <div class="loader"></div> -->
                 <span class="dr-name">Price : <?= $package->package_price; ?></span>
                 <span class="dr-name">Special Price : <?= $package->package_special_price;?></span>
                 <span class="dr-name">Package Slots : <?= $package->package_slots;?></span>
