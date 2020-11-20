@@ -46,10 +46,10 @@
        
         <?php foreach( $testimonial as $item) : ?>
             <div class="carousel-item <?php if($i == 1) echo "active"; ?>">
-                <!-- <img src="<?php echo base_url('assets_web/img/trn.png'); ?>" class="d-block w-100" alt="<?php echo $item->title; ?>"> -->
+                <img src="<?php echo base_url($item->image); ?>" class="" alt="<?php echo $item->title; ?>" style="width:150px">
                 <div class="carousel-caption d-block w-100">
-                <!-- <h5><?php echo $item->title; ?></h5> -->
-                <p><?php echo $item->quotation; ?></p>
+                    <h5><?php echo $item->title; ?></h5>
+                    <div><?php echo $item->quotation; ?></div>
                 </div>
             </div>
             <?php $i++; ?>

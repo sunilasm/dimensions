@@ -3895,6 +3895,9 @@ a.appointment-link i {
     text-align: center;
     color: #000;
 }
+.carousel-caption{
+    bottom: -185px !important;
+}
 .carousel-item, #carouselExampleCaptions, .carousel-inner, .carousel-item
 {
     background-color: none;
@@ -3907,11 +3910,15 @@ a.appointment-link i {
 }
 .carousel-item, .carousel-item p
 {
-    min-height:200px;
+    min-height:320px;
 }
 .carousel-control-prev {
     left: -110px;
 }
 .carousel-control-next {
     right: -110px;
+}
+.carousel-caption div{
+    min-height:320px;
+    background: none;
 }

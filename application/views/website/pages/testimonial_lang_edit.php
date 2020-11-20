@@ -41,7 +41,7 @@
                             <div class="form-group row">
                                 <label for="quotation" class="col-xs-3 col-form-label"><?php echo display('quotation') ?> </label>
                                 <div class="col-xs-9">
-                                    <textarea name="quotation"  class="form-control" id="quotation" placeholder="<?php echo display('quotation') ?>" row="6"><?= $testimonial->quotation ?></textarea>
+                                    <textarea name="quotation"  class="form-control tinymce" id="quotation" placeholder="<?php echo display('quotation') ?>" row="6"><?= $testimonial->quotation ?></textarea>
                                 </div>
                             </div>
 
