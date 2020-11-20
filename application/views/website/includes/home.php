@@ -19,7 +19,7 @@
 
     <?php @$this->load->view('website/includes/testimonial');?>
     <!-- /.testimonial -->
-    
+    <?php @$this->load->view('website/includes/slider');?>
     <?php @$this->load->view('website/includes/appointment');?>
     <!-- /.appointment content -->
     
