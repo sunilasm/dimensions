@@ -62,8 +62,8 @@ $settings = $this->db->select("language")->get('setting')->row();
                             <div class="media-body">
                                 <h6 class="mb-0 helpInfo-title"><?= (!empty($setting->open_day)?$setting->open_day:null)?></h6>
                                 <?php if(!empty($setting->closed_day)): ?>
-                                   <p class="subText"><?= $setting->closed_day;?> - <span style="text-transform: uppercase;">
-                                   <?= display('closed')?></span>
+                                   <p class="subText"><b><?= $setting->closed_day;?></b> <!--<span style="text-transform: uppercase;">
+                                   <?= display('closed')?></span>-->
                                    </p>
                                 <?php endif ?>
                             </div>
@@ -91,7 +91,7 @@ $settings = $this->db->select("language")->get('setting')->row();
                             <div class="media-body">
                                 <h6 class="mb-0">
                                     <?php 
-                                      echo "We are available online.";
+                                      echo "Online Therapy <br/>In person Therapy <br/> Hybrid Therapy ";
                                     ?>
                                 </h6>
                                 <!-- <p class="subText"><?php echo substr($setting->address, 39, 80);?></p> -->

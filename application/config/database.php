@@ -78,7 +78,7 @@ $db['default'] = array(
     'dsn'   => '',
     'hostname' => 'localhost',
     'username' => 'root',
-    'password' => 'root',
+    'password' => '',
     'database' => 'dimensions',
     'dbdriver' => 'mysqli',
     'dbprefix' => '',
@@ -97,3 +97,4 @@ $db['default'] = array(
     'save_queries' => TRUE
 );
  
+

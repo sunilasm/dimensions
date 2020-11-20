@@ -52,12 +52,18 @@
         <div class="row align-items-center justify-content-between about-text">
             <div class="col-md-12 col-lg-12">
                 <div class="feature-img">
-                    <img src="<?= (!empty($about[0]->image)?base_url($about[0]->image):base_url('assets_web/img/placeholder/about.png'))?>" height="1100" width="740" class="img-fluid" alt="<?= display('about_us')?>">
+                   <!--  <img src="<?= (!empty($about[0]->image)?base_url($about[0]->image):base_url('assets_web/img/placeholder/about.png'))?>" class="img-fluid" alt="<?= display('about_us')?>"> -->
                 </div>
             </div>
             <div class="col-md-12 col-lg-12">
                 <div class="text-block" style="margin-top:20px;">
-                    <!-- <h6 class="heading-sm"><?= display('about');?></h6> -->
+<TABLE width="100%">
+<TR>
+	<TD width="50%" valign="top">
+	 <img src="<?= (!empty($about[0]->image)?base_url($about[0]->image):base_url('assets_web/img/placeholder/about.png'))?>" class="img-fluid" alt="<?= display('about_us')?>">
+	</TD>
+	<TD>
+<!-- <h6 class="heading-sm"><?= display('about');?></h6> -->
                     <h3><?= (!empty($about[0]->title)?$about[0]->title:null);?></h3>
                     <div>
                         <?php echo $about[0]->description; ?>
@@ -70,7 +76,11 @@
                         <div class="signature">
                              <img src="<?= (!empty($about[0]->signature)?base_url($about[0]->signature):base_url('assets_web/img/placeholder/signature.png'))?>" alt="<?= display('signature')?>" height="134" width="84">
                         </div>
-                    </blockquote> 
+                    </blockquote> 	
+	</TD>
+</TR>
+</TABLE>
+                    
                 </div>
             </div>
         </div>
