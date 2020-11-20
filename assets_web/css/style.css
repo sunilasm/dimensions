@@ -2418,11 +2418,11 @@ h2.semibold span {
 }
 /* Client ------*/ 
 .partners-content {
-    background-color: #007bff;
-    padding: 70px 0 40px;
+    background-color: #ffffff;
+    padding: 10px 0 40px;
 }
 .partner-logo{
-    margin-bottom: 30px;
+    /*margin-bottom: 30px;*/
 }
 /*[Department]
 --------------------------*/

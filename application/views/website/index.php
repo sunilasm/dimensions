@@ -8,7 +8,7 @@
         <meta name="keyword" content="<?= (!empty($setting->meta_keyword)?$setting->meta_keyword:null) ?>" />
         <meta name="description" content="<?= (!empty($setting->meta_tag)?$setting->meta_tag:null) ?>" />
         <!-- Favicon -->
-        <link rel="shortcut icon" href="<?= (!empty($basics->favicon)?base_url($basics->favicon):base_url('assets_web/img/placeholder/favicon.png')) ?>"/>
+        <link rel="shortcut icon" href="<?= (!empty($basics->favicon)?base_url($basics->favicon):base_url('assets_web/images/icons/DCCD_Logo_Final.png')) ?>"/>
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <title><?= (!empty($setting->title)?$setting->title:null) ?></title>
 
