@@ -3888,3 +3888,30 @@ a.appointment-link i {
 {
     margin: 3px 3px;
 }
+.testimonial2
+{
+    background-color: #79b8fa;
+    padding: 30px 100px 50px;
+    text-align: center;
+    color: #000;
+}
+.carousel-item, #carouselExampleCaptions, .carousel-inner, .carousel-item
+{
+    background-color: none;
+}
+.carousel-item img{
+    background: none;
+}
+.carousel-caption h5{
+    top:10px;
+}
+.carousel-item, .carousel-item p
+{
+    min-height:200px;
+}
+.carousel-control-prev {
+    left: -110px;
+}
+.carousel-control-next {
+    right: -110px;
+}
