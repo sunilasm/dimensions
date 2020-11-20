@@ -2760,9 +2760,9 @@ h2.semibold span {
     font-weight: 700;
 }
 .signature {
-    position: absolute;
+    /*position: absolute;
     bottom: -60px;
-    left: 0;
+    left: 0;*/
 }
 .signature img {
     height: 75px;
